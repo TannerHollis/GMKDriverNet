@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BFE81514-FC98-4AFE-BADC-8F30FDBCF9A8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GMKDriverNetUI</RootNamespace>
+    <AssemblyName>GMKDriverNetUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigurationControls\JopystickAsButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\JopystickAsButtonControl.designer.cs">
+      <DependentUpon>JopystickAsButtonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\ButtonAsKeyboardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\ButtonAsKeyboardControl.designer.cs">
+      <DependentUpon>ButtonAsKeyboardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\ButtonAsTriggerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\ButtonAsTriggerControl.designer.cs">
+      <DependentUpon>ButtonAsTriggerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\ButtonAsJoystickControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\ButtonAsJoystickControl.designer.cs">
+      <DependentUpon>ButtonAsJoystickControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\ButtonAsButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\ButtonAsButtonControl.designer.cs">
+      <DependentUpon>ButtonAsButtonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigurationEditor.designer.cs">
+      <DependentUpon>ConfigurationEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ConfigName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigName.Designer.cs">
+      <DependentUpon>ConfigName.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ConfigurationControls\JopystickAsButtonControl.resx">
+      <DependentUpon>JopystickAsButtonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\ButtonAsKeyboardControl.resx">
+      <DependentUpon>ButtonAsKeyboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\ButtonAsTriggerControl.resx">
+      <DependentUpon>ButtonAsTriggerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\ButtonAsJoystickControl.resx">
+      <DependentUpon>ButtonAsJoystickControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\ButtonAsButtonControl.resx">
+      <DependentUpon>ButtonAsButtonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationEditor.resx">
+      <DependentUpon>ConfigurationEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ConfigName.resx">
+      <DependentUpon>ConfigName.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GMKlogo_transparent_square.ico" />
+    <Content Include="images\button.png" />
+    <Content Include="images\joystick.png" />
+    <Content Include="images\trigger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GMKDriverNet\GMKDriverNet.csproj">
+      <Project>{03d9bfb9-9a88-40cb-bbac-2e4fbe1cb772}</Project>
+      <Name>GMKDriverNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

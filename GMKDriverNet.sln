@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMKDriverNet", "GMKDriverNet\GMKDriverNet.csproj", "{03D9BFB9-9A88-40CB-BBAC-2E4FBE1CB772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMKDriverNetUI", "GMKDriverNetUI\GMKDriverNetUI.csproj", "{BFE81514-FC98-4AFE-BADC-8F30FDBCF9A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{03D9BFB9-9A88-40CB-BBAC-2E4FBE1CB772} = {03D9BFB9-9A88-40CB-BBAC-2E4FBE1CB772}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIDLibraryTest", "HIDLibraryTest\HIDLibraryTest.csproj", "{1B0CD2B4-50D9-4840-AAC0-04D27ACA96EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03D9BFB9-9A88-40CB-BBAC-2E4FBE1CB772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D9BFB9-9A88-40CB-BBAC-2E4FBE1CB772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D9BFB9-9A88-40CB-BBAC-2E4FBE1CB772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D9BFB9-9A88-40CB-BBAC-2E4FBE1CB772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE81514-FC98-4AFE-BADC-8F30FDBCF9A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE81514-FC98-4AFE-BADC-8F30FDBCF9A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE81514-FC98-4AFE-BADC-8F30FDBCF9A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE81514-FC98-4AFE-BADC-8F30FDBCF9A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0CD2B4-50D9-4840-AAC0-04D27ACA96EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0CD2B4-50D9-4840-AAC0-04D27ACA96EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0CD2B4-50D9-4840-AAC0-04D27ACA96EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0CD2B4-50D9-4840-AAC0-04D27ACA96EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A556E0A-5984-419B-B97B-FB374E14734D}
+	EndGlobalSection
+EndGlobal
