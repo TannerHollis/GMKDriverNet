@@ -1,0 +1,11 @@
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\bin\Debug\HIDLibraryTest.exe.config
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\bin\Debug\HIDLibraryTest.exe
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\bin\Debug\HIDLibraryTest.pdb
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\bin\Debug\HidLibrary.dll
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\bin\Debug\HidLibrary.pdb
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\obj\Debug\HIDLibraryTest.csproj.AssemblyReference.cache
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\obj\Debug\HIDLibraryTest.csproj.SuggestedBindingRedirects.cache
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\obj\Debug\HIDLibraryTest.csproj.CoreCompileInputs.cache
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\obj\Debug\HIDLibraryTest.csproj.CopyComplete
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\obj\Debug\HIDLibraryTest.exe
+C:\Users\tanne\source\repos\GMKDriverNet\HIDLibraryTest\obj\Debug\HIDLibraryTest.pdb
