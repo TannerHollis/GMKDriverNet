@@ -29,6 +29,13 @@ namespace GMKDriverNetUI
         private ButtonAsTriggerControl _buttonAsTriggerControl;
         private ButtonAsKeyboardControl _buttonAsKeyboardControl;
         private JoystickAsButtonControl _joystickAsButtonControl;
+        private JoystickAsJoystickControl _joystickAsJoystickControl;
+        private JoystickAsTriggerControl _joystickAsTriggerControl;
+        private JoystickAsKeyboardControl _joystickAsKeyboardControl;
+        private TriggerAsButtonControl _triggerAsButtonControl;
+        private TriggerAsJoystickControl _triggerAsJoystickControl;
+        private TriggerAsTriggerControl _triggerAsTriggerControl;
+        private TriggerAsKeyboardControl _triggerAsKeyboardControl;
 
         public configurationEditor(GMKDevice device)
         {
@@ -106,6 +113,41 @@ namespace GMKDriverNetUI
             _joystickAsButtonControl.Dock = DockStyle.Fill;
             gridLayout.Controls.Add(_joystickAsButtonControl, 1, 0);
 
+            // Add JoystickAsJoystick Widget
+            _joystickAsJoystickControl = new JoystickAsJoystickControl();
+            _joystickAsJoystickControl.Dock = DockStyle.Fill;
+            gridLayout.Controls.Add(_joystickAsJoystickControl, 1, 0);
+
+            // Add JoystickAsTrigger Widget
+            _joystickAsTriggerControl = new JoystickAsTriggerControl();
+            _joystickAsTriggerControl.Dock = DockStyle.Fill;
+            gridLayout.Controls.Add(_joystickAsTriggerControl, 1, 0);
+
+            // Add JoystickAsKeyboard Widget
+            _joystickAsKeyboardControl = new JoystickAsKeyboardControl();
+            _joystickAsKeyboardControl.Dock = DockStyle.Fill;
+            gridLayout.Controls.Add(_joystickAsKeyboardControl, 1, 0);
+
+            // Add TriggerAsButton Widget
+            _triggerAsButtonControl = new TriggerAsButtonControl();
+            _triggerAsButtonControl.Dock = DockStyle.Fill;
+            gridLayout.Controls.Add(_triggerAsButtonControl, 1, 0);
+
+            // Add TriggerAsJoystick Widget
+            _triggerAsJoystickControl = new TriggerAsJoystickControl();
+            _triggerAsJoystickControl.Dock = DockStyle.Fill;
+            gridLayout.Controls.Add(_triggerAsJoystickControl, 1, 0);
+
+            // Add TriggerAsTrigger Widget
+            _triggerAsTriggerControl = new TriggerAsTriggerControl();
+            _triggerAsTriggerControl.Dock = DockStyle.Fill;
+            gridLayout.Controls.Add(_triggerAsTriggerControl, 1, 0);
+
+            // Add TriggerAsKeyboard Widget
+            _triggerAsKeyboardControl = new TriggerAsKeyboardControl();
+            _triggerAsKeyboardControl.Dock = DockStyle.Fill;
+            gridLayout.Controls.Add(_triggerAsKeyboardControl, 1, 0);
+
             // Hide all widgets
             CloseWidgets();
         }
@@ -118,6 +160,14 @@ namespace GMKDriverNetUI
             _buttonAsKeyboardControl.Visible &= false;
 
             _joystickAsButtonControl.Visible &= false;
+            _joystickAsJoystickControl.Visible &= false;
+            _joystickAsTriggerControl.Visible &= false;
+            _joystickAsKeyboardControl.Visible &= false;
+
+            _triggerAsButtonControl.Visible &= false;
+            _triggerAsJoystickControl.Visible &= false;
+            _triggerAsTriggerControl.Visible &= false;
+            _triggerAsKeyboardControl.Visible &= false;
         }
 
         private void LoadConfiguration(DeviceConfig config)
@@ -287,6 +337,34 @@ namespace GMKDriverNetUI
                     case "GMKDriverNET.JoystickAsButton":
                         _joystickAsButtonControl.LoadWidget((TreeNode)node);
                         return;
+
+                    case "GMKDriverNET.JoystickAsJoystick":
+                        _joystickAsJoystickControl.LoadWidget((TreeNode)node);
+                        return;
+
+                    case "GMKDriverNET.JoystickAsTrigger":
+                        _joystickAsTriggerControl.LoadWidget((TreeNode)node);
+                        return;
+
+                    case "GMKDriverNET.JoystickAsKeyboard":
+                        _joystickAsKeyboardControl.LoadWidget((TreeNode)node);
+                        return;
+
+                    case "GMKDriverNET.TriggerAsButton":
+                        _triggerAsButtonControl.LoadWidget((TreeNode)node);
+                        return;
+
+                    case "GMKDriverNET.TriggerAsJoystick":
+                        _triggerAsJoystickControl.LoadWidget((TreeNode)node);
+                        return;
+
+                    case "GMKDriverNET.TriggerAsTrigger":
+                        _triggerAsTriggerControl.LoadWidget((TreeNode)node);
+                        return;
+
+                    case "GMKDriverNET.TriggerAsKeyboard":
+                        _triggerAsKeyboardControl.LoadWidget((TreeNode)node);
+                        return;
                 }
 
                 selectionHelp.Visible = true;
@@ -322,10 +400,10 @@ namespace GMKDriverNetUI
             {
                 DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
 
-                removeMenuItem.Enabled |= config.name != _device.Config.name;
-                makeDefaultMenuItem.Enabled |= config.name != _configAssociation.defaultConfigFile;
-                setActiveMenuItem.Enabled |= config.name != _device.Config.name;
-                renameMenuItem.Enabled |= true;
+                removeMenuItem.Enabled = (config.name != _device.Config.name) && (config.name != _configAssociation.defaultConfigFile);
+                makeDefaultMenuItem.Enabled = config.name != _configAssociation.defaultConfigFile;
+                setActiveMenuItem.Enabled = config.name != _device.Config.name;
+                renameMenuItem.Enabled = true;
             }
         }
 
@@ -349,6 +427,7 @@ namespace GMKDriverNetUI
             if (result == DialogResult.Yes)
             {
                 _currentConfig.ToFile();
+                _device.Config = _currentConfig;
             }
         }
 
@@ -410,10 +489,20 @@ namespace GMKDriverNetUI
         private void fromExistingMenuItem_Click(object sender, EventArgs e)
         {
             openConfigFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Configs";
-            openConfigFileDialog.ShowDialog();
-            string configName = Path.GetFileNameWithoutExtension(openConfigFileDialog.FileName);
-            DeviceConfig config = DeviceConfig.FromFile(configName);
-            _deviceList.AddConfiguration(_device.SerialNumber, config, false);
+            DialogResult result = openConfigFileDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                string configName = Path.GetFileNameWithoutExtension(openConfigFileDialog.FileName);
+                DeviceConfig config = DeviceConfig.FromFile(configName);
+                _deviceList.AddConfiguration(_device.SerialNumber, config, false);
+                SetConfigsView();
+            }
+        }
+
+        private void makeDefaultMenuItem_Click(object sender, EventArgs e)
+        {
+            DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
+            _deviceList.SetDefaultConfiguration(_device.SerialNumber, config);
             SetConfigsView();
         }
     }

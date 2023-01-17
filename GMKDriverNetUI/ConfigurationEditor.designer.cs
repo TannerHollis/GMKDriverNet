@@ -30,23 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(configurationEditor));
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Left");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Right");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Joystick Settings", new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Left");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Right");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("TriggerSettings", new System.Windows.Forms.TreeNode[] {
-            treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Button Bindings");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Joystick Bindings");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("TriggerBindings");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Bindings", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Left");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Right");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Joystick Settings", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Left");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Right");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("TriggerSettings", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Button Bindings");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Joystick Bindings");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("TriggerBindings");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Bindings", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9});
             this.gridLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.serialNumber = new System.Windows.Forms.Label();
@@ -62,6 +62,7 @@
             this.configName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.defaultConfig = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.configsViewContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setActiveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addConfigMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newConfigMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromExistingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,8 +91,8 @@
             this.removeBindingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectionHelp = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.setActiveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.activeConfig = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gridLayout.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -105,8 +106,8 @@
             // gridLayout
             // 
             this.gridLayout.ColumnCount = 2;
-            this.gridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.98719F));
-            this.gridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.0128F));
+            this.gridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.9872F));
+            this.gridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.01279F));
             this.gridLayout.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.gridLayout.Controls.Add(this.tableLayoutPanel1, 0, 1);
             this.gridLayout.Controls.Add(this.configurationSettingsGroupBox, 1, 1);
@@ -115,9 +116,8 @@
             this.gridLayout.Location = new System.Drawing.Point(0, 0);
             this.gridLayout.Name = "gridLayout";
             this.gridLayout.RowCount = 2;
-            this.gridLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.82614F));
-            this.gridLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.17386F));
-            this.gridLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.gridLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.gridLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.gridLayout.Size = new System.Drawing.Size(1094, 691);
             this.gridLayout.TabIndex = 0;
             // 
@@ -138,16 +138,16 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(311, 207);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(333, 270);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // serialNumber
             // 
             this.serialNumber.AutoSize = true;
             this.serialNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.serialNumber.Location = new System.Drawing.Point(104, 182);
+            this.serialNumber.Location = new System.Drawing.Point(111, 245);
             this.serialNumber.Name = "serialNumber";
-            this.serialNumber.Size = new System.Drawing.Size(204, 25);
+            this.serialNumber.Size = new System.Drawing.Size(219, 25);
             this.serialNumber.TabIndex = 3;
             this.serialNumber.Text = "Serial Number";
             this.serialNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -157,9 +157,9 @@
             this.serialNumberLabel.AutoSize = true;
             this.serialNumberLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.serialNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serialNumberLabel.Location = new System.Drawing.Point(3, 182);
+            this.serialNumberLabel.Location = new System.Drawing.Point(3, 245);
             this.serialNumberLabel.Name = "serialNumberLabel";
-            this.serialNumberLabel.Size = new System.Drawing.Size(95, 25);
+            this.serialNumberLabel.Size = new System.Drawing.Size(102, 25);
             this.serialNumberLabel.TabIndex = 2;
             this.serialNumberLabel.Text = "SN:";
             this.serialNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -169,9 +169,9 @@
             this.deviceTypeLabel.AutoSize = true;
             this.deviceTypeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.deviceTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deviceTypeLabel.Location = new System.Drawing.Point(3, 157);
+            this.deviceTypeLabel.Location = new System.Drawing.Point(3, 220);
             this.deviceTypeLabel.Name = "deviceTypeLabel";
-            this.deviceTypeLabel.Size = new System.Drawing.Size(95, 25);
+            this.deviceTypeLabel.Size = new System.Drawing.Size(102, 25);
             this.deviceTypeLabel.TabIndex = 0;
             this.deviceTypeLabel.Text = "Device:";
             this.deviceTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -180,9 +180,9 @@
             // 
             this.deviceType.AutoSize = true;
             this.deviceType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.deviceType.Location = new System.Drawing.Point(104, 157);
+            this.deviceType.Location = new System.Drawing.Point(111, 220);
             this.deviceType.Name = "deviceType";
-            this.deviceType.Size = new System.Drawing.Size(204, 25);
+            this.deviceType.Size = new System.Drawing.Size(219, 25);
             this.deviceType.TabIndex = 1;
             this.deviceType.Text = "Device Type";
             this.deviceType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -198,7 +198,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.MinimumSize = new System.Drawing.Size(64, 64);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(305, 151);
+            this.pictureBox1.Size = new System.Drawing.Size(327, 214);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -212,18 +212,18 @@
             this.tableLayoutPanel1.Controls.Add(this.loadButton, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.configurationsGroupBox, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 216);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 279);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(311, 472);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 409);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // saveButton
             // 
             this.saveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.saveButton.Location = new System.Drawing.Point(195, 445);
+            this.saveButton.Location = new System.Drawing.Point(212, 382);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 2;
@@ -234,7 +234,7 @@
             // loadButton
             // 
             this.loadButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.loadButton.Location = new System.Drawing.Point(40, 445);
+            this.loadButton.Location = new System.Drawing.Point(45, 382);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(75, 23);
             this.loadButton.TabIndex = 3;
@@ -250,7 +250,7 @@
             this.configurationsGroupBox.Location = new System.Drawing.Point(3, 0);
             this.configurationsGroupBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.configurationsGroupBox.Name = "configurationsGroupBox";
-            this.configurationsGroupBox.Size = new System.Drawing.Size(305, 439);
+            this.configurationsGroupBox.Size = new System.Drawing.Size(327, 376);
             this.configurationsGroupBox.TabIndex = 4;
             this.configurationsGroupBox.TabStop = false;
             this.configurationsGroupBox.Text = "Configurations";
@@ -259,7 +259,8 @@
             // 
             this.configsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.configName,
-            this.defaultConfig});
+            this.defaultConfig,
+            this.activeConfig});
             this.configsView.ContextMenuStrip = this.configsViewContextMenu;
             this.configsView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.configsView.FullRowSelect = true;
@@ -267,7 +268,7 @@
             this.configsView.Location = new System.Drawing.Point(3, 16);
             this.configsView.MultiSelect = false;
             this.configsView.Name = "configsView";
-            this.configsView.Size = new System.Drawing.Size(299, 420);
+            this.configsView.Size = new System.Drawing.Size(321, 357);
             this.configsView.TabIndex = 1;
             this.configsView.UseCompatibleStateImageBehavior = false;
             this.configsView.View = System.Windows.Forms.View.Details;
@@ -281,7 +282,7 @@
             // defaultConfig
             // 
             this.defaultConfig.Text = "Default Config";
-            this.defaultConfig.Width = 80;
+            this.defaultConfig.Width = 87;
             // 
             // configsViewContextMenu
             // 
@@ -295,6 +296,13 @@
             this.configsViewContextMenu.Size = new System.Drawing.Size(174, 114);
             this.configsViewContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.configsViewContextMenu_Opening);
             // 
+            // setActiveMenuItem
+            // 
+            this.setActiveMenuItem.Name = "setActiveMenuItem";
+            this.setActiveMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.setActiveMenuItem.Text = "Set Active";
+            this.setActiveMenuItem.Click += new System.EventHandler(this.setActiveMenuItem_Click);
+            // 
             // addConfigMenuItem
             // 
             this.addConfigMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -307,14 +315,14 @@
             // newConfigMenuItem
             // 
             this.newConfigMenuItem.Name = "newConfigMenuItem";
-            this.newConfigMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newConfigMenuItem.Size = new System.Drawing.Size(155, 22);
             this.newConfigMenuItem.Text = "New...";
             this.newConfigMenuItem.Click += new System.EventHandler(this.newConfigMenuItem_Click);
             // 
             // fromExistingMenuItem
             // 
             this.fromExistingMenuItem.Name = "fromExistingMenuItem";
-            this.fromExistingMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fromExistingMenuItem.Size = new System.Drawing.Size(155, 22);
             this.fromExistingMenuItem.Text = "From Existing...";
             this.fromExistingMenuItem.Click += new System.EventHandler(this.fromExistingMenuItem_Click);
             // 
@@ -337,14 +345,15 @@
             this.makeDefaultMenuItem.Name = "makeDefaultMenuItem";
             this.makeDefaultMenuItem.Size = new System.Drawing.Size(173, 22);
             this.makeDefaultMenuItem.Text = "Make Default";
+            this.makeDefaultMenuItem.Click += new System.EventHandler(this.makeDefaultMenuItem_Click);
             // 
             // configurationSettingsGroupBox
             // 
             this.configurationSettingsGroupBox.Controls.Add(this.bindingsTreeView);
             this.configurationSettingsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.configurationSettingsGroupBox.Location = new System.Drawing.Point(320, 216);
+            this.configurationSettingsGroupBox.Location = new System.Drawing.Point(342, 279);
             this.configurationSettingsGroupBox.Name = "configurationSettingsGroupBox";
-            this.configurationSettingsGroupBox.Size = new System.Drawing.Size(771, 472);
+            this.configurationSettingsGroupBox.Size = new System.Drawing.Size(749, 409);
             this.configurationSettingsGroupBox.TabIndex = 3;
             this.configurationSettingsGroupBox.TabStop = false;
             this.configurationSettingsGroupBox.Text = "Configuration Settings";
@@ -357,33 +366,33 @@
             this.bindingsTreeView.Indent = 20;
             this.bindingsTreeView.Location = new System.Drawing.Point(3, 16);
             this.bindingsTreeView.Name = "bindingsTreeView";
-            treeNode11.Name = "leftJoystick";
-            treeNode11.Text = "Left";
-            treeNode12.Name = "rightJoystick";
-            treeNode12.Text = "Right";
-            treeNode13.Name = "joystickSettings";
-            treeNode13.Text = "Joystick Settings";
-            treeNode14.Name = "leftTrigger";
-            treeNode14.Text = "Left";
-            treeNode15.Name = "rightTrigger";
-            treeNode15.Text = "Right";
-            treeNode16.ImageIndex = 1;
-            treeNode16.Name = "triggerSettings";
-            treeNode16.Text = "TriggerSettings";
-            treeNode17.Name = "buttonBindings";
-            treeNode17.Text = "Button Bindings";
-            treeNode18.Name = "joystickBindings";
-            treeNode18.Text = "Joystick Bindings";
-            treeNode19.Name = "triggerBindings";
-            treeNode19.Text = "TriggerBindings";
-            treeNode20.ImageKey = "trigger.png";
-            treeNode20.Name = "bindings";
-            treeNode20.Text = "Bindings";
+            treeNode1.Name = "leftJoystick";
+            treeNode1.Text = "Left";
+            treeNode2.Name = "rightJoystick";
+            treeNode2.Text = "Right";
+            treeNode3.Name = "joystickSettings";
+            treeNode3.Text = "Joystick Settings";
+            treeNode4.Name = "leftTrigger";
+            treeNode4.Text = "Left";
+            treeNode5.Name = "rightTrigger";
+            treeNode5.Text = "Right";
+            treeNode6.ImageIndex = 1;
+            treeNode6.Name = "triggerSettings";
+            treeNode6.Text = "TriggerSettings";
+            treeNode7.Name = "buttonBindings";
+            treeNode7.Text = "Button Bindings";
+            treeNode8.Name = "joystickBindings";
+            treeNode8.Text = "Joystick Bindings";
+            treeNode9.Name = "triggerBindings";
+            treeNode9.Text = "TriggerBindings";
+            treeNode10.ImageKey = "trigger.png";
+            treeNode10.Name = "bindings";
+            treeNode10.Text = "Bindings";
             this.bindingsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode16,
-            treeNode20});
-            this.bindingsTreeView.Size = new System.Drawing.Size(765, 453);
+            treeNode3,
+            treeNode6,
+            treeNode10});
+            this.bindingsTreeView.Size = new System.Drawing.Size(743, 390);
             this.bindingsTreeView.TabIndex = 1;
             this.bindingsTreeView.DoubleClick += new System.EventHandler(this.bindingsTreeView_DoubleClick);
             // 
@@ -521,7 +530,7 @@
             this.selectionHelp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.selectionHelp.AutoSize = true;
             this.selectionHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectionHelp.Location = new System.Drawing.Point(517, 93);
+            this.selectionHelp.Location = new System.Drawing.Point(528, 125);
             this.selectionHelp.Name = "selectionHelp";
             this.selectionHelp.Size = new System.Drawing.Size(376, 26);
             this.selectionHelp.TabIndex = 4;
@@ -535,18 +544,16 @@
             this.imageList1.Images.SetKeyName(1, "joystick.png");
             this.imageList1.Images.SetKeyName(2, "trigger.png");
             // 
-            // setActiveMenuItem
-            // 
-            this.setActiveMenuItem.Name = "setActiveMenuItem";
-            this.setActiveMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.setActiveMenuItem.Text = "Set Active";
-            this.setActiveMenuItem.Click += new System.EventHandler(this.setActiveMenuItem_Click);
-            // 
             // openConfigFileDialog
             // 
             this.openConfigFileDialog.FileName = "openConfigFileDialog";
             this.openConfigFileDialog.Filter = "config files (*.json)|*.json";
             this.openConfigFileDialog.InitialDirectory = "Configs";
+            // 
+            // activeConfig
+            // 
+            this.activeConfig.Text = "Active Config";
+            this.activeConfig.Width = 93;
             // 
             // configurationEditor
             // 
@@ -619,5 +626,6 @@
         private System.Windows.Forms.ToolStripMenuItem makeDefaultMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setActiveMenuItem;
         private System.Windows.Forms.OpenFileDialog openConfigFileDialog;
+        private System.Windows.Forms.ColumnHeader activeConfig;
     }
 }

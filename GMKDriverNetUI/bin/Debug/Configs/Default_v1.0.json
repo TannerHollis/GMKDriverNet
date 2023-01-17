@@ -98,26 +98,23 @@
     "asKeyboards": []
   },
   "joysticks": {
-    "asButtons": [
-      {
-        "input": 0,
-        "inputAxis": 0,
-        "output": 0,
-        "threshold": 0.200000003
-      }
-    ],
+    "asButtons": [],
     "asJoysticks": [
       {
         "input": 0,
         "output": 0,
         "rotate": 0,
-        "linear": false
+        "threshold": 0,
+        "linear": true,
+        "snapMode76": true
       },
       {
         "input": 1,
         "output": 1,
         "rotate": 0,
-        "linear": false
+        "threshold": 0,
+        "linear": true,
+        "snapMode76": true
       }
     ],
     "asTriggers": [],
@@ -130,12 +127,12 @@
       {
         "input": 0,
         "output": 0,
-        "linear": false
+        "linear": true
       },
       {
         "input": 1,
         "output": 1,
-        "linear": false
+        "linear": true
       }
     ],
     "asKeyboards": []

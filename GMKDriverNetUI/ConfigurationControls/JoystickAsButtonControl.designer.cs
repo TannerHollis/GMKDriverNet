@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.thresholdLabel = new System.Windows.Forms.Label();
             this.inputAxis = new System.Windows.Forms.ComboBox();
             this.inputAxisLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
             this.inputJoystick = new System.Windows.Forms.ComboBox();
-            this.outputButton = new System.Windows.Forms.ComboBox();
             this.outputButtonLabel = new System.Windows.Forms.Label();
-            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.outputButton = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.thresholdSlider = new System.Windows.Forms.TrackBar();
             this.thresholdValueLabel = new System.Windows.Forms.Label();
@@ -67,6 +67,18 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(596, 283);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // thresholdLabel
+            // 
+            this.thresholdLabel.AutoSize = true;
+            this.thresholdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.thresholdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thresholdLabel.Location = new System.Drawing.Point(3, 210);
+            this.thresholdLabel.Name = "thresholdLabel";
+            this.thresholdLabel.Size = new System.Drawing.Size(171, 73);
+            this.thresholdLabel.TabIndex = 6;
+            this.thresholdLabel.Text = "Threshold";
+            this.thresholdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // inputAxis
             // 
@@ -124,6 +136,18 @@
             this.inputJoystick.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
             this.inputJoystick.SelectedValueChanged += new System.EventHandler(this.valueChanged);
             // 
+            // outputButtonLabel
+            // 
+            this.outputButtonLabel.AutoSize = true;
+            this.outputButtonLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputButtonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputButtonLabel.Location = new System.Drawing.Point(3, 140);
+            this.outputButtonLabel.Name = "outputButtonLabel";
+            this.outputButtonLabel.Size = new System.Drawing.Size(171, 70);
+            this.outputButtonLabel.TabIndex = 4;
+            this.outputButtonLabel.Text = "Output Button";
+            this.outputButtonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // outputButton
             // 
             this.outputButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -151,42 +175,18 @@
             this.outputButton.TabIndex = 5;
             this.outputButton.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
             // 
-            // outputButtonLabel
-            // 
-            this.outputButtonLabel.AutoSize = true;
-            this.outputButtonLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.outputButtonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputButtonLabel.Location = new System.Drawing.Point(3, 140);
-            this.outputButtonLabel.Name = "outputButtonLabel";
-            this.outputButtonLabel.Size = new System.Drawing.Size(171, 70);
-            this.outputButtonLabel.TabIndex = 4;
-            this.outputButtonLabel.Text = "Output Button";
-            this.outputButtonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // thresholdLabel
-            // 
-            this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thresholdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thresholdLabel.Location = new System.Drawing.Point(3, 210);
-            this.thresholdLabel.Name = "thresholdLabel";
-            this.thresholdLabel.Size = new System.Drawing.Size(171, 73);
-            this.thresholdLabel.TabIndex = 6;
-            this.thresholdLabel.Text = "Threshold";
-            this.thresholdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.Controls.Add(this.thresholdSlider, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.thresholdValueLabel, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(180, 213);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(413, 67);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
@@ -196,7 +196,7 @@
             this.thresholdSlider.Location = new System.Drawing.Point(3, 11);
             this.thresholdSlider.Maximum = 100;
             this.thresholdSlider.Name = "thresholdSlider";
-            this.thresholdSlider.Size = new System.Drawing.Size(200, 45);
+            this.thresholdSlider.Size = new System.Drawing.Size(303, 45);
             this.thresholdSlider.TabIndex = 0;
             this.thresholdSlider.TickFrequency = 5;
             this.thresholdSlider.ValueChanged += new System.EventHandler(this.valueChanged);
@@ -207,9 +207,9 @@
             // 
             this.thresholdValueLabel.AutoSize = true;
             this.thresholdValueLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thresholdValueLabel.Location = new System.Drawing.Point(209, 0);
+            this.thresholdValueLabel.Location = new System.Drawing.Point(312, 0);
             this.thresholdValueLabel.Name = "thresholdValueLabel";
-            this.thresholdValueLabel.Size = new System.Drawing.Size(201, 67);
+            this.thresholdValueLabel.Size = new System.Drawing.Size(98, 67);
             this.thresholdValueLabel.TabIndex = 1;
             this.thresholdValueLabel.Text = "%";
             this.thresholdValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

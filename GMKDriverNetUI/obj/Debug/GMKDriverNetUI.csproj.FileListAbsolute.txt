@@ -42,3 +42,10 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.csproj.CopyComplete
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.exe
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.pdb
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.JoystickAsJoystickControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.JoystickAsTriggerControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.JoystickAsKeyboardControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.TriggerAsKeyboardControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.TriggerAsTriggerControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.TriggerAsJoystickControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.TriggerAsButtonControl.resources

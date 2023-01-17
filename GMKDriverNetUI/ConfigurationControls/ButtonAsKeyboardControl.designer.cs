@@ -114,6 +114,7 @@
             this.outputKey.Name = "outputKey";
             this.outputKey.Size = new System.Drawing.Size(121, 20);
             this.outputKey.TabIndex = 3;
+            this.outputKey.TextChanged += new System.EventHandler(this.valueChanged);
             // 
             // ButtonAsKeyboardControl
             // 

@@ -119,19 +119,22 @@ namespace GMKDriverNET
         public JoystickIO input { get; set; }
         public JoystickIO output { get; set;}
         public float rotate { get; set; }
+        public float threshold { get; set; }
         public bool linear { get; set; }
+        public bool snapMode76 { get; set; }
 
         public override string ToString()
         {
             return input.ToString() + " -> " + output.ToString();
         }
 
-        public JoystickAsJoystick(JoystickIO input, JoystickIO output, float rotate, bool linear)
+        public JoystickAsJoystick(JoystickIO input, JoystickIO output, float rotate, bool linear, bool snapMode76)
         {
             this.input = input;
             this.output = output;
             this.rotate = rotate;
             this.linear = linear;
+            this.snapMode76 = snapMode76;
         }
     }
 
@@ -140,6 +143,7 @@ namespace GMKDriverNET
         public JoystickIO input { get; set;}
         public Axis inputAxis { get; set; }
         public TriggerIO output { get; set;}
+        public float threshold { get; set; }
         public bool linear { get; set; }
 
         public override string ToString()
@@ -147,11 +151,12 @@ namespace GMKDriverNET
             return input.ToString() + ":" + DeviceConfig.AxisToString(inputAxis) + " -> " + output.ToString() + " Trigger";
         }
 
-        public JoystickAsTrigger(JoystickIO input, Axis inputAxis, TriggerIO output, bool linear)
+        public JoystickAsTrigger(JoystickIO input, Axis inputAxis, TriggerIO output, float threshold, bool linear)
         {
             this.input = input;
             this.inputAxis = inputAxis;
             this.output = output;
+            this.threshold = threshold;
             this.linear = linear;
         }
     }
@@ -216,6 +221,7 @@ namespace GMKDriverNET
         public TriggerIO input { get; set; }
         public JoystickIO output { get; set; }
         public Axis outputAxis { get; set; }
+        public float threshold { get; set; }
         public bool linear { get; set; }
 
         public override string ToString()
@@ -223,10 +229,13 @@ namespace GMKDriverNET
             return input.ToString() + " -> " + output.ToString() + ":" + DeviceConfig.AxisToString(outputAxis);
         }
 
-        public TriggerAsJoystick(TriggerIO input, JoystickIO output)
+        public TriggerAsJoystick(TriggerIO input, JoystickIO output, Axis outputAxis, float threshold, bool linear)
         {
             this.input = input;
             this.output = output;
+            this.outputAxis = outputAxis;
+            this.threshold = threshold;
+            this.linear = linear;
         }
     }
 
@@ -241,10 +250,11 @@ namespace GMKDriverNET
             return input.ToString() + " -> " + output.ToString();
         }
 
-        public TriggerAsTrigger(TriggerIO input, TriggerIO output)
+        public TriggerAsTrigger(TriggerIO input, TriggerIO output, bool linear)
         {
             this.input = input;
             this.output = output;
+            this.linear = linear;
         }
     }
 
@@ -315,18 +325,11 @@ namespace GMKDriverNET
 
     public enum Axis
     {
-        [Description("X+")]
         XPositive,
-        [Description("X-")]
         XNegative,
-        [Description("Y+")]
         YPositive,
-        [Description("Y-")]
         YNegative
     }
-
-    
-
 
     public class DeviceConfig
     {
@@ -468,15 +471,16 @@ namespace GMKDriverNET
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.Right, ButtonIO.Right));
 
                 // Joysticks
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Left, JoystickIO.Left, 0.0f, false));
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Right, JoystickIO.Right, 0.0f, false));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Left, JoystickIO.Left, 0.0f, true, true));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Right, JoystickIO.Right, 0.0f, true, true));
 
                 // Triggers
-                c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Left, TriggerIO.Left));
-                c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Right, TriggerIO.Right));
+                c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Left, TriggerIO.Left, true));
+                c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Right, TriggerIO.Right, true));
 
                 // For testing
-                c.joysticks.asButtons.Add(new JoystickAsButton(JoystickIO.Left, Axis.XPositive, ButtonIO.A, 0.2f));
+                //c.joysticks.asButtons.Add(new JoystickAsButton(JoystickIO.Left, Axis.XPositive, ButtonIO.A, 0.2f));
+                //c.joysticks.asTriggers.Add(new JoystickAsTrigger(JoystickIO.Left, Axis.XPositive, TriggerIO.Right, 0.0f, true));
                 return c;
             }
         }

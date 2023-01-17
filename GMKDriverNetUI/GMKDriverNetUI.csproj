@@ -35,6 +35,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>GMKlogo_transparent_square.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,11 +52,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationControls\JopystickAsButtonControl.cs">
+    <Compile Include="ConfigurationControls\JoystickAsKeyboardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConfigurationControls\JopystickAsButtonControl.designer.cs">
-      <DependentUpon>JopystickAsButtonControl.cs</DependentUpon>
+    <Compile Include="ConfigurationControls\JoystickAsKeyboardControl.designer.cs">
+      <DependentUpon>JoystickAsKeyboardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\TriggerAsKeyboardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\TriggerAsKeyboardControl.designer.cs">
+      <DependentUpon>TriggerAsKeyboardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\TriggerAsTriggerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\TriggerAsTriggerControl.designer.cs">
+      <DependentUpon>TriggerAsTriggerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\TriggerAsJoystickControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\TriggerAsJoystickControl.designer.cs">
+      <DependentUpon>TriggerAsJoystickControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\TriggerAsButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\TriggerAsButtonControl.designer.cs">
+      <DependentUpon>TriggerAsButtonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\JoystickAsTriggerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\JoystickAsTriggerControl.designer.cs">
+      <DependentUpon>JoystickAsTriggerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\JoystickAsJoystickControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\JoystickAsJoystickControl.designer.cs">
+      <DependentUpon>JoystickAsJoystickControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\JoystickAsButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\JoystickAsButtonControl.designer.cs">
+      <DependentUpon>JoystickAsButtonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigurationControls\ButtonAsKeyboardControl.cs">
       <SubType>UserControl</SubType>
@@ -99,8 +144,29 @@
     <Compile Include="ConfigName.Designer.cs">
       <DependentUpon>ConfigName.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ConfigurationControls\JopystickAsButtonControl.resx">
-      <DependentUpon>JopystickAsButtonControl.cs</DependentUpon>
+    <EmbeddedResource Include="ConfigurationControls\JoystickAsKeyboardControl.resx">
+      <DependentUpon>JoystickAsKeyboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\TriggerAsKeyboardControl.resx">
+      <DependentUpon>TriggerAsKeyboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\TriggerAsTriggerControl.resx">
+      <DependentUpon>TriggerAsTriggerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\TriggerAsJoystickControl.resx">
+      <DependentUpon>TriggerAsJoystickControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\TriggerAsButtonControl.resx">
+      <DependentUpon>TriggerAsButtonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\JoystickAsTriggerControl.resx">
+      <DependentUpon>JoystickAsTriggerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\JoystickAsJoystickControl.resx">
+      <DependentUpon>JoystickAsJoystickControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\JoystickAsButtonControl.resx">
+      <DependentUpon>JoystickAsButtonControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationControls\ButtonAsKeyboardControl.resx">
       <DependentUpon>ButtonAsKeyboardControl.cs</DependentUpon>

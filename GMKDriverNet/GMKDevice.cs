@@ -57,8 +57,16 @@ namespace GMKDriverNET
             } 
             set 
             {
-                WriteLine("Configuration loaded: " + value.name);
-                _config = value; 
+                if(value.name != _config.name)
+                {
+                    WriteLine("Configuration loaded: " + value.name);
+                    _config = value;
+                }
+                else if(value.name == _config.name)
+                {
+                    WriteLine("Configuration updated.");
+                    _config = value;
+                }
             }
         }
         public GMKControllerType Type { get { return _type; } }
@@ -178,7 +186,8 @@ namespace GMKDriverNET
 
             while (_run)
             {
-               //Do nothing...
+               // Do nothing...
+               // Events are handled by delegates
             }
 
             _hidDevice.CloseDevice();
@@ -208,6 +217,7 @@ namespace GMKDriverNET
                 }
 
                 _controller.Map(report.Data);
+                _controller.MapToConfig(_config);
                 _controller.SetController(_xbox360Controller);
                 _hidDevice.ReadReport(OnReport);
             }
