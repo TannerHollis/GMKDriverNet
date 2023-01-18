@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HidLibrary;
+using LibUsbDotNet.LibUsb;
+using LibUsbDotNet.Main;
+using LibUsbDotNet;
 
 namespace GMKDriverNET
 {
     public class GMKJoystick : GMKDevice
     {
-		public GMKJoystick(HidDevice usbDevice, DeviceConfig config, TextBox console) : 
+		public GMKJoystick(IUsbDevice usbDevice, DeviceConfig config, TextBox console) : 
 			base(0x5750, 
 				0, 
 				0x81,

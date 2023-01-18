@@ -17,17 +17,20 @@ namespace GMKDriverNetUI
         Thread mainThread;
         bool allowClosing = false;
         int devicesConnected = 0;
+        GMKDriver _driver;
 
-        private static void ThreadProc(object consoleOutputObject)
+        private void ThreadProc(object consoleOutputObject)
         {
             TextBox consoleOutput = (TextBox)consoleOutputObject;
-            GMKDriver.SetConsole(consoleOutput);
-            GMKDriver.Loop();
+            _driver.SetConsole(consoleOutput);
+            _driver.Loop();
         }
 
         public Main()
         {
             InitializeComponent();
+
+            _driver = new GMKDriver();
 
             mainThread = new Thread(new ParameterizedThreadStart(ThreadProc));
         }
@@ -51,6 +54,7 @@ namespace GMKDriverNetUI
                 }
                 else
                 {
+                    e.Cancel = false;
                     trayIcon.Visible = false;
                 }
             }
@@ -58,9 +62,9 @@ namespace GMKDriverNetUI
 
         private void Main_Exit(object sender, EventArgs e)
         {
-            mainThread.Abort();
+            _driver.Stop();
+            mainThread.Join();
             allowClosing = true;
-            GMKDriver.Stop();
             this.Close();
         }
 
@@ -73,21 +77,22 @@ namespace GMKDriverNetUI
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Main_Exit(sender, e);
+            Application.Exit();
         }
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
-            if(devicesConnected != GMKDriver.Devices.Length)
+            if(devicesConnected != _driver.Devices.Length)
             {
                 deviceView.Items.Clear();
-                foreach (GMKDevice device in GMKDriver.Devices)
+                foreach (GMKDevice device in _driver.Devices)
                 {
                     ListViewItem item = new ListViewItem(device.Type + " - " + device.SerialNumber, 0);
                     item.Tag = device;
                     item.ImageIndex = 0;
                     deviceView.Items.Add(item);
                 }
-                devicesConnected = GMKDriver.Devices.Length;
+                devicesConnected = _driver.Devices.Length;
             }
         }
 

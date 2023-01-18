@@ -5,7 +5,9 @@ using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HidLibrary;
+using LibUsbDotNet.LibUsb;
+using LibUsbDotNet.Main;
+using LibUsbDotNet;
 using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client;
 using System.Threading;
@@ -20,6 +22,7 @@ namespace GMKDriverNET
         Disconnected,
         ClaimError,
         ReadTimeout,
+        StoppedRunning
     }
     public enum  GMKControllerType{
         Joystick = 0,
@@ -33,9 +36,9 @@ namespace GMKDriverNET
         private int _pid;
         private int _interfaceN;
         private int _endpoint;
-        private uint _endpointBufferSize;
+        private int _endpointBufferSize;
         private GMKControllerType _type;
-        private HidDevice _hidDevice;
+        private IUsbDevice _hidDevice;
         private DeviceConfig _config;
         private TextBox _consoleOutput;
         private string _serialNumber;
@@ -50,6 +53,8 @@ namespace GMKDriverNET
         public int PID { get { return _pid; } }
         public int Interface { get { return _interfaceN; } }
         public int Endpoint { get { return _endpoint; } }
+        public bool IsRunning {  get { return _run; } }
+
         public DeviceConfig Config { 
             get 
             { 
@@ -70,16 +75,16 @@ namespace GMKDriverNET
             }
         }
         public GMKControllerType Type { get { return _type; } }
-        public HidDevice UsbDevice { get { return _hidDevice; } }
+        public IUsbDevice UsbDevice { get { return _hidDevice; } }
         public string SerialNumber { get { return _serialNumber; } }
         public bool IsPaused { get { return _paused; } }
 
         public GMKDevice(int pid,
             int interfaceN,
             int endpoint,
-            uint endpointBufferSize,
+            int endpointBufferSize,
             GMKControllerType type,
-            HidDevice hidDevice,
+            IUsbDevice hidDevice,
             DeviceConfig config,
             TextBox consoleOutput)
         {
@@ -106,11 +111,14 @@ namespace GMKDriverNET
 
             ret = Loop();
 
+            _xbox360Controller.Disconnect();
+
             return ret;
         }
 
         public void Stop()
         {
+            WriteLine("Driver stopped.");
             _run = false;
             _paused &= false;
         }
@@ -132,7 +140,12 @@ namespace GMKDriverNET
 
             if (!_hidDevice.IsOpen)
             {
-                _hidDevice.OpenDevice();
+                _hidDevice.Open();
+
+                _hidDevice.SetConfiguration(_hidDevice.Configuration);
+
+                _hidDevice.ClaimInterface(_interfaceN);
+
                 WriteLine("Successfully opened device.");
                 return GMKError.OK;
             }
@@ -166,60 +179,75 @@ namespace GMKDriverNET
 
         private GMKError Loop()
         {
-            _controller = new XInputController();
-            _vigemClient = new ViGEmClient();
-            _xbox360Controller = _vigemClient.CreateXbox360Controller();
-
-            _xbox360Controller.Connect();
-
-            WriteLine("Starting driver...");
-
-            _hidDevice.Inserted += DeviceAttachedHandler;
-            _hidDevice.Removed += DeviceRemovedHandler;
-
-            _hidDevice.MonitorDeviceEvents = true;
-
-            _hidDevice.ReadReport(OnReport);
-
-            _run = true;
-            _paused = false;
-
-            while (_run)
+            try
             {
-               // Do nothing...
-               // Events are handled by delegates
-            }
+                _controller = new XInputController();
+                _vigemClient = new ViGEmClient();
+                _xbox360Controller = _vigemClient.CreateXbox360Controller();
 
-            _hidDevice.CloseDevice();
+                _xbox360Controller.Connect();
 
-            return GMKError.OK;
-        }
+                WriteLine("Starting driver...");
 
-        private void DeviceAttachedHandler()
-        {
-            WriteLine("Device attached.");
-            _hidDevice.ReadReport(OnReport);
-        }
+                _run = true;
+                _paused = false;
 
-        private void DeviceRemovedHandler()
-        {
-            WriteLine("Device removed.");
-        }
+                UsbEndpointReader reader = _hidDevice.OpenEndpointReader((ReadEndpointID)_endpoint, _endpointBufferSize);
 
-        private void OnReport(HidReport report)
-        {
-            // Subtract one byte for reportID
-            if (report.Data.Length == _endpointBufferSize - 1)
-            {
-                while(_paused)
+                byte[] readBuffer = new byte[_endpointBufferSize];
+                byte[] dataBuffer = new byte[_endpointBufferSize - 1];
+
+                Error ec = Error.Success;
+
+                while (_run && ec == Error.Success)
                 {
-                    Thread.Sleep(100);
+                    ec = reader.Read(readBuffer, 0, out int bytesRead);
+
+                    if (bytesRead == _endpointBufferSize)
+                    {
+                        System.Array.Copy(readBuffer, 1, dataBuffer, 0, _endpointBufferSize - 1);
+                        _controller.Map(dataBuffer);
+                        //_controller.MapToConfig(_config);
+                        _controller.SetController(_xbox360Controller);
+                    }
                 }
 
-                _controller.Map(report.Data);
-                _controller.MapToConfig(_config);
-                _controller.SetController(_xbox360Controller);
-                _hidDevice.ReadReport(OnReport);
+                if(!_run)
+                {
+                    return GMKError.StoppedRunning;
+                }
+
+                WriteLine("Device disconnected.");
+
+                return GMKError.OK;
+            }
+            catch (Exception ex)
+            {
+                WriteLine(ex.Message);
+                return GMKError.Disconnected;
+            }
+            finally
+            {
+                if (_hidDevice != null)
+                {
+                    if (_hidDevice.IsOpen)
+                    {
+                        // If this is a "whole" usb device (libusb-win32, linux libusb-1.0)
+                        // it exposes an IUsbDevice interface. If not (WinUSB) the 
+                        // 'wholeUsbDevice' variable will be null indicating this is 
+                        // an interface of a device; it does not require or support 
+                        // configuration and interface selection.
+                        IUsbDevice wholeUsbDevice = _hidDevice as IUsbDevice;
+                        if (!ReferenceEquals(wholeUsbDevice, null))
+                        {
+                            // Release interface #0.
+                            wholeUsbDevice.ReleaseInterface(0);
+                        }
+
+                        _hidDevice.Close();
+                    }
+                    _hidDevice = null;
+                }
             }
         }
     }

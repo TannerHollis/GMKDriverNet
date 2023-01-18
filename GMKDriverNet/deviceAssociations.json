@@ -1,11 +1,4 @@
 {
   "associations": [
-    {
-      "serialNumber": "001-002-002",
-      "configFiles": [
-        "test"
-      ],
-      "defaultConfig": "test"
-    }
   ]
 }

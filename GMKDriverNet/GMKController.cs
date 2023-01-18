@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HidLibrary;
+using LibUsbDotNet.LibUsb;
+using LibUsbDotNet.Main;
+using LibUsbDotNet;
 
 namespace GMKDriverNET
 {
 	public class GMKController : GMKDevice
 	{
-		public GMKController(HidDevice usbDevice, DeviceConfig config, TextBox console) : 
+		public GMKController(IUsbDevice usbDevice, DeviceConfig config, TextBox console) : 
 			base(0x5740,
 				2,
 				0x83,
