@@ -15,11 +15,16 @@ namespace GMKDriverNetUI.ConfigurationControls
     {
         private ButtonAsKeyboard _buttonAsKeyboard;
         private TreeNode _node;
+        
         private bool _initialized;
+
+        private delegate void OnUpdateForm();
+        private OnUpdateForm _updateForm;
 
         public ButtonAsKeyboardControl()
         {
             InitializeComponent();
+            _updateForm = UpdateForm;
         }
 
         public void LoadWidget(TreeNode node)
@@ -27,18 +32,21 @@ namespace GMKDriverNetUI.ConfigurationControls
             _node = node;
             _buttonAsKeyboard = (ButtonAsKeyboard)_node.Tag;
             _initialized = false;
-            inputButton.SelectedIndex = (int)_buttonAsKeyboard.input;
-            outputKey.Text = ((char)_buttonAsKeyboard.key).ToString();
+
+            inputButton.LoadButton(_buttonAsKeyboard.input, _updateForm);
+            key.LoadKey(_buttonAsKeyboard.key, _updateForm);
+            
             this.Visible = true;
             _initialized = true;
         }
 
-        private void valueChanged(object sender, EventArgs e)
+        private void UpdateForm()
         {
-            if(_initialized)
+            if (_initialized)
             {
-                _buttonAsKeyboard.input = (ButtonIO)inputButton.SelectedIndex;
-                _buttonAsKeyboard.key = (byte)outputKey.Text.ToCharArray()[0];
+                _buttonAsKeyboard.input = inputButton.Button;
+                _buttonAsKeyboard.key = key.Key;
+
                 _node.Text = _buttonAsKeyboard.ToString();
             }
         }

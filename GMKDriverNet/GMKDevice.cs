@@ -38,7 +38,7 @@ namespace GMKDriverNET
         private int _endpoint;
         private int _endpointBufferSize;
         private GMKControllerType _type;
-        private IUsbDevice _hidDevice;
+        private UsbDevice _hidDevice;
         private DeviceConfig _config;
         private TextBox _consoleOutput;
         private string _serialNumber;
@@ -75,7 +75,7 @@ namespace GMKDriverNET
             }
         }
         public GMKControllerType Type { get { return _type; } }
-        public IUsbDevice UsbDevice { get { return _hidDevice; } }
+        public UsbDevice UsbDevice { get { return _hidDevice; } }
         public string SerialNumber { get { return _serialNumber; } }
         public bool IsPaused { get { return _paused; } }
 
@@ -84,7 +84,7 @@ namespace GMKDriverNET
             int endpoint,
             int endpointBufferSize,
             GMKControllerType type,
-            IUsbDevice hidDevice,
+            UsbDevice hidDevice,
             DeviceConfig config,
             TextBox consoleOutput)
         {
@@ -189,6 +189,15 @@ namespace GMKDriverNET
 
                 WriteLine("Starting driver...");
 
+                if(_type == GMKControllerType.Joystick)
+                {
+                    WriteLine("Rotate Joystick to complete calibration.");
+                }
+                else if(_type == GMKControllerType.Controller)
+                {
+                    WriteLine("Rotate Joysticks to complete calibration.");
+                }
+
                 _run = true;
                 _paused = false;
 
@@ -207,12 +216,12 @@ namespace GMKDriverNET
                     {
                         System.Array.Copy(readBuffer, 1, dataBuffer, 0, _endpointBufferSize - 1);
                         _controller.Map(dataBuffer);
-                        //_controller.MapToConfig(_config);
+                        _controller.MapToConfig(_config);
                         _controller.SetController(_xbox360Controller);
                     }
                 }
 
-                if(!_run)
+                if (!_run)
                 {
                     return GMKError.StoppedRunning;
                 }
@@ -228,6 +237,7 @@ namespace GMKDriverNET
             }
             finally
             {
+                _run = false;
                 if (_hidDevice != null)
                 {
                     if (_hidDevice.IsOpen)
@@ -241,7 +251,7 @@ namespace GMKDriverNET
                         if (!ReferenceEquals(wholeUsbDevice, null))
                         {
                             // Release interface #0.
-                            wholeUsbDevice.ReleaseInterface(0);
+                            wholeUsbDevice.ReleaseInterface(_interfaceN);
                         }
 
                         _hidDevice.Close();

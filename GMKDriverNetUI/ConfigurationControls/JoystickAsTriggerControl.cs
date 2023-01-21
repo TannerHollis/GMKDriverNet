@@ -15,12 +15,16 @@ namespace GMKDriverNetUI.ConfigurationControls
     {
         private JoystickAsTrigger _joystickAsKeyboard;
         private TreeNode _node;
+        
         private bool _initialized;
-        private bool _selecting = false;
+
+        private delegate void OnUpdateForm();
+        private OnUpdateForm _updateForm;
 
         public JoystickAsTriggerControl()
         {
             InitializeComponent();
+            _updateForm = UpdateForm;
         }
 
         public void LoadWidget(TreeNode node)
@@ -28,51 +32,29 @@ namespace GMKDriverNetUI.ConfigurationControls
             _node = node;
             _joystickAsKeyboard = (JoystickAsTrigger)_node.Tag;
             _initialized = false;
-            inputJoystick.SelectedIndex = (int)_joystickAsKeyboard.input;
-            inputAxis.SelectedIndex = (int)_joystickAsKeyboard.output;
-            outputTrigger.SelectedIndex = (int)_joystickAsKeyboard.output;
-            thresholdSlider.Value = (int)(_joystickAsKeyboard.threshold * 100.0f);
-            linear.Checked = _joystickAsKeyboard.linear;
+
+            inputJoystick.LoadJoystick(_joystickAsKeyboard.input, _updateForm);
+            inputAxis.LoadAxis(_joystickAsKeyboard.inputAxis, _updateForm);
+            outputTrigger.LoadTrigger(_joystickAsKeyboard.output, _updateForm);
+            deadzone.LoadDeadzone(_joystickAsKeyboard.threshold, _updateForm);
+            linear.LoadBool(_joystickAsKeyboard.linear, _updateForm);
+
             this.Visible = true;
             _initialized = true;
         }
 
-        private void valueChanged(object sender, EventArgs e)
+        private void UpdateForm()
         {
-            if(_initialized)
+            if (_initialized)
             {
-                _joystickAsKeyboard.input = (JoystickIO)inputJoystick.SelectedIndex;
-                _joystickAsKeyboard.inputAxis = (Axis)inputAxis.SelectedIndex;
-                _joystickAsKeyboard.output = (TriggerIO)outputTrigger.SelectedIndex;
-                _joystickAsKeyboard.threshold = (float)(thresholdSlider.Value / 100.0f);
-                _joystickAsKeyboard.linear = linear.Checked;
-                if (!_selecting)
-                    _node.Text = _joystickAsKeyboard.ToString();
-            }
-        }
+                _joystickAsKeyboard.input = inputJoystick.Joystick;
+                _joystickAsKeyboard.inputAxis = inputAxis.Axis;
+                _joystickAsKeyboard.output = outputTrigger.Trigger;
+                _joystickAsKeyboard.threshold = deadzone.Deadzone;
+                _joystickAsKeyboard.linear = linear.Bool;
 
-        private void threshold_Validating(object sender, CancelEventArgs e)
-        {
-            int value = thresholdSlider.Value;
-            if (value > 180)
-            {
-                value = 180;
+                _node.Text = _joystickAsKeyboard.ToString();
             }
-            else if (value < -180)
-            {
-                value = -180;
-            }
-            thresholdSlider.Value = value;
-        }
-
-        private void thresholdSlider_MouseUp(object sender, MouseEventArgs e)
-        {
-            _selecting = false;
-        }
-
-        private void thresholdSlider_MouseDown(object sender, MouseEventArgs e)
-        {
-            _selecting = true;
         }
     }
 }

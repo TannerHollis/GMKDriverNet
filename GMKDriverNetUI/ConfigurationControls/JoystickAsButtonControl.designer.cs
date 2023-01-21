@@ -30,18 +30,14 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.thresholdLabel = new System.Windows.Forms.Label();
-            this.inputAxis = new System.Windows.Forms.ComboBox();
             this.inputAxisLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
-            this.inputJoystick = new System.Windows.Forms.ComboBox();
             this.outputButtonLabel = new System.Windows.Forms.Label();
-            this.outputButton = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.thresholdSlider = new System.Windows.Forms.TrackBar();
-            this.thresholdValueLabel = new System.Windows.Forms.Label();
+            this.inputJoystick = new GMKDriverNetUI.ConfigurationControls.JoystickControl();
+            this.inputAxis = new GMKDriverNetUI.ConfigurationControls.AxisControl();
+            this.outputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
+            this.deadzone = new GMKDriverNetUI.ConfigurationControls.DeadzoneControl();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -50,13 +46,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.69799F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30201F));
             this.tableLayoutPanel1.Controls.Add(this.thresholdLabel, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.inputAxis, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.inputAxisLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.inputButtonLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.inputJoystick, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.outputButtonLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.inputJoystick, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.inputAxis, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.outputButton, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.deadzone, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -77,25 +73,8 @@
             this.thresholdLabel.Name = "thresholdLabel";
             this.thresholdLabel.Size = new System.Drawing.Size(171, 73);
             this.thresholdLabel.TabIndex = 6;
-            this.thresholdLabel.Text = "Threshold";
+            this.thresholdLabel.Text = "Deadzone";
             this.thresholdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // inputAxis
-            // 
-            this.inputAxis.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.inputAxis.FormattingEnabled = true;
-            this.inputAxis.Items.AddRange(new object[] {
-            "X+",
-            "X-",
-            "Y+",
-            "Y-"});
-            this.inputAxis.Location = new System.Drawing.Point(180, 94);
-            this.inputAxis.MaxDropDownItems = 20;
-            this.inputAxis.Name = "inputAxis";
-            this.inputAxis.Size = new System.Drawing.Size(121, 21);
-            this.inputAxis.TabIndex = 3;
-            this.inputAxis.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
-            this.inputAxis.SelectedValueChanged += new System.EventHandler(this.valueChanged);
             // 
             // inputAxisLabel
             // 
@@ -121,21 +100,6 @@
             this.inputButtonLabel.Text = "Input Joystick";
             this.inputButtonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // inputJoystick
-            // 
-            this.inputJoystick.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.inputJoystick.FormattingEnabled = true;
-            this.inputJoystick.Items.AddRange(new object[] {
-            "Left",
-            "Right"});
-            this.inputJoystick.Location = new System.Drawing.Point(180, 24);
-            this.inputJoystick.MaxDropDownItems = 20;
-            this.inputJoystick.Name = "inputJoystick";
-            this.inputJoystick.Size = new System.Drawing.Size(121, 21);
-            this.inputJoystick.TabIndex = 2;
-            this.inputJoystick.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
-            this.inputJoystick.SelectedValueChanged += new System.EventHandler(this.valueChanged);
-            // 
             // outputButtonLabel
             // 
             this.outputButtonLabel.AutoSize = true;
@@ -148,71 +112,37 @@
             this.outputButtonLabel.Text = "Output Button";
             this.outputButtonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // inputJoystick
+            // 
+            this.inputJoystick.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputJoystick.Location = new System.Drawing.Point(180, 3);
+            this.inputJoystick.Name = "inputJoystick";
+            this.inputJoystick.Size = new System.Drawing.Size(413, 64);
+            this.inputJoystick.TabIndex = 7;
+            // 
+            // inputAxis
+            // 
+            this.inputAxis.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputAxis.Location = new System.Drawing.Point(180, 73);
+            this.inputAxis.Name = "inputAxis";
+            this.inputAxis.Size = new System.Drawing.Size(413, 64);
+            this.inputAxis.TabIndex = 8;
+            // 
             // outputButton
             // 
-            this.outputButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.outputButton.FormattingEnabled = true;
-            this.outputButton.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "X",
-            "Y",
-            "Start",
-            "Back",
-            "Xbox",
-            "LeftThumb",
-            "RightThumb",
-            "LeftBumper",
-            "RightBumper",
-            "Up",
-            "Down",
-            "Left",
-            "Right"});
-            this.outputButton.Location = new System.Drawing.Point(180, 164);
-            this.outputButton.MaxDropDownItems = 20;
+            this.outputButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputButton.Location = new System.Drawing.Point(180, 143);
             this.outputButton.Name = "outputButton";
-            this.outputButton.Size = new System.Drawing.Size(121, 21);
-            this.outputButton.TabIndex = 5;
-            this.outputButton.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
+            this.outputButton.Size = new System.Drawing.Size(413, 64);
+            this.outputButton.TabIndex = 9;
             // 
-            // tableLayoutPanel2
+            // deadzone
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Controls.Add(this.thresholdSlider, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.thresholdValueLabel, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(180, 213);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(413, 67);
-            this.tableLayoutPanel2.TabIndex = 7;
-            // 
-            // thresholdSlider
-            // 
-            this.thresholdSlider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.thresholdSlider.Location = new System.Drawing.Point(3, 11);
-            this.thresholdSlider.Maximum = 100;
-            this.thresholdSlider.Name = "thresholdSlider";
-            this.thresholdSlider.Size = new System.Drawing.Size(303, 45);
-            this.thresholdSlider.TabIndex = 0;
-            this.thresholdSlider.TickFrequency = 5;
-            this.thresholdSlider.ValueChanged += new System.EventHandler(this.valueChanged);
-            this.thresholdSlider.MouseDown += new System.Windows.Forms.MouseEventHandler(this.thresholdSlider_MouseDown);
-            this.thresholdSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.thresholdSlider_MouseUp);
-            // 
-            // thresholdValueLabel
-            // 
-            this.thresholdValueLabel.AutoSize = true;
-            this.thresholdValueLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thresholdValueLabel.Location = new System.Drawing.Point(312, 0);
-            this.thresholdValueLabel.Name = "thresholdValueLabel";
-            this.thresholdValueLabel.Size = new System.Drawing.Size(98, 67);
-            this.thresholdValueLabel.TabIndex = 1;
-            this.thresholdValueLabel.Text = "%";
-            this.thresholdValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deadzone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deadzone.Location = new System.Drawing.Point(180, 213);
+            this.deadzone.Name = "deadzone";
+            this.deadzone.Size = new System.Drawing.Size(413, 67);
+            this.deadzone.TabIndex = 10;
             // 
             // JoystickAsButtonControl
             // 
@@ -223,9 +153,6 @@
             this.Size = new System.Drawing.Size(596, 283);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdSlider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -235,13 +162,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label inputAxisLabel;
         private System.Windows.Forms.Label inputButtonLabel;
-        private System.Windows.Forms.ComboBox inputAxis;
-        private System.Windows.Forms.ComboBox inputJoystick;
         private System.Windows.Forms.Label outputButtonLabel;
-        private System.Windows.Forms.ComboBox outputButton;
         private System.Windows.Forms.Label thresholdLabel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TrackBar thresholdSlider;
-        private System.Windows.Forms.Label thresholdValueLabel;
+        private JoystickControl inputJoystick;
+        private AxisControl inputAxis;
+        private ButtonControl outputButton;
+        private DeadzoneControl deadzone;
     }
 }

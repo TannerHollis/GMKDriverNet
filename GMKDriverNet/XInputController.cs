@@ -214,11 +214,19 @@ namespace GMKDriverNET
                     }
                 }
 
-                Int16 newXInt = GetInt((float)newX, asJoystick.linear);
-                Int16 newYInt = GetInt((float)newY, asJoystick.linear);
+                Int16 newXInt;
+                Int16 newYInt;
 
-                //Int16 newXInt = Math.Abs(newX) > asJoystick.threshold ? GetInt((float)newX, asJoystick.linear) : (Int16)0;
-                //Int16 newYInt = Math.Abs(newY) > asJoystick.threshold ? GetInt((float)newY, asJoystick.linear) : (Int16)0;
+                if (mag > asJoystick.threshold)
+                {
+                    newXInt = GetInt((float)newX, asJoystick.linear);
+                    newYInt = GetInt((float)newY, asJoystick.linear);
+                }
+                else
+                {
+                    newXInt = 0;
+                    newYInt = 0;
+                }
 
                 tmp.SetJoystick(asJoystick.output, Axis.XPositive, newXInt);
                 tmp.SetJoystick(asJoystick.output, Axis.YPositive, newYInt);
@@ -405,10 +413,10 @@ namespace GMKDriverNET
                             return (Int16)(-1 * leftX);
 
                         case Axis.YPositive:
-                            return leftY;
+                            return (Int16)(-1 * leftY);
 
                         case Axis.YNegative:
-                            return (Int16)(-1 * leftY);
+                            return leftY;
 
                         default:
                             return 0;

@@ -30,11 +30,11 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.linearLabel = new System.Windows.Forms.Label();
-            this.outputTrigger = new System.Windows.Forms.ComboBox();
             this.outputTriggerLabel = new System.Windows.Forms.Label();
             this.inputTriggerLabel = new System.Windows.Forms.Label();
-            this.inputTrigger = new System.Windows.Forms.ComboBox();
-            this.linear = new System.Windows.Forms.CheckBox();
+            this.linear = new GMKDriverNetUI.ConfigurationControls.BoolControl();
+            this.outputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
+            this.inputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,11 +44,11 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.69799F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30201F));
             this.tableLayoutPanel1.Controls.Add(this.linearLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.outputTrigger, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.outputTriggerLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.inputTriggerLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.inputTrigger, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.linear, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.outputTrigger, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.inputTrigger, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -72,21 +72,6 @@
             this.linearLabel.TabIndex = 14;
             this.linearLabel.Text = "Linear";
             this.linearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // outputTrigger
-            // 
-            this.outputTrigger.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.outputTrigger.FormattingEnabled = true;
-            this.outputTrigger.Items.AddRange(new object[] {
-            "Left",
-            "Right"});
-            this.outputTrigger.Location = new System.Drawing.Point(180, 130);
-            this.outputTrigger.MaxDropDownItems = 20;
-            this.outputTrigger.Name = "outputTrigger";
-            this.outputTrigger.Size = new System.Drawing.Size(121, 21);
-            this.outputTrigger.TabIndex = 3;
-            this.outputTrigger.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
-            this.outputTrigger.SelectedValueChanged += new System.EventHandler(this.valueChanged);
             // 
             // outputTriggerLabel
             // 
@@ -112,31 +97,29 @@
             this.inputTriggerLabel.Text = "Input Trigger";
             this.inputTriggerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // inputTrigger
-            // 
-            this.inputTrigger.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.inputTrigger.FormattingEnabled = true;
-            this.inputTrigger.Items.AddRange(new object[] {
-            "Left",
-            "Right"});
-            this.inputTrigger.Location = new System.Drawing.Point(180, 36);
-            this.inputTrigger.MaxDropDownItems = 20;
-            this.inputTrigger.Name = "inputTrigger";
-            this.inputTrigger.Size = new System.Drawing.Size(121, 21);
-            this.inputTrigger.TabIndex = 2;
-            this.inputTrigger.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
-            this.inputTrigger.SelectedValueChanged += new System.EventHandler(this.valueChanged);
-            // 
             // linear
             // 
-            this.linear.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.linear.AutoSize = true;
-            this.linear.Location = new System.Drawing.Point(180, 228);
+            this.linear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.linear.Location = new System.Drawing.Point(180, 191);
             this.linear.Name = "linear";
-            this.linear.Size = new System.Drawing.Size(15, 14);
+            this.linear.Size = new System.Drawing.Size(413, 89);
             this.linear.TabIndex = 15;
-            this.linear.UseVisualStyleBackColor = true;
-            this.linear.CheckStateChanged += new System.EventHandler(this.valueChanged);
+            // 
+            // outputTrigger
+            // 
+            this.outputTrigger.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputTrigger.Location = new System.Drawing.Point(180, 97);
+            this.outputTrigger.Name = "outputTrigger";
+            this.outputTrigger.Size = new System.Drawing.Size(413, 88);
+            this.outputTrigger.TabIndex = 16;
+            // 
+            // inputTrigger
+            // 
+            this.inputTrigger.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputTrigger.Location = new System.Drawing.Point(180, 3);
+            this.inputTrigger.Name = "inputTrigger";
+            this.inputTrigger.Size = new System.Drawing.Size(413, 88);
+            this.inputTrigger.TabIndex = 17;
             // 
             // TriggerAsTriggerControl
             // 
@@ -156,9 +139,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label outputTriggerLabel;
         private System.Windows.Forms.Label inputTriggerLabel;
-        private System.Windows.Forms.ComboBox outputTrigger;
-        private System.Windows.Forms.ComboBox inputTrigger;
         private System.Windows.Forms.Label linearLabel;
-        private System.Windows.Forms.CheckBox linear;
+        private BoolControl linear;
+        private TriggerControl outputTrigger;
+        private TriggerControl inputTrigger;
     }
 }

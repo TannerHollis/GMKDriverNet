@@ -15,11 +15,16 @@ namespace GMKDriverNetUI.ConfigurationControls
     {
         private TriggerAsTrigger _triggerAsTrigger;
         private TreeNode _node;
+
         private bool _initialized;
+
+        private delegate void OnUpdateForm();
+        private OnUpdateForm _updateForm;
 
         public TriggerAsTriggerControl()
         {
             InitializeComponent();
+            _updateForm = UpdateForm;
         }
 
         public void LoadWidget(TreeNode node)
@@ -27,20 +32,23 @@ namespace GMKDriverNetUI.ConfigurationControls
             _node = node;
             _triggerAsTrigger = (TriggerAsTrigger)_node.Tag;
             _initialized = false;
-            inputTrigger.SelectedIndex = (int)_triggerAsTrigger.input;
-            outputTrigger.SelectedIndex = (int)_triggerAsTrigger.output;
-            linear.Checked = _triggerAsTrigger.linear;
+
+            inputTrigger.LoadTrigger(_triggerAsTrigger.input, _updateForm);
+            outputTrigger.LoadTrigger(_triggerAsTrigger.output, _updateForm);
+            linear.LoadBool(_triggerAsTrigger.linear, _updateForm);
+
             this.Visible = true;
             _initialized = true;
         }
 
-        private void valueChanged(object sender, EventArgs e)
+        private void UpdateForm()
         {
-            if(_initialized)
+            if (_initialized)
             {
-                _triggerAsTrigger.input = (TriggerIO)inputTrigger.SelectedIndex;
-                _triggerAsTrigger.output = (TriggerIO)outputTrigger.SelectedIndex;
-                _triggerAsTrigger.linear = linear.Checked;
+                _triggerAsTrigger.input = inputTrigger.Trigger;
+                _triggerAsTrigger.output = outputTrigger.Trigger;
+                _triggerAsTrigger.linear = linear.Bool;
+
                 _node.Text = _triggerAsTrigger.ToString();
             }
         }

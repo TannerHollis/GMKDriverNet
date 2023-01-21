@@ -17,28 +17,37 @@ namespace GMKDriverNetUI
         Thread mainThread;
         bool allowClosing = false;
         int devicesConnected = 0;
-        GMKDriver _driver;
+        bool viGEmInstalled;
 
-        private void ThreadProc(object consoleOutputObject)
+        public static void ThreadProc(object consoleOutputObject)
         {
             TextBox consoleOutput = (TextBox)consoleOutputObject;
-            _driver.SetConsole(consoleOutput);
-            _driver.Loop();
+            GMKDriver.SetConsole(consoleOutput);
+            GMKDriver.Loop();
         }
 
         public Main()
         {
             InitializeComponent();
 
-            _driver = new GMKDriver();
+            bool isStartupApp = GMKDriver.IsStartupApp();
 
-            mainThread = new Thread(new ParameterizedThreadStart(ThreadProc));
-        }
+            removeFromStartupAppsToolStripMenuItem.Enabled = isStartupApp;
+            setAsStartupAppToolStripMenuItem.Enabled = !isStartupApp;
 
-        private void Main_Load(object sender, EventArgs e)
-        {
-            mainThread.Start(consoleBox);
-            updateTimer.Enabled = true;
+            viGEmInstalled = GMKDriver.CheckViGEmInstalled();
+
+            if (!viGEmInstalled)
+            {
+                consoleBox.AppendText("Could not find ViGEm Bus Driver Installed on this computer\r\n");
+                consoleBox.AppendText("Please download the latest release from: https://github.com/ViGEm/ViGEmBus/releases\r\n");
+            }
+            else
+            {
+                mainThread = new Thread(new ParameterizedThreadStart(ThreadProc));
+                mainThread.Start(consoleBox);
+                updateTimer.Enabled = true;
+            }
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,8 +71,11 @@ namespace GMKDriverNetUI
 
         private void Main_Exit(object sender, EventArgs e)
         {
-            _driver.Stop();
-            mainThread.Join();
+            if(viGEmInstalled)
+            {
+                GMKDriver.Stop();
+                mainThread.Join();
+            }
             allowClosing = true;
             this.Close();
         }
@@ -77,22 +89,21 @@ namespace GMKDriverNetUI
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Main_Exit(sender, e);
-            Application.Exit();
         }
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
-            if(devicesConnected != _driver.Devices.Length)
+            if(devicesConnected != GMKDriver.Devices.Length)
             {
                 deviceView.Items.Clear();
-                foreach (GMKDevice device in _driver.Devices)
+                foreach (GMKDevice device in GMKDriver.Devices)
                 {
                     ListViewItem item = new ListViewItem(device.Type + " - " + device.SerialNumber, 0);
                     item.Tag = device;
                     item.ImageIndex = 0;
                     deviceView.Items.Add(item);
                 }
-                devicesConnected = _driver.Devices.Length;
+                devicesConnected = GMKDriver.Devices.Length;
             }
         }
 
@@ -132,6 +143,20 @@ namespace GMKDriverNetUI
             {
                 selectedDevice.Pause();
             }
+        }
+
+        private void setAsStartupAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GMKDriver.MakeStartupApp();
+            setAsStartupAppToolStripMenuItem.Enabled = false;
+            removeFromStartupAppsToolStripMenuItem.Enabled = true;
+        }
+
+        private void removeFromStartupAppsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GMKDriver.RemoveStartupApp();
+            removeFromStartupAppsToolStripMenuItem.Enabled = false;
+            setAsStartupAppToolStripMenuItem.Enabled = true;
         }
     }
 }

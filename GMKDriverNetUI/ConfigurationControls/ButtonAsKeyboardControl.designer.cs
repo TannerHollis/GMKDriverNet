@@ -31,8 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.outputKeyLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
-            this.inputButton = new System.Windows.Forms.ComboBox();
-            this.outputKey = new System.Windows.Forms.TextBox();
+            this.inputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
+            this.key = new GMKDriverNetUI.ConfigurationControls.KeyboardControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +44,7 @@
             this.tableLayoutPanel1.Controls.Add(this.outputKeyLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.inputButtonLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.inputButton, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.outputKey, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.key, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -81,40 +81,19 @@
             // 
             // inputButton
             // 
-            this.inputButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.inputButton.FormattingEnabled = true;
-            this.inputButton.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "X",
-            "Y",
-            "Start",
-            "Back",
-            "Xbox",
-            "LeftThumb",
-            "RightThumb",
-            "LeftBumper",
-            "RightBumper",
-            "Up",
-            "Down",
-            "Left",
-            "Right"});
-            this.inputButton.Location = new System.Drawing.Point(180, 59);
-            this.inputButton.MaxDropDownItems = 20;
+            this.inputButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputButton.Location = new System.Drawing.Point(180, 3);
             this.inputButton.Name = "inputButton";
-            this.inputButton.Size = new System.Drawing.Size(121, 21);
+            this.inputButton.Size = new System.Drawing.Size(413, 133);
             this.inputButton.TabIndex = 2;
-            this.inputButton.SelectedValueChanged += new System.EventHandler(this.valueChanged);
             // 
-            // outputKey
+            // key
             // 
-            this.outputKey.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.outputKey.Location = new System.Drawing.Point(180, 201);
-            this.outputKey.MaxLength = 1;
-            this.outputKey.Name = "outputKey";
-            this.outputKey.Size = new System.Drawing.Size(121, 20);
-            this.outputKey.TabIndex = 3;
-            this.outputKey.TextChanged += new System.EventHandler(this.valueChanged);
+            this.key.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.key.Location = new System.Drawing.Point(180, 142);
+            this.key.Name = "key";
+            this.key.Size = new System.Drawing.Size(413, 138);
+            this.key.TabIndex = 3;
             // 
             // ButtonAsKeyboardControl
             // 
@@ -134,7 +113,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label outputKeyLabel;
         private System.Windows.Forms.Label inputButtonLabel;
-        private System.Windows.Forms.ComboBox inputButton;
-        private System.Windows.Forms.TextBox outputKey;
+        private ButtonControl inputButton;
+        private KeyboardControl key;
     }
 }

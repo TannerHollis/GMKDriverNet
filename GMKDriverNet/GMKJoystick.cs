@@ -12,7 +12,7 @@ namespace GMKDriverNET
 {
     public class GMKJoystick : GMKDevice
     {
-		public GMKJoystick(IUsbDevice usbDevice, DeviceConfig config, TextBox console) : 
+		public GMKJoystick(UsbDevice usbDevice, DeviceConfig config, TextBox console) : 
 			base(0x5750, 
 				0, 
 				0x81,

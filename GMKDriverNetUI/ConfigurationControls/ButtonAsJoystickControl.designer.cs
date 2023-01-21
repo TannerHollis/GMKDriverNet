@@ -32,9 +32,9 @@
             this.outputAxisLabel = new System.Windows.Forms.Label();
             this.outputJoystickLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
-            this.inputButton = new System.Windows.Forms.ComboBox();
-            this.outputAxis = new System.Windows.Forms.ComboBox();
-            this.outputJoystick = new System.Windows.Forms.ComboBox();
+            this.inputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
+            this.outputJoystick = new GMKDriverNetUI.ConfigurationControls.JoystickControl();
+            this.outputAxis = new GMKDriverNetUI.ConfigurationControls.AxisControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,8 +47,8 @@
             this.tableLayoutPanel1.Controls.Add(this.outputJoystickLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.inputButtonLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.inputButton, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.outputAxis, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.outputJoystick, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.outputAxis, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -97,59 +97,26 @@
             // 
             // inputButton
             // 
-            this.inputButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.inputButton.FormattingEnabled = true;
-            this.inputButton.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "X",
-            "Y",
-            "Start",
-            "Back",
-            "Xbox",
-            "LeftThumb",
-            "RightThumb",
-            "LeftBumper",
-            "RightBumper",
-            "Up",
-            "Down",
-            "Left",
-            "Right"});
-            this.inputButton.Location = new System.Drawing.Point(180, 36);
-            this.inputButton.MaxDropDownItems = 20;
+            this.inputButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputButton.Location = new System.Drawing.Point(180, 3);
             this.inputButton.Name = "inputButton";
-            this.inputButton.Size = new System.Drawing.Size(121, 21);
-            this.inputButton.TabIndex = 2;
-            this.inputButton.SelectedValueChanged += new System.EventHandler(this.valueChanged);
-            // 
-            // outputAxis
-            // 
-            this.outputAxis.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.outputAxis.FormattingEnabled = true;
-            this.outputAxis.Items.AddRange(new object[] {
-            "X+",
-            "X-",
-            "Y+",
-            "Y-"});
-            this.outputAxis.Location = new System.Drawing.Point(180, 225);
-            this.outputAxis.MaxDropDownItems = 20;
-            this.outputAxis.Name = "outputAxis";
-            this.outputAxis.Size = new System.Drawing.Size(121, 21);
-            this.outputAxis.TabIndex = 5;
+            this.inputButton.Size = new System.Drawing.Size(413, 87);
+            this.inputButton.TabIndex = 5;
             // 
             // outputJoystick
             // 
-            this.outputJoystick.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.outputJoystick.FormattingEnabled = true;
-            this.outputJoystick.Items.AddRange(new object[] {
-            "Left",
-            "Right"});
-            this.outputJoystick.Location = new System.Drawing.Point(180, 130);
-            this.outputJoystick.MaxDropDownItems = 20;
+            this.outputJoystick.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputJoystick.Location = new System.Drawing.Point(180, 96);
             this.outputJoystick.Name = "outputJoystick";
-            this.outputJoystick.Size = new System.Drawing.Size(121, 21);
-            this.outputJoystick.TabIndex = 3;
-            this.outputJoystick.SelectedValueChanged += new System.EventHandler(this.valueChanged);
+            this.outputJoystick.Size = new System.Drawing.Size(413, 90);
+            this.outputJoystick.TabIndex = 6;
+            // 
+            // outputAxis
+            // 
+            this.outputAxis.Location = new System.Drawing.Point(180, 192);
+            this.outputAxis.Name = "outputAxis";
+            this.outputAxis.Size = new System.Drawing.Size(413, 88);
+            this.outputAxis.TabIndex = 7;
             // 
             // ButtonAsJoystickControl
             // 
@@ -169,9 +136,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label outputJoystickLabel;
         private System.Windows.Forms.Label inputButtonLabel;
-        private System.Windows.Forms.ComboBox outputJoystick;
-        private System.Windows.Forms.ComboBox inputButton;
         private System.Windows.Forms.Label outputAxisLabel;
-        private System.Windows.Forms.ComboBox outputAxis;
+        private ButtonControl inputButton;
+        private JoystickControl outputJoystick;
+        private AxisControl outputAxis;
     }
 }

@@ -30,23 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(configurationEditor));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Left");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Right");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Joystick Settings", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Left");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Right");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("TriggerSettings", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Button Bindings");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Joystick Bindings");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("TriggerBindings");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Bindings", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Button Bindings");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Joystick Bindings");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("TriggerBindings");
             this.gridLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.serialNumber = new System.Windows.Forms.Label();
@@ -61,6 +47,7 @@
             this.configsView = new System.Windows.Forms.ListView();
             this.configName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.defaultConfig = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.activeConfig = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.configsViewContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.setActiveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addConfigMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +79,6 @@
             this.selectionHelp = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.activeConfig = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gridLayout.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -284,6 +270,11 @@
             this.defaultConfig.Text = "Default Config";
             this.defaultConfig.Width = 87;
             // 
+            // activeConfig
+            // 
+            this.activeConfig.Text = "Active Config";
+            this.activeConfig.Width = 93;
+            // 
             // configsViewContextMenu
             // 
             this.configsViewContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -366,32 +357,16 @@
             this.bindingsTreeView.Indent = 20;
             this.bindingsTreeView.Location = new System.Drawing.Point(3, 16);
             this.bindingsTreeView.Name = "bindingsTreeView";
-            treeNode1.Name = "leftJoystick";
-            treeNode1.Text = "Left";
-            treeNode2.Name = "rightJoystick";
-            treeNode2.Text = "Right";
-            treeNode3.Name = "joystickSettings";
-            treeNode3.Text = "Joystick Settings";
-            treeNode4.Name = "leftTrigger";
-            treeNode4.Text = "Left";
-            treeNode5.Name = "rightTrigger";
-            treeNode5.Text = "Right";
-            treeNode6.ImageIndex = 1;
-            treeNode6.Name = "triggerSettings";
-            treeNode6.Text = "TriggerSettings";
-            treeNode7.Name = "buttonBindings";
-            treeNode7.Text = "Button Bindings";
-            treeNode8.Name = "joystickBindings";
-            treeNode8.Text = "Joystick Bindings";
-            treeNode9.Name = "triggerBindings";
-            treeNode9.Text = "TriggerBindings";
-            treeNode10.ImageKey = "trigger.png";
-            treeNode10.Name = "bindings";
-            treeNode10.Text = "Bindings";
+            treeNode1.Name = "buttonBindings";
+            treeNode1.Text = "Button Bindings";
+            treeNode2.Name = "joystickBindings";
+            treeNode2.Text = "Joystick Bindings";
+            treeNode3.Name = "triggerBindings";
+            treeNode3.Text = "TriggerBindings";
             this.bindingsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode6,
-            treeNode10});
+            treeNode1,
+            treeNode2,
+            treeNode3});
             this.bindingsTreeView.Size = new System.Drawing.Size(743, 390);
             this.bindingsTreeView.TabIndex = 1;
             this.bindingsTreeView.DoubleClick += new System.EventHandler(this.bindingsTreeView_DoubleClick);
@@ -402,7 +377,8 @@
             this.addToolStripMenuItem,
             this.removeBindingToolStripMenuItem});
             this.bindingEditorContextMenu.Name = "bindingEditorContextMenu";
-            this.bindingEditorContextMenu.Size = new System.Drawing.Size(162, 48);
+            this.bindingEditorContextMenu.Size = new System.Drawing.Size(181, 70);
+            this.bindingEditorContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.bindingEditorContextMenu_Opening);
             // 
             // addToolStripMenuItem
             // 
@@ -411,7 +387,7 @@
             this.joystickToolStripMenuItem,
             this.triggerToolStripMenuItem});
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addToolStripMenuItem.Text = "Add Binding";
             // 
             // buttonToolStripMenuItem
@@ -422,32 +398,36 @@
             this.buttonAsTriggerToolStripMenuItem,
             this.buttonAsKeyboardToolStripMenuItem});
             this.buttonToolStripMenuItem.Name = "buttonToolStripMenuItem";
-            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buttonToolStripMenuItem.Text = "Button";
             // 
             // buttonAsButtonToolStripMenuItem
             // 
             this.buttonAsButtonToolStripMenuItem.Name = "buttonAsButtonToolStripMenuItem";
-            this.buttonAsButtonToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.buttonAsButtonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buttonAsButtonToolStripMenuItem.Text = "ButtonAsButton";
+            this.buttonAsButtonToolStripMenuItem.Click += new System.EventHandler(this.buttonAsButtonToolStripMenuItem_Click);
             // 
             // buttonAsJoystickToolStripMenuItem
             // 
             this.buttonAsJoystickToolStripMenuItem.Name = "buttonAsJoystickToolStripMenuItem";
-            this.buttonAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.buttonAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buttonAsJoystickToolStripMenuItem.Text = "ButtonAsJoystick";
+            this.buttonAsJoystickToolStripMenuItem.Click += new System.EventHandler(this.buttonAsJoystickToolStripMenuItem_Click);
             // 
             // buttonAsTriggerToolStripMenuItem
             // 
             this.buttonAsTriggerToolStripMenuItem.Name = "buttonAsTriggerToolStripMenuItem";
-            this.buttonAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.buttonAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buttonAsTriggerToolStripMenuItem.Text = "ButtonAsTrigger";
+            this.buttonAsTriggerToolStripMenuItem.Click += new System.EventHandler(this.buttonAsTriggerToolStripMenuItem_Click);
             // 
             // buttonAsKeyboardToolStripMenuItem
             // 
             this.buttonAsKeyboardToolStripMenuItem.Name = "buttonAsKeyboardToolStripMenuItem";
-            this.buttonAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.buttonAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buttonAsKeyboardToolStripMenuItem.Text = "ButtonAsKeyboard";
+            this.buttonAsKeyboardToolStripMenuItem.Click += new System.EventHandler(this.buttonAsKeyboardToolStripMenuItem_Click);
             // 
             // joystickToolStripMenuItem
             // 
@@ -457,32 +437,36 @@
             this.joystickAsTriggerToolStripMenuItem,
             this.joystickAsKeyboardToolStripMenuItem});
             this.joystickToolStripMenuItem.Name = "joystickToolStripMenuItem";
-            this.joystickToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.joystickToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.joystickToolStripMenuItem.Text = "Joystick";
             // 
             // joystickAsButtonToolStripMenuItem
             // 
             this.joystickAsButtonToolStripMenuItem.Name = "joystickAsButtonToolStripMenuItem";
-            this.joystickAsButtonToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.joystickAsButtonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.joystickAsButtonToolStripMenuItem.Text = "JoystickAsButton";
+            this.joystickAsButtonToolStripMenuItem.Click += new System.EventHandler(this.joystickAsButtonToolStripMenuItem_Click);
             // 
             // joystickAsJoystickToolStripMenuItem
             // 
             this.joystickAsJoystickToolStripMenuItem.Name = "joystickAsJoystickToolStripMenuItem";
-            this.joystickAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.joystickAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.joystickAsJoystickToolStripMenuItem.Text = "JoystickAsJoystick";
+            this.joystickAsJoystickToolStripMenuItem.Click += new System.EventHandler(this.joystickAsJoystickToolStripMenuItem_Click);
             // 
             // joystickAsTriggerToolStripMenuItem
             // 
             this.joystickAsTriggerToolStripMenuItem.Name = "joystickAsTriggerToolStripMenuItem";
-            this.joystickAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.joystickAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.joystickAsTriggerToolStripMenuItem.Text = "JoystickAsTrigger";
+            this.joystickAsTriggerToolStripMenuItem.Click += new System.EventHandler(this.joystickAsTriggerToolStripMenuItem_Click);
             // 
             // joystickAsKeyboardToolStripMenuItem
             // 
             this.joystickAsKeyboardToolStripMenuItem.Name = "joystickAsKeyboardToolStripMenuItem";
-            this.joystickAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.joystickAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.joystickAsKeyboardToolStripMenuItem.Text = "JoystickAsKeyboard";
+            this.joystickAsKeyboardToolStripMenuItem.Click += new System.EventHandler(this.joystickAsKeyboardToolStripMenuItem_Click);
             // 
             // triggerToolStripMenuItem
             // 
@@ -492,38 +476,43 @@
             this.triggerAsTriggerToolStripMenuItem,
             this.triggerAsKeyboardToolStripMenuItem});
             this.triggerToolStripMenuItem.Name = "triggerToolStripMenuItem";
-            this.triggerToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.triggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.triggerToolStripMenuItem.Text = "Trigger";
             // 
             // triggerAsButtonToolStripMenuItem
             // 
             this.triggerAsButtonToolStripMenuItem.Name = "triggerAsButtonToolStripMenuItem";
-            this.triggerAsButtonToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.triggerAsButtonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.triggerAsButtonToolStripMenuItem.Text = "TriggerAsButton";
+            this.triggerAsButtonToolStripMenuItem.Click += new System.EventHandler(this.triggerAsButtonToolStripMenuItem_Click);
             // 
             // triggerAsJoystickToolStripMenuItem
             // 
             this.triggerAsJoystickToolStripMenuItem.Name = "triggerAsJoystickToolStripMenuItem";
-            this.triggerAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.triggerAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.triggerAsJoystickToolStripMenuItem.Text = "TriggerAsJoystick";
+            this.triggerAsJoystickToolStripMenuItem.Click += new System.EventHandler(this.triggerAsJoystickToolStripMenuItem_Click);
             // 
             // triggerAsTriggerToolStripMenuItem
             // 
             this.triggerAsTriggerToolStripMenuItem.Name = "triggerAsTriggerToolStripMenuItem";
-            this.triggerAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.triggerAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.triggerAsTriggerToolStripMenuItem.Text = "TriggerAsTrigger";
+            this.triggerAsTriggerToolStripMenuItem.Click += new System.EventHandler(this.triggerAsTriggerToolStripMenuItem_Click);
             // 
             // triggerAsKeyboardToolStripMenuItem
             // 
             this.triggerAsKeyboardToolStripMenuItem.Name = "triggerAsKeyboardToolStripMenuItem";
-            this.triggerAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.triggerAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.triggerAsKeyboardToolStripMenuItem.Text = "TriggerAsKeyboard";
+            this.triggerAsKeyboardToolStripMenuItem.Click += new System.EventHandler(this.triggerAsKeyboardToolStripMenuItem_Click);
             // 
             // removeBindingToolStripMenuItem
             // 
             this.removeBindingToolStripMenuItem.Name = "removeBindingToolStripMenuItem";
-            this.removeBindingToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.removeBindingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeBindingToolStripMenuItem.Text = "Remove Binding";
+            this.removeBindingToolStripMenuItem.Click += new System.EventHandler(this.removeBindingToolStripMenuItem_Click);
             // 
             // selectionHelp
             // 
@@ -549,11 +538,6 @@
             this.openConfigFileDialog.FileName = "openConfigFileDialog";
             this.openConfigFileDialog.Filter = "config files (*.json)|*.json";
             this.openConfigFileDialog.InitialDirectory = "Configs";
-            // 
-            // activeConfig
-            // 
-            this.activeConfig.Text = "Active Config";
-            this.activeConfig.Width = 93;
             // 
             // configurationEditor
             // 

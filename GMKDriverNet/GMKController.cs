@@ -12,7 +12,7 @@ namespace GMKDriverNET
 {
 	public class GMKController : GMKDevice
 	{
-		public GMKController(IUsbDevice usbDevice, DeviceConfig config, TextBox console) : 
+		public GMKController(UsbDevice usbDevice, DeviceConfig config, TextBox console) : 
 			base(0x5740,
 				2,
 				0x83,

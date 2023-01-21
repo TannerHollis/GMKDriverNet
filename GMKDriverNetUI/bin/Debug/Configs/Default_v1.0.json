@@ -1,39 +1,5 @@
 {
   "name": "Default_v1.0",
-  "joystickLeft": {
-    "x": {
-      "deadZone": 0.100000001,
-      "sensitivity": 1,
-      "linear": true
-    },
-    "y": {
-      "deadZone": 0.100000001,
-      "sensitivity": 1,
-      "linear": true
-    }
-  },
-  "joystickRight": {
-    "x": {
-      "deadZone": 0.100000001,
-      "sensitivity": 1,
-      "linear": true
-    },
-    "y": {
-      "deadZone": 0.100000001,
-      "sensitivity": 1,
-      "linear": true
-    }
-  },
-  "triggerLeft": {
-    "deadZone": 0.100000001,
-    "sensitivity": 1,
-    "linear": true
-  },
-  "triggerRight": {
-    "deadZone": 0,
-    "sensitivity": 0,
-    "linear": false
-  },
   "buttons": {
     "asButtons": [
       {
@@ -103,18 +69,18 @@
       {
         "input": 0,
         "output": 0,
-        "rotate": 0,
+        "rotate": 0.100000001,
         "threshold": 0,
         "linear": true,
-        "snapMode76": true
+        "snapMode76": false
       },
       {
         "input": 1,
         "output": 1,
-        "rotate": 0,
+        "rotate": 0.100000001,
         "threshold": 0,
         "linear": true,
-        "snapMode76": true
+        "snapMode76": false
       }
     ],
     "asTriggers": [],

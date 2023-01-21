@@ -49,3 +49,15 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.pdb
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\libusb-1.0
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\LibUsbDotNet.dll
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\GMKDriverNetUI.exe.manifest
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\GMKDriverNetUI.application
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.exe.manifest
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.application
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.JoystickControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.ButtonControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.AxisControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.TriggerControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.KeyboardControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.DeadzoneControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.RotateControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.ConfigurationControls.BoolControl.resources

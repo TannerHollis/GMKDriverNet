@@ -13,33 +13,53 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Runtime.InteropServices;
 using System.IO.Ports;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace GMKDriverNET
 {
     public class GMKDriver
     {
+        private static string Version { get { return "v1.7"; } }
+
         private const int GMK_VID = 0x483;
         private const int JOYSTICK_PID = 0x5750;
         private const int CONTROLLER_PID = 0x5740;
 
-        private DeviceList _deviceAssociations;
-        private List<Thread> _threads = new List<Thread>();
-        private List<GMKDevice> _devices = new List<GMKDevice>();
-        private UsbDeviceCollection _hidDevices;
-        private UsbContext _context;
-        private TextBox _console;
-        private bool _run;
+        private static DeviceList _deviceAssociations;
+        private static List<Thread> _threads = new List<Thread>();
+        private static List<GMKDevice> _devices = new List<GMKDevice>();
+        private static TextBox _console;
+        private static bool _run;
 
-        public DeviceList DeviceAssociations { get { return _deviceAssociations; } }
-        public Thread[] Threads { get { return _threads.ToArray(); } }
-        public GMKDevice[] Devices { get { return _devices.ToArray(); } }
+        public static DeviceList DeviceAssociations { get { return _deviceAssociations; } }
+        public static Thread[] Threads { get { return _threads.ToArray(); } }
+        public static GMKDevice[] Devices { get { return _devices.ToArray(); } }
 
-        public void SetConsole(TextBox console)
+        public static void MakeStartupApp()
+        {
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            key.SetValue("GMK Driver", Application.ExecutablePath);
+        }
+        
+        public static bool IsStartupApp()
+        {
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            return key.GetValue("GMK Driver") != null;
+        }
+
+        public static void RemoveStartupApp()
+        {
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            key.DeleteValue("GMK Driver", false);
+        }
+
+        public static void SetConsole(TextBox console)
         {
             _console = console;
         }
 
-        private void WriteLine(string text)
+        private static void WriteLine(string text)
         {
             List<string> consoleOutputList = new List<string>();
             if (_console != null)
@@ -59,7 +79,21 @@ namespace GMKDriverNET
             }
         }
 
-        public void Stop()
+        public static bool CheckViGEmInstalled()
+        {
+            try
+            {
+                ViGEmClient viGEmClient = new ViGEmClient();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            
+        }
+
+        public static void Stop()
         {
             foreach(GMKDevice device in _devices)
             {
@@ -71,25 +105,30 @@ namespace GMKDriverNET
                 thread.Join();
             }
 
+            _devices.RemoveAll(device => !device.IsRunning);
+
             _threads.RemoveAll(thread => !thread.IsAlive);
 
             _run = false;
         }
 
-
-        public void Loop()
+        public static void Loop()
         {
-            using (_context = new UsbContext())
+            using (UsbContext context = new UsbContext())
             {
+                WriteLine("GMK Driver Version: " + Version);
+
                 WriteLine("Scanning devices...");
-                List<GMKDevice> newDevices;
+                List<GMKDevice> newDevices = new List<GMKDevice>();
 
                 _run = true;
+
+                UsbDeviceCollection currentDevices;
 
                 while (_run)
                 {
                     // Scan for devices and start their respective driver
-                    newDevices = ScanAndStartDevices();
+                    newDevices = ScanAndStartDevices(context);
 
                     // Inform user device was connected
                     foreach (GMKDevice device in newDevices)
@@ -97,19 +136,29 @@ namespace GMKDriverNET
                         WriteLine("GMK: " + device.Type + " found. SN: " + device.SerialNumber);
                     }
 
-                    // Wait for device enumeration by polling
-                    while (_devices.Count() == _hidDevices.Count())
+
+                    int beginNumberOfDevices;
+                    using (UsbDeviceCollection usbDevices = context.List())
                     {
-                        Thread.Sleep(100);
+                        beginNumberOfDevices = usbDevices.Count;
                     }
 
-                    Thread.Sleep(1000);
+                    int afterNumberOfDevices = beginNumberOfDevices;
+
+                    // Wait for device enumeration by polling
+                    while (beginNumberOfDevices == afterNumberOfDevices && _run)
+                    {
+                        using (UsbDeviceCollection usbDevices = context.List())
+                        {
+                            afterNumberOfDevices = usbDevices.Count;
+                            Thread.Sleep(250);
+                        }
+                        Thread.Sleep(100);
+                    }
                 }
-                _hidDevices.Dispose();
+                Stop();
+                newDevices.Clear();
             }
-            _context.Dispose();
-            _context = null;
-            _hidDevices = null;
         }
 
         public static string GetSerialNumber(IUsbDevice device)
@@ -130,7 +179,7 @@ namespace GMKDriverNET
             return serialNumber;
         }
 
-        private List<GMKDevice> ScanAndStartDevices()
+        private static List<GMKDevice> ScanAndStartDevices(UsbContext context)
         {
             List<GMKDevice> newDevices = new List<GMKDevice>();
 
@@ -143,68 +192,69 @@ namespace GMKDriverNET
 
             _devices.RemoveAll(device => !device.IsRunning);
 
-            _hidDevices = _context.List();
-
-            foreach(IUsbDevice device in _hidDevices)
+            using (UsbDeviceCollection usbDevices = context.List())
             {
-                // Check VID and PID
-                bool gmkDeviceFound = device.VendorId == GMK_VID && 
-                    (device.ProductId == JOYSTICK_PID || device.ProductId == CONTROLLER_PID);
-                if (!gmkDeviceFound)
-                    continue;
-
-                // Get serialNumber
-                string serialNumber = GetSerialNumber(device);
-
-                if(serialNumber == "NA")
+                foreach (UsbDevice device in usbDevices)
                 {
-                    continue;
-                }
+                    // Check VID and PID
+                    bool gmkDeviceFound = device.VendorId == GMK_VID &&
+                        (device.ProductId == JOYSTICK_PID || device.ProductId == CONTROLLER_PID);
+                    if (!gmkDeviceFound)
+                        continue;
 
-                // Check if device already has a driver attached
-                gmkDeviceFound = false;
-                foreach(GMKDevice gmkDevice in _devices)
-                {
-                    if (gmkDevice.SerialNumber.Equals(serialNumber))
+                    // Get serialNumber
+                    string serialNumber = GetSerialNumber(device);
+
+                    if (serialNumber == "NA")
                     {
-                        gmkDeviceFound = true;
-                        break;
+                        continue;
+                    }
+
+                    // Check if device already has a driver attached
+                    gmkDeviceFound = false;
+                    foreach (GMKDevice gmkDevice in _devices)
+                    {
+                        if (gmkDevice.SerialNumber.Equals(serialNumber))
+                        {
+                            gmkDeviceFound = true;
+                            break;
+                        }
+                    }
+
+                    // If device is already being used, close and continue for loop
+                    if (gmkDeviceFound)
+                    {
+                        continue;
+                    }
+
+                    DeviceConfigAssociations configAssociation = _deviceAssociations.LookupSerialNumber(serialNumber);
+
+                    DeviceConfig config;
+
+                    if (configAssociation == null)
+                    {
+                        _deviceAssociations.AddNewDevice(serialNumber);
+                        config = DeviceConfig.Default;
+                        _deviceAssociations.AddConfiguration(serialNumber, config, true);
+                    }
+                    else
+                    {
+                        config = DeviceConfig.FromFile(configAssociation.defaultConfigFile);
+                    }
+
+                    if (device.ProductId == JOYSTICK_PID)
+                    {
+                        GMKJoystick joystick = new GMKJoystick(device.Clone() as UsbDevice, config, _console);
+                        newDevices.Add(joystick);
+                    }
+
+                    if (device.ProductId == CONTROLLER_PID)
+                    {
+                        GMKController controller = new GMKController(device.Clone() as UsbDevice, config, _console);
+                        _devices.Add(controller);
                     }
                 }
-
-                // If device is already being used, close and continue for loop
-                if (gmkDeviceFound)
-                {
-                    continue;
-                }
-
-                DeviceConfigAssociations configAssociation = _deviceAssociations.LookupSerialNumber(serialNumber);
-
-                DeviceConfig config;
-
-                if (configAssociation == null)
-                {
-                    DeviceAssociations.AddNewDevice(serialNumber);
-                    config = DeviceConfig.Default;
-                    DeviceAssociations.AddConfiguration(serialNumber, config, true);
-                }
-                else
-                {
-                    config = DeviceConfig.FromFile(configAssociation.defaultConfigFile);
-                }
-
-                if (device.ProductId == JOYSTICK_PID)
-                {
-                    GMKJoystick joystick = new GMKJoystick(device, config, _console);
-                    newDevices.Add(joystick);
-                }
-
-                if(device.ProductId == CONTROLLER_PID)
-                {
-                    GMKController controller = new GMKController(device, config, _console);
-                    _devices.Add(controller);
-                }
-            }
+            }    
 
             foreach(GMKDevice device in newDevices)
             {

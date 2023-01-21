@@ -15,11 +15,16 @@ namespace GMKDriverNetUI.ConfigurationControls
     {
         private ButtonAsJoystick _buttonAsJoystick;
         private TreeNode _node;
+        
         private bool _initialized;
+
+        private delegate void OnUpdateForm();
+        private OnUpdateForm _updateForm;
 
         public ButtonAsJoystickControl()
         {
             InitializeComponent();
+            _updateForm = UpdateForm;
         }
 
         public void LoadWidget(TreeNode node)
@@ -27,20 +32,23 @@ namespace GMKDriverNetUI.ConfigurationControls
             _node = node;
             _buttonAsJoystick = (ButtonAsJoystick)_node.Tag;
             _initialized = false;
-            inputButton.SelectedIndex = (int)_buttonAsJoystick.input;
-            outputJoystick.SelectedIndex = (int)_buttonAsJoystick.output;
-            outputAxis.SelectedIndex = (int)_buttonAsJoystick.outputAxis;
+
+            inputButton.LoadButton(_buttonAsJoystick.input, _updateForm);
+            outputJoystick.LoadJoystick(_buttonAsJoystick.output, _updateForm);
+            outputAxis.LoadAxis(_buttonAsJoystick.outputAxis, _updateForm);
+            
             this.Visible = true;
             _initialized = true;
         }
 
-        private void valueChanged(object sender, EventArgs e)
+        private void UpdateForm()
         {
-            if(_initialized)
+            if (_initialized)
             {
-                _buttonAsJoystick.input = (ButtonIO)inputButton.SelectedIndex;
-                _buttonAsJoystick.output = (JoystickIO)outputJoystick.SelectedIndex;
-                _buttonAsJoystick.outputAxis = (Axis)outputAxis.SelectedIndex;
+                _buttonAsJoystick.input = inputButton.Button;
+                _buttonAsJoystick.output = outputJoystick.Joystick;
+                _buttonAsJoystick.outputAxis = outputAxis.Axis;
+
                 _node.Text = _buttonAsJoystick.ToString();
             }
         }

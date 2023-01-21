@@ -28,58 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.outputButton = new System.Windows.Forms.ComboBox();
+            this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.outputButtonLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
-            this.inputButton = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.outputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
+            this.inputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
+            this.tableLayout.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tableLayout
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.69799F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30201F));
-            this.tableLayoutPanel1.Controls.Add(this.outputButton, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.outputButtonLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.inputButtonLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.inputButton, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(596, 283);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // outputButton
-            // 
-            this.outputButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.outputButton.FormattingEnabled = true;
-            this.outputButton.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "X",
-            "Y",
-            "Start",
-            "Back",
-            "Xbox",
-            "LeftThumb",
-            "RightThumb",
-            "LeftBumper",
-            "RightBumper",
-            "Up",
-            "Down",
-            "Left",
-            "Right"});
-            this.outputButton.Location = new System.Drawing.Point(180, 201);
-            this.outputButton.MaxDropDownItems = 20;
-            this.outputButton.Name = "outputButton";
-            this.outputButton.Size = new System.Drawing.Size(121, 21);
-            this.outputButton.TabIndex = 3;
-            this.outputButton.SelectedValueChanged += new System.EventHandler(this.valueChanged);
+            this.tableLayout.ColumnCount = 2;
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.69799F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30201F));
+            this.tableLayout.Controls.Add(this.outputButtonLabel, 0, 1);
+            this.tableLayout.Controls.Add(this.inputButtonLabel, 0, 0);
+            this.tableLayout.Controls.Add(this.outputButton, 1, 1);
+            this.tableLayout.Controls.Add(this.inputButton, 1, 0);
+            this.tableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayout.Location = new System.Drawing.Point(0, 0);
+            this.tableLayout.Name = "tableLayout";
+            this.tableLayout.RowCount = 2;
+            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayout.Size = new System.Drawing.Size(596, 283);
+            this.tableLayout.TabIndex = 0;
             // 
             // outputButtonLabel
             // 
@@ -105,52 +78,41 @@
             this.inputButtonLabel.Text = "Input Button";
             this.inputButtonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // outputButton
+            // 
+            this.outputButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputButton.Location = new System.Drawing.Point(180, 144);
+            this.outputButton.Name = "outputButton";
+            this.outputButton.Size = new System.Drawing.Size(413, 136);
+            this.outputButton.TabIndex = 3;
+            // 
             // inputButton
             // 
-            this.inputButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.inputButton.FormattingEnabled = true;
-            this.inputButton.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "X",
-            "Y",
-            "Start",
-            "Back",
-            "Xbox",
-            "LeftThumb",
-            "RightThumb",
-            "LeftBumper",
-            "RightBumper",
-            "Up",
-            "Down",
-            "Left",
-            "Right"});
-            this.inputButton.Location = new System.Drawing.Point(180, 60);
-            this.inputButton.MaxDropDownItems = 20;
+            this.inputButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputButton.Location = new System.Drawing.Point(180, 3);
             this.inputButton.Name = "inputButton";
-            this.inputButton.Size = new System.Drawing.Size(121, 21);
-            this.inputButton.TabIndex = 2;
-            this.inputButton.SelectedValueChanged += new System.EventHandler(this.valueChanged);
+            this.inputButton.Size = new System.Drawing.Size(413, 135);
+            this.inputButton.TabIndex = 4;
             // 
             // ButtonAsButtonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tableLayout);
             this.Name = "ButtonAsButtonControl";
             this.Size = new System.Drawing.Size(596, 283);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayout.ResumeLayout(false);
+            this.tableLayout.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayout;
         private System.Windows.Forms.Label outputButtonLabel;
         private System.Windows.Forms.Label inputButtonLabel;
-        private System.Windows.Forms.ComboBox outputButton;
-        private System.Windows.Forms.ComboBox inputButton;
+        private ButtonControl outputButton;
+        private ButtonControl inputButton;
     }
 }

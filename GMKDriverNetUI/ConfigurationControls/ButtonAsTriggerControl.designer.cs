@@ -31,8 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.outputTriggerLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
-            this.inputButton = new System.Windows.Forms.ComboBox();
-            this.outputTrigger = new System.Windows.Forms.ComboBox();
+            this.inputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
+            this.outputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,44 +81,19 @@
             // 
             // inputButton
             // 
-            this.inputButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.inputButton.FormattingEnabled = true;
-            this.inputButton.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "X",
-            "Y",
-            "Start",
-            "Back",
-            "Xbox",
-            "LeftThumb",
-            "RightThumb",
-            "LeftBumper",
-            "RightBumper",
-            "Up",
-            "Down",
-            "Left",
-            "Right"});
-            this.inputButton.Location = new System.Drawing.Point(180, 59);
-            this.inputButton.MaxDropDownItems = 20;
+            this.inputButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputButton.Location = new System.Drawing.Point(180, 3);
             this.inputButton.Name = "inputButton";
-            this.inputButton.Size = new System.Drawing.Size(121, 21);
+            this.inputButton.Size = new System.Drawing.Size(413, 133);
             this.inputButton.TabIndex = 2;
-            this.inputButton.SelectedValueChanged += new System.EventHandler(this.valueChanged);
             // 
             // outputTrigger
             // 
-            this.outputTrigger.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.outputTrigger.FormattingEnabled = true;
-            this.outputTrigger.Items.AddRange(new object[] {
-            "Left",
-            "Right"});
-            this.outputTrigger.Location = new System.Drawing.Point(180, 200);
-            this.outputTrigger.MaxDropDownItems = 20;
+            this.outputTrigger.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputTrigger.Location = new System.Drawing.Point(180, 142);
             this.outputTrigger.Name = "outputTrigger";
-            this.outputTrigger.Size = new System.Drawing.Size(121, 21);
+            this.outputTrigger.Size = new System.Drawing.Size(413, 138);
             this.outputTrigger.TabIndex = 3;
-            this.outputTrigger.SelectedValueChanged += new System.EventHandler(this.valueChanged);
             // 
             // ButtonAsTriggerControl
             // 
@@ -138,7 +113,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label outputTriggerLabel;
         private System.Windows.Forms.Label inputButtonLabel;
-        private System.Windows.Forms.ComboBox outputTrigger;
-        private System.Windows.Forms.ComboBox inputButton;
+        private ButtonControl inputButton;
+        private TriggerControl outputTrigger;
     }
 }

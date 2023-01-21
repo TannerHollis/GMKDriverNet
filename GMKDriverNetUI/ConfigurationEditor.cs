@@ -172,23 +172,15 @@ namespace GMKDriverNetUI
 
         private void LoadConfiguration(DeviceConfig config)
         {
-            _currentConfig = config;
-
             serialNumber.Text = _device.SerialNumber;
             deviceType.Text = _device.Type.ToString();
 
             this.Text = config.name;
             _currentConfig = config;
 
-            bindingsTreeView.Nodes["joystickSettings"].Nodes["leftJoystick"].Tag = config.joystickLeft;
-            bindingsTreeView.Nodes["joystickSettings"].Nodes["rightJoystick"].Tag = config.joystickRight;
-
-            bindingsTreeView.Nodes["triggerSettings"].Nodes["leftTrigger"].Tag = config.triggerLeft;
-            bindingsTreeView.Nodes["triggerSettings"].Nodes["rightTrigger"].Tag = config.triggerRight;
-
             // Get Button Bindings
             {
-                TreeNode buttonBindings = bindingsTreeView.Nodes["bindings"].Nodes["buttonBindings"];
+                TreeNode buttonBindings = bindingsTreeView.Nodes["buttonBindings"];
                 buttonBindings.Nodes.Clear();
 
                 // Add ButtonAsButtons
@@ -226,7 +218,7 @@ namespace GMKDriverNetUI
 
             // Get Joystick Bindings
             {
-                TreeNode joystickBindings = bindingsTreeView.Nodes["bindings"].Nodes["joystickBindings"];
+                TreeNode joystickBindings = bindingsTreeView.Nodes["joystickBindings"];
                 joystickBindings.Nodes.Clear();
 
                 // Add JoystickAsButtons
@@ -264,7 +256,7 @@ namespace GMKDriverNetUI
 
             // Get Trigger Bindings
             {
-                TreeNode triggerBindings = bindingsTreeView.Nodes["bindings"].Nodes["triggerBindings"];
+                TreeNode triggerBindings = bindingsTreeView.Nodes["triggerBindings"];
                 triggerBindings.Nodes.Clear();
 
                 // Add TriggerAsButtons
@@ -504,6 +496,77 @@ namespace GMKDriverNetUI
             DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
             _deviceList.SetDefaultConfiguration(_device.SerialNumber, config);
             SetConfigsView();
+        }
+
+        private void buttonAsButtonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
+        }
+
+        private void buttonAsJoystickToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.buttons.asJoysticks.Add(new ButtonAsJoystick(ButtonIO.A, JoystickIO.Left, Axis.XPositive));
+        }
+
+        private void buttonAsTriggerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.buttons.asTriggers.Add(new ButtonAsTrigger(ButtonIO.A, TriggerIO.Right));
+        }
+
+        private void buttonAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, 0xFF));
+        }
+
+        private void joystickAsButtonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.joysticks.asButtons.Add(new JoystickAsButton(JoystickIO.Left, Axis.XPositive, ButtonIO.A, 0.2f));
+        }
+
+        private void joystickAsJoystickToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Left, JoystickIO.Left, 0.0f, true, false));
+        }
+
+        private void joystickAsTriggerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.joysticks.asTriggers.Add(new JoystickAsTrigger(JoystickIO.Left, Axis.XPositive, TriggerIO.Left, 0.2f, true));
+        }
+
+        private void joystickAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.Left, Axis.XPositive, 0xFF, 0.2f));
+        }
+
+        private void triggerAsButtonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.triggers.asButtons.Add(new TriggerAsButton(TriggerIO.Left, ButtonIO.A, 0.2f));
+        }
+
+        private void triggerAsJoystickToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.triggers.asJoysticks.Add(new TriggerAsJoystick(TriggerIO.Left, JoystickIO.Left, Axis.XPositive, 0.2f, true));
+        }
+
+        private void triggerAsTriggerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Left, TriggerIO.Left, true));
+        }
+
+        private void triggerAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.triggers.asKeyboards.Add(new TriggerAsKeyboard(TriggerIO.Left, 0xFF, 0.2f));
+        }
+
+        private void bindingEditorContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            removeBindingToolStripMenuItem.Enabled = bindingsTreeView.SelectedNode.Tag != null;
+        }
+
+        private void removeBindingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _currentConfig.Remove(bindingsTreeView.SelectedNode.Tag);
+            bindingsTreeView.Nodes.Remove(bindingsTreeView.SelectedNode);
         }
     }
 }

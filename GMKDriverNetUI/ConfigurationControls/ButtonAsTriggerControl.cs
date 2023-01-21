@@ -13,33 +13,41 @@ namespace GMKDriverNetUI.ConfigurationControls
 {
     public partial class ButtonAsTriggerControl : UserControl
     {
-        private ButtonAsTrigger _buttonAsJoystick;
+        private ButtonAsTrigger _buttonAsTrigger;
         private TreeNode _node;
+        
         private bool _initialized;
+
+        private delegate void OnUpdateForm();
+        private OnUpdateForm _updateForm;
 
         public ButtonAsTriggerControl()
         {
             InitializeComponent();
+            _updateForm = UpdateForm;
         }
 
         public void LoadWidget(TreeNode node)
         {
             _node = node;
-            _buttonAsJoystick = (ButtonAsTrigger)_node.Tag;
+            _buttonAsTrigger = (ButtonAsTrigger)_node.Tag;
             _initialized = false;
-            inputButton.SelectedIndex = (int)_buttonAsJoystick.input;
-            outputTrigger.SelectedIndex = (int)_buttonAsJoystick.output;
+
+            inputButton.LoadButton(_buttonAsTrigger.input, _updateForm);
+            outputTrigger.LoadTrigger(_buttonAsTrigger.output, _updateForm);
+            
             this.Visible = true;
             _initialized = true;
         }
 
-        private void valueChanged(object sender, EventArgs e)
+        private void UpdateForm()
         {
-            if(_initialized)
+            if (_initialized)
             {
-                _buttonAsJoystick.input = (ButtonIO)inputButton.SelectedIndex;
-                _buttonAsJoystick.output = (TriggerIO)outputTrigger.SelectedIndex;
-                _node.Text = _buttonAsJoystick.ToString();
+                _buttonAsTrigger.input = inputButton.Button;
+                _buttonAsTrigger.output = outputTrigger.Trigger;
+
+                _node.Text = _buttonAsTrigger.ToString();
             }
         }
     }

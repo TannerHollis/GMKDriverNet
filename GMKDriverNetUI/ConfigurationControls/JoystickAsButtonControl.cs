@@ -15,12 +15,16 @@ namespace GMKDriverNetUI.ConfigurationControls
     {
         private JoystickAsButton _joystickAsButton;
         private TreeNode _node;
+        
         private bool _initialized;
-        private bool _selecting = false;
+
+        private delegate void OnUpdateForm();
+        private OnUpdateForm _updateForm;
 
         public JoystickAsButtonControl()
         {
             InitializeComponent();
+            _updateForm = UpdateForm;
         }
 
         public void LoadWidget(TreeNode node)
@@ -28,52 +32,27 @@ namespace GMKDriverNetUI.ConfigurationControls
             _node = node;
             _joystickAsButton = (JoystickAsButton)_node.Tag;
             _initialized = false;
-            inputJoystick.SelectedIndex = (int)_joystickAsButton.input;
-            inputAxis.SelectedIndex = (int)_joystickAsButton.inputAxis;
-            outputButton.SelectedIndex = (int)_joystickAsButton.output;
+
+            inputJoystick.LoadJoystick(_joystickAsButton.input, _updateForm);
+            inputAxis.LoadAxis(_joystickAsButton.inputAxis, _updateForm);
+            outputButton.LoadButton(_joystickAsButton.output, _updateForm);
+            deadzone.LoadDeadzone(_joystickAsButton.threshold, _updateForm);
             
-            thresholdSlider.Value = (int)(_joystickAsButton.threshold * 100.0f);
-            thresholdValueLabel.Text = (_joystickAsButton.threshold * 100).ToString() + "%";
             this.Visible = true;
             _initialized = true;
         }
 
-        private void valueChanged(object sender, EventArgs e)
+        private void UpdateForm()
         {
-            if(_initialized)
+            if (_initialized)
             {
-                _joystickAsButton.input = (JoystickIO)inputJoystick.SelectedIndex;
-                _joystickAsButton.inputAxis = (Axis)inputAxis.SelectedIndex;
-                _joystickAsButton.output = (ButtonIO)outputButton.SelectedIndex;
-                _joystickAsButton.threshold = (float)(thresholdSlider.Value) / 100.0f;
-                thresholdValueLabel.Text = (_joystickAsButton.threshold * 100).ToString() + "%";
-                if(!_selecting)
-                    _node.Text = _joystickAsButton.ToString();
-            }
-        }
+                _joystickAsButton.input = inputJoystick.Joystick;
+                _joystickAsButton.inputAxis = inputAxis.Axis;
+                _joystickAsButton.output = outputButton.Button;
+                _joystickAsButton.threshold = deadzone.Deadzone;
 
-        private void threshold_Validating(object sender, CancelEventArgs e)
-        {
-            int value = thresholdSlider.Value;
-            if(value > 100)
-            {
-                value = 100;
+                _node.Text = _joystickAsButton.ToString();
             }
-            else if(value < 0)
-            {
-                value = 0;
-            }
-            thresholdSlider.Value = value;
-        }
-
-        private void thresholdSlider_MouseUp(object sender, MouseEventArgs e)
-        {
-            _selecting = false;
-        }
-
-        private void thresholdSlider_MouseDown(object sender, MouseEventArgs e)
-        {
-            _selecting = true;
         }
     }
 }

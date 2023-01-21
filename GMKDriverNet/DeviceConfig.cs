@@ -37,10 +37,11 @@ namespace GMKDriverNET
             return input.ToString() + " -> " + output.ToString() + ", " + DeviceConfig.AxisToString(outputAxis);
         }
 
-        public ButtonAsJoystick(ButtonIO input, JoystickIO output)
+        public ButtonAsJoystick(ButtonIO input, JoystickIO output, Axis outputAxis)
         {
             this.input = input;
             this.output = output;
+            this.outputAxis = outputAxis;
         }
     }
 
@@ -334,11 +335,6 @@ namespace GMKDriverNET
     public class DeviceConfig
     {
         public string name { get; set; }
-        public JoystickConfig joystickLeft { get; set; }
-        public JoystickConfig joystickRight { get; set; }
-
-        public AxisConfig triggerLeft { get; set; }
-        public AxisConfig triggerRight { get; set; }
 
         public ButtonConfigs buttons { get; set; }
         public JoystickConfigs joysticks { get; set; }
@@ -347,40 +343,96 @@ namespace GMKDriverNET
         public DeviceConfig(string name)
         {
             this.name = name;
-            joystickLeft = new JoystickConfig();
-            joystickRight = new JoystickConfig();
-            triggerLeft = new AxisConfig();
-            triggerRight = new AxisConfig();
             buttons = new ButtonConfigs();
             joysticks = new JoystickConfigs();
             triggers = new TriggerConfigs();
         }
 
-        public class AxisConfig
+        public void Remove(object bindingIn)
         {
-            public float deadZone { get; set; }
-            public float sensitivity { get; set; }
-            public bool linear { get; set; }
-        }
-
-        public class TriggerConfig
-        {
-            public AxisConfig axis { get; set; }
-            public TriggerConfig()
+            try
             {
-                axis = new AxisConfig();
+                ButtonAsButton binding = (ButtonAsButton)bindingIn;
+                buttons.asButtons.Remove(binding);
             }
-        }
+            catch { }
 
-        public class JoystickConfig
-        {
-            public AxisConfig x { get; set; }
-            public AxisConfig y { get; set; }
-            public JoystickConfig()
+            try
             {
-                x = new AxisConfig();
-                y = new AxisConfig();
+                ButtonAsJoystick binding = (ButtonAsJoystick)bindingIn;
+                buttons.asJoysticks.Remove(binding);
             }
+            catch { }
+
+            try
+            {
+                ButtonAsTrigger binding = (ButtonAsTrigger)bindingIn;
+                buttons.asTriggers.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                ButtonAsKeyboard binding = (ButtonAsKeyboard)bindingIn;
+                buttons.asKeyboards.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                JoystickAsButton binding = (JoystickAsButton)bindingIn;
+                joysticks.asButtons.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                JoystickAsJoystick binding = (JoystickAsJoystick)bindingIn;
+                joysticks.asJoysticks.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                JoystickAsTrigger binding = (JoystickAsTrigger)bindingIn;
+                joysticks.asTriggers.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                JoystickAsKeyboard binding = (JoystickAsKeyboard)bindingIn;
+                joysticks.asKeyboards.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                TriggerAsButton binding = (TriggerAsButton)bindingIn;
+                triggers.asButtons.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                TriggerAsJoystick binding = (TriggerAsJoystick)bindingIn;
+                triggers.asJoysticks.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                TriggerAsTrigger binding = (TriggerAsTrigger)bindingIn;
+                triggers.asTriggers.Remove(binding);
+            }
+            catch { }
+
+            try
+            {
+                TriggerAsKeyboard binding = (TriggerAsKeyboard)bindingIn;
+                triggers.asKeyboards.Remove(binding);
+            }
+            catch { }
         }
 
         public static bool ConfigNameExists(string name)
@@ -424,36 +476,6 @@ namespace GMKDriverNET
             {
                 DeviceConfig c = new DeviceConfig("Default_v1.0");
 
-                // Left X
-                c.joystickLeft.x.deadZone = 0.1f;
-                c.joystickLeft.x.linear = true;
-                c.joystickLeft.x.sensitivity = 1.0f;
-
-                // Left Y
-                c.joystickLeft.y.deadZone = 0.1f;
-                c.joystickLeft.y.linear = true;
-                c.joystickLeft.y.sensitivity = 1.0f;
-
-                // Right X
-                c.joystickRight.x.deadZone = 0.1f;
-                c.joystickRight.x.linear = true;
-                c.joystickRight.x.sensitivity = 1.0f;
-
-                // Right Y
-                c.joystickRight.y.deadZone = 0.1f;
-                c.joystickRight.y.linear = true;
-                c.joystickRight.y.sensitivity = 1.0f;
-
-                // LT
-                c.triggerLeft.deadZone = 0.1f;
-                c.triggerLeft.linear = true;
-                c.triggerLeft.sensitivity = 1.0f;
-
-                // RT
-                c.triggerLeft.deadZone = 0.1f;
-                c.triggerLeft.linear = true;
-                c.triggerLeft.sensitivity = 1.0f;
-
                 // Buttons
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.B, ButtonIO.B));
@@ -471,8 +493,8 @@ namespace GMKDriverNET
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.Right, ButtonIO.Right));
 
                 // Joysticks
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Left, JoystickIO.Left, 0.0f, true, true));
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Right, JoystickIO.Right, 0.0f, true, true));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Left, JoystickIO.Left, 0.1f, true, false));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Right, JoystickIO.Right, 0.1f, true, false));
 
                 // Triggers
                 c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Left, TriggerIO.Left, true));
