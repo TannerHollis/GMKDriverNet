@@ -20,7 +20,7 @@ namespace GMKDriverNET
 {
     public class GMKDriver
     {
-        private static string Version { get { return "v1.7"; } }
+        private static string Version { get { return "v1.89.0"; } }
 
         private const int GMK_VID = 0x483;
         private const int JOYSTICK_PID = 0x5750;
@@ -320,7 +320,7 @@ namespace GMKDriverNET
                     }
                     else
                     {
-                        if(currentWindow.Contains(config.gameAssociation) && device.Config.name != config.name)
+                        if(currentWindow.Contains(config.gameAssociation) && device.Config.name != config.name && config.gameAssociation != string.Empty)
                         {
                             device.WriteLine("Auto config found for application: " + config.gameAssociation);
                             device.Config = config;

@@ -587,5 +587,10 @@ namespace GMKDriverNetUI
         {
             _currentConfig.gameAssociation = gameAssociationName.Text;
         }
+
+        private void gameAssociationName_MouseHover(object sender, EventArgs e)
+        {
+            gameAssociationToolTip.SetToolTip(gameAssociationName, "Enter a basic application name to auto-switch to this configuration whenever the application is active. (e.g. \"Fortnite\" or \"Rocket League\")");
+        }
     }
 }

@@ -28,8 +28,8 @@
     <PublisherName>Gaming Mod Kits</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>31</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>34</ApplicationRevision>
+    <ApplicationVersion>1.89.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -91,10 +91,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoolControl.cs">
+    <Compile Include="ConfigurationControls\BoolControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BoolControl.Designer.cs">
+    <Compile Include="ConfigurationControls\BoolControl.Designer.cs">
       <DependentUpon>BoolControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigurationControls\RotateControl.cs">
@@ -234,7 +234,7 @@
     <Content Include="libusb-1.0">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="BoolControl.resx">
+    <EmbeddedResource Include="ConfigurationControls\BoolControl.resx">
       <DependentUpon>BoolControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationControls\RotateControl.resx">

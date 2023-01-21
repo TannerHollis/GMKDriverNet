@@ -40,6 +40,11 @@
             this.deviceTypeLabel = new System.Windows.Forms.Label();
             this.deviceType = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.currentConfigName = new System.Windows.Forms.Label();
+            this.gameAssociationLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.gameAssociationEnabled = new System.Windows.Forms.CheckBox();
+            this.gameAssociationName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
@@ -78,20 +83,16 @@
             this.selectionHelp = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.currentConfigName = new System.Windows.Forms.Label();
-            this.gameAssociationLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.gameAssociationEnabled = new System.Windows.Forms.CheckBox();
-            this.gameAssociationName = new System.Windows.Forms.TextBox();
+            this.gameAssociationToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.gridLayout.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.configurationsGroupBox.SuspendLayout();
             this.configsViewContextMenu.SuspendLayout();
             this.configurationSettingsGroupBox.SuspendLayout();
             this.bindingEditorContextMenu.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridLayout
@@ -198,6 +199,70 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            // 
+            // currentConfigName
+            // 
+            this.currentConfigName.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.currentConfigName, 2);
+            this.currentConfigName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.currentConfigName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentConfigName.Location = new System.Drawing.Point(3, 0);
+            this.currentConfigName.Name = "currentConfigName";
+            this.currentConfigName.Size = new System.Drawing.Size(425, 25);
+            this.currentConfigName.TabIndex = 5;
+            this.currentConfigName.Text = "Configuration Name";
+            this.currentConfigName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // gameAssociationLabel
+            // 
+            this.gameAssociationLabel.AutoSize = true;
+            this.gameAssociationLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gameAssociationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameAssociationLabel.Location = new System.Drawing.Point(3, 245);
+            this.gameAssociationLabel.Name = "gameAssociationLabel";
+            this.gameAssociationLabel.Size = new System.Drawing.Size(134, 25);
+            this.gameAssociationLabel.TabIndex = 6;
+            this.gameAssociationLabel.Text = "Game Association:";
+            this.gameAssociationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.69072F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.30928F));
+            this.tableLayoutPanel3.Controls.Add(this.gameAssociationEnabled, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.gameAssociationName, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(140, 245);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(291, 25);
+            this.tableLayoutPanel3.TabIndex = 7;
+            // 
+            // gameAssociationEnabled
+            // 
+            this.gameAssociationEnabled.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gameAssociationEnabled.AutoSize = true;
+            this.gameAssociationEnabled.Location = new System.Drawing.Point(268, 5);
+            this.gameAssociationEnabled.Name = "gameAssociationEnabled";
+            this.gameAssociationEnabled.Size = new System.Drawing.Size(15, 14);
+            this.gameAssociationEnabled.TabIndex = 0;
+            this.gameAssociationEnabled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.gameAssociationEnabled.UseVisualStyleBackColor = true;
+            this.gameAssociationEnabled.CheckedChanged += new System.EventHandler(this.gameAssociationEnabled_CheckedChanged);
+            // 
+            // gameAssociationName
+            // 
+            this.gameAssociationName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.gameAssociationName.Location = new System.Drawing.Point(3, 3);
+            this.gameAssociationName.Name = "gameAssociationName";
+            this.gameAssociationName.Size = new System.Drawing.Size(255, 20);
+            this.gameAssociationName.TabIndex = 1;
+            this.gameAssociationName.TextChanged += new System.EventHandler(this.gameAssociationName_TextChanged);
+            this.gameAssociationName.MouseHover += new System.EventHandler(this.gameAssociationName_MouseHover);
             // 
             // tableLayoutPanel1
             // 
@@ -402,34 +467,34 @@
             this.buttonAsTriggerToolStripMenuItem,
             this.buttonAsKeyboardToolStripMenuItem});
             this.buttonToolStripMenuItem.Name = "buttonToolStripMenuItem";
-            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.buttonToolStripMenuItem.Text = "Button";
             // 
             // buttonAsButtonToolStripMenuItem
             // 
             this.buttonAsButtonToolStripMenuItem.Name = "buttonAsButtonToolStripMenuItem";
-            this.buttonAsButtonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buttonAsButtonToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.buttonAsButtonToolStripMenuItem.Text = "ButtonAsButton";
             this.buttonAsButtonToolStripMenuItem.Click += new System.EventHandler(this.buttonAsButtonToolStripMenuItem_Click);
             // 
             // buttonAsJoystickToolStripMenuItem
             // 
             this.buttonAsJoystickToolStripMenuItem.Name = "buttonAsJoystickToolStripMenuItem";
-            this.buttonAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buttonAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.buttonAsJoystickToolStripMenuItem.Text = "ButtonAsJoystick";
             this.buttonAsJoystickToolStripMenuItem.Click += new System.EventHandler(this.buttonAsJoystickToolStripMenuItem_Click);
             // 
             // buttonAsTriggerToolStripMenuItem
             // 
             this.buttonAsTriggerToolStripMenuItem.Name = "buttonAsTriggerToolStripMenuItem";
-            this.buttonAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buttonAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.buttonAsTriggerToolStripMenuItem.Text = "ButtonAsTrigger";
             this.buttonAsTriggerToolStripMenuItem.Click += new System.EventHandler(this.buttonAsTriggerToolStripMenuItem_Click);
             // 
             // buttonAsKeyboardToolStripMenuItem
             // 
             this.buttonAsKeyboardToolStripMenuItem.Name = "buttonAsKeyboardToolStripMenuItem";
-            this.buttonAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buttonAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.buttonAsKeyboardToolStripMenuItem.Text = "ButtonAsKeyboard";
             this.buttonAsKeyboardToolStripMenuItem.Click += new System.EventHandler(this.buttonAsKeyboardToolStripMenuItem_Click);
             // 
@@ -441,34 +506,34 @@
             this.joystickAsTriggerToolStripMenuItem,
             this.joystickAsKeyboardToolStripMenuItem});
             this.joystickToolStripMenuItem.Name = "joystickToolStripMenuItem";
-            this.joystickToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.joystickToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.joystickToolStripMenuItem.Text = "Joystick";
             // 
             // joystickAsButtonToolStripMenuItem
             // 
             this.joystickAsButtonToolStripMenuItem.Name = "joystickAsButtonToolStripMenuItem";
-            this.joystickAsButtonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.joystickAsButtonToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.joystickAsButtonToolStripMenuItem.Text = "JoystickAsButton";
             this.joystickAsButtonToolStripMenuItem.Click += new System.EventHandler(this.joystickAsButtonToolStripMenuItem_Click);
             // 
             // joystickAsJoystickToolStripMenuItem
             // 
             this.joystickAsJoystickToolStripMenuItem.Name = "joystickAsJoystickToolStripMenuItem";
-            this.joystickAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.joystickAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.joystickAsJoystickToolStripMenuItem.Text = "JoystickAsJoystick";
             this.joystickAsJoystickToolStripMenuItem.Click += new System.EventHandler(this.joystickAsJoystickToolStripMenuItem_Click);
             // 
             // joystickAsTriggerToolStripMenuItem
             // 
             this.joystickAsTriggerToolStripMenuItem.Name = "joystickAsTriggerToolStripMenuItem";
-            this.joystickAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.joystickAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.joystickAsTriggerToolStripMenuItem.Text = "JoystickAsTrigger";
             this.joystickAsTriggerToolStripMenuItem.Click += new System.EventHandler(this.joystickAsTriggerToolStripMenuItem_Click);
             // 
             // joystickAsKeyboardToolStripMenuItem
             // 
             this.joystickAsKeyboardToolStripMenuItem.Name = "joystickAsKeyboardToolStripMenuItem";
-            this.joystickAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.joystickAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.joystickAsKeyboardToolStripMenuItem.Text = "JoystickAsKeyboard";
             this.joystickAsKeyboardToolStripMenuItem.Click += new System.EventHandler(this.joystickAsKeyboardToolStripMenuItem_Click);
             // 
@@ -480,34 +545,34 @@
             this.triggerAsTriggerToolStripMenuItem,
             this.triggerAsKeyboardToolStripMenuItem});
             this.triggerToolStripMenuItem.Name = "triggerToolStripMenuItem";
-            this.triggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.triggerToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.triggerToolStripMenuItem.Text = "Trigger";
             // 
             // triggerAsButtonToolStripMenuItem
             // 
             this.triggerAsButtonToolStripMenuItem.Name = "triggerAsButtonToolStripMenuItem";
-            this.triggerAsButtonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.triggerAsButtonToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.triggerAsButtonToolStripMenuItem.Text = "TriggerAsButton";
             this.triggerAsButtonToolStripMenuItem.Click += new System.EventHandler(this.triggerAsButtonToolStripMenuItem_Click);
             // 
             // triggerAsJoystickToolStripMenuItem
             // 
             this.triggerAsJoystickToolStripMenuItem.Name = "triggerAsJoystickToolStripMenuItem";
-            this.triggerAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.triggerAsJoystickToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.triggerAsJoystickToolStripMenuItem.Text = "TriggerAsJoystick";
             this.triggerAsJoystickToolStripMenuItem.Click += new System.EventHandler(this.triggerAsJoystickToolStripMenuItem_Click);
             // 
             // triggerAsTriggerToolStripMenuItem
             // 
             this.triggerAsTriggerToolStripMenuItem.Name = "triggerAsTriggerToolStripMenuItem";
-            this.triggerAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.triggerAsTriggerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.triggerAsTriggerToolStripMenuItem.Text = "TriggerAsTrigger";
             this.triggerAsTriggerToolStripMenuItem.Click += new System.EventHandler(this.triggerAsTriggerToolStripMenuItem_Click);
             // 
             // triggerAsKeyboardToolStripMenuItem
             // 
             this.triggerAsKeyboardToolStripMenuItem.Name = "triggerAsKeyboardToolStripMenuItem";
-            this.triggerAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.triggerAsKeyboardToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.triggerAsKeyboardToolStripMenuItem.Text = "TriggerAsKeyboard";
             this.triggerAsKeyboardToolStripMenuItem.Click += new System.EventHandler(this.triggerAsKeyboardToolStripMenuItem_Click);
             // 
@@ -543,68 +608,10 @@
             this.openConfigFileDialog.Filter = "config files (*.json)|*.json";
             this.openConfigFileDialog.InitialDirectory = "Configs";
             // 
-            // currentConfigName
+            // gameAssociationToolTip
             // 
-            this.currentConfigName.AutoSize = true;
-            this.tableLayoutPanel2.SetColumnSpan(this.currentConfigName, 2);
-            this.currentConfigName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.currentConfigName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentConfigName.Location = new System.Drawing.Point(3, 0);
-            this.currentConfigName.Name = "currentConfigName";
-            this.currentConfigName.Size = new System.Drawing.Size(425, 25);
-            this.currentConfigName.TabIndex = 5;
-            this.currentConfigName.Text = "Configuration Name";
-            this.currentConfigName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // gameAssociationLabel
-            // 
-            this.gameAssociationLabel.AutoSize = true;
-            this.gameAssociationLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gameAssociationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gameAssociationLabel.Location = new System.Drawing.Point(3, 245);
-            this.gameAssociationLabel.Name = "gameAssociationLabel";
-            this.gameAssociationLabel.Size = new System.Drawing.Size(134, 25);
-            this.gameAssociationLabel.TabIndex = 6;
-            this.gameAssociationLabel.Text = "Game Association:";
-            this.gameAssociationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.69072F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.30928F));
-            this.tableLayoutPanel3.Controls.Add(this.gameAssociationEnabled, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.gameAssociationName, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(140, 245);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(291, 25);
-            this.tableLayoutPanel3.TabIndex = 7;
-            // 
-            // gameAssociationEnabled
-            // 
-            this.gameAssociationEnabled.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.gameAssociationEnabled.AutoSize = true;
-            this.gameAssociationEnabled.Location = new System.Drawing.Point(268, 5);
-            this.gameAssociationEnabled.Name = "gameAssociationEnabled";
-            this.gameAssociationEnabled.Size = new System.Drawing.Size(15, 14);
-            this.gameAssociationEnabled.TabIndex = 0;
-            this.gameAssociationEnabled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.gameAssociationEnabled.UseVisualStyleBackColor = true;
-            this.gameAssociationEnabled.CheckedChanged += new System.EventHandler(this.gameAssociationEnabled_CheckedChanged);
-            // 
-            // gameAssociationName
-            // 
-            this.gameAssociationName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.gameAssociationName.Location = new System.Drawing.Point(3, 3);
-            this.gameAssociationName.Name = "gameAssociationName";
-            this.gameAssociationName.Size = new System.Drawing.Size(255, 20);
-            this.gameAssociationName.TabIndex = 1;
-            this.gameAssociationName.TextChanged += new System.EventHandler(this.gameAssociationName_TextChanged);
+            this.gameAssociationToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.gameAssociationToolTip.ToolTipTitle = "Auto-Switch to this Configuration";
             // 
             // configurationEditor
             // 
@@ -621,13 +628,13 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.configurationsGroupBox.ResumeLayout(false);
             this.configsViewContextMenu.ResumeLayout(false);
             this.configurationSettingsGroupBox.ResumeLayout(false);
             this.bindingEditorContextMenu.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -684,5 +691,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.CheckBox gameAssociationEnabled;
         private System.Windows.Forms.TextBox gameAssociationName;
+        private System.Windows.Forms.ToolTip gameAssociationToolTip;
     }
 }
