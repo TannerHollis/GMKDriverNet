@@ -28,8 +28,8 @@
     <PublisherName>Gaming Mod Kits</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>34</ApplicationRevision>
-    <ApplicationVersion>1.89.0.%2a</ApplicationVersion>
+    <ApplicationRevision>44</ApplicationRevision>
+    <ApplicationVersion>0.92.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -56,7 +56,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>GMKDriverNetUI.Program</StartupObject>
+    <StartupObject>GMKDriverNETUI.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>GMKlogo_transparent_square.ico</ApplicationIcon>
@@ -91,6 +91,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutWindow.Designer.cs">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigurationControls\BoolControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -234,6 +240,9 @@
     <Content Include="libusb-1.0">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="AboutWindow.resx">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationControls\BoolControl.resx">
       <DependentUpon>BoolControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -312,7 +321,8 @@
     <EmbeddedResource Include="ConfigName.resx">
       <DependentUpon>ConfigName.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="deviceAssociations.json">
+    <Content Include="..\GMKDriverNet\deviceList.json">
+      <Link>deviceList.json</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="GMKDriverNetUI_TemporaryKey.pfx" />
@@ -336,9 +346,9 @@
     <Content Include="images\trigger.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GMKDriverNet\GMKDriverNet.csproj">
+    <ProjectReference Include="..\GMKDriverNet\GMKDriverNET.csproj">
       <Project>{03d9bfb9-9a88-40cb-bbac-2e4fbe1cb772}</Project>
-      <Name>GMKDriverNet</Name>
+      <Name>GMKDriverNET</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

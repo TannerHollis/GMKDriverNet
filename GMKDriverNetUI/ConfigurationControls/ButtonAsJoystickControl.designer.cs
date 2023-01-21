@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class ButtonAsJoystickControl
     {
@@ -32,9 +32,9 @@
             this.outputAxisLabel = new System.Windows.Forms.Label();
             this.outputJoystickLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
-            this.inputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
-            this.outputJoystick = new GMKDriverNetUI.ConfigurationControls.JoystickControl();
-            this.outputAxis = new GMKDriverNetUI.ConfigurationControls.AxisControl();
+            this.inputButton = new GMKDriverNETUI.ConfigurationControls.ButtonControl();
+            this.outputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
+            this.outputAxis = new GMKDriverNETUI.ConfigurationControls.AxisControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

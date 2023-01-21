@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class JoystickAsJoystickControl
     {
@@ -35,12 +35,12 @@
             this.outputJoystickLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
             this.rotateLabel = new System.Windows.Forms.Label();
-            this.inputJoystick = new GMKDriverNetUI.ConfigurationControls.JoystickControl();
-            this.outputJoystick = new GMKDriverNetUI.ConfigurationControls.JoystickControl();
-            this.rotate = new GMKDriverNetUI.ConfigurationControls.RotateControl();
-            this.deadzone = new GMKDriverNetUI.ConfigurationControls.DeadzoneControl();
-            this.linear = new GMKDriverNetUI.ConfigurationControls.BoolControl();
-            this.snap76 = new GMKDriverNetUI.ConfigurationControls.BoolControl();
+            this.inputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
+            this.outputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
+            this.rotate = new GMKDriverNETUI.ConfigurationControls.RotateControl();
+            this.deadzone = new GMKDriverNETUI.ConfigurationControls.DeadzoneControl();
+            this.linear = new GMKDriverNETUI.ConfigurationControls.BoolControl();
+            this.snap76 = new GMKDriverNETUI.ConfigurationControls.BoolControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

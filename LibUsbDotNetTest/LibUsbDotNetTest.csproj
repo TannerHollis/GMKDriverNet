@@ -71,9 +71,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GMKDriverNet\GMKDriverNet.csproj">
+    <ProjectReference Include="..\GMKDriverNet\GMKDriverNET.csproj">
       <Project>{03d9bfb9-9a88-40cb-bbac-2e4fbe1cb772}</Project>
-      <Name>GMKDriverNet</Name>
+      <Name>GMKDriverNET</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

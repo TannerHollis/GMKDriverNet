@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GMKDriverNET;
+using System;
 using System.Windows.Forms;
 
-using GMKDriverNET;
-
-namespace GMKDriverNetUI.ConfigurationControls
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class TriggerControl : UserControl
     {
+        private string[] joystickInputTriggers = {  };
+        private string[] controllerInputTriggers = { "Left Joystick", "Right Joystick" };
+        private string[] outputTriggers = { "Left Joystick", "Right Joystick" };
+
         private TriggerIO _trigger;
         private Delegate _updateForm;
         private bool _isInitialized;
@@ -26,12 +21,28 @@ namespace GMKDriverNetUI.ConfigurationControls
             InitializeComponent();
         }
 
-        public void LoadTrigger(TriggerIO asTrigger, Delegate updateForm)
+        public void LoadTrigger(TriggerIO asTrigger, GMKControllerType type, bool isOutput, Delegate updateForm)
         {
             _isInitialized = false;
+
+            trigger.Items.Clear();
+            if (isOutput)
+            {
+                trigger.Items.AddRange(outputTriggers);
+            }
+            else if (type == GMKControllerType.Joystick)
+            {
+                trigger.Items.AddRange(joystickInputTriggers);
+            }
+            else if (type == GMKControllerType.Controller)
+            {
+                trigger.Items.AddRange(controllerInputTriggers);
+            }
+
             _trigger = asTrigger;
             trigger.SelectedIndex = (int)asTrigger;
             _updateForm = updateForm;
+            
             _isInitialized = true;
         }
 

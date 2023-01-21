@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class ButtonAsButtonControl
     {
@@ -31,8 +31,8 @@
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.outputButtonLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
-            this.outputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
-            this.inputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
+            this.outputButton = new GMKDriverNETUI.ConfigurationControls.ButtonControl();
+            this.inputButton = new GMKDriverNETUI.ConfigurationControls.ButtonControl();
             this.tableLayout.SuspendLayout();
             this.SuspendLayout();
             // 

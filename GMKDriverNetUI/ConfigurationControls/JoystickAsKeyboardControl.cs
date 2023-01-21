@@ -1,17 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.AxHost;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class JoystickAsKeyboardControl : UserControl
     {
@@ -29,16 +21,16 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _joystickAsKeyboard = (JoystickAsKeyboard)_node.Tag;
             _initialized = false;
 
-            inputJoystick.LoadJoystick(_joystickAsKeyboard.input, _updateForm);
+            inputJoystick.LoadJoystick(_joystickAsKeyboard.input, config.type, false, _updateForm);
             inputAxis.LoadAxis(_joystickAsKeyboard.inputAxis, _updateForm);
             key.LoadKey(_joystickAsKeyboard.key, _updateForm);
-            deadzone.LoadDeadzone(_joystickAsKeyboard.threshold, _updateForm);
+            deadzone.LoadDeadzone(_joystickAsKeyboard.deadzone, _updateForm);
 
             this.Visible = true;
             _initialized = true;
@@ -46,12 +38,12 @@ namespace GMKDriverNetUI.ConfigurationControls
 
         private void UpdateForm()
         {
-            if (!_initialized)
+            if (_initialized)
             {
                 _joystickAsKeyboard.input = inputJoystick.Joystick;
                 _joystickAsKeyboard.inputAxis = inputAxis.Axis;
                 _joystickAsKeyboard.key = key.Key;
-                _joystickAsKeyboard.threshold = deadzone.Deadzone;
+                _joystickAsKeyboard.deadzone = deadzone.Deadzone;
 
                 _node.Text = _joystickAsKeyboard.ToString();
             }

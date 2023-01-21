@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class BoolControl
     {
@@ -57,6 +57,7 @@
             this.checkBox.Size = new System.Drawing.Size(15, 14);
             this.checkBox.TabIndex = 0;
             this.checkBox.UseVisualStyleBackColor = true;
+            this.checkBox.CheckedChanged += new System.EventHandler(this.bool_SelectedIndexChanged);
             // 
             // BoolControl
             // 

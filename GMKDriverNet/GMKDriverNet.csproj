@@ -77,18 +77,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bindings\ButtonAsButton.cs" />
+    <Compile Include="Bindings\ButtonAsJoystick.cs" />
+    <Compile Include="Bindings\ButtonAsKeyboard.cs" />
+    <Compile Include="Bindings\ButtonAsTrigger.cs" />
+    <Compile Include="Bindings\ButtonConfigs.cs" />
     <Compile Include="DeviceList.cs" />
     <Compile Include="DeviceConfig.cs" />
     <Compile Include="GMKController.cs" />
     <Compile Include="GMKDevice.cs" />
     <Compile Include="GMKDriver.cs" />
     <Compile Include="GMKJoystick.cs" />
+    <Compile Include="Bindings\JoystickAsButton.cs" />
+    <Compile Include="Bindings\JoystickAsJoystick.cs" />
+    <Compile Include="Bindings\JoystickAsKeyboard.cs" />
+    <Compile Include="Bindings\JoystickAsTrigger.cs" />
+    <Compile Include="Bindings\JoystickConfigs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Bindings\TriggerAsButton.cs" />
+    <Compile Include="Bindings\TriggerAsJoystick.cs" />
+    <Compile Include="Bindings\TriggerAsKeyboard.cs" />
+    <Compile Include="Bindings\TriggerAsTrigger.cs" />
+    <Compile Include="Bindings\TriggerConfigs.cs" />
     <Compile Include="XInputController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="deviceAssociations.json">
+    <Content Include="deviceList.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="libusb-1.0">

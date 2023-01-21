@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 using Nefarius.ViGEm.Client.Targets.Xbox360;
 
+using GMKDriverNET.Bindings;
+
 namespace GMKDriverNET
 {
     public class XInputController
@@ -33,12 +35,12 @@ namespace GMKDriverNET
         bool b;
         bool x;
         bool y;
-        Int16 leftX;
-        Int16 leftY;
-        Int16 rightX;
-        Int16 rightY;
-        char triggerLeft;
-        char triggerRight;
+        int leftX;
+        int leftY;
+        int rightX;
+        int rightY;
+        int triggerLeft;
+        int triggerRight;
 
         UInt16 buttons;
 
@@ -177,16 +179,16 @@ namespace GMKDriverNET
             // JoystickAsButton
             foreach(JoystickAsButton asButton in config.joysticks.asButtons)
             {
-                float value = GetPercentage(GetJoystick(asButton.input, asButton.inputAxis));
+                float value = GetPercentageInt16(GetJoystick(asButton.input, asButton.inputAxis));
 
-                tmp.SetButton(asButton.output, value > asButton.threshold);
+                tmp.SetButton(asButton.output, value > asButton.deadzone);
             }
 
             // JoystickAsJoystick
             foreach(JoystickAsJoystick asJoystick in config.joysticks.asJoysticks)
             {
-                double x = GetPercentage(GetJoystick(asJoystick.input, Axis.XPositive));
-                double y = GetPercentage(GetJoystick(asJoystick.input, Axis.YPositive));
+                double x = GetPercentageInt16(GetJoystick(asJoystick.input, Axis.XPositive));
+                double y = GetPercentageInt16(GetJoystick(asJoystick.input, Axis.YPositive));
 
                 double angle = Math.Atan2(y, x);
                 double mag = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
@@ -200,7 +202,6 @@ namespace GMKDriverNET
 
                 if (asJoystick.snapMode76)
                 {
-                    double angleDeg = angle * 180 / Math.PI;
                     if (angle > snapRightZone[0] && angle < snapRightZone[1])
                     {
                         newX = mag * Math.Cos(snapRightAngle);
@@ -217,7 +218,7 @@ namespace GMKDriverNET
                 Int16 newXInt;
                 Int16 newYInt;
 
-                if (mag > asJoystick.threshold)
+                if (mag > asJoystick.deadzone)
                 {
                     newXInt = GetInt((float)newX, asJoystick.linear);
                     newYInt = GetInt((float)newY, asJoystick.linear);
@@ -235,9 +236,9 @@ namespace GMKDriverNET
             // JoystickAsTrigger
             foreach(JoystickAsTrigger asTrigger in config.joysticks.asTriggers)
             {
-                float value = GetPercentage(GetJoystick(asTrigger.input, asTrigger.inputAxis));
+                float value = GetPercentageInt16(GetJoystick(asTrigger.input, asTrigger.inputAxis));
                 
-                char newValue = value > asTrigger.threshold ? GetChar((float)value, asTrigger.linear) : (char)0;
+                char newValue = value > asTrigger.deadzone ? GetChar((float)value, asTrigger.linear) : (char)0;
 
                 tmp.SetTrigger(asTrigger.output, newValue);
             }
@@ -245,17 +246,17 @@ namespace GMKDriverNET
             // TriggerAsButton
             foreach(TriggerAsButton asButton in config.triggers.asButtons)
             {
-                float value = GetPercentage(GetTrigger(asButton.input));
+                float value = GetPercentageUInt8(GetTrigger(asButton.input));
 
-                tmp.SetButton(asButton.output, value > asButton.threshold);
+                tmp.SetButton(asButton.output, value > asButton.deadzone);
             }
 
             // TriggerAsJoystick
             foreach(TriggerAsJoystick asJoystick in config.triggers.asJoysticks)
             {
-                float value = GetPercentage(GetTrigger(asJoystick.input));
+                float value = GetPercentageUInt8(GetTrigger(asJoystick.input));
 
-                Int16 newValue = value > asJoystick.threshold ? GetInt(value, asJoystick.linear) : (Int16)0;
+                Int16 newValue = value > asJoystick.deadzone ? GetInt(value, asJoystick.linear) : (Int16)0;
 
                 tmp.SetJoystick(asJoystick.output, asJoystick.outputAxis, newValue);
             }
@@ -273,12 +274,12 @@ namespace GMKDriverNET
             Map(tmp.ToBytes());
         }
 
-        private static float GetPercentage(Int16 value)
+        private static float GetPercentageInt16(int value)
         {
             return (float)((float)value / (float)-Int16.MinValue);
         }
 
-        private static float GetPercentage(char value)
+        private static float GetPercentageUInt8(int value)
         {
             return (float)((float)value / (char)0xFF);
         }
@@ -314,16 +315,16 @@ namespace GMKDriverNET
 
         }
 
-        private void SetTrigger(TriggerIO trigger, char value)
+        private void SetTrigger(TriggerIO trigger, int value)
         {
             switch(trigger)
             {
-                case TriggerIO.Left:
-                    triggerLeft = value;
+                case TriggerIO.LeftTrigger:
+                    triggerLeft += value;
                     break;
 
-                case TriggerIO.Right:
-                    triggerRight = value;
+                case TriggerIO.RightTrigger:
+                    triggerRight += value;
                     break;
 
                 default:
@@ -332,14 +333,14 @@ namespace GMKDriverNET
             }
         }
 
-        private char GetTrigger(TriggerIO trigger)
+        private int GetTrigger(TriggerIO trigger)
         {
             switch(trigger)
             {
-                case TriggerIO.Left:
+                case TriggerIO.LeftTrigger:
                     return triggerLeft;
 
-                case TriggerIO.Right:
+                case TriggerIO.RightTrigger:
                     return triggerRight;
 
                 default:
@@ -347,48 +348,48 @@ namespace GMKDriverNET
             }
         }
 
-        private void SetJoystick(JoystickIO joystick, Axis axis, Int16 value)
+        private void SetJoystick(JoystickIO joystick, Axis axis, int value)
         {
             switch(joystick)
             {
-                case JoystickIO.Left:
+                case JoystickIO.LeftJoystick:
                     switch(axis)
                     {
                         case Axis.XPositive:
-                            leftX = value;
+                            leftX += value;
                             break;
 
                         case Axis.XNegative:
-                            leftX = (Int16)(-1 * value);
+                            leftX += (-1 * value);
                             break;
 
                         case Axis.YPositive:
-                            leftY = value;
+                            leftY += value;
                             break;
 
                         case Axis.YNegative:
-                            leftY = (Int16)(-1 * value);
+                            leftY += (-1 * value);
                             break;
                     }
                     break;
 
-                case JoystickIO.Right:
+                case JoystickIO.RightJoystick:
                     switch (axis)
                     {
                         case Axis.XPositive:
-                            rightX = value;
+                            rightX += value;
                             break;
 
                         case Axis.XNegative:
-                            rightX = (Int16)(-1*value);
+                            rightX += (-1*value);
                             break;
 
                         case Axis.YPositive:
-                            rightY = value;
+                            rightY += value;
                             break;
 
                         case Axis.YNegative:
-                            rightY = (Int16)(-1 * value);
+                            rightY += (-1 * value);
                             break;
                     }
                     break;
@@ -399,21 +400,21 @@ namespace GMKDriverNET
             }
         }
 
-        private Int16 GetJoystick(JoystickIO joystick, Axis axis)
+        private int GetJoystick(JoystickIO joystick, Axis axis)
         {
             switch (joystick)
             {
-                case JoystickIO.Left:
+                case JoystickIO.LeftJoystick:
                     switch (axis)
                     {
                         case Axis.XPositive:
                             return leftX;
 
                         case Axis.XNegative:
-                            return (Int16)(-1 * leftX);
+                            return (-1 * leftX);
 
                         case Axis.YPositive:
-                            return (Int16)(-1 * leftY);
+                            return (-1 * leftY);
 
                         case Axis.YNegative:
                             return leftY;
@@ -422,20 +423,20 @@ namespace GMKDriverNET
                             return 0;
                     }
 
-                case JoystickIO.Right:
+                case JoystickIO.RightJoystick:
                     switch (axis)
                     {
                         case Axis.XPositive:
                             return rightX;
 
                         case Axis.XNegative:
-                            return (Int16)(-1 * rightX);
+                            return (-1 * rightX);
 
                         case Axis.YPositive:
                             return rightY;
 
                         case Axis.YNegative:
-                            return (Int16)(-1 * rightY);
+                            return (-1 * rightY);
 
                         default:
                             return 0;
@@ -451,63 +452,63 @@ namespace GMKDriverNET
             switch (button)
             {
                 case ButtonIO.A:
-                    a = state;
+                    a |= state;
                     break;
 
                 case ButtonIO.B:
-                    b = state;
+                    b |= state;
                     break;
 
                 case ButtonIO.X:
-                    x = state;
+                    x |= state;
                     break;
 
                 case ButtonIO.Y:
-                    y = state;
+                    y |= state;
                     break;
 
                 case ButtonIO.Start:
-                    start = state;
+                    start |= state;
                     break;
 
                 case ButtonIO.Back:
-                    back = state;
+                    back |= state;
                     break;
 
                 case ButtonIO.Xbox:
-                    xbox = state;
+                    xbox |= state;
                     break;
 
                 case ButtonIO.LeftThumb:
-                    lth = state;
+                    lth |= state;
                     break;
 
                 case ButtonIO.RightThumb:
-                    rth = state;
+                    rth |= state;
                     break;
 
                 case ButtonIO.LeftBumper:
-                    lb = state;
+                    lb |= state;
                     break;
 
                 case ButtonIO.RightBumper:
-                    rb = state;
+                    rb |= state;
                     break;
 
                 case ButtonIO.Up:
-                    up = state;
+                    up |= state;
                     break;
 
                 case ButtonIO.Down:
-                    down = state;
+                    down |= state;
                     break;
 
                 case ButtonIO.Left:
-                    left = state;
+                    left |= state;
                     break;
 
                 case ButtonIO.Right:
-                    right = state;
+                    right |= state;
                     break;
 
                 default:
@@ -573,12 +574,19 @@ namespace GMKDriverNET
         public void SetController(in IXbox360Controller controller)
         {
             controller.SetButtonsFull(buttons);
-            controller.SetAxisValue(Xbox360Axis.LeftThumbX, leftX);
-            controller.SetAxisValue(Xbox360Axis.LeftThumbY, leftY);
-            controller.SetAxisValue(Xbox360Axis.RightThumbX, rightX);
-            controller.SetAxisValue(Xbox360Axis.RightThumbY, rightY);
-            controller.SetSliderValue(Xbox360Slider.LeftTrigger, Convert.ToByte(triggerLeft));
-            controller.SetSliderValue(Xbox360Slider.RightTrigger, Convert.ToByte(triggerRight));
+            controller.SetAxisValue(Xbox360Axis.LeftThumbX, (Int16)Clamp(leftX, (int)(-Int16.MaxValue), (int)(Int16.MaxValue)));
+            controller.SetAxisValue(Xbox360Axis.LeftThumbY, (Int16)Clamp(leftY, (int)(-Int16.MaxValue), (int)(Int16.MaxValue)));
+            controller.SetAxisValue(Xbox360Axis.RightThumbX, (Int16)Clamp(rightX, (int)(-Int16.MaxValue), (int)(Int16.MaxValue)));
+            controller.SetAxisValue(Xbox360Axis.RightThumbY, (Int16)Clamp(rightY, (int)(-Int16.MaxValue), (int)(Int16.MaxValue)));
+            controller.SetSliderValue(Xbox360Slider.LeftTrigger, Convert.ToByte((Int16)Clamp(triggerLeft, (int)(0), (int)(byte.MaxValue))));
+            controller.SetSliderValue(Xbox360Slider.RightTrigger, Convert.ToByte((Int16)Clamp(triggerRight, (int)(0), (int)(byte.MaxValue))));
+        }
+
+        public int Clamp(int input, int min, int max)
+        {
+            if (input.CompareTo(min) < 0) return min;
+            else if (input.CompareTo(max) > 0) return max;
+            else return input;
         }
     }
 }

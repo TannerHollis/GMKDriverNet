@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI
+﻿namespace GMKDriverNETUI
 {
     partial class configurationEditor
     {
@@ -333,6 +333,7 @@
             this.configsView.UseCompatibleStateImageBehavior = false;
             this.configsView.View = System.Windows.Forms.View.Details;
             this.configsView.Click += new System.EventHandler(this.configsView_Click);
+            this.configsView.DoubleClick += new System.EventHandler(this.configsView_DoubleClick);
             // 
             // configName
             // 
@@ -588,11 +589,11 @@
             this.selectionHelp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.selectionHelp.AutoSize = true;
             this.selectionHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectionHelp.Location = new System.Drawing.Point(577, 125);
+            this.selectionHelp.Location = new System.Drawing.Point(611, 125);
             this.selectionHelp.Name = "selectionHelp";
-            this.selectionHelp.Size = new System.Drawing.Size(376, 26);
+            this.selectionHelp.Size = new System.Drawing.Size(309, 26);
             this.selectionHelp.TabIndex = 4;
-            this.selectionHelp.Text = "Select a Configuration Setting to Start\r\n";
+            this.selectionHelp.Text = "Double-Click a Binding to Start\r\n";
             // 
             // imageList1
             // 
@@ -623,6 +624,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "configurationEditor";
             this.Text = "Configuration Editor";
+            this.Load += new System.EventHandler(this.configurationEditor_Load);
             this.gridLayout.ResumeLayout(false);
             this.gridLayout.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

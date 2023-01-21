@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI
+﻿namespace GMKDriverNETUI
 {
     partial class Main
     {
@@ -48,6 +48,7 @@
             this.setAsStartupAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeFromStartupAppsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkApplicationTimer = new System.Windows.Forms.Timer(this.components);
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceViewContextMenu.SuspendLayout();
             this.trayContextMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -180,7 +181,8 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.menuStrip1, 2);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(636, 24);
@@ -214,6 +216,13 @@
             // 
             this.checkApplicationTimer.Interval = 2500;
             this.checkApplicationTimer.Tick += new System.EventHandler(this.checkApplicationTimer_Tick);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -259,6 +268,7 @@
         private System.Windows.Forms.ToolStripMenuItem setAsStartupAppToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeFromStartupAppsToolStripMenuItem;
         private System.Windows.Forms.Timer checkApplicationTimer;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

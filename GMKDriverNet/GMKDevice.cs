@@ -14,16 +14,6 @@ using System.Threading;
 
 namespace GMKDriverNET
 {
-    public enum GMKError
-    {
-        OK,
-        InvalidEndpoint,
-        AlreadyOpen,
-        Disconnected,
-        ClaimError,
-        ReadTimeout,
-        StoppedRunning
-    }
     public enum  GMKControllerType{
         Joystick = 0,
         Controller,
@@ -45,14 +35,10 @@ namespace GMKDriverNET
         private bool _run;
         private bool _paused;
 
-        private XInputController _controller;
-        private IXbox360Controller _xbox360Controller;
-        private ViGEmClient _vigemClient;
-
         public int VID { get { return _vid; } }
         public int PID { get { return _pid; } }
-        public int Interface { get { return _interfaceN; } }
-        public int Endpoint { get { return _endpoint; } }
+        public int InterfaceN { get { return _interfaceN; } }
+        public int EndpointN { get { return _endpoint; } }
         public bool IsRunning {  get { return _run; } }
 
         public DeviceConfig Config { 
@@ -99,34 +85,24 @@ namespace GMKDriverNET
             _serialNumber = GMKDriver.GetSerialNumber(_hidDevice);
         }
 
-        public GMKError Run()
+        public void Run()
         {
-            GMKError ret;
+            Connect();
 
-            ret = Connect();
-            if(ret != GMKError.OK)
-            {
-                return ret;
-            }
-
-            ret = Loop();
-
-            _xbox360Controller.Disconnect();
-
-            return ret;
+            Loop();
         }
 
         public void Stop()
         {
             WriteLine("Driver stopped.");
             _run = false;
-            _paused &= false;
+            _paused = false;
         }
 
         public void Resume()
         {
             WriteLine("Driver resumed.");
-            _paused &= false;
+            _paused = false;
         }
 
         public void Pause()
@@ -135,39 +111,24 @@ namespace GMKDriverNET
             _paused = true;
         }
 
-        private GMKError Connect()
+        private void Connect()
         {
 
-            if (!_hidDevice.IsOpen)
-            {
-                _hidDevice.Open();
+            _hidDevice.Open();
 
-                _hidDevice.SetConfiguration(_hidDevice.Configuration);
+            _hidDevice.SetConfiguration(_hidDevice.Configuration);
 
-                _hidDevice.ClaimInterface(_interfaceN);
-
-                WriteLine("Successfully opened device.");
-                return GMKError.OK;
-            }
-            else
-            {
-                WriteLine("Device is already open.");
-                return GMKError.AlreadyOpen;
-            }
+            _hidDevice.ClaimInterface(_interfaceN);
         }
 
         public void WriteLine(string text)
         {
             text = _type + ":" + _serialNumber + " - " + text;
-            List<string> consoleOutputList = new List<string>();
             if (_consoleOutput != null)
             {
-                consoleOutputList = new List<string>();
-                consoleOutputList.AddRange(_consoleOutput.Lines);
-                consoleOutputList.Add(text);
                 _consoleOutput.Invoke((MethodInvoker)delegate
                 {
-                    _consoleOutput.Lines = consoleOutputList.ToArray();
+                    _consoleOutput.AppendText(text + "\r\n");
                     _consoleOutput.Refresh();
                 });
             }
@@ -177,15 +138,15 @@ namespace GMKDriverNET
             }
         }
 
-        private GMKError Loop()
+        private void Loop()
         {
             try
             {
-                _controller = new XInputController();
-                _vigemClient = new ViGEmClient();
-                _xbox360Controller = _vigemClient.CreateXbox360Controller();
+                XInputController controller = new XInputController();
+                ViGEmClient vigemClient = new ViGEmClient();
+                IXbox360Controller xbox360Controller = vigemClient.CreateXbox360Controller();
 
-                _xbox360Controller.Connect();
+                xbox360Controller.Connect();
 
                 WriteLine("Starting driver...");
 
@@ -215,15 +176,15 @@ namespace GMKDriverNET
                     if (bytesRead == _endpointBufferSize)
                     {
                         System.Array.Copy(readBuffer, 1, dataBuffer, 0, _endpointBufferSize - 1);
-                        _controller.Map(dataBuffer);
-                        _controller.MapToConfig(_config);
-                        _controller.SetController(_xbox360Controller);
+                        controller.Map(dataBuffer);
+                        controller.MapToConfig(_config);
+                        controller.SetController(xbox360Controller);
                     }
 
                     if(_paused)
                     {
                         XInputController tmp = new XInputController();
-                        tmp.SetController(_xbox360Controller);
+                        tmp.SetController(xbox360Controller);
                         while (_paused)
                         {
                             Thread.Sleep(500);
@@ -233,17 +194,14 @@ namespace GMKDriverNET
 
                 if (!_run)
                 {
-                    return GMKError.StoppedRunning;
+                    return;
                 }
 
                 WriteLine("Device disconnected.");
-
-                return GMKError.OK;
             }
             catch (Exception ex)
             {
                 WriteLine(ex.Message);
-                return GMKError.Disconnected;
             }
             finally
             {
@@ -252,18 +210,11 @@ namespace GMKDriverNET
                 {
                     if (_hidDevice.IsOpen)
                     {
-                        // If this is a "whole" usb device (libusb-win32, linux libusb-1.0)
-                        // it exposes an IUsbDevice interface. If not (WinUSB) the 
-                        // 'wholeUsbDevice' variable will be null indicating this is 
-                        // an interface of a device; it does not require or support 
-                        // configuration and interface selection.
+                        
                         IUsbDevice wholeUsbDevice = _hidDevice as IUsbDevice;
-                        if (!ReferenceEquals(wholeUsbDevice, null))
-                        {
-                            // Release interface #0.
-                            wholeUsbDevice.ReleaseInterface(_interfaceN);
-                        }
-
+                        // null check
+                        wholeUsbDevice?.ReleaseInterface(_interfaceN);
+                        
                         _hidDevice.Close();
                     }
                     _hidDevice = null;

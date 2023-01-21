@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GMKDriverNET;
+using System;
 using System.Windows.Forms;
 
-using GMKDriverNET;
-
-namespace GMKDriverNetUI.ConfigurationControls
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class ButtonControl : UserControl
     {
+        private string[] joystickInputButtons = { "A" };
+        private string[] controllerInputButtons = { "A", "B", "X", "Y", "Start", "Back", "Xbox", "LeftThumb", "RightThumb", "LeftBumper", "RightBumper", "Up", "Down", "Left", "Right" };
+        private string[] outputButtons = { "A", "B", "X", "Y", "Start", "Back", "Xbox", "LeftThumb", "RightThumb", "LeftBumper", "RightBumper", "Up", "Down", "Left", "Right" };
+
         private ButtonIO _button;
         private Delegate _updateForm;
         private bool _isInitialized;
+        private bool _isOutput;
 
         public ButtonIO Button { get { return _button; } }
 
@@ -26,12 +22,28 @@ namespace GMKDriverNetUI.ConfigurationControls
             InitializeComponent();
         }
 
-        public void LoadButton(ButtonIO asButton, Delegate updateForm)
+        public void LoadButton(ButtonIO asButton, GMKControllerType type, bool isOutput, Delegate updateForm)
         {
             _isInitialized = false;
+
+            button.Items.Clear();
+            if (isOutput)
+            {
+                button.Items.AddRange(outputButtons);
+            }
+            else if (type == GMKControllerType.Joystick)
+            {
+                button.Items.AddRange(joystickInputButtons);
+            }
+            else if (type == GMKControllerType.Controller)
+            {
+                button.Items.AddRange(controllerInputButtons);
+            }
+
             _button = asButton;
             button.SelectedIndex = (int)asButton;
             _updateForm = updateForm;
+            
             _isInitialized = true;
         }
 

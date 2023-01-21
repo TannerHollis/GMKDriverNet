@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class TriggerAsTriggerControl : UserControl
     {
@@ -27,14 +21,14 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _triggerAsTrigger = (TriggerAsTrigger)_node.Tag;
             _initialized = false;
 
-            inputTrigger.LoadTrigger(_triggerAsTrigger.input, _updateForm);
-            outputTrigger.LoadTrigger(_triggerAsTrigger.output, _updateForm);
+            inputTrigger.LoadTrigger(_triggerAsTrigger.input, config.type, false, _updateForm);
+            outputTrigger.LoadTrigger(_triggerAsTrigger.output, config.type, true, _updateForm);
             linear.LoadBool(_triggerAsTrigger.linear, _updateForm);
 
             this.Visible = true;

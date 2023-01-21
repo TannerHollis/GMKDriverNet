@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GMKDriverNET;
+using System;
 using System.Windows.Forms;
 
-using GMKDriverNET;
-
-namespace GMKDriverNetUI.ConfigurationControls
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class JoystickControl : UserControl
     {
+        private string[] joystickInputJoysticks = { "Left Joystick" };
+        private string[] controllerInputJoystick = { "Left Joystick", "Right Joystick" };
+        private string[] outputJoysticks = { "Left Joystick", "Right Joystick" };
+
         private JoystickIO _joystick;
         private Delegate _updateForm;
         private bool _isInitialized;
@@ -26,12 +21,28 @@ namespace GMKDriverNetUI.ConfigurationControls
             InitializeComponent();
         }
 
-        public void LoadJoystick(JoystickIO asJoystick, Delegate updateForm)
+        public void LoadJoystick(JoystickIO asJoystick, GMKControllerType type, bool isOutput, Delegate updateForm)
         {
             _isInitialized = false;
+
+            joystick.Items.Clear();
+            if (isOutput)
+            {
+                joystick.Items.AddRange(outputJoysticks);
+            }
+            else if (type == GMKControllerType.Joystick)
+            {
+                joystick.Items.AddRange(joystickInputJoysticks);
+            }
+            else if (type == GMKControllerType.Controller)
+            {
+                joystick.Items.AddRange(controllerInputJoystick);
+            }
+
             _joystick = asJoystick;
             joystick.SelectedIndex = (int)asJoystick;
             _updateForm = updateForm;
+            
             _isInitialized = true;
         }
 

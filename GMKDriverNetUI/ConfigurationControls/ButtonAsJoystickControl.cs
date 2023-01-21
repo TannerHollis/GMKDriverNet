@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class ButtonAsJoystickControl : UserControl
     {
@@ -27,14 +21,14 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _buttonAsJoystick = (ButtonAsJoystick)_node.Tag;
             _initialized = false;
 
-            inputButton.LoadButton(_buttonAsJoystick.input, _updateForm);
-            outputJoystick.LoadJoystick(_buttonAsJoystick.output, _updateForm);
+            inputButton.LoadButton(_buttonAsJoystick.input, config.type, false, _updateForm);
+            outputJoystick.LoadJoystick(_buttonAsJoystick.output, config.type, true, _updateForm);
             outputAxis.LoadAxis(_buttonAsJoystick.outputAxis, _updateForm);
             
             this.Visible = true;

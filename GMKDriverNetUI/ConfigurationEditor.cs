@@ -1,24 +1,18 @@
 ﻿using GMKDriverNET;
+using GMKDriverNET.Bindings;
+using GMKDriverNETUI.ConfigurationControls;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
-using GMKDriverNetUI.ConfigurationControls;
-using System.IO;
-
-namespace GMKDriverNetUI
+namespace GMKDriverNETUI
 {
     public partial class configurationEditor : Form
     {
         private GMKDevice _device;
-        private DeviceList _deviceList;
         private DeviceConfigAssociations _configAssociation;
         private List<DeviceConfig> _configs;
         private DeviceConfig _currentConfig;
@@ -37,31 +31,32 @@ namespace GMKDriverNetUI
         private TriggerAsTriggerControl _triggerAsTriggerControl;
         private TriggerAsKeyboardControl _triggerAsKeyboardControl;
 
+        // Define tre nodes
+        private TreeNode _buttonBindingsNode;
+        private TreeNode _joystickBindingsNode;
+        private TreeNode _triggerBindingsNode;
+
+        private bool _initialized;
+
         public configurationEditor(GMKDevice device)
         {
             InitializeComponent();
 
             _device = device;
-
-            SetConfigsView();
-
-            LoadConfiguration(DeviceConfig.FromFile(_configAssociation.defaultConfigFile));
-
-            LoadWidgets();
         }
 
         private void SetConfigsView()
         {
-            _deviceList = DeviceList.Load();
-            _configAssociation = _deviceList.LookupSerialNumber(_device.SerialNumber);
+            GMKDriver.DeviceList = DeviceList.Load();
+            _configAssociation = GMKDriver.DeviceList.LookupSerialNumber(_device.SerialNumber);
 
             _configs = new List<DeviceConfig>();
 
             DeviceConfig activeConfig = _device.Config;
 
-            foreach (string configFile in _configAssociation.configFiles)
+            foreach (DeviceConfig config in _configAssociation.Configs)
             {
-                _configs.Add(DeviceConfig.FromFile(configFile));
+                _configs.Add(config);
             }
 
             configsView.Items.Clear();
@@ -149,10 +144,10 @@ namespace GMKDriverNetUI
             gridLayout.Controls.Add(_triggerAsKeyboardControl, 1, 0);
 
             // Hide all widgets
-            CloseWidgets();
+            CloseWidgets(false);
         }
 
-        private void CloseWidgets()
+        private void CloseWidgets(bool viewSelectionHelp)
         {
             _buttonAsButtonControl.Visible &= false;
             _buttonAsJoystickControl.Visible &= false;
@@ -168,24 +163,48 @@ namespace GMKDriverNetUI
             _triggerAsJoystickControl.Visible &= false;
             _triggerAsTriggerControl.Visible &= false;
             _triggerAsKeyboardControl.Visible &= false;
+
+            selectionHelp.Visible = viewSelectionHelp;
         }
 
         private void LoadConfiguration(DeviceConfig config)
         {
+            CloseWidgets(true);
+
+            currentConfigName.Text = config.name;
             serialNumber.Text = _device.SerialNumber;
             deviceType.Text = _device.Type.ToString();
 
-            currentConfigName.Text = config.name;
-
             gameAssociationEnabled.Checked = config.gameAssociationEnabled;
-            gameAssociationName.Text = config.gameAssociation;
+            if(config.gameAssociationEnabled)
+                gameAssociationName.Text = config.gameAssociation;
+            else
+                gameAssociationName.Text = "";
             gameAssociationName.Enabled = config.gameAssociationEnabled;
 
             _currentConfig = config;
 
+            // Clear bindings tree view
+            bindingsTreeView.Nodes.Clear();
+
+            // Declare bindings parents
+            _buttonBindingsNode = new TreeNode("Button Bindings");
+            _joystickBindingsNode = new TreeNode("Joystick Bindings");
+            _triggerBindingsNode = new TreeNode("Trigger Bindings");
+
+            if(_currentConfig.type == GMKControllerType.Joystick)
+            {
+                bindingsTreeView.Nodes.Add(_buttonBindingsNode);
+                bindingsTreeView.Nodes.Add(_joystickBindingsNode);
+            }
+            if (_currentConfig.type == GMKControllerType.Controller)
+            {
+                bindingsTreeView.Nodes.Add(_triggerBindingsNode);
+            }
+
             // Get Button Bindings
             {
-                TreeNode buttonBindings = bindingsTreeView.Nodes["buttonBindings"];
+                TreeNode buttonBindings = _buttonBindingsNode;
                 buttonBindings.Nodes.Clear();
 
                 // Add ButtonAsButtons
@@ -223,7 +242,7 @@ namespace GMKDriverNetUI
 
             // Get Joystick Bindings
             {
-                TreeNode joystickBindings = bindingsTreeView.Nodes["joystickBindings"];
+                TreeNode joystickBindings = _joystickBindingsNode;
                 joystickBindings.Nodes.Clear();
 
                 // Add JoystickAsButtons
@@ -261,7 +280,7 @@ namespace GMKDriverNetUI
 
             // Get Trigger Bindings
             {
-                TreeNode triggerBindings = bindingsTreeView.Nodes["triggerBindings"];
+                TreeNode triggerBindings = _triggerBindingsNode;
                 triggerBindings.Nodes.Clear();
 
                 // Add TriggerAsButtons
@@ -308,59 +327,59 @@ namespace GMKDriverNetUI
             if (bindingsTreeView.SelectedNode.Tag != null)
             {
                 selectionHelp.Visible &= false;
-                CloseWidgets();
+                CloseWidgets(false);
 
                 object node = bindingsTreeView.SelectedNode;
-                string type = bindingsTreeView.SelectedNode.Tag.GetType().ToString();
+                object type = bindingsTreeView.SelectedNode.Tag;
                 Console.WriteLine(node.ToString());
                 switch (type)
                 {
-                    case "GMKDriverNET.ButtonAsButton":
-                        _buttonAsButtonControl.LoadWidget((TreeNode)node);
+                    case ButtonAsButton binding:
+                        _buttonAsButtonControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.ButtonAsJoystick":
-                        _buttonAsJoystickControl.LoadWidget((TreeNode)node);
+                    case ButtonAsJoystick binding:
+                        _buttonAsJoystickControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.ButtonAsTrigger":
-                        _buttonAsTriggerControl.LoadWidget((TreeNode)node);
+                    case ButtonAsTrigger binding:
+                        _buttonAsTriggerControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.ButtonAsKeyboard":
-                        _buttonAsKeyboardControl.LoadWidget((TreeNode)node);
+                    case ButtonAsKeyboard binding:
+                        _buttonAsKeyboardControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.JoystickAsButton":
-                        _joystickAsButtonControl.LoadWidget((TreeNode)node);
+                    case JoystickAsButton binding:
+                        _joystickAsButtonControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.JoystickAsJoystick":
-                        _joystickAsJoystickControl.LoadWidget((TreeNode)node);
+                    case JoystickAsJoystick binding:
+                        _joystickAsJoystickControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.JoystickAsTrigger":
-                        _joystickAsTriggerControl.LoadWidget((TreeNode)node);
+                    case JoystickAsTrigger binding:
+                        _joystickAsTriggerControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.JoystickAsKeyboard":
-                        _joystickAsKeyboardControl.LoadWidget((TreeNode)node);
+                    case JoystickAsKeyboard binding:
+                        _joystickAsKeyboardControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.TriggerAsButton":
-                        _triggerAsButtonControl.LoadWidget((TreeNode)node);
+                    case TriggerAsButton binding:
+                        _triggerAsButtonControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.TriggerAsJoystick":
-                        _triggerAsJoystickControl.LoadWidget((TreeNode)node);
+                    case TriggerAsJoystick binding:
+                        _triggerAsJoystickControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.TriggerAsTrigger":
-                        _triggerAsTriggerControl.LoadWidget((TreeNode)node);
+                    case TriggerAsTrigger binding:
+                        _triggerAsTriggerControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
 
-                    case "GMKDriverNET.TriggerAsKeyboard":
-                        _triggerAsKeyboardControl.LoadWidget((TreeNode)node);
+                    case TriggerAsKeyboard binding:
+                        _triggerAsKeyboardControl.LoadWidget((TreeNode)node, _currentConfig);
                         return;
                 }
 
@@ -410,11 +429,23 @@ namespace GMKDriverNetUI
             name.ShowDialog();
             if(name.ConfigurationName != string.Empty)
             {
-                DeviceConfig config = DeviceConfig.Default;
-                config.name = name.ConfigurationName;
-                _deviceList.AddConfiguration(_device.SerialNumber, config, name.MakeDefault);
-                SetConfigsView();
-                LoadConfiguration(config);
+                if(_device.Type == GMKControllerType.Joystick)
+                {
+                    DeviceConfig config = DeviceConfig.DefaultJoystick;
+                    config.name = name.ConfigurationName;
+                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, name.MakeDefault);
+                    LoadConfiguration(config);
+                    SetConfigsView();
+                }
+
+                if (_device.Type == GMKControllerType.Controller)
+                {
+                    DeviceConfig config = DeviceConfig.DefaultController;
+                    config.name = name.ConfigurationName;
+                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, name.MakeDefault);
+                    LoadConfiguration(config);
+                    SetConfigsView();
+                }
             }
         }
 
@@ -428,6 +459,7 @@ namespace GMKDriverNetUI
                 {
                     _device.Config = _currentConfig;
                 }
+                SetConfigsView();
             }
         }
 
@@ -437,20 +469,25 @@ namespace GMKDriverNetUI
             LoadConfiguration(config);
         }
 
+        private void configsView_DoubleClick(object sender, EventArgs e)
+        {
+            loadButton_Click(sender, e);
+        }
+
         private void renameMenuItem_Click(object sender, EventArgs e)
         {
             DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
 
             ConfigName name = new ConfigName();
             name.SetName(config.name);
-            name.SetMakeDefault(_deviceList.isConfigurationDefault(_device.SerialNumber, config));
+            name.SetMakeDefault(GMKDriver.DeviceList.IsConfigurationDefault(_device.SerialNumber, config));
             name.ShowDialog();
             if (name.ConfigurationName != string.Empty)
             {
-                _deviceList.RenameConfiguration(_device.SerialNumber, config, name.ConfigurationName);
+                GMKDriver.DeviceList.RenameConfiguration(_device.SerialNumber, config, name.ConfigurationName);
                 if(name.MakeDefault)
                 {
-                    _deviceList.SetDefaultConfiguration(_device.SerialNumber, config);
+                    GMKDriver.DeviceList.SetDefaultConfiguration(_device.SerialNumber, config);
                 }
                 SetConfigsView();
                 LoadConfiguration(config);
@@ -474,7 +511,7 @@ namespace GMKDriverNetUI
                     return;
                 }
 
-                _deviceList.RemoveConfiguration(_device.SerialNumber, config, result == DialogResult.Yes);
+                GMKDriver.DeviceList.RemoveConfiguration(_device.SerialNumber, config, result == DialogResult.Yes);
                 SetConfigsView();
             }
         }
@@ -488,13 +525,13 @@ namespace GMKDriverNetUI
 
         private void fromExistingMenuItem_Click(object sender, EventArgs e)
         {
-            openConfigFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Configs";
+            openConfigFileDialog.InitialDirectory = DeviceConfig.GetDeviceConfigFolder();
             DialogResult result = openConfigFileDialog.ShowDialog();
             if(result == DialogResult.OK)
             {
                 string configName = Path.GetFileNameWithoutExtension(openConfigFileDialog.FileName);
-                DeviceConfig config = DeviceConfig.FromFile(configName);
-                _deviceList.AddConfiguration(_device.SerialNumber, config, false);
+                DeviceConfig config = DeviceConfig.FromFile(configName, _device.Type);
+                GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, false);
                 SetConfigsView();
             }
         }
@@ -502,68 +539,80 @@ namespace GMKDriverNetUI
         private void makeDefaultMenuItem_Click(object sender, EventArgs e)
         {
             DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
-            _deviceList.SetDefaultConfiguration(_device.SerialNumber, config);
+            GMKDriver.DeviceList.SetDefaultConfiguration(_device.SerialNumber, config);
             SetConfigsView();
         }
 
         private void buttonAsButtonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _currentConfig.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
+            LoadConfiguration(_currentConfig);
         }
 
         private void buttonAsJoystickToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.buttons.asJoysticks.Add(new ButtonAsJoystick(ButtonIO.A, JoystickIO.Left, Axis.XPositive));
+            _currentConfig.buttons.asJoysticks.Add(new ButtonAsJoystick(ButtonIO.A, JoystickIO.LeftJoystick, Axis.XPositive));
+            LoadConfiguration(_currentConfig);
         }
 
         private void buttonAsTriggerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.buttons.asTriggers.Add(new ButtonAsTrigger(ButtonIO.A, TriggerIO.Right));
+            _currentConfig.buttons.asTriggers.Add(new ButtonAsTrigger(ButtonIO.A, TriggerIO.RightTrigger));
+            LoadConfiguration(_currentConfig);
         }
 
         private void buttonAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _currentConfig.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, 0xFF));
+            LoadConfiguration(_currentConfig);
         }
 
         private void joystickAsButtonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asButtons.Add(new JoystickAsButton(JoystickIO.Left, Axis.XPositive, ButtonIO.A, 0.2f));
+            _currentConfig.joysticks.asButtons.Add(new JoystickAsButton(JoystickIO.LeftJoystick, Axis.XPositive, ButtonIO.A, 0.2f));
+            LoadConfiguration(_currentConfig);
         }
 
         private void joystickAsJoystickToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Left, JoystickIO.Left, 0.0f, true, false));
+            _currentConfig.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, true, false));
+            LoadConfiguration(_currentConfig);
         }
 
         private void joystickAsTriggerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asTriggers.Add(new JoystickAsTrigger(JoystickIO.Left, Axis.XPositive, TriggerIO.Left, 0.2f, true));
+            _currentConfig.joysticks.asTriggers.Add(new JoystickAsTrigger(JoystickIO.LeftJoystick, Axis.XPositive, TriggerIO.LeftTrigger, 0.2f, true));
+            LoadConfiguration(_currentConfig);
         }
 
         private void joystickAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.Left, Axis.XPositive, 0xFF, 0.2f));
+            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, Axis.XPositive, 0xFF, 0.2f));
+            LoadConfiguration(_currentConfig);
         }
 
         private void triggerAsButtonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.triggers.asButtons.Add(new TriggerAsButton(TriggerIO.Left, ButtonIO.A, 0.2f));
+            _currentConfig.triggers.asButtons.Add(new TriggerAsButton(TriggerIO.LeftTrigger, ButtonIO.A, 0.2f));
+            LoadConfiguration(_currentConfig);
         }
 
         private void triggerAsJoystickToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.triggers.asJoysticks.Add(new TriggerAsJoystick(TriggerIO.Left, JoystickIO.Left, Axis.XPositive, 0.2f, true));
+            _currentConfig.triggers.asJoysticks.Add(new TriggerAsJoystick(TriggerIO.LeftTrigger, JoystickIO.LeftJoystick, Axis.XPositive, 0.2f, true));
+            LoadConfiguration(_currentConfig);
         }
 
         private void triggerAsTriggerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Left, TriggerIO.Left, true));
+            _currentConfig.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.LeftTrigger, TriggerIO.LeftTrigger, true));
+            LoadConfiguration(_currentConfig);
         }
 
         private void triggerAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.triggers.asKeyboards.Add(new TriggerAsKeyboard(TriggerIO.Left, 0xFF, 0.2f));
+            _currentConfig.triggers.asKeyboards.Add(new TriggerAsKeyboard(TriggerIO.LeftTrigger, 0xFF, 0.2f));
+            LoadConfiguration(_currentConfig);
         }
 
         private void bindingEditorContextMenu_Opening(object sender, CancelEventArgs e)
@@ -573,24 +622,41 @@ namespace GMKDriverNetUI
 
         private void removeBindingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.Remove(bindingsTreeView.SelectedNode.Tag);
+            _currentConfig.RemoveBinding(bindingsTreeView.SelectedNode.Tag);
             bindingsTreeView.Nodes.Remove(bindingsTreeView.SelectedNode);
         }
 
         private void gameAssociationEnabled_CheckedChanged(object sender, EventArgs e)
         {
-            _currentConfig.gameAssociationEnabled = gameAssociationEnabled.Checked;
-            gameAssociationName.Enabled = gameAssociationEnabled.Checked;
+            if(_initialized)
+            {
+                _currentConfig.gameAssociationEnabled = gameAssociationEnabled.Checked;
+                gameAssociationName.Enabled = gameAssociationEnabled.Checked;
+            }
         }
 
         private void gameAssociationName_TextChanged(object sender, EventArgs e)
         {
-            _currentConfig.gameAssociation = gameAssociationName.Text;
+            if(_initialized)
+                _currentConfig.gameAssociation = gameAssociationName.Text;
         }
 
         private void gameAssociationName_MouseHover(object sender, EventArgs e)
         {
             gameAssociationToolTip.SetToolTip(gameAssociationName, "Enter a basic application name to auto-switch to this configuration whenever the application is active. (e.g. \"Fortnite\" or \"Rocket League\")");
+        }
+
+        private void configurationEditor_Load(object sender, EventArgs e)
+        {
+            _initialized = false;
+
+            SetConfigsView();
+
+            LoadWidgets();
+
+            LoadConfiguration(DeviceConfig.FromFile(_configAssociation.defaultConfigFile, _device.Type));
+
+            _initialized = true;
         }
     }
 }

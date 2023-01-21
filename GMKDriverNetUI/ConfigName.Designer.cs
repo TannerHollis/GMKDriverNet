@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI
+﻿namespace GMKDriverNETUI
 {
     partial class ConfigName
     {
@@ -78,6 +78,7 @@
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(181, 20);
             this.name.TabIndex = 1;
+            this.name.TextChanged += new System.EventHandler(this.name_TextChanged);
             // 
             // okButton
             // 

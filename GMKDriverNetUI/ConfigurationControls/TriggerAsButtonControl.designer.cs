@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class TriggerAsButtonControl
     {
@@ -32,9 +32,9 @@
             this.outputButtonLabel = new System.Windows.Forms.Label();
             this.inputTriggerLabel = new System.Windows.Forms.Label();
             this.thresholdLabel = new System.Windows.Forms.Label();
-            this.inputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
-            this.outputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
-            this.deadzone = new GMKDriverNetUI.ConfigurationControls.DeadzoneControl();
+            this.inputTrigger = new GMKDriverNETUI.ConfigurationControls.TriggerControl();
+            this.outputButton = new GMKDriverNETUI.ConfigurationControls.ButtonControl();
+            this.deadzone = new GMKDriverNETUI.ConfigurationControls.DeadzoneControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

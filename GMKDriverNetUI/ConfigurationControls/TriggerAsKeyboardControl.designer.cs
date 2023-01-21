@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class TriggerAsKeyboardControl
     {
@@ -32,9 +32,9 @@
             this.thresholdLabel = new System.Windows.Forms.Label();
             this.outputKeyLabel = new System.Windows.Forms.Label();
             this.inputTriggerLabel = new System.Windows.Forms.Label();
-            this.inputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
-            this.key = new GMKDriverNetUI.ConfigurationControls.KeyboardControl();
-            this.deadzone = new GMKDriverNetUI.ConfigurationControls.DeadzoneControl();
+            this.inputTrigger = new GMKDriverNETUI.ConfigurationControls.TriggerControl();
+            this.key = new GMKDriverNETUI.ConfigurationControls.KeyboardControl();
+            this.deadzone = new GMKDriverNETUI.ConfigurationControls.DeadzoneControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

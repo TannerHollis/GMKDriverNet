@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class JoystickAsJoystickControl : UserControl
     {
@@ -27,16 +21,16 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _joystickAsJoystick = (JoystickAsJoystick)_node.Tag;
             _initialized = false;
 
-            inputJoystick.LoadJoystick(_joystickAsJoystick.input, _updateForm);
-            outputJoystick.LoadJoystick(_joystickAsJoystick.output, _updateForm);
+            inputJoystick.LoadJoystick(_joystickAsJoystick.input, config.type, false, _updateForm);
+            outputJoystick.LoadJoystick(_joystickAsJoystick.output, config.type, true, _updateForm);
             rotate.LoadRotate(_joystickAsJoystick.rotate, _updateForm);
-            deadzone.LoadDeadzone(_joystickAsJoystick.threshold, _updateForm);
+            deadzone.LoadDeadzone(_joystickAsJoystick.deadzone, _updateForm);
             linear.LoadBool(_joystickAsJoystick.linear, _updateForm);
             snap76.LoadBool(_joystickAsJoystick.snapMode76, _updateForm);
 
@@ -46,12 +40,12 @@ namespace GMKDriverNetUI.ConfigurationControls
 
         private void UpdateForm()
         {
-            if(!_initialized)
+            if(_initialized)
             {
                 _joystickAsJoystick.input = inputJoystick.Joystick;
                 _joystickAsJoystick.output = outputJoystick.Joystick;
                 _joystickAsJoystick.rotate = rotate.Rotate;
-                _joystickAsJoystick.threshold = deadzone.Deadzone;
+                _joystickAsJoystick.deadzone = deadzone.Deadzone;
                 _joystickAsJoystick.linear = linear.Bool;
                 _joystickAsJoystick.snapMode76 = snap76.Bool;
 

@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class JoystickAsTriggerControl
     {
@@ -34,11 +34,11 @@
             this.inputButtonLabel = new System.Windows.Forms.Label();
             this.outputTriggerLabel = new System.Windows.Forms.Label();
             this.thresholdLabel = new System.Windows.Forms.Label();
-            this.inputJoystick = new GMKDriverNetUI.ConfigurationControls.JoystickControl();
-            this.inputAxis = new GMKDriverNetUI.ConfigurationControls.AxisControl();
-            this.outputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
-            this.deadzone = new GMKDriverNetUI.ConfigurationControls.DeadzoneControl();
-            this.linear = new GMKDriverNetUI.ConfigurationControls.BoolControl();
+            this.inputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
+            this.inputAxis = new GMKDriverNETUI.ConfigurationControls.AxisControl();
+            this.outputTrigger = new GMKDriverNETUI.ConfigurationControls.TriggerControl();
+            this.deadzone = new GMKDriverNETUI.ConfigurationControls.DeadzoneControl();
+            this.linear = new GMKDriverNETUI.ConfigurationControls.BoolControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

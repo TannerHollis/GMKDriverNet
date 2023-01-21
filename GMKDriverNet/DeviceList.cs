@@ -13,10 +13,14 @@ namespace GMKDriverNET
         public string serialNumber { get; set; }
         public List<string> configFiles { get; set; }
         public string defaultConfigFile { get; set; }
+        public GMKControllerType type { get; set; }
+
+        public List<DeviceConfig> Configs;
 
         public DeviceConfigAssociations()
         {
             configFiles = new List<string>();
+            Configs = new List<DeviceConfig>();
         }
     }
 
@@ -24,15 +28,48 @@ namespace GMKDriverNET
     {
         public List<DeviceConfigAssociations> associations { get; set; }
 
+        private bool _fileChanged = false;
+
         public DeviceList()
         {
             associations = new List<DeviceConfigAssociations>();
         }
 
+        public static string GetDeviceListFileName()
+        {
+            return Path.Combine(GetGMKDriverFolder(), "deviceList.json");
+        }
+
+        public static string GetGMKDriverFolder()
+        {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GMKDriver");
+        }
+
         public static DeviceList Load()
         {
-            string jsonString = File.ReadAllText("deviceAssociations.json");
-            return JsonSerializer.Deserialize<DeviceList>(jsonString);
+            if(!Directory.Exists(GetGMKDriverFolder()))
+            {
+                Directory.CreateDirectory(GetGMKDriverFolder());
+            }
+
+            string fileName = GetDeviceListFileName();
+            if (!File.Exists(fileName))
+            {
+                DeviceList newDeviceList = new DeviceList();
+                newDeviceList.Save();
+                return newDeviceList;
+            }
+            string jsonString = File.ReadAllText(fileName);
+            DeviceList deviceList = JsonSerializer.Deserialize<DeviceList>(jsonString);
+
+            foreach(DeviceConfigAssociations configAssociations in deviceList.associations)
+            {
+                foreach(string configFile in configAssociations.configFiles)
+                {
+                    configAssociations.Configs.Add(DeviceConfig.FromFile(configFile, configAssociations.type));
+                }
+            }
+            return deviceList;
         }
 
         public void Save()
@@ -41,14 +78,21 @@ namespace GMKDriverNET
             options.WriteIndented = true;
 
             string jsonString = JsonSerializer.Serialize<DeviceList>(this, options);
-            File.WriteAllText("deviceAssociations.json", jsonString);
+            File.WriteAllText(GetDeviceListFileName(), jsonString);
+            _fileChanged = true;
         }
 
         public DeviceConfigAssociations LookupSerialNumber(string serialNumber)
         {
+            if(_fileChanged)
+            {
+                associations = Load().associations;
+                _fileChanged = false;
+            }
+
             foreach(DeviceConfigAssociations association in associations)
             {
-                if(association.serialNumber.Equals(serialNumber))
+                if(association.serialNumber == serialNumber)
                 {
                     return association;
                 }
@@ -56,10 +100,11 @@ namespace GMKDriverNET
             return null;
         }
 
-        public void AddNewDevice(string serialNumber)
+        public void AddNewDevice(string serialNumber, GMKControllerType type)
         {
             DeviceConfigAssociations configAssociation = new DeviceConfigAssociations();
             configAssociation.serialNumber = serialNumber;
+            configAssociation.type = type;
             associations.Add(configAssociation);
             Save();
         }
@@ -95,7 +140,8 @@ namespace GMKDriverNET
             
             if(delete)
             {
-                File.Delete("Configs\\" + config.name + ".json");
+                string fileName = Path.Combine(DeviceConfig.GetDeviceConfigFolder(), config.name + ".json");
+                File.Delete(fileName);
             }
             Save();
         }
@@ -111,7 +157,7 @@ namespace GMKDriverNET
         {
             DeviceConfigAssociations configAssociation = LookupSerialNumber(serialNumber);
 
-            bool isDefault = configAssociation.defaultConfigFile == config.name;
+            bool isDefault = IsConfigurationDefault(serialNumber, config);
 
             RemoveConfiguration(serialNumber, config, true);
 
@@ -121,7 +167,7 @@ namespace GMKDriverNET
             Save();
         }
 
-        public bool isConfigurationDefault(string serialNumber, DeviceConfig config)
+        public bool IsConfigurationDefault(string serialNumber, DeviceConfig config)
         {
             DeviceConfigAssociations configAssociation = LookupSerialNumber(serialNumber);
             return config.name == configAssociation.defaultConfigFile;

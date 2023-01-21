@@ -1,16 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class ButtonAsButtonControl : UserControl
     {
@@ -28,14 +21,14 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _buttonAsButton = (ButtonAsButton)_node.Tag;
             _initialized = false;
 
-            inputButton.LoadButton(_buttonAsButton.input, _updateForm);
-            outputButton.LoadButton(_buttonAsButton.output, _updateForm);
+            inputButton.LoadButton(_buttonAsButton.input, config.type, false, _updateForm);
+            outputButton.LoadButton(_buttonAsButton.output, config.type, true, _updateForm);
             
             this.Visible = true;
             _initialized = true;

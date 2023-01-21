@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GMKDriverNetUI.Properties
+namespace GMKDriverNETUI.Properties
 {
 
 

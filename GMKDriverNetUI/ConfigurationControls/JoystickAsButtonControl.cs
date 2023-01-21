@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class JoystickAsButtonControl : UserControl
     {
@@ -27,16 +21,16 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _joystickAsButton = (JoystickAsButton)_node.Tag;
             _initialized = false;
 
-            inputJoystick.LoadJoystick(_joystickAsButton.input, _updateForm);
+            inputJoystick.LoadJoystick(_joystickAsButton.input, config.type, false, _updateForm);
             inputAxis.LoadAxis(_joystickAsButton.inputAxis, _updateForm);
-            outputButton.LoadButton(_joystickAsButton.output, _updateForm);
-            deadzone.LoadDeadzone(_joystickAsButton.threshold, _updateForm);
+            outputButton.LoadButton(_joystickAsButton.output, config.type, true, _updateForm);
+            deadzone.LoadDeadzone(_joystickAsButton.deadzone, _updateForm);
             
             this.Visible = true;
             _initialized = true;
@@ -49,7 +43,7 @@ namespace GMKDriverNetUI.ConfigurationControls
                 _joystickAsButton.input = inputJoystick.Joystick;
                 _joystickAsButton.inputAxis = inputAxis.Axis;
                 _joystickAsButton.output = outputButton.Button;
-                _joystickAsButton.threshold = deadzone.Deadzone;
+                _joystickAsButton.deadzone = deadzone.Deadzone;
 
                 _node.Text = _joystickAsButton.ToString();
             }

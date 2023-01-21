@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class TriggerAsButtonControl : UserControl
     {
@@ -27,15 +21,15 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _triggerAsButton = (TriggerAsButton)_node.Tag;
             _initialized = false;
 
-            inputTrigger.LoadTrigger(_triggerAsButton.input, _updateForm);
-            outputButton.LoadButton(_triggerAsButton.output, _updateForm);
-            deadzone.LoadDeadzone(_triggerAsButton.threshold, _updateForm);
+            inputTrigger.LoadTrigger(_triggerAsButton.input, config.type, false, _updateForm);
+            outputButton.LoadButton(_triggerAsButton.output, config.type, true, _updateForm);
+            deadzone.LoadDeadzone(_triggerAsButton.deadzone, _updateForm);
             
             this.Visible = true;
             _initialized = true;
@@ -47,7 +41,7 @@ namespace GMKDriverNetUI.ConfigurationControls
             {
                 _triggerAsButton.input = inputTrigger.Trigger;
                 _triggerAsButton.output = outputButton.Button;
-                _triggerAsButton.threshold = deadzone.Deadzone;
+                _triggerAsButton.deadzone = deadzone.Deadzone;
                 
                 _node.Text = _triggerAsButton.ToString();
             }

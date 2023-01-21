@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -7,291 +6,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
+using GMKDriverNET.Bindings;
+
 namespace GMKDriverNET
 {
-    public class ButtonAsButton
-    {
-        public ButtonIO input { get; set; }
-        public ButtonIO output { get; set; }
-
-        override public string ToString()
-        {
-            return input.ToString() + " -> " + output.ToString();
-        }
-
-        public ButtonAsButton(ButtonIO input, ButtonIO output)
-        {
-            this.input = input;
-            this.output = output;
-        }
-    }
-
-    public class ButtonAsJoystick
-    {
-        public ButtonIO input { get; set; }
-        public JoystickIO output { get; set; }
-        public Axis outputAxis { get; set; }
-
-        override public string ToString()
-        {
-            return input.ToString() + " -> " + output.ToString() + ", " + DeviceConfig.AxisToString(outputAxis);
-        }
-
-        public ButtonAsJoystick(ButtonIO input, JoystickIO output, Axis outputAxis)
-        {
-            this.input = input;
-            this.output = output;
-            this.outputAxis = outputAxis;
-        }
-    }
-
-    public class ButtonAsTrigger
-    {
-        public ButtonIO input { get; set; }
-        public TriggerIO output { get; set; }
-
-        override public string ToString()
-        {
-            return input.ToString() + " -> " + output.ToString();
-        }
-
-        public ButtonAsTrigger(ButtonIO input, TriggerIO output)
-        {
-            this.input = input;
-            this.output = output;
-        }
-    }
-
-    public class ButtonAsKeyboard
-    {
-        public ButtonIO input { get; set; }
-        public byte key { get; set; }
-
-        public override string ToString()
-        {
-            return input.ToString() + " -> " + (char)key;
-        }
-
-        public ButtonAsKeyboard(ButtonIO input, byte key)
-        {
-            this.input = input;
-            this.key = key;
-        }
-    }
-
-    public class ButtonConfigs
-    {
-        public List<ButtonAsButton> asButtons { get; set; }
-        public List<ButtonAsJoystick> asJoysticks { get; set; }
-        public List<ButtonAsTrigger> asTriggers { get; set; }
-        public List<ButtonAsKeyboard> asKeyboards { get; set; }
-        public ButtonConfigs()
-        {
-            asButtons = new List<ButtonAsButton>();
-            asJoysticks = new List<ButtonAsJoystick>();
-            asTriggers = new List<ButtonAsTrigger>();
-            asKeyboards = new List<ButtonAsKeyboard>();
-        }
-    }
-
-    public class JoystickAsButton
-    {
-        public JoystickIO input { get; set; }
-        public Axis inputAxis { get; set; }
-        public ButtonIO output { get; set; }
-        public float threshold { get; set;}
-
-        public override string ToString()
-        {
-            return input.ToString() + ":" + DeviceConfig.AxisToString(inputAxis) + " -> " + output.ToString(); 
-        }
-
-        public JoystickAsButton(JoystickIO input, Axis inputAxis, ButtonIO output, float threshold)
-        {
-            this.input = input;
-            this.inputAxis = inputAxis;
-            this.output = output;
-            this.threshold = threshold;
-        }
-    }
-
-    public class JoystickAsJoystick
-    {
-        public JoystickIO input { get; set; }
-        public JoystickIO output { get; set;}
-        public float rotate { get; set; }
-        public float threshold { get; set; }
-        public bool linear { get; set; }
-        public bool snapMode76 { get; set; }
-
-        public override string ToString()
-        {
-            return input.ToString() + " -> " + output.ToString();
-        }
-
-        public JoystickAsJoystick(JoystickIO input, JoystickIO output, float rotate, bool linear, bool snapMode76)
-        {
-            this.input = input;
-            this.output = output;
-            this.rotate = rotate;
-            this.linear = linear;
-            this.snapMode76 = snapMode76;
-        }
-    }
-
-    public class JoystickAsTrigger
-    {
-        public JoystickIO input { get; set;}
-        public Axis inputAxis { get; set; }
-        public TriggerIO output { get; set;}
-        public float threshold { get; set; }
-        public bool linear { get; set; }
-
-        public override string ToString()
-        {
-            return input.ToString() + ":" + DeviceConfig.AxisToString(inputAxis) + " -> " + output.ToString() + " Trigger";
-        }
-
-        public JoystickAsTrigger(JoystickIO input, Axis inputAxis, TriggerIO output, float threshold, bool linear)
-        {
-            this.input = input;
-            this.inputAxis = inputAxis;
-            this.output = output;
-            this.threshold = threshold;
-            this.linear = linear;
-        }
-    }
-
-    public class JoystickAsKeyboard
-    {
-        public JoystickIO input { get; set; }
-        public Axis inputAxis { get; set; }
-        public byte key { get; set; }
-        public float threshold { get; set; }
-
-        public override string ToString()
-        {
-            return input.ToString() + ":" + DeviceConfig.AxisToString(inputAxis) + " -> " + (char)key;
-        }
-
-        public JoystickAsKeyboard(JoystickIO input, Axis inputAxis, byte key, float threshold)
-        {
-            this.input = input;
-            this.inputAxis = inputAxis;
-            this.key = key;
-            this.threshold = threshold;
-        }
-    }
-
-    public class JoystickConfigs
-    {
-        public List<JoystickAsButton> asButtons { get; set; }
-        public List<JoystickAsJoystick> asJoysticks { get; set; }
-        public List<JoystickAsTrigger> asTriggers { get; set; }
-        public List<JoystickAsKeyboard> asKeyboards { get; set; }
-        public JoystickConfigs()
-        {
-            asButtons = new List<JoystickAsButton>();
-            asJoysticks = new List<JoystickAsJoystick>();
-            asTriggers = new List<JoystickAsTrigger>();
-            asKeyboards = new List<JoystickAsKeyboard>();
-        }
-    }
-
-    public class TriggerAsButton
-    {
-        public TriggerIO input { get; set; }
-        public ButtonIO output { get; set; }
-        public float threshold { get; set; }
-
-        public override string ToString()
-        {
-            return input.ToString() + " -> " + output.ToString();
-        }
-
-        public TriggerAsButton(TriggerIO input, ButtonIO output, float threshold)
-        {
-            this.input = input;
-            this.output = output;
-            this.threshold = threshold;
-        }
-    }
-
-    public class TriggerAsJoystick
-    {
-        public TriggerIO input { get; set; }
-        public JoystickIO output { get; set; }
-        public Axis outputAxis { get; set; }
-        public float threshold { get; set; }
-        public bool linear { get; set; }
-
-        public override string ToString()
-        {
-            return input.ToString() + " -> " + output.ToString() + ":" + DeviceConfig.AxisToString(outputAxis);
-        }
-
-        public TriggerAsJoystick(TriggerIO input, JoystickIO output, Axis outputAxis, float threshold, bool linear)
-        {
-            this.input = input;
-            this.output = output;
-            this.outputAxis = outputAxis;
-            this.threshold = threshold;
-            this.linear = linear;
-        }
-    }
-
-    public class TriggerAsTrigger
-    {
-        public TriggerIO input { get; set; }
-        public TriggerIO output { get; set; }
-        public bool linear { get; set; }
-
-        public override string ToString()
-        {
-            return input.ToString() + " -> " + output.ToString();
-        }
-
-        public TriggerAsTrigger(TriggerIO input, TriggerIO output, bool linear)
-        {
-            this.input = input;
-            this.output = output;
-            this.linear = linear;
-        }
-    }
-
-    public class TriggerAsKeyboard
-    {
-        public TriggerIO input { get; set; }
-        public byte key { get; set; }
-        public float threshold { get; set; }
-
-        public override string ToString()
-        {
-            return input.ToString() + " -> " + (char)key;
-        }
-
-        public TriggerAsKeyboard(TriggerIO input, byte key, float threshold)
-        {
-            this.input = input;
-            this.key = key;
-            this.threshold = threshold;
-        }
-    }
-
-    public class TriggerConfigs
-    {
-        public List<TriggerAsButton> asButtons { get; set; }
-        public List<TriggerAsJoystick> asJoysticks { get; set; }
-        public List<TriggerAsTrigger> asTriggers { get; set; }
-        public List<TriggerAsKeyboard> asKeyboards { get; set; }
-        public TriggerConfigs()
-        {
-            asButtons = new List<TriggerAsButton>();
-            asJoysticks = new List<TriggerAsJoystick>();
-            asTriggers = new List<TriggerAsTrigger>();
-            asKeyboards = new List<TriggerAsKeyboard>();
-        }
-    }
 
     public enum ButtonIO
     {
@@ -314,14 +32,14 @@ namespace GMKDriverNET
 
     public enum JoystickIO
     {
-        Left,
-        Right
+        LeftJoystick,
+        RightJoystick
     }
 
     public enum TriggerIO
     {
-        Left,
-        Right
+        LeftTrigger,
+        RightTrigger
     }
 
     public enum Axis
@@ -335,110 +53,83 @@ namespace GMKDriverNET
     public class DeviceConfig
     {
         public string name { get; set; }
+        public GMKControllerType type { get; set; }
         public string gameAssociation { get; set; }
         public bool gameAssociationEnabled { get; set; }
         public ButtonConfigs buttons { get; set; }
         public JoystickConfigs joysticks { get; set; }
         public TriggerConfigs triggers { get; set; }
 
-        public DeviceConfig(string name)
+        public DeviceConfig(string name, GMKControllerType type)
         {
             this.name = name;
+            this.type = type;
             buttons = new ButtonConfigs();
             joysticks = new JoystickConfigs();
             triggers = new TriggerConfigs();
         }
 
-        public void Remove(object bindingIn)
+        public void RemoveBinding(object bindingIn)
         {
-            try
+            switch(bindingIn)
             {
-                ButtonAsButton binding = (ButtonAsButton)bindingIn;
-                buttons.asButtons.Remove(binding);
-            }
-            catch { }
+                case ButtonAsButton binding:
+                    buttons.asButtons.Remove(binding);
+                    break;
 
-            try
-            {
-                ButtonAsJoystick binding = (ButtonAsJoystick)bindingIn;
-                buttons.asJoysticks.Remove(binding);
-            }
-            catch { }
+                case ButtonAsJoystick binding:
+                    buttons.asJoysticks.Remove(binding);
+                    break;
 
-            try
-            {
-                ButtonAsTrigger binding = (ButtonAsTrigger)bindingIn;
-                buttons.asTriggers.Remove(binding);
-            }
-            catch { }
+                case ButtonAsTrigger binding:
+                    buttons.asTriggers.Remove(binding);
+                    break;
 
-            try
-            {
-                ButtonAsKeyboard binding = (ButtonAsKeyboard)bindingIn;
-                buttons.asKeyboards.Remove(binding);
-            }
-            catch { }
+                case ButtonAsKeyboard binding:
+                    buttons.asKeyboards.Remove(binding);
+                    break;
 
-            try
-            {
-                JoystickAsButton binding = (JoystickAsButton)bindingIn;
-                joysticks.asButtons.Remove(binding);
-            }
-            catch { }
+                case JoystickAsButton binding:
+                    joysticks.asButtons.Remove(binding);
+                    break;
 
-            try
-            {
-                JoystickAsJoystick binding = (JoystickAsJoystick)bindingIn;
-                joysticks.asJoysticks.Remove(binding);
-            }
-            catch { }
+                case JoystickAsJoystick binding:
+                    joysticks.asJoysticks.Remove(binding);
+                    break;
 
-            try
-            {
-                JoystickAsTrigger binding = (JoystickAsTrigger)bindingIn;
-                joysticks.asTriggers.Remove(binding);
-            }
-            catch { }
+                case JoystickAsTrigger binding:
+                    joysticks.asTriggers.Remove(binding);
+                    break;
 
-            try
-            {
-                JoystickAsKeyboard binding = (JoystickAsKeyboard)bindingIn;
-                joysticks.asKeyboards.Remove(binding);
-            }
-            catch { }
+                case JoystickAsKeyboard binding:
+                    joysticks.asKeyboards.Remove(binding);
+                    break;
 
-            try
-            {
-                TriggerAsButton binding = (TriggerAsButton)bindingIn;
-                triggers.asButtons.Remove(binding);
-            }
-            catch { }
+                case TriggerAsButton binding:
+                    triggers.asButtons.Remove(binding);
+                    break;
 
-            try
-            {
-                TriggerAsJoystick binding = (TriggerAsJoystick)bindingIn;
-                triggers.asJoysticks.Remove(binding);
-            }
-            catch { }
+                case TriggerAsJoystick binding:
+                    triggers.asJoysticks.Remove(binding);
+                    break;
 
-            try
-            {
-                TriggerAsTrigger binding = (TriggerAsTrigger)bindingIn;
-                triggers.asTriggers.Remove(binding);
-            }
-            catch { }
+                case TriggerAsTrigger binding:
+                    triggers.asTriggers.Remove(binding);
+                    break;
 
-            try
-            {
-                TriggerAsKeyboard binding = (TriggerAsKeyboard)bindingIn;
-                triggers.asKeyboards.Remove(binding);
+                case TriggerAsKeyboard binding:
+                    triggers.asKeyboards.Remove(binding);
+                    break;
+
+                default:
+                    // Do nothing...
+                    break;
             }
-            catch { }
         }
 
         public static bool ConfigNameExists(string name)
         {
-            foreach(string fileName in Directory.GetFiles("Configs", "*.json"))
+            foreach(string fileName in Directory.GetFiles(GetDeviceConfigFolder(), "*.json"))
             {
                 if(Path.GetFileNameWithoutExtension(fileName) == name)
                 {
@@ -453,29 +144,66 @@ namespace GMKDriverNET
             JsonSerializerOptions options = new JsonSerializerOptions();
             options.WriteIndented= true;
 
-            if(!Directory.Exists("Configs"))
+            if(!Directory.Exists(GetDeviceConfigFolder()))
             {
-                Directory.CreateDirectory("Configs");
+                Directory.CreateDirectory(GetDeviceConfigFolder());
             }
 
-            string fileName = "Configs\\" + name + ".json";
+            string fileName = Path.Combine(GetDeviceConfigFolder(), name + ".json");
 
             string jsonString = JsonSerializer.Serialize<DeviceConfig>(this, options);
             File.WriteAllText(fileName, jsonString);
         }
 
-        public static DeviceConfig FromFile(string file)
+        public static string GetDeviceConfigFolder()
         {
-            string fileName = "Configs\\" + file + ".json";
-            string jsonString = File.ReadAllText(fileName);
-            return JsonSerializer.Deserialize<DeviceConfig>(jsonString);
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GMKDriver\\Configs");
         }
 
-        public static DeviceConfig Default
+        public static DeviceConfig FromFile(string file, GMKControllerType type)
+        {
+            string fileName = Path.Combine(GetDeviceConfigFolder(), file + ".json");
+            string jsonString = File.ReadAllText(fileName);
+            try
+            {
+                DeviceConfig config = JsonSerializer.Deserialize<DeviceConfig>(jsonString);
+                if(config.type != type)
+                {
+                    GMKDriver.WriteLine("The config type: " + file + " does not match the device type " + type);
+                    GMKDriver.WriteLine("Loading the default config instead.");
+                    
+                    if(type == GMKControllerType.Joystick)
+                    {
+                        DeviceConfig defaultConfig = DeviceConfig.DefaultJoystick;
+                        defaultConfig.name = file;
+                        return defaultConfig;
+                    }
+
+                    if(type == GMKControllerType.Controller)
+                    {
+                        DeviceConfig defaultConfig = DeviceConfig.DefaultController;
+                        defaultConfig.name = file;
+                        return defaultConfig;
+                    }
+                }
+                return config;
+            }
+            catch
+            {
+                GMKDriver.WriteLine("Failed to open config: " + file + ". Loading default config instead.");
+                GMKDriver.WriteLine("Please consider removing config: " + file);
+                DeviceConfig config = DeviceConfig.DefaultController;
+                config.name = file;
+                return config;
+            }
+            
+        }
+
+        public static DeviceConfig DefaultController
         {
             get 
             {
-                DeviceConfig c = new DeviceConfig("Default_v1.0");
+                DeviceConfig c = new DeviceConfig("Default_v1.0", GMKControllerType.Controller);
 
                 // Buttons
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
@@ -494,16 +222,32 @@ namespace GMKDriverNET
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.Right, ButtonIO.Right));
 
                 // Joysticks
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Left, JoystickIO.Left, 0.1f, true, false));
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.Right, JoystickIO.Right, 0.1f, true, false));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.1f, true, false));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.RightJoystick, JoystickIO.RightJoystick, 0.1f, true, false));
 
                 // Triggers
-                c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Left, TriggerIO.Left, true));
-                c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.Right, TriggerIO.Right, true));
+                c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.LeftTrigger, TriggerIO.LeftTrigger, true));
+                c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.RightTrigger, TriggerIO.RightTrigger, true));
 
                 // For testing
                 //c.joysticks.asButtons.Add(new JoystickAsButton(JoystickIO.Left, Axis.XPositive, ButtonIO.A, 0.2f));
                 //c.joysticks.asTriggers.Add(new JoystickAsTrigger(JoystickIO.Left, Axis.XPositive, TriggerIO.Right, 0.0f, true));
+                return c;
+            }
+        }
+
+        public static DeviceConfig DefaultJoystick
+        {
+            get
+            {
+                DeviceConfig c = new DeviceConfig("Default_v1.0", GMKControllerType.Joystick);
+
+                // Buttons
+                c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
+
+                // Joysticks
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.1f, true, false));
+
                 return c;
             }
         }

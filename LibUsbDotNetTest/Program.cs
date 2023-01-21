@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using GMKDriverNET;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace LibUsbDotNetTest
 {
@@ -24,6 +25,8 @@ namespace LibUsbDotNetTest
 
         public static void Main(string[] args)
         {
+            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+
             Thread t = new Thread(RunDriver);
             t.Start();
             t.Join();

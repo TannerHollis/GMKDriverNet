@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace GMKDriverNetUI
+namespace GMKDriverNETUI
 {
     public partial class ConfigName : Form
     {
@@ -31,6 +33,11 @@ namespace GMKDriverNetUI
             makeDefault.Checked = isDefault;
         }
 
+        public string RemoveInvalidChars(string filename)
+        {
+            return string.Join("", filename.Split(Path.GetInvalidFileNameChars()));
+        }
+
         private void okButton_Click(object sender, EventArgs e)
         {
             _name = name.Text;
@@ -38,7 +45,7 @@ namespace GMKDriverNetUI
 
             if(GMKDriverNET.DeviceConfig.ConfigNameExists(_name))
             {
-                DialogResult result = MessageBox.Show("There is already a configuration named: \"" + _name + "\".", "Overwrite this configuration?", MessageBoxButtons.YesNo);   
+                DialogResult result = MessageBox.Show("There is already a configuration named: \"" + _name + "\", overwrite this configuration?", "Overwrite this configuration?", MessageBoxButtons.YesNo);   
                 if(result == DialogResult.Yes)
                 {
                     this.Close();
@@ -48,6 +55,13 @@ namespace GMKDriverNetUI
             {
                 this.Close();
             }
+        }
+
+        private void name_TextChanged(object sender, EventArgs e)
+        {
+            name.Text = RemoveInvalidChars(name.Text);
+            name.SelectionStart = name.Text.Length;
+            name.SelectionLength = 0;
         }
     }
 }

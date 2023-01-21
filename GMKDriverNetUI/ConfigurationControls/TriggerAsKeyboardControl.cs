@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class TriggerAsKeyboardControl : UserControl
     {
@@ -27,15 +21,15 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _triggerAsKeyboard = (TriggerAsKeyboard)_node.Tag;
             _initialized = false;
 
-            inputTrigger.LoadTrigger(_triggerAsKeyboard.input, _updateForm);
+            inputTrigger.LoadTrigger(_triggerAsKeyboard.input, config.type, false, _updateForm);
             key.LoadKey(_triggerAsKeyboard.key, _updateForm);
-            deadzone.LoadDeadzone(_triggerAsKeyboard.threshold, _updateForm);
+            deadzone.LoadDeadzone(_triggerAsKeyboard.deadzone, _updateForm);
 
             this.Visible = true;
             _initialized = true;
@@ -47,7 +41,7 @@ namespace GMKDriverNetUI.ConfigurationControls
             {
                 _triggerAsKeyboard.input = inputTrigger.Trigger;
                 _triggerAsKeyboard.key = key.Key;
-                _triggerAsKeyboard.threshold = deadzone.Deadzone;
+                _triggerAsKeyboard.deadzone = deadzone.Deadzone;
 
                 _node.Text = _triggerAsKeyboard.ToString();
             }

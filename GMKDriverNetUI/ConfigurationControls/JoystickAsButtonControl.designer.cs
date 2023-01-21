@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class JoystickAsButtonControl
     {
@@ -33,10 +33,10 @@
             this.inputAxisLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
             this.outputButtonLabel = new System.Windows.Forms.Label();
-            this.inputJoystick = new GMKDriverNetUI.ConfigurationControls.JoystickControl();
-            this.inputAxis = new GMKDriverNetUI.ConfigurationControls.AxisControl();
-            this.outputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
-            this.deadzone = new GMKDriverNetUI.ConfigurationControls.DeadzoneControl();
+            this.inputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
+            this.inputAxis = new GMKDriverNETUI.ConfigurationControls.AxisControl();
+            this.outputButton = new GMKDriverNETUI.ConfigurationControls.ButtonControl();
+            this.deadzone = new GMKDriverNETUI.ConfigurationControls.DeadzoneControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class JoystickAsTriggerControl : UserControl
     {
@@ -27,16 +21,16 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _joystickAsKeyboard = (JoystickAsTrigger)_node.Tag;
             _initialized = false;
 
-            inputJoystick.LoadJoystick(_joystickAsKeyboard.input, _updateForm);
+            inputJoystick.LoadJoystick(_joystickAsKeyboard.input, config.type, false, _updateForm);
             inputAxis.LoadAxis(_joystickAsKeyboard.inputAxis, _updateForm);
-            outputTrigger.LoadTrigger(_joystickAsKeyboard.output, _updateForm);
-            deadzone.LoadDeadzone(_joystickAsKeyboard.threshold, _updateForm);
+            outputTrigger.LoadTrigger(_joystickAsKeyboard.output, config.type, true, _updateForm);
+            deadzone.LoadDeadzone(_joystickAsKeyboard.deadzone, _updateForm);
             linear.LoadBool(_joystickAsKeyboard.linear, _updateForm);
 
             this.Visible = true;
@@ -50,7 +44,7 @@ namespace GMKDriverNetUI.ConfigurationControls
                 _joystickAsKeyboard.input = inputJoystick.Joystick;
                 _joystickAsKeyboard.inputAxis = inputAxis.Axis;
                 _joystickAsKeyboard.output = outputTrigger.Trigger;
-                _joystickAsKeyboard.threshold = deadzone.Deadzone;
+                _joystickAsKeyboard.deadzone = deadzone.Deadzone;
                 _joystickAsKeyboard.linear = linear.Bool;
 
                 _node.Text = _joystickAsKeyboard.ToString();

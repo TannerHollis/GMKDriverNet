@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GMKDriverNetUI
+namespace GMKDriverNETUI
 {
     public partial class Main : Form
     {
@@ -94,17 +94,17 @@ namespace GMKDriverNetUI
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
-            if(devicesConnected != GMKDriver.Devices.Length)
+            if(devicesConnected != GMKDriver.GMKDevices.Length)
             {
                 deviceView.Items.Clear();
-                foreach (GMKDevice device in GMKDriver.Devices)
+                foreach (GMKDevice device in GMKDriver.GMKDevices)
                 {
                     ListViewItem item = new ListViewItem(device.Type + " - " + device.SerialNumber, 0);
                     item.Tag = device;
                     item.ImageIndex = 0;
                     deviceView.Items.Add(item);
                 }
-                devicesConnected = GMKDriver.Devices.Length;
+                devicesConnected = GMKDriver.GMKDevices.Length;
             }
         }
 
@@ -163,6 +163,13 @@ namespace GMKDriverNetUI
         private void checkApplicationTimer_Tick(object sender, EventArgs e)
         {
             GMKDriver.CheckActiveWindowAndChangeConfiguration();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutWindow about = new AboutWindow();
+            about.SetVersion(GMKDriver.Version);
+            about.ShowDialog();
         }
     }
 }

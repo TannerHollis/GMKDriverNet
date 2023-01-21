@@ -1,7 +1,9 @@
-C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\deviceAssociations.json
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\deviceList.json
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\libusb-1.0
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\GMKDriverNet.dll.config
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\GMKDriverNet.dll
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\GMKDriverNet.pdb
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\LibUsbDotNet.dll
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\Nefarius.ViGEm.Client.dll
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\System.Buffers.dll
@@ -26,5 +28,3 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\obj\Debug\GMKDriverNet.csp
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\obj\Debug\GMKDriverNet.csproj.CopyComplete
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\obj\Debug\GMKDriverNet.dll
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\obj\Debug\GMKDriverNet.pdb
-C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\libusb-1.0
-C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNet\bin\Debug\LibUsbDotNet.dll

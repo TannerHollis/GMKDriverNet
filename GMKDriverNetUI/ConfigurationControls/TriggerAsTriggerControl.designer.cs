@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class TriggerAsTriggerControl
     {
@@ -32,9 +32,9 @@
             this.linearLabel = new System.Windows.Forms.Label();
             this.outputTriggerLabel = new System.Windows.Forms.Label();
             this.inputTriggerLabel = new System.Windows.Forms.Label();
-            this.linear = new GMKDriverNetUI.ConfigurationControls.BoolControl();
-            this.outputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
-            this.inputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
+            this.linear = new GMKDriverNETUI.ConfigurationControls.BoolControl();
+            this.outputTrigger = new GMKDriverNETUI.ConfigurationControls.TriggerControl();
+            this.inputTrigger = new GMKDriverNETUI.ConfigurationControls.TriggerControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

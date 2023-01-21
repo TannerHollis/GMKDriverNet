@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class ButtonAsKeyboardControl : UserControl
     {
@@ -27,13 +21,13 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _buttonAsKeyboard = (ButtonAsKeyboard)_node.Tag;
             _initialized = false;
 
-            inputButton.LoadButton(_buttonAsKeyboard.input, _updateForm);
+            inputButton.LoadButton(_buttonAsKeyboard.input, config.type, false, _updateForm);
             key.LoadKey(_buttonAsKeyboard.key, _updateForm);
             
             this.Visible = true;

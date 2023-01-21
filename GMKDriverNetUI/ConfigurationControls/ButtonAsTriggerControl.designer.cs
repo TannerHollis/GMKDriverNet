@@ -1,4 +1,4 @@
-﻿namespace GMKDriverNetUI.ConfigurationControls
+﻿namespace GMKDriverNETUI.ConfigurationControls
 {
     partial class ButtonAsTriggerControl
     {
@@ -31,8 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.outputTriggerLabel = new System.Windows.Forms.Label();
             this.inputButtonLabel = new System.Windows.Forms.Label();
-            this.inputButton = new GMKDriverNetUI.ConfigurationControls.ButtonControl();
-            this.outputTrigger = new GMKDriverNetUI.ConfigurationControls.TriggerControl();
+            this.inputButton = new GMKDriverNETUI.ConfigurationControls.ButtonControl();
+            this.outputTrigger = new GMKDriverNETUI.ConfigurationControls.TriggerControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

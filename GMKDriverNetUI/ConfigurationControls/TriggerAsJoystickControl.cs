@@ -1,15 +1,9 @@
-﻿using GMKDriverNET;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace GMKDriverNetUI.ConfigurationControls
+using GMKDriverNET;
+using GMKDriverNET.Bindings;
+
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class TriggerAsJoystickControl : UserControl
     {
@@ -27,14 +21,14 @@ namespace GMKDriverNetUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
-        public void LoadWidget(TreeNode node)
+        public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
             _triggerAsJoystick = (TriggerAsJoystick)_node.Tag;
             _initialized = false;
 
-            inputTrigger.LoadTrigger(_triggerAsJoystick.input, _updateForm);
-            outputJoystick.LoadJoystick(_triggerAsJoystick.output, _updateForm);
+            inputTrigger.LoadTrigger(_triggerAsJoystick.input, config.type, false, _updateForm);
+            outputJoystick.LoadJoystick(_triggerAsJoystick.output, config.type, true, _updateForm);
             outputAxis.LoadAxis(_triggerAsJoystick.outputAxis, _updateForm);
             linear.LoadBool(_triggerAsJoystick.linear, _updateForm);
 

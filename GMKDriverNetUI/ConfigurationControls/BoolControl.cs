@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using GMKDriverNET;
-
-namespace GMKDriverNetUI.ConfigurationControls
+namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class BoolControl : UserControl
     {
@@ -35,7 +25,7 @@ namespace GMKDriverNetUI.ConfigurationControls
             _isInitialized = true;
         }
 
-        private void button_SelectedIndexChanged(object sender, EventArgs e)
+        private void bool_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(_isInitialized)
             {
