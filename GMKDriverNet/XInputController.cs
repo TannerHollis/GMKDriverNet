@@ -107,6 +107,32 @@ namespace GMKDriverNET
             triggerRight = (char)bytes[11];
         }
 
+        public void Map(XInputController input)
+        {
+            up = input.up;
+            down = input.down;
+            left = input.left;
+            right = input.right;
+            start = input.start;
+            back = input.back;
+            lth = input.lth;
+            rth = input.rth;
+            lb = input.lb;
+            rb = input.rb;
+            xbox = input.xbox;
+            _reserved = input._reserved;
+            a = input.a;
+            b = input.b;
+            x = input.x;
+            y = input.y;
+            leftX = input.leftX;
+            leftY = input.leftY;
+            rightX = input.rightX;
+            rightY = input.rightY;
+            triggerLeft = input.triggerLeft;
+            triggerRight = input.triggerRight;
+        }
+
         public byte[] ToBytes()
         {
             byte[] buttons = new byte[2];
@@ -160,7 +186,7 @@ namespace GMKDriverNET
                 bool state = GetButton(asJoystick.input);
                 if(state)
                 {
-                    Int16 value = state ? Int16.MaxValue : (Int16)0;
+                    int value = state ? Int16.MaxValue : 0;
                     tmp.SetJoystick(asJoystick.output, asJoystick.outputAxis, value);
                 }
             }
@@ -171,7 +197,7 @@ namespace GMKDriverNET
                 bool state = GetButton(asTrigger.input);
                 if (state)
                 {
-                    char value = state ? (char)0xFF : (char)0;
+                    int value = state ? 0xFF : 0;
                     tmp.SetTrigger(asTrigger.output, value);
                 }
             }
@@ -215,8 +241,8 @@ namespace GMKDriverNET
                     }
                 }
 
-                Int16 newXInt;
-                Int16 newYInt;
+                int newXInt;
+                int newYInt;
 
                 if (mag > asJoystick.deadzone)
                 {
@@ -238,7 +264,7 @@ namespace GMKDriverNET
             {
                 float value = GetPercentageInt16(GetJoystick(asTrigger.input, asTrigger.inputAxis));
                 
-                char newValue = value > asTrigger.deadzone ? GetChar((float)value, asTrigger.linear) : (char)0;
+                int newValue = value > asTrigger.deadzone ? GetInt((float)value, asTrigger.linear) : (char)0;
 
                 tmp.SetTrigger(asTrigger.output, newValue);
             }
@@ -256,7 +282,7 @@ namespace GMKDriverNET
             {
                 float value = GetPercentageUInt8(GetTrigger(asJoystick.input));
 
-                Int16 newValue = value > asJoystick.deadzone ? GetInt(value, asJoystick.linear) : (Int16)0;
+                int newValue = value > asJoystick.deadzone ? GetInt(value, asJoystick.linear) : (Int16)0;
 
                 tmp.SetJoystick(asJoystick.output, asJoystick.outputAxis, newValue);
             }
@@ -266,12 +292,12 @@ namespace GMKDriverNET
             {
                 float value = GetTrigger(asTrigger.input);
 
-                char newValue = GetChar(value, asTrigger.linear);
+                int newValue = GetInt(value, asTrigger.linear);
 
                 tmp.SetTrigger(asTrigger.output, newValue);
             }
 
-            Map(tmp.ToBytes());
+            Map(tmp);
         }
 
         private static float GetPercentageInt16(int value)
@@ -284,7 +310,7 @@ namespace GMKDriverNET
             return (float)((float)value / (char)0xFF);
         }
 
-        private static Int16 GetInt(float value, bool linear = false)
+        private static int GetInt(float value, bool linear = false)
         {
             if(linear)
             {
@@ -294,25 +320,12 @@ namespace GMKDriverNET
                 {
                     ret = Math.Sign(ret) * maxVal;
                 }
-                return (Int16)ret;
+                return (int)ret;
             }
             else
             {
-                return (Int16)((Math.Pow(value, 3)) * (float)Int16.MaxValue);
+                return (int)(1.8f * (Math.Pow(value, 3)) * (float)Int16.MaxValue);
             }
-        }
-
-        private static char GetChar(float value, bool linear = false)
-        {
-            if (linear)
-            {
-                return (char)(value * (float)0xFF);
-            }
-            else
-            {
-                return (char)((Math.Pow(value, 1.7)) * (float)0xFF);
-            }
-
         }
 
         private void SetTrigger(TriggerIO trigger, int value)
@@ -584,9 +597,12 @@ namespace GMKDriverNET
 
         public int Clamp(int input, int min, int max)
         {
-            if (input.CompareTo(min) < 0) return min;
-            else if (input.CompareTo(max) > 0) return max;
-            else return input;
+            if (input > max) 
+                return max;
+            else if (input < min) 
+                return min;
+            else 
+                return input;
         }
     }
 }
