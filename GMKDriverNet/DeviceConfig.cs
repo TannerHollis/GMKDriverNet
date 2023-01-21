@@ -335,7 +335,8 @@ namespace GMKDriverNET
     public class DeviceConfig
     {
         public string name { get; set; }
-
+        public string gameAssociation { get; set; }
+        public bool gameAssociationEnabled { get; set; }
         public ButtonConfigs buttons { get; set; }
         public JoystickConfigs joysticks { get; set; }
         public TriggerConfigs triggers { get; set; }

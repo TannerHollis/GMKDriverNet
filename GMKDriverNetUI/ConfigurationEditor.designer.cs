@@ -47,7 +47,6 @@
             this.configsView = new System.Windows.Forms.ListView();
             this.configName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.defaultConfig = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.activeConfig = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.configsViewContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.setActiveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addConfigMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +78,11 @@
             this.selectionHelp = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.currentConfigName = new System.Windows.Forms.Label();
+            this.gameAssociationLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.gameAssociationEnabled = new System.Windows.Forms.CheckBox();
+            this.gameAssociationName = new System.Windows.Forms.TextBox();
             this.gridLayout.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -87,13 +91,14 @@
             this.configsViewContextMenu.SuspendLayout();
             this.configurationSettingsGroupBox.SuspendLayout();
             this.bindingEditorContextMenu.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridLayout
             // 
             this.gridLayout.ColumnCount = 2;
-            this.gridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.9872F));
-            this.gridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.01279F));
+            this.gridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.gridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.gridLayout.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.gridLayout.Controls.Add(this.tableLayoutPanel1, 0, 1);
             this.gridLayout.Controls.Add(this.configurationSettingsGroupBox, 1, 1);
@@ -112,28 +117,33 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.66331F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.33669F));
-            this.tableLayoutPanel2.Controls.Add(this.serialNumber, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.serialNumberLabel, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.deviceTypeLabel, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.deviceType, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.serialNumber, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.serialNumberLabel, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.deviceTypeLabel, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.deviceType, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.currentConfigName, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.gameAssociationLabel, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(333, 270);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(431, 270);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // serialNumber
             // 
             this.serialNumber.AutoSize = true;
             this.serialNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.serialNumber.Location = new System.Drawing.Point(111, 245);
+            this.serialNumber.Location = new System.Drawing.Point(143, 220);
             this.serialNumber.Name = "serialNumber";
-            this.serialNumber.Size = new System.Drawing.Size(219, 25);
+            this.serialNumber.Size = new System.Drawing.Size(285, 25);
             this.serialNumber.TabIndex = 3;
             this.serialNumber.Text = "Serial Number";
             this.serialNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -143,9 +153,9 @@
             this.serialNumberLabel.AutoSize = true;
             this.serialNumberLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.serialNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serialNumberLabel.Location = new System.Drawing.Point(3, 245);
+            this.serialNumberLabel.Location = new System.Drawing.Point(3, 220);
             this.serialNumberLabel.Name = "serialNumberLabel";
-            this.serialNumberLabel.Size = new System.Drawing.Size(102, 25);
+            this.serialNumberLabel.Size = new System.Drawing.Size(134, 25);
             this.serialNumberLabel.TabIndex = 2;
             this.serialNumberLabel.Text = "SN:";
             this.serialNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -155,9 +165,9 @@
             this.deviceTypeLabel.AutoSize = true;
             this.deviceTypeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.deviceTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deviceTypeLabel.Location = new System.Drawing.Point(3, 220);
+            this.deviceTypeLabel.Location = new System.Drawing.Point(3, 195);
             this.deviceTypeLabel.Name = "deviceTypeLabel";
-            this.deviceTypeLabel.Size = new System.Drawing.Size(102, 25);
+            this.deviceTypeLabel.Size = new System.Drawing.Size(134, 25);
             this.deviceTypeLabel.TabIndex = 0;
             this.deviceTypeLabel.Text = "Device:";
             this.deviceTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -166,9 +176,9 @@
             // 
             this.deviceType.AutoSize = true;
             this.deviceType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.deviceType.Location = new System.Drawing.Point(111, 220);
+            this.deviceType.Location = new System.Drawing.Point(143, 195);
             this.deviceType.Name = "deviceType";
-            this.deviceType.Size = new System.Drawing.Size(219, 25);
+            this.deviceType.Size = new System.Drawing.Size(285, 25);
             this.deviceType.TabIndex = 1;
             this.deviceType.Text = "Device Type";
             this.deviceType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -181,10 +191,10 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox1, 2);
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.MinimumSize = new System.Drawing.Size(64, 64);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 28);
+            this.pictureBox1.MinimumSize = new System.Drawing.Size(48, 48);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(327, 214);
+            this.pictureBox1.Size = new System.Drawing.Size(425, 164);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -203,13 +213,13 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 409);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(431, 409);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // saveButton
             // 
             this.saveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.saveButton.Location = new System.Drawing.Point(212, 382);
+            this.saveButton.Location = new System.Drawing.Point(285, 382);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 2;
@@ -220,7 +230,7 @@
             // loadButton
             // 
             this.loadButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.loadButton.Location = new System.Drawing.Point(45, 382);
+            this.loadButton.Location = new System.Drawing.Point(70, 382);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(75, 23);
             this.loadButton.TabIndex = 3;
@@ -236,7 +246,7 @@
             this.configurationsGroupBox.Location = new System.Drawing.Point(3, 0);
             this.configurationsGroupBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.configurationsGroupBox.Name = "configurationsGroupBox";
-            this.configurationsGroupBox.Size = new System.Drawing.Size(327, 376);
+            this.configurationsGroupBox.Size = new System.Drawing.Size(425, 376);
             this.configurationsGroupBox.TabIndex = 4;
             this.configurationsGroupBox.TabStop = false;
             this.configurationsGroupBox.Text = "Configurations";
@@ -245,8 +255,7 @@
             // 
             this.configsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.configName,
-            this.defaultConfig,
-            this.activeConfig});
+            this.defaultConfig});
             this.configsView.ContextMenuStrip = this.configsViewContextMenu;
             this.configsView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.configsView.FullRowSelect = true;
@@ -254,7 +263,7 @@
             this.configsView.Location = new System.Drawing.Point(3, 16);
             this.configsView.MultiSelect = false;
             this.configsView.Name = "configsView";
-            this.configsView.Size = new System.Drawing.Size(321, 357);
+            this.configsView.Size = new System.Drawing.Size(419, 357);
             this.configsView.TabIndex = 1;
             this.configsView.UseCompatibleStateImageBehavior = false;
             this.configsView.View = System.Windows.Forms.View.Details;
@@ -263,17 +272,12 @@
             // configName
             // 
             this.configName.Text = "Configuration Name";
-            this.configName.Width = 124;
+            this.configName.Width = 270;
             // 
             // defaultConfig
             // 
             this.defaultConfig.Text = "Default Config";
-            this.defaultConfig.Width = 87;
-            // 
-            // activeConfig
-            // 
-            this.activeConfig.Text = "Active Config";
-            this.activeConfig.Width = 93;
+            this.defaultConfig.Width = 109;
             // 
             // configsViewContextMenu
             // 
@@ -342,9 +346,9 @@
             // 
             this.configurationSettingsGroupBox.Controls.Add(this.bindingsTreeView);
             this.configurationSettingsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.configurationSettingsGroupBox.Location = new System.Drawing.Point(342, 279);
+            this.configurationSettingsGroupBox.Location = new System.Drawing.Point(440, 279);
             this.configurationSettingsGroupBox.Name = "configurationSettingsGroupBox";
-            this.configurationSettingsGroupBox.Size = new System.Drawing.Size(749, 409);
+            this.configurationSettingsGroupBox.Size = new System.Drawing.Size(651, 409);
             this.configurationSettingsGroupBox.TabIndex = 3;
             this.configurationSettingsGroupBox.TabStop = false;
             this.configurationSettingsGroupBox.Text = "Configuration Settings";
@@ -367,7 +371,7 @@
             treeNode1,
             treeNode2,
             treeNode3});
-            this.bindingsTreeView.Size = new System.Drawing.Size(743, 390);
+            this.bindingsTreeView.Size = new System.Drawing.Size(645, 390);
             this.bindingsTreeView.TabIndex = 1;
             this.bindingsTreeView.DoubleClick += new System.EventHandler(this.bindingsTreeView_DoubleClick);
             // 
@@ -377,7 +381,7 @@
             this.addToolStripMenuItem,
             this.removeBindingToolStripMenuItem});
             this.bindingEditorContextMenu.Name = "bindingEditorContextMenu";
-            this.bindingEditorContextMenu.Size = new System.Drawing.Size(181, 70);
+            this.bindingEditorContextMenu.Size = new System.Drawing.Size(162, 48);
             this.bindingEditorContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.bindingEditorContextMenu_Opening);
             // 
             // addToolStripMenuItem
@@ -387,7 +391,7 @@
             this.joystickToolStripMenuItem,
             this.triggerToolStripMenuItem});
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.addToolStripMenuItem.Text = "Add Binding";
             // 
             // buttonToolStripMenuItem
@@ -510,7 +514,7 @@
             // removeBindingToolStripMenuItem
             // 
             this.removeBindingToolStripMenuItem.Name = "removeBindingToolStripMenuItem";
-            this.removeBindingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeBindingToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.removeBindingToolStripMenuItem.Text = "Remove Binding";
             this.removeBindingToolStripMenuItem.Click += new System.EventHandler(this.removeBindingToolStripMenuItem_Click);
             // 
@@ -519,7 +523,7 @@
             this.selectionHelp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.selectionHelp.AutoSize = true;
             this.selectionHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectionHelp.Location = new System.Drawing.Point(528, 125);
+            this.selectionHelp.Location = new System.Drawing.Point(577, 125);
             this.selectionHelp.Name = "selectionHelp";
             this.selectionHelp.Size = new System.Drawing.Size(376, 26);
             this.selectionHelp.TabIndex = 4;
@@ -538,6 +542,69 @@
             this.openConfigFileDialog.FileName = "openConfigFileDialog";
             this.openConfigFileDialog.Filter = "config files (*.json)|*.json";
             this.openConfigFileDialog.InitialDirectory = "Configs";
+            // 
+            // currentConfigName
+            // 
+            this.currentConfigName.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.currentConfigName, 2);
+            this.currentConfigName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.currentConfigName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentConfigName.Location = new System.Drawing.Point(3, 0);
+            this.currentConfigName.Name = "currentConfigName";
+            this.currentConfigName.Size = new System.Drawing.Size(425, 25);
+            this.currentConfigName.TabIndex = 5;
+            this.currentConfigName.Text = "Configuration Name";
+            this.currentConfigName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // gameAssociationLabel
+            // 
+            this.gameAssociationLabel.AutoSize = true;
+            this.gameAssociationLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gameAssociationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameAssociationLabel.Location = new System.Drawing.Point(3, 245);
+            this.gameAssociationLabel.Name = "gameAssociationLabel";
+            this.gameAssociationLabel.Size = new System.Drawing.Size(134, 25);
+            this.gameAssociationLabel.TabIndex = 6;
+            this.gameAssociationLabel.Text = "Game Association:";
+            this.gameAssociationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.69072F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.30928F));
+            this.tableLayoutPanel3.Controls.Add(this.gameAssociationEnabled, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.gameAssociationName, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(140, 245);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(291, 25);
+            this.tableLayoutPanel3.TabIndex = 7;
+            // 
+            // gameAssociationEnabled
+            // 
+            this.gameAssociationEnabled.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gameAssociationEnabled.AutoSize = true;
+            this.gameAssociationEnabled.Location = new System.Drawing.Point(268, 5);
+            this.gameAssociationEnabled.Name = "gameAssociationEnabled";
+            this.gameAssociationEnabled.Size = new System.Drawing.Size(15, 14);
+            this.gameAssociationEnabled.TabIndex = 0;
+            this.gameAssociationEnabled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.gameAssociationEnabled.UseVisualStyleBackColor = true;
+            this.gameAssociationEnabled.CheckedChanged += new System.EventHandler(this.gameAssociationEnabled_CheckedChanged);
+            // 
+            // gameAssociationName
+            // 
+            this.gameAssociationName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.gameAssociationName.Location = new System.Drawing.Point(3, 3);
+            this.gameAssociationName.Name = "gameAssociationName";
+            this.gameAssociationName.Size = new System.Drawing.Size(255, 20);
+            this.gameAssociationName.TabIndex = 1;
+            this.gameAssociationName.TextChanged += new System.EventHandler(this.gameAssociationName_TextChanged);
             // 
             // configurationEditor
             // 
@@ -559,6 +626,8 @@
             this.configsViewContextMenu.ResumeLayout(false);
             this.configurationSettingsGroupBox.ResumeLayout(false);
             this.bindingEditorContextMenu.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -610,6 +679,10 @@
         private System.Windows.Forms.ToolStripMenuItem makeDefaultMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setActiveMenuItem;
         private System.Windows.Forms.OpenFileDialog openConfigFileDialog;
-        private System.Windows.Forms.ColumnHeader activeConfig;
+        private System.Windows.Forms.Label currentConfigName;
+        private System.Windows.Forms.Label gameAssociationLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.CheckBox gameAssociationEnabled;
+        private System.Windows.Forms.TextBox gameAssociationName;
     }
 }

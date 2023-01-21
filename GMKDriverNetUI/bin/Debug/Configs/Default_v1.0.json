@@ -1,5 +1,7 @@
 {
   "name": "Default_v1.0",
+  "gameAssociation": null,
+  "gameAssociationEnabled": false,
   "buttons": {
     "asButtons": [
       {

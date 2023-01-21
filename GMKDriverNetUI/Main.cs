@@ -46,7 +46,8 @@ namespace GMKDriverNetUI
             {
                 mainThread = new Thread(new ParameterizedThreadStart(ThreadProc));
                 mainThread.Start(consoleBox);
-                updateTimer.Enabled = true;
+                updateDeviceListTimer.Enabled = true;
+                checkApplicationTimer.Enabled = true;
             }
         }
 
@@ -157,6 +158,11 @@ namespace GMKDriverNetUI
             GMKDriver.RemoveStartupApp();
             removeFromStartupAppsToolStripMenuItem.Enabled = false;
             setAsStartupAppToolStripMenuItem.Enabled = true;
+        }
+
+        private void checkApplicationTimer_Tick(object sender, EventArgs e)
+        {
+            GMKDriver.CheckActiveWindowAndChangeConfiguration();
         }
     }
 }

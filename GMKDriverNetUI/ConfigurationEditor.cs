@@ -175,7 +175,12 @@ namespace GMKDriverNetUI
             serialNumber.Text = _device.SerialNumber;
             deviceType.Text = _device.Type.ToString();
 
-            this.Text = config.name;
+            currentConfigName.Text = config.name;
+
+            gameAssociationEnabled.Checked = config.gameAssociationEnabled;
+            gameAssociationName.Text = config.gameAssociation;
+            gameAssociationName.Enabled = config.gameAssociationEnabled;
+
             _currentConfig = config;
 
             // Get Button Bindings
@@ -419,7 +424,10 @@ namespace GMKDriverNetUI
             if (result == DialogResult.Yes)
             {
                 _currentConfig.ToFile();
-                _device.Config = _currentConfig;
+                if(_currentConfig.name == _device.Config.name)
+                {
+                    _device.Config = _currentConfig;
+                }
             }
         }
 
@@ -567,6 +575,17 @@ namespace GMKDriverNetUI
         {
             _currentConfig.Remove(bindingsTreeView.SelectedNode.Tag);
             bindingsTreeView.Nodes.Remove(bindingsTreeView.SelectedNode);
+        }
+
+        private void gameAssociationEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            _currentConfig.gameAssociationEnabled = gameAssociationEnabled.Checked;
+            gameAssociationName.Enabled = gameAssociationEnabled.Checked;
+        }
+
+        private void gameAssociationName_TextChanged(object sender, EventArgs e)
+        {
+            _currentConfig.gameAssociation = gameAssociationName.Text;
         }
     }
 }

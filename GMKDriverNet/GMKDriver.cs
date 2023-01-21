@@ -32,6 +32,8 @@ namespace GMKDriverNET
         private static TextBox _console;
         private static bool _run;
 
+        private static string _oldWindow;
+
         public static DeviceList DeviceAssociations { get { return _deviceAssociations; } }
         public static Thread[] Threads { get { return _threads.ToArray(); } }
         public static GMKDevice[] Devices { get { return _devices.ToArray(); } }
@@ -114,6 +116,8 @@ namespace GMKDriverNET
 
         public static void Loop()
         {
+            _oldWindow = ActiveWindowTitle();
+
             using (UsbContext context = new UsbContext())
             {
                 WriteLine("GMK Driver Version: " + Version);
@@ -271,6 +275,59 @@ namespace GMKDriverNET
         {
             GMKDevice gmkDevice = (GMKDevice)device;
             gmkDevice.Run();
+        }
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowText(IntPtr hwnd, StringBuilder ss, int count);
+
+        private static string ActiveWindowTitle()
+        {
+            //Create the variable
+            const int nChar = 256;
+            StringBuilder ss = new StringBuilder(nChar);
+
+            //Run GetForeGroundWindows and get active window informations
+            //assign them into handle pointer variable
+            IntPtr handle = IntPtr.Zero;
+            handle = GetForegroundWindow();
+
+            if (GetWindowText(handle, ss, nChar) > 0) return ss.ToString();
+            else return "";
+        }
+
+        public static void CheckActiveWindowAndChangeConfiguration()
+        {
+            string currentWindow = ActiveWindowTitle();
+            
+            if (_oldWindow == currentWindow)
+                return;
+
+            _oldWindow = currentWindow;
+
+            foreach(GMKDevice device in _devices)
+            {
+                DeviceConfigAssociations deviceAssociations = _deviceAssociations.LookupSerialNumber(device.SerialNumber);
+
+                foreach(string configFile in deviceAssociations.configFiles)
+                {
+                    DeviceConfig config = DeviceConfig.FromFile(configFile);
+                    if(!config.gameAssociationEnabled)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if(currentWindow.Contains(config.gameAssociation) && device.Config.name != config.name)
+                        {
+                            device.WriteLine("Auto config found for application: " + config.gameAssociation);
+                            device.Config = config;
+                        }
+                    }
+                }
+            }
         }
     }
 }

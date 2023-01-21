@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using GMKDriverNET;
+using System.Runtime.InteropServices;
 
 namespace LibUsbDotNetTest
 {
@@ -27,6 +28,8 @@ namespace LibUsbDotNetTest
             t.Start();
             t.Join();
         }
+
+        
 
         private static void RunDriver()
         {

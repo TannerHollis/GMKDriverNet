@@ -40,13 +40,14 @@
             this.trayContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateTimer = new System.Windows.Forms.Timer(this.components);
+            this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.deviceGroupBox = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsStartupAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeFromStartupAppsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkApplicationTimer = new System.Windows.Forms.Timer(this.components);
             this.deviceViewContextMenu.SuspendLayout();
             this.trayContextMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -140,10 +141,10 @@
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
-            // updateTimer
+            // updateDeviceListTimer
             // 
-            this.updateTimer.Interval = 500;
-            this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
+            this.updateDeviceListTimer.Interval = 500;
+            this.updateDeviceListTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
             // tableLayoutPanel1
             // 
@@ -209,6 +210,11 @@
             this.removeFromStartupAppsToolStripMenuItem.Text = "Remove from Startup Apps";
             this.removeFromStartupAppsToolStripMenuItem.Click += new System.EventHandler(this.removeFromStartupAppsToolStripMenuItem_Click);
             // 
+            // checkApplicationTimer
+            // 
+            this.checkApplicationTimer.Interval = 2500;
+            this.checkApplicationTimer.Tick += new System.EventHandler(this.checkApplicationTimer_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,7 +248,7 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList;
-        private System.Windows.Forms.Timer updateTimer;
+        private System.Windows.Forms.Timer updateDeviceListTimer;
         private System.Windows.Forms.ContextMenuStrip deviceViewContextMenu;
         private System.Windows.Forms.ToolStripMenuItem editBindingsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pauseDriverMenuItem;
@@ -252,6 +258,7 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setAsStartupAppToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeFromStartupAppsToolStripMenuItem;
+        private System.Windows.Forms.Timer checkApplicationTimer;
     }
 }
 

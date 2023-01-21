@@ -156,7 +156,7 @@ namespace GMKDriverNET
             }
         }
 
-        private void WriteLine(string text)
+        public void WriteLine(string text)
         {
             text = _type + ":" + _serialNumber + " - " + text;
             List<string> consoleOutputList = new List<string>();
@@ -218,6 +218,16 @@ namespace GMKDriverNET
                         _controller.Map(dataBuffer);
                         _controller.MapToConfig(_config);
                         _controller.SetController(_xbox360Controller);
+                    }
+
+                    if(_paused)
+                    {
+                        XInputController tmp = new XInputController();
+                        tmp.SetController(_xbox360Controller);
+                        while (_paused)
+                        {
+                            Thread.Sleep(500);
+                        }
                     }
                 }
 
