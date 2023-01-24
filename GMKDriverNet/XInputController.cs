@@ -13,22 +13,12 @@ using System.Runtime.InteropServices;
 
 namespace GMKDriverNET
 {
-    public static class KeyConverter
-    {
-        public static int ToKeyValue(this char ch)
-        {
-            return (int)(System.Windows.Forms.Keys)ch;
-        }
-    }
-
     public class XInputController
     {
-        private readonly double snapRightZone = 10.0 / 180.0 * Math.PI;
-        private readonly double snapLeftZone = 170.0 / 180.0 * Math.PI;
-        private readonly double snapRightAngle = 14.0 / 180.0 * Math.PI;
-        private readonly double snapLeftAngle = 166.0 / 180.0 * Math.PI;
-
-        private IntPtr _currentWindow;
+        private readonly double snapRightZone = Deg2Rad(10.0f); // Snap Right begin
+        private readonly double snapLeftZone = Deg2Rad(170.0f); // Snap Left end
+        private readonly double snapRightAngle = Deg2Rad(14.0f); // Snap right angle
+        private readonly double snapLeftAngle = Deg2Rad(166.0f); // Snap Left angle
 
         bool up;
         bool down;
@@ -185,8 +175,6 @@ namespace GMKDriverNET
         {
             XInputController tmp = new XInputController();
 
-            _currentWindow = GetForegroundWindow();
-
             // ButtonAsButton
             foreach(ButtonAsButton asButton in config.buttons.asButtons)
             {
@@ -215,6 +203,7 @@ namespace GMKDriverNET
                 }
             }
 
+            // ButtonAsKeyboard
             //foreach(ButtonAsKeyboard asKeyboard in config.buttons.asKeyboards)
             //{
             //    bool state = GetButton(asKeyboard.input);
@@ -241,31 +230,42 @@ namespace GMKDriverNET
             // JoystickAsJoystick
             foreach(JoystickAsJoystick asJoystick in config.joysticks.asJoysticks)
             {
+                // Get x and y position as a percetnage 0.0 and 1.0
                 double x = GetPercentageInt16(GetJoystick(asJoystick.input, Axis.XPositive));
                 double y = GetPercentageInt16(GetJoystick(asJoystick.input, Axis.YPositive));
 
+                // Get angle and magnitude of input joystick
                 double angle = Math.Atan2(y, x);
                 double mag = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
 
-                double rotateRadians = asJoystick.rotate / 180.0f * (float)Math.PI;
+                // Calculate rotation in rads
+                double rotateRadians = Deg2Rad(asJoystick.rotate);
 
+                // Apply rotation to input
                 angle += rotateRadians;
 
+                // Adjust value between -180 and 180
+                angle = (angle + 3 * Math.PI) % (2 * Math.PI) - Math.PI;
+
+                // Perform normal rotation
                 double newX = mag * Math.Cos(angle);
                 double newY = mag * Math.Sin(angle);
 
+                // If snap mode is enabled
                 if (asJoystick.snapMode76)
                 {
-                    float angleRight = (90.0f - (float)asJoystick.snap76Intensity) / 180.0f * (float)Math.PI;
-                    float angleLeft = (90.0f + (float)asJoystick.snap76Intensity) / 180.0f * (float)Math.PI;
+                    // Find setpoints away from 90 axis
+                    float angleRight = (float)Deg2Rad(90.0f - asJoystick.snap76Intensity);
+                    float angleLeft = (float)Deg2Rad(90.0f + asJoystick.snap76Intensity);
 
-                    if ((angle > snapRightZone && angle < angleRight) || (angle > snapRightZone - 360.0 && angle < angleRight - 360.0) || (angle > snapRightZone + 360.0 && angle < angleRight + 360.0))
+                    // If within 10 degrees and setpoint in the 1st quadrant, snap to 14 degrees
+                    if ((angle > snapRightZone && angle < angleRight))
                     {
                         newX = mag * Math.Cos(snapRightAngle);
                         newY = mag * Math.Sin(snapRightAngle);
                     }
-
-                    if ((angle < snapLeftZone && angle > angleLeft) || (angle < snapLeftZone - 360.0 && angle > angleLeft - 360.0) || (angle < snapLeftZone + 360.0 && angle > angleLeft + 360.0))
+                    // If within setpoint and 170 in the 2nd quadrant, snap to 166 degrees
+                    else if ((angle < snapLeftZone && angle > angleLeft))
                     {
                         newX = mag * Math.Cos(snapLeftAngle);
                         newY = mag * Math.Sin(snapLeftAngle);
@@ -331,20 +331,14 @@ namespace GMKDriverNET
             Map(tmp);
         }
 
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll")]
-        static extern bool PostMessage(IntPtr hWnd, UInt32 Msg, int wParam, int lParam);
-
-        private void KeyDown(byte key)
+        private static double Rad2Deg(double rad)
         {
-            PostMessage(_currentWindow, 0x0100, KeyConverter.ToKeyValue(char.ToUpper((char)key)), 0);
+            return rad * 180.0 / Math.PI;
         }
 
-        private void KeyUp(byte key)
+        private static double Deg2Rad(double rad)
         {
-            PostMessage(_currentWindow, 0x0101, KeyConverter.ToKeyValue(char.ToUpper((char)key)), 0);
+            return rad / 180.0 * Math.PI;
         }
 
         private static float GetPercentageInt16(int value)
@@ -354,7 +348,7 @@ namespace GMKDriverNET
 
         private static float GetPercentageUInt8(int value)
         {
-            return (float)((float)value / (char)0xFF);
+            return (float)((float)value / (float)0xFF);
         }
 
         private static int GetInt(float value, bool linear = false)
@@ -404,7 +398,7 @@ namespace GMKDriverNET
                     return triggerRight;
 
                 default:
-                    return (char)0;
+                    return 0;
             }
         }
 
@@ -441,7 +435,7 @@ namespace GMKDriverNET
                             break;
 
                         case Axis.XNegative:
-                            rightX += (-1*value);
+                            rightX += (-1 * value);
                             break;
 
                         case Axis.YPositive:

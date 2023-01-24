@@ -237,11 +237,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConfigName.cs">
+    <Compile Include="ConfigNameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfigName.Designer.cs">
-      <DependentUpon>ConfigName.cs</DependentUpon>
+    <Compile Include="ConfigNameWindow.Designer.cs">
+      <DependentUpon>ConfigNameWindow.cs</DependentUpon>
     </Compile>
     <Content Include="libusb-1.0">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -327,14 +327,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ConfigName.resx">
-      <DependentUpon>ConfigName.cs</DependentUpon>
+    <EmbeddedResource Include="ConfigNameWindow.resx">
+      <DependentUpon>ConfigNameWindow.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="..\GMKDriverNet\deviceList.json">
       <Link>deviceList.json</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="GMKDriverNetUI_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -350,9 +349,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GMKlogo_transparent_square.ico" />
-    <Content Include="images\button.png" />
-    <Content Include="images\joystick.png" />
-    <Content Include="images\trigger.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMKDriverNet\GMKDriverNET.csproj">

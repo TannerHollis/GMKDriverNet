@@ -13,8 +13,7 @@ namespace GMKDriverNETUI
     public partial class configurationEditor : Form
     {
         private GMKDevice _device;
-        private DeviceConfigAssociations _configAssociation;
-        private List<DeviceConfig> _configs;
+        private DeviceConfigCollection _configAssociation;
         private DeviceConfig _currentConfig;
 
         // Define Widgets
@@ -31,7 +30,7 @@ namespace GMKDriverNETUI
         private TriggerAsTriggerControl _triggerAsTriggerControl;
         private TriggerAsKeyboardControl _triggerAsKeyboardControl;
 
-        // Define tre nodes
+        // Define TreeNodes
         private TreeNode _buttonBindingsNode;
         private TreeNode _joystickBindingsNode;
         private TreeNode _triggerBindingsNode;
@@ -47,25 +46,16 @@ namespace GMKDriverNETUI
 
         private void SetConfigsView()
         {
-            GMKDriver.DeviceList = DeviceList.Load();
             _configAssociation = GMKDriver.DeviceList.LookupSerialNumber(_device.SerialNumber);
 
-            _configs = new List<DeviceConfig>();
-
-            DeviceConfig activeConfig = _device.Config;
+            configsView.Items.Clear();
 
             foreach (DeviceConfig config in _configAssociation.Configs)
-            {
-                _configs.Add(config);
-            }
-
-            configsView.Items.Clear();
-            foreach (DeviceConfig config in _configs)
             {
                 ListViewItem item = new ListViewItem(config.name);
                 item.Tag = config;
 
-                if(config.name == activeConfig.name)
+                if(config.name == _device.Config.name)
                 {
                     item.Font = new Font(item.Font, FontStyle.Bold);
                 }
@@ -425,15 +415,16 @@ namespace GMKDriverNETUI
 
         private void newConfigMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigName name = new ConfigName();
-            name.ShowDialog();
-            if(name.ConfigurationName != string.Empty)
+            ConfigNameWindow configNameWindow = new ConfigNameWindow();
+            configNameWindow.ShowDialog();
+
+            if(configNameWindow.ConfigurationName != string.Empty && configNameWindow.DialogResult == DialogResult.OK)
             {
                 if(_device.Type == GMKControllerType.Joystick)
                 {
                     DeviceConfig config = DeviceConfig.DefaultJoystick;
-                    config.name = name.ConfigurationName;
-                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, name.MakeDefault);
+                    config.name = configNameWindow.ConfigurationName;
+                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, configNameWindow.MakeDefault);
                     LoadConfiguration(config);
                     SetConfigsView();
                 }
@@ -441,8 +432,8 @@ namespace GMKDriverNETUI
                 if (_device.Type == GMKControllerType.Controller)
                 {
                     DeviceConfig config = DeviceConfig.DefaultController;
-                    config.name = name.ConfigurationName;
-                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, name.MakeDefault);
+                    config.name = configNameWindow.ConfigurationName;
+                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, configNameWindow.MakeDefault);
                     LoadConfiguration(config);
                     SetConfigsView();
                 }
@@ -478,14 +469,18 @@ namespace GMKDriverNETUI
         {
             DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
 
-            ConfigName name = new ConfigName();
-            name.SetName(config.name);
-            name.SetMakeDefault(GMKDriver.DeviceList.IsConfigurationDefault(_device.SerialNumber, config));
-            name.ShowDialog();
-            if (name.ConfigurationName != string.Empty)
+            // Initialize ConfigNameWindow
+            ConfigNameWindow configNameWindow = new ConfigNameWindow();
+            configNameWindow.LoadWindow(config.name, GMKDriver.DeviceList.IsConfigurationDefault(_device.SerialNumber, config));
+
+            // Show ConfigName Window
+            configNameWindow.ShowDialog();
+            
+            // If Dialog Result is valid, rename config 
+            if (configNameWindow.DialogResult == DialogResult.OK)
             {
-                GMKDriver.DeviceList.RenameConfiguration(_device.SerialNumber, config, name.ConfigurationName);
-                if(name.MakeDefault)
+                GMKDriver.DeviceList.RenameConfiguration(_device.SerialNumber, config, configNameWindow.ConfigurationName);
+                if(configNameWindow.MakeDefault)
                 {
                     GMKDriver.DeviceList.SetDefaultConfiguration(_device.SerialNumber, config);
                 }
@@ -496,28 +491,34 @@ namespace GMKDriverNETUI
 
         private void removeMenuItem_Click(object sender, EventArgs e)
         {
+            // If no item is selected, return
             if (configsView.Items.Count == 1)
             {
                 return;
             }
-            else
+            else // Otherwise remove selected item
             {
                 DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
 
                 DialogResult result = MessageBox.Show("Delete this from the hard drive?", "Remove Configuration", MessageBoxButtons.YesNoCancel);
 
+                // If user selected cancel, return
                 if(result == DialogResult.Cancel)
                 {
                     return;
                 }
 
+                // Remove confiugration
                 GMKDriver.DeviceList.RemoveConfiguration(_device.SerialNumber, config, result == DialogResult.Yes);
+                
+                // Reset configs view
                 SetConfigsView();
             }
         }
 
         private void setActiveMenuItem_Click(object sender, EventArgs e)
         {
+            // Set the device's current active driver configuration
             DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
             _device.Config = config;
             SetConfigsView();
@@ -525,8 +526,11 @@ namespace GMKDriverNETUI
 
         private void fromExistingMenuItem_Click(object sender, EventArgs e)
         {
+            // Initialize the open folder directory to the default path
             openConfigFileDialog.InitialDirectory = DeviceConfig.GetDeviceConfigFolder();
             DialogResult result = openConfigFileDialog.ShowDialog();
+            
+            // If file was selected, try opening file.
             if(result == DialogResult.OK)
             {
                 string configName = Path.GetFileNameWithoutExtension(openConfigFileDialog.FileName);

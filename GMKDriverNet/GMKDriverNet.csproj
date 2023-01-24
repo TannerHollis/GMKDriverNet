@@ -82,6 +82,7 @@
     <Compile Include="Bindings\ButtonAsKeyboard.cs" />
     <Compile Include="Bindings\ButtonAsTrigger.cs" />
     <Compile Include="Bindings\ButtonConfigs.cs" />
+    <Compile Include="DeviceConfigCollection.cs" />
     <Compile Include="DeviceList.cs" />
     <Compile Include="DeviceConfig.cs" />
     <Compile Include="GMKController.cs" />
