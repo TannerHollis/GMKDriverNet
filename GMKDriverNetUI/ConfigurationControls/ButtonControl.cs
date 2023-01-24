@@ -13,7 +13,6 @@ namespace GMKDriverNETUI.ConfigurationControls
         private ButtonIO _button;
         private Delegate _updateForm;
         private bool _isInitialized;
-        private bool _isOutput;
 
         public ButtonIO Button { get { return _button; } }
 

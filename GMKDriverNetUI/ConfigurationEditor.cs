@@ -575,7 +575,7 @@ namespace GMKDriverNETUI
 
         private void joystickAsJoystickToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, true, false));
+            _currentConfig.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, true, false, 20));
             LoadConfiguration(_currentConfig);
         }
 

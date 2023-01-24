@@ -9,15 +9,26 @@ using System.Threading.Tasks;
 using Nefarius.ViGEm.Client.Targets.Xbox360;
 
 using GMKDriverNET.Bindings;
+using System.Runtime.InteropServices;
 
 namespace GMKDriverNET
 {
+    public static class KeyConverter
+    {
+        public static int ToKeyValue(this char ch)
+        {
+            return (int)(System.Windows.Forms.Keys)ch;
+        }
+    }
+
     public class XInputController
     {
-        private readonly double[] snapRightZone = new double[] { 10.0 / 180.0 * Math.PI, 60.0 / 180.0 * Math.PI };
-        private readonly double[] snapLeftZone = new double[] { 120.0 / 180.0 * Math.PI, 170.0 / 180.0 * Math.PI };
+        private readonly double snapRightZone = 10.0 / 180.0 * Math.PI;
+        private readonly double snapLeftZone = 170.0 / 180.0 * Math.PI;
         private readonly double snapRightAngle = 14.0 / 180.0 * Math.PI;
         private readonly double snapLeftAngle = 166.0 / 180.0 * Math.PI;
+
+        private IntPtr _currentWindow;
 
         bool up;
         bool down;
@@ -174,6 +185,8 @@ namespace GMKDriverNET
         {
             XInputController tmp = new XInputController();
 
+            _currentWindow = GetForegroundWindow();
+
             // ButtonAsButton
             foreach(ButtonAsButton asButton in config.buttons.asButtons)
             {
@@ -202,6 +215,21 @@ namespace GMKDriverNET
                 }
             }
 
+            //foreach(ButtonAsKeyboard asKeyboard in config.buttons.asKeyboards)
+            //{
+            //    bool state = GetButton(asKeyboard.input);
+            //    if(state)
+            //    {
+            //        KeyDown(asKeyboard.key);
+            //        asKeyboard.IsPressed = true;
+            //    }
+            //    if(!state && asKeyboard.IsPressed)
+            //    {
+            //        KeyUp(asKeyboard.key);
+            //        asKeyboard.IsPressed = false;
+            //    }
+            //}
+
             // JoystickAsButton
             foreach(JoystickAsButton asButton in config.joysticks.asButtons)
             {
@@ -228,13 +256,16 @@ namespace GMKDriverNET
 
                 if (asJoystick.snapMode76)
                 {
-                    if (angle > snapRightZone[0] && angle < snapRightZone[1])
+                    float angleRight = (90.0f - (float)asJoystick.snap76Intensity) / 180.0f * (float)Math.PI;
+                    float angleLeft = (90.0f + (float)asJoystick.snap76Intensity) / 180.0f * (float)Math.PI;
+
+                    if ((angle > snapRightZone && angle < angleRight) || (angle > snapRightZone - 360.0 && angle < angleRight - 360.0) || (angle > snapRightZone + 360.0 && angle < angleRight + 360.0))
                     {
                         newX = mag * Math.Cos(snapRightAngle);
                         newY = mag * Math.Sin(snapRightAngle);
                     }
-                    
-                    if (angle > snapLeftZone[0] && angle < snapLeftZone[1])
+
+                    if ((angle < snapLeftZone && angle > angleLeft) || (angle < snapLeftZone - 360.0 && angle > angleLeft - 360.0) || (angle < snapLeftZone + 360.0 && angle > angleLeft + 360.0))
                     {
                         newX = mag * Math.Cos(snapLeftAngle);
                         newY = mag * Math.Sin(snapLeftAngle);
@@ -298,6 +329,22 @@ namespace GMKDriverNET
             }
 
             Map(tmp);
+        }
+
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        static extern bool PostMessage(IntPtr hWnd, UInt32 Msg, int wParam, int lParam);
+
+        private void KeyDown(byte key)
+        {
+            PostMessage(_currentWindow, 0x0100, KeyConverter.ToKeyValue(char.ToUpper((char)key)), 0);
+        }
+
+        private void KeyUp(byte key)
+        {
+            PostMessage(_currentWindow, 0x0101, KeyConverter.ToKeyValue(char.ToUpper((char)key)), 0);
         }
 
         private static float GetPercentageInt16(int value)

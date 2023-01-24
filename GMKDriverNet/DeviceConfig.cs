@@ -203,7 +203,7 @@ namespace GMKDriverNET
         {
             get 
             {
-                DeviceConfig c = new DeviceConfig("Default_v1.0", GMKControllerType.Controller);
+                DeviceConfig c = new DeviceConfig("Default_Controller_v1.0", GMKControllerType.Controller);
 
                 // Buttons
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
@@ -222,8 +222,8 @@ namespace GMKDriverNET
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.Right, ButtonIO.Right));
 
                 // Joysticks
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.1f, true, false));
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.RightJoystick, JoystickIO.RightJoystick, 0.1f, true, false));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.1f, true, false, 20));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.RightJoystick, JoystickIO.RightJoystick, 0.1f, true, false, 20));
 
                 // Triggers
                 c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.LeftTrigger, TriggerIO.LeftTrigger, true));
@@ -240,13 +240,13 @@ namespace GMKDriverNET
         {
             get
             {
-                DeviceConfig c = new DeviceConfig("Default_v1.0", GMKControllerType.Joystick);
+                DeviceConfig c = new DeviceConfig("Default_Joystick_v1.0", GMKControllerType.Joystick);
 
                 // Buttons
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
 
                 // Joysticks
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.1f, true, false));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.1f, true, false, 20));
 
                 return c;
             }

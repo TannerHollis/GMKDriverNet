@@ -28,8 +28,8 @@
     <PublisherName>Gaming Mod Kits</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>45</ApplicationRevision>
-    <ApplicationVersion>0.92.0.%2a</ApplicationVersion>
+    <ApplicationRevision>48</ApplicationRevision>
+    <ApplicationVersion>0.94.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -96,6 +96,12 @@
     </Compile>
     <Compile Include="AboutWindow.Designer.cs">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationControls\Snap76Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\Snap76Control.Designer.cs">
+      <DependentUpon>Snap76Control.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigurationControls\BoolControl.cs">
       <SubType>UserControl</SubType>
@@ -242,6 +248,9 @@
     </Content>
     <EmbeddedResource Include="AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\Snap76Control.resx">
+      <DependentUpon>Snap76Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationControls\BoolControl.resx">
       <DependentUpon>BoolControl.cs</DependentUpon>

@@ -11,7 +11,7 @@ namespace GMKDriverNET
 {
     public class GMKDriver
     {
-        public static string Version { get { return "v0.92.0"; } }
+        public static string Version { get { return "v0.94.0"; } }
 
         private const int GMK_VID = 0x483;
         private const int GMK_JOYSTICK_PID = 0x5750;

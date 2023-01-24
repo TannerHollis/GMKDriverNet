@@ -62,3 +62,4 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.exe
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.pdb
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.AboutWindow.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigurationControls.Snap76Control.resources

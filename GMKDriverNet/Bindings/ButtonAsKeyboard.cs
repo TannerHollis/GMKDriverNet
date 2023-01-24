@@ -5,6 +5,8 @@
         public ButtonIO input { get; set; }
         public byte key { get; set; }
 
+        public bool IsPressed;
+
         public override string ToString()
         {
             return input.ToString() + " -> " + (char)key;
@@ -14,6 +16,7 @@
         {
             this.input = input;
             this.key = key;
+            this.IsPressed = false;
         }
     }
 }

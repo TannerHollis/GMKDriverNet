@@ -32,7 +32,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             rotate.LoadRotate(_joystickAsJoystick.rotate, _updateForm);
             deadzone.LoadDeadzone(_joystickAsJoystick.deadzone, _updateForm);
             linear.LoadBool(_joystickAsJoystick.linear, _updateForm);
-            snap76.LoadBool(_joystickAsJoystick.snapMode76, _updateForm);
+            snap76.LoadSnap76(_joystickAsJoystick.snapMode76, _joystickAsJoystick.snap76Intensity, _updateForm);
 
             this.Visible = true;
             _initialized = true;
@@ -48,6 +48,7 @@ namespace GMKDriverNETUI.ConfigurationControls
                 _joystickAsJoystick.deadzone = deadzone.Deadzone;
                 _joystickAsJoystick.linear = linear.Bool;
                 _joystickAsJoystick.snapMode76 = snap76.Bool;
+                _joystickAsJoystick.snap76Intensity = snap76.Intensity;
 
                 _node.Text = _joystickAsJoystick.ToString();
             }
