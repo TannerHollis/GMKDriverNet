@@ -8,31 +8,17 @@ using System.Threading.Tasks;
 
 namespace GMKDriverNET
 {
-    public class DeviceConfigAssociations
-    {
-        public string serialNumber { get; set; }
-        public List<string> configFiles { get; set; }
-        public string defaultConfigFile { get; set; }
-        public GMKControllerType type { get; set; }
-
-        public List<DeviceConfig> Configs;
-
-        public DeviceConfigAssociations()
-        {
-            configFiles = new List<string>();
-            Configs = new List<DeviceConfig>();
-        }
-    }
+    
 
     public class DeviceList
     {
-        public List<DeviceConfigAssociations> associations { get; set; }
+        public List<DeviceConfigCollection> associations { get; set; }
 
         private bool _fileChanged = false;
 
         public DeviceList()
         {
-            associations = new List<DeviceConfigAssociations>();
+            associations = new List<DeviceConfigCollection>();
         }
 
         public static string GetDeviceListFileName()
@@ -47,11 +33,13 @@ namespace GMKDriverNET
 
         public static DeviceList Load()
         {
+            // If GMKDriver folder doesn't exist, make dir
             if(!Directory.Exists(GetGMKDriverFolder()))
             {
                 Directory.CreateDirectory(GetGMKDriverFolder());
             }
 
+            // Get device List file, if it doesn't exist, create one
             string fileName = GetDeviceListFileName();
             if (!File.Exists(fileName))
             {
@@ -59,10 +47,13 @@ namespace GMKDriverNET
                 newDeviceList.Save();
                 return newDeviceList;
             }
+
+            // Load file normally
             string jsonString = File.ReadAllText(fileName);
             DeviceList deviceList = JsonSerializer.Deserialize<DeviceList>(jsonString);
 
-            foreach(DeviceConfigAssociations configAssociations in deviceList.associations)
+            // Load each config once, saves time in future. However each configuration will be reloaded from files each time this function
+            foreach(DeviceConfigCollection configAssociations in deviceList.associations)
             {
                 foreach(string configFile in configAssociations.configFiles)
                 {
@@ -82,15 +73,15 @@ namespace GMKDriverNET
             _fileChanged = true;
         }
 
-        public DeviceConfigAssociations LookupSerialNumber(string serialNumber)
+        public DeviceConfigCollection LookupSerialNumber(string serialNumber)
         {
             if(_fileChanged)
             {
-                associations = Load().associations;
+                Load();
                 _fileChanged = false;
             }
 
-            foreach(DeviceConfigAssociations association in associations)
+            foreach(DeviceConfigCollection association in associations)
             {
                 if(association.serialNumber == serialNumber)
                 {
@@ -102,24 +93,21 @@ namespace GMKDriverNET
 
         public void AddNewDevice(string serialNumber, GMKControllerType type)
         {
-            DeviceConfigAssociations configAssociation = new DeviceConfigAssociations();
-            configAssociation.serialNumber = serialNumber;
-            configAssociation.type = type;
+            DeviceConfigCollection configAssociation = new DeviceConfigCollection
+            {
+                serialNumber = serialNumber,
+                type = type
+            };
             associations.Add(configAssociation);
             Save();
         }
 
         public void AddConfiguration(string serialNumber, DeviceConfig config, bool setDefault)
         {
-            DeviceConfigAssociations configAssociation = LookupSerialNumber(serialNumber);
+            DeviceConfigCollection configAssociation = LookupSerialNumber(serialNumber);
 
-            foreach(string configFile in configAssociation.configFiles)
-            {
-                if(configFile == config.name)
-                {
-                    return;
-                }
-            }
+            if (IsConfigurationAlreadyAdded(serialNumber, config))
+                return;
 
             string file = config.name;
 
@@ -133,9 +121,24 @@ namespace GMKDriverNET
             Save();
         }
 
+        public bool IsConfigurationAlreadyAdded(string serialNumber, DeviceConfig config)
+        {
+            DeviceConfigCollection configAssociation = LookupSerialNumber(serialNumber);
+
+            foreach (string configFile in configAssociation.configFiles)
+            {
+                if (configFile == config.name)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public void RemoveConfiguration(string serialNumber, DeviceConfig config, bool delete)
         {
-            DeviceConfigAssociations configAssociation = LookupSerialNumber(serialNumber);
+            DeviceConfigCollection configAssociation = LookupSerialNumber(serialNumber);
             configAssociation.configFiles.Remove(config.name);
             
             if(delete)
@@ -148,14 +151,14 @@ namespace GMKDriverNET
 
         public void SetDefaultConfiguration(string serialNumber, DeviceConfig config)
         {
-            DeviceConfigAssociations configAssociation = LookupSerialNumber(serialNumber);
+            DeviceConfigCollection configAssociation = LookupSerialNumber(serialNumber);
             configAssociation.defaultConfigFile = config.name;
             Save();
         }
 
         public void RenameConfiguration(string serialNumber, DeviceConfig config, string newName)
         {
-            DeviceConfigAssociations configAssociation = LookupSerialNumber(serialNumber);
+            DeviceConfigCollection configAssociation = LookupSerialNumber(serialNumber);
 
             bool isDefault = IsConfigurationDefault(serialNumber, config);
 
@@ -169,7 +172,7 @@ namespace GMKDriverNET
 
         public bool IsConfigurationDefault(string serialNumber, DeviceConfig config)
         {
-            DeviceConfigAssociations configAssociation = LookupSerialNumber(serialNumber);
+            DeviceConfigCollection configAssociation = LookupSerialNumber(serialNumber);
             return config.name == configAssociation.defaultConfigFile;
         }
     }

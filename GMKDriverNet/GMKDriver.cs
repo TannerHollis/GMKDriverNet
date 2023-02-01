@@ -226,13 +226,15 @@ namespace GMKDriverNET
                         continue;
                     }
 
-                    DeviceConfigAssociations configAssociation = _deviceList.LookupSerialNumber(serialNumber);
+                    // Get collection of device configs
+                    DeviceConfigCollection configCollection = _deviceList.LookupSerialNumber(serialNumber);
 
                     DeviceConfig config;
 
+                    // If device PID matches Joystick, 0x5750
                     if (device.ProductId == GMK_JOYSTICK_PID)
                     {
-                        if (configAssociation == null)
+                        if (configCollection == null)
                         {
                             _deviceList.AddNewDevice(serialNumber, GMKControllerType.Joystick);
                             config = DeviceConfig.DefaultJoystick;
@@ -240,16 +242,17 @@ namespace GMKDriverNET
                         }
                         else
                         {
-                            config = DeviceConfig.FromFile(configAssociation.defaultConfigFile, GMKControllerType.Joystick);
+                            config = DeviceConfig.FromFile(configCollection.defaultConfigFile, GMKControllerType.Joystick);
                         }
 
                         GMKJoystick joystick = new GMKJoystick(device.Clone() as UsbDevice, config, _console);
                         newDevices.Add(joystick);
                     }
 
+                    // If device PID matches Controller, 0x5740
                     if (device.ProductId == GMK_CONTROLLER_PID)
                     {
-                        if (configAssociation == null)
+                        if (configCollection == null)
                         {
                             _deviceList.AddNewDevice(serialNumber, GMKControllerType.Controller);
                             config = DeviceConfig.DefaultController;
@@ -257,7 +260,7 @@ namespace GMKDriverNET
                         }
                         else
                         {
-                            config = DeviceConfig.FromFile(configAssociation.defaultConfigFile, GMKControllerType.Controller);
+                            config = DeviceConfig.FromFile(configCollection.defaultConfigFile, GMKControllerType.Controller);
                         }
 
                         GMKController controller = new GMKController(device.Clone() as UsbDevice, config, _console);
@@ -292,12 +295,9 @@ namespace GMKDriverNET
 
         private static string ActiveWindowTitle()
         {
-            //Create the variable
             const int nChar = 256;
             StringBuilder ss = new StringBuilder(nChar);
 
-            //Run GetForeGroundWindows and get active window informations
-            //assign them into handle pointer variable
             IntPtr handle = IntPtr.Zero;
             handle = GetForegroundWindow();
 
@@ -318,7 +318,7 @@ namespace GMKDriverNET
 
             foreach(GMKDevice device in _gmkDevices)
             {
-                DeviceConfigAssociations deviceAssociations = _deviceList.LookupSerialNumber(device.SerialNumber);
+                DeviceConfigCollection deviceAssociations = _deviceList.LookupSerialNumber(device.SerialNumber);
 
                 foreach(DeviceConfig config in deviceAssociations.Configs)
                 {
@@ -332,6 +332,7 @@ namespace GMKDriverNET
                         {
                             device.WriteLine(LanguageHelper.LookupPhrase("autoConfigFound") + config.gameAssociation);
                             device.Config = config;
+                            break;
                         }
                     }
                 }

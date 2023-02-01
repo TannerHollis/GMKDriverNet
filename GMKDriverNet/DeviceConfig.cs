@@ -169,7 +169,7 @@ namespace GMKDriverNET
                 DeviceConfig config = JsonSerializer.Deserialize<DeviceConfig>(jsonString);
                 if(config.type != type)
                 {
-                    GMKDriver.WriteLine("The config type: " + file + " does not match the device type " + type);
+                    GMKDriver.WriteLine("The config type, \"" + file + "\" does not match the device type, \"" + type + "\".");
                     GMKDriver.WriteLine("Loading the default config instead.");
                     
                     if(type == GMKControllerType.Joystick)
@@ -190,8 +190,8 @@ namespace GMKDriverNET
             }
             catch
             {
-                GMKDriver.WriteLine("Failed to open config: " + file + ". Loading default config instead.");
-                GMKDriver.WriteLine("Please consider removing config: " + file);
+                GMKDriver.WriteLine("Failed to open config \"" + file + "\", loading default config instead.");
+                GMKDriver.WriteLine("Please consider removing config \"" + file + "\" from this device.");
                 DeviceConfig config = DeviceConfig.DefaultController;
                 config.name = file;
                 return config;

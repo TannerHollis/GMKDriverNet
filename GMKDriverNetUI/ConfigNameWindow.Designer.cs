@@ -1,6 +1,6 @@
 ﻿namespace GMKDriverNETUI
 {
-    partial class ConfigName
+    partial class ConfigNameWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigName));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigNameWindow));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.nameLabel = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.TextBox();

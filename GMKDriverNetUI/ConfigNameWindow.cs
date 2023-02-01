@@ -12,25 +12,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GMKDriverNETUI
 {
-    public partial class ConfigName : Form
+    public partial class ConfigNameWindow : Form
     {
         private string _name;
         private bool _makeDefault;
         public string ConfigurationName { get { return _name; } }
         public bool MakeDefault { get { return _makeDefault; } }
-        public ConfigName()
+        public ConfigNameWindow()
         {
             InitializeComponent();
         }
 
-        public void SetName(string text)
+        public void LoadWindow(string name, bool makeDefault)
         {
-            name.Text = text;
-        }
-
-        public void SetMakeDefault(bool isDefault)
-        {
-            makeDefault.Checked = isDefault;
+            _name = name;
+            _makeDefault = makeDefault;
         }
 
         public string RemoveInvalidChars(string filename)
@@ -53,6 +49,7 @@ namespace GMKDriverNETUI
             }
             else
             {
+                DialogResult = _name != string.Empty ? DialogResult.OK : DialogResult.Cancel;
                 this.Close();
             }
         }
