@@ -15,6 +15,16 @@ namespace GMKDriverNETUI
         public AboutWindow()
         {
             InitializeComponent();
+
+            UpdateTextWithLanguage();
+        }
+
+        public void UpdateTextWithLanguage()
+        {
+            this.Text = GMKDriverNET.LanguageHelper.LookupPhrase("about");
+            this.versionLabel.Text = GMKDriverNET.LanguageHelper.LookupPhrase("version");
+            this.supportLabel.Text = GMKDriverNET.LanguageHelper.LookupPhrase("version");
+            this.gmkWebsiteLabel.Text = GMKDriverNET.LanguageHelper.LookupPhrase("gmkWebsite");
         }
 
         public void SetVersion(string text)

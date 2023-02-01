@@ -47,8 +47,20 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsStartupAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeFromStartupAppsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkApplicationTimer = new System.Windows.Forms.Timer(this.components);
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkApplicationTimer = new System.Windows.Forms.Timer(this.components);
             this.deviceViewContextMenu.SuspendLayout();
             this.trayContextMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -182,7 +194,8 @@
             this.tableLayoutPanel1.SetColumnSpan(this.menuStrip1, 2);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.languageToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(636, 24);
@@ -212,17 +225,123 @@
             this.removeFromStartupAppsToolStripMenuItem.Text = "Remove from Startup Apps";
             this.removeFromStartupAppsToolStripMenuItem.Click += new System.EventHandler(this.removeFromStartupAppsToolStripMenuItem_Click);
             // 
-            // checkApplicationTimer
-            // 
-            this.checkApplicationTimer.Interval = 2500;
-            this.checkApplicationTimer.Tick += new System.EventHandler(this.checkApplicationTimer_Tick);
-            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eNToolStripMenuItem,
+            this.eSToolStripMenuItem,
+            this.fRToolStripMenuItem,
+            this.aRToolStripMenuItem,
+            this.rUToolStripMenuItem,
+            this.pTToolStripMenuItem,
+            this.iDToolStripMenuItem,
+            this.zHToolStripMenuItem,
+            this.dEToolStripMenuItem,
+            this.jAToolStripMenuItem,
+            this.hIToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.languageToolStripMenuItem.Text = "Language";
+            // 
+            // eNToolStripMenuItem
+            // 
+            this.eNToolStripMenuItem.Name = "eNToolStripMenuItem";
+            this.eNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eNToolStripMenuItem.Tag = "EN";
+            this.eNToolStripMenuItem.Text = "EN";
+            this.eNToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // eSToolStripMenuItem
+            // 
+            this.eSToolStripMenuItem.Name = "eSToolStripMenuItem";
+            this.eSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eSToolStripMenuItem.Tag = "ES";
+            this.eSToolStripMenuItem.Text = "ES";
+            this.eSToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // fRToolStripMenuItem
+            // 
+            this.fRToolStripMenuItem.Name = "fRToolStripMenuItem";
+            this.fRToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fRToolStripMenuItem.Tag = "FR";
+            this.fRToolStripMenuItem.Text = "FR";
+            this.fRToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // aRToolStripMenuItem
+            // 
+            this.aRToolStripMenuItem.Name = "aRToolStripMenuItem";
+            this.aRToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aRToolStripMenuItem.Tag = "AR";
+            this.aRToolStripMenuItem.Text = "AR";
+            this.aRToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // rUToolStripMenuItem
+            // 
+            this.rUToolStripMenuItem.Name = "rUToolStripMenuItem";
+            this.rUToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rUToolStripMenuItem.Tag = "RU";
+            this.rUToolStripMenuItem.Text = "RU";
+            this.rUToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // pTToolStripMenuItem
+            // 
+            this.pTToolStripMenuItem.Name = "pTToolStripMenuItem";
+            this.pTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pTToolStripMenuItem.Tag = "PT";
+            this.pTToolStripMenuItem.Text = "PT";
+            this.pTToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // iDToolStripMenuItem
+            // 
+            this.iDToolStripMenuItem.Name = "iDToolStripMenuItem";
+            this.iDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iDToolStripMenuItem.Tag = "ID";
+            this.iDToolStripMenuItem.Text = "ID";
+            this.iDToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // zHToolStripMenuItem
+            // 
+            this.zHToolStripMenuItem.Name = "zHToolStripMenuItem";
+            this.zHToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zHToolStripMenuItem.Tag = "ZH";
+            this.zHToolStripMenuItem.Text = "ZH";
+            this.zHToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // dEToolStripMenuItem
+            // 
+            this.dEToolStripMenuItem.Name = "dEToolStripMenuItem";
+            this.dEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dEToolStripMenuItem.Tag = "DE";
+            this.dEToolStripMenuItem.Text = "DE";
+            this.dEToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // jAToolStripMenuItem
+            // 
+            this.jAToolStripMenuItem.Name = "jAToolStripMenuItem";
+            this.jAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jAToolStripMenuItem.Tag = "JA";
+            this.jAToolStripMenuItem.Text = "JA";
+            this.jAToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // hIToolStripMenuItem
+            // 
+            this.hIToolStripMenuItem.Name = "hIToolStripMenuItem";
+            this.hIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hIToolStripMenuItem.Tag = "HI";
+            this.hIToolStripMenuItem.Text = "HI";
+            this.hIToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // checkApplicationTimer
+            // 
+            this.checkApplicationTimer.Interval = 2500;
+            this.checkApplicationTimer.Tick += new System.EventHandler(this.checkApplicationTimer_Tick);
             // 
             // Main
             // 
@@ -269,6 +388,18 @@
         private System.Windows.Forms.ToolStripMenuItem removeFromStartupAppsToolStripMenuItem;
         private System.Windows.Forms.Timer checkApplicationTimer;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eNToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rUToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem iDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zHToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hIToolStripMenuItem;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GMKDriverNET;
+using System;
 using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
@@ -17,6 +18,14 @@ namespace GMKDriverNETUI.ConfigurationControls
         public DeadzoneControl()
         {
             InitializeComponent();
+            UpdateTextWithLanguage();
+        }
+
+        private void UpdateTextWithLanguage()
+        {
+            resetToolStripMenuItem.Text = LanguageHelper.LookupPhrase("reset");
+            snapToolStripMenuItem.Text = LanguageHelper.LookupPhrase("snap");
+            offToolStripMenuItem.Text = LanguageHelper.LookupPhrase("off");
         }
 
         public void LoadDeadzone(float asDeadzone, Delegate updateForm)

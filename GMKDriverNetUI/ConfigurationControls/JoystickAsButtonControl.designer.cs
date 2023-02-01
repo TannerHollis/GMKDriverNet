@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.thresholdLabel = new System.Windows.Forms.Label();
             this.inputAxisLabel = new System.Windows.Forms.Label();
-            this.inputButtonLabel = new System.Windows.Forms.Label();
+            this.inputJoystickLabel = new System.Windows.Forms.Label();
             this.outputButtonLabel = new System.Windows.Forms.Label();
             this.inputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
             this.inputAxis = new GMKDriverNETUI.ConfigurationControls.AxisControl();
@@ -47,7 +47,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30201F));
             this.tableLayoutPanel1.Controls.Add(this.thresholdLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.inputAxisLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.inputButtonLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.inputJoystickLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.outputButtonLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.inputJoystick, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.inputAxis, 1, 1);
@@ -88,17 +88,17 @@
             this.inputAxisLabel.Text = "Input Axis";
             this.inputAxisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // inputButtonLabel
+            // inputJoystickLabel
             // 
-            this.inputButtonLabel.AutoSize = true;
-            this.inputButtonLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputButtonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputButtonLabel.Location = new System.Drawing.Point(3, 0);
-            this.inputButtonLabel.Name = "inputButtonLabel";
-            this.inputButtonLabel.Size = new System.Drawing.Size(171, 70);
-            this.inputButtonLabel.TabIndex = 0;
-            this.inputButtonLabel.Text = "Input Joystick";
-            this.inputButtonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.inputJoystickLabel.AutoSize = true;
+            this.inputJoystickLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputJoystickLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputJoystickLabel.Location = new System.Drawing.Point(3, 0);
+            this.inputJoystickLabel.Name = "inputJoystickLabel";
+            this.inputJoystickLabel.Size = new System.Drawing.Size(171, 70);
+            this.inputJoystickLabel.TabIndex = 0;
+            this.inputJoystickLabel.Text = "Input Joystick";
+            this.inputJoystickLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // outputButtonLabel
             // 
@@ -161,7 +161,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label inputAxisLabel;
-        private System.Windows.Forms.Label inputButtonLabel;
+        private System.Windows.Forms.Label inputJoystickLabel;
         private System.Windows.Forms.Label outputButtonLabel;
         private System.Windows.Forms.Label thresholdLabel;
         private JoystickControl inputJoystick;

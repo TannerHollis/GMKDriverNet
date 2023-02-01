@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GMKDriverNET;
+using System;
 using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
@@ -16,6 +17,19 @@ namespace GMKDriverNETUI.ConfigurationControls
         public Snap76Control()
         {
             InitializeComponent();
+            UpdateTextWithLanguage();
+        }
+
+        private void UpdateTextWithLanguage()
+        {
+            snap76IntensityLabel.Text = LanguageHelper.LookupPhrase("snapIntensity");
+
+            snap76Intensity.Items.Clear();
+            snap76Intensity.Items.Add(LanguageHelper.LookupPhrase("extremeTight"));
+            snap76Intensity.Items.Add(LanguageHelper.LookupPhrase("tight"));
+            snap76Intensity.Items.Add(LanguageHelper.LookupPhrase("medium"));
+            snap76Intensity.Items.Add(LanguageHelper.LookupPhrase("loose"));
+            snap76Intensity.Items.Add(LanguageHelper.LookupPhrase("veryLoose"));
         }
 
         public void LoadSnap76(bool asBool, int intensity, Delegate updateForm)

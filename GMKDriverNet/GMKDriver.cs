@@ -1,7 +1,9 @@
-﻿using LibUsbDotNet.LibUsb;
+﻿using GMKDriverNet;
+using LibUsbDotNet.LibUsb;
 using Nefarius.ViGEm.Client;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -16,6 +18,7 @@ namespace GMKDriverNET
         private const int GMK_VID = 0x483;
         private const int GMK_JOYSTICK_PID = 0x5750;
         private const int GMK_CONTROLLER_PID = 0x5740;
+        private static readonly int[] GMK_PIDS = {GMK_JOYSTICK_PID, GMK_CONTROLLER_PID};
 
         private static DeviceList _deviceList;
         private static List<Thread> _threads = new List<Thread>();
@@ -103,11 +106,21 @@ namespace GMKDriverNET
                 thread.Join();
             }
 
-            _gmkDevices.RemoveAll(device => !device.IsRunning);
-
-            _threads.RemoveAll(thread => !thread.IsAlive);
+            RemoveInactiveDevices();
 
             _run = false;
+        }
+
+        private static int GetAttachedDevicesCount(UsbContext context)
+        {
+            int attachedDevices;
+            
+            using (UsbDeviceCollection usbDevices = context.List())
+            {
+                attachedDevices = usbDevices.Count;
+            }
+
+            return attachedDevices;
         }
 
         public static void Loop()
@@ -116,7 +129,6 @@ namespace GMKDriverNET
 
             using (UsbContext context = new UsbContext())
             {
-                WriteLine("Scanning devices...");
                 List<GMKDevice> newDevices = new List<GMKDevice>();
 
                 _run = true;
@@ -129,27 +141,15 @@ namespace GMKDriverNET
                     // Inform user device was connected
                     foreach (GMKDevice device in newDevices)
                     {
-                        WriteLine("GMK: " + device.Type + " found. SN: " + device.SerialNumber);
+                        WriteLine("GMK: " + device.Type + " - SN: " + device.SerialNumber);
                     }
 
+                    int beginNumberOfDevices = GetAttachedDevicesCount(context);
 
-                    int beginNumberOfDevices;
-                    using (UsbDeviceCollection usbDevices = context.List())
+                    // Wait for device enumeration by polling, only continue if device count changes
+                    while (beginNumberOfDevices == GetAttachedDevicesCount(context) && _run)
                     {
-                        beginNumberOfDevices = usbDevices.Count;
-                    }
-
-                    int afterNumberOfDevices = beginNumberOfDevices;
-
-                    // Wait for device enumeration by polling
-                    while (beginNumberOfDevices == afterNumberOfDevices && _run)
-                    {
-                        using (UsbDeviceCollection usbDevices = context.List())
-                        {
-                            afterNumberOfDevices = usbDevices.Count;
-                            Thread.Sleep(250);
-                        }
-                        Thread.Sleep(100);
+                        Thread.Sleep(250);
                     }
                 }
                 Stop();
@@ -175,6 +175,13 @@ namespace GMKDriverNET
             return serialNumber;
         }
 
+        private static void RemoveInactiveDevices()
+        {
+            _threads.RemoveAll(thread => !thread.IsAlive);
+
+            _gmkDevices.RemoveAll(device => !device.IsRunning);
+        }
+
         private static List<GMKDevice> ScanAndStartDevices(UsbContext context)
         {
             List<GMKDevice> newDevices = new List<GMKDevice>();
@@ -184,18 +191,14 @@ namespace GMKDriverNET
                 _deviceList = DeviceList.Load();
             }
 
-            _threads.RemoveAll(thread => !thread.IsAlive);
-
-            _gmkDevices.RemoveAll(device => !device.IsRunning);
+            RemoveInactiveDevices();
 
             using (UsbDeviceCollection usbDevices = context.List())
             {
                 foreach (UsbDevice device in usbDevices)
                 {
                     // Check VID and PID
-                    bool gmkDeviceFound = device.VendorId == GMK_VID &&
-                        (device.ProductId == GMK_JOYSTICK_PID || device.ProductId == GMK_CONTROLLER_PID);
-                    if (!gmkDeviceFound)
+                    if (!(device.VendorId == GMK_VID && GMK_PIDS.Contains(device.ProductId)))
                         continue;
 
                     // Get serialNumber
@@ -207,7 +210,7 @@ namespace GMKDriverNET
                     }
 
                     // Check if device already has a driver attached
-                    gmkDeviceFound = false;
+                    bool gmkDeviceFound = false;
                     foreach (GMKDevice gmkDevice in _gmkDevices)
                     {
                         if (gmkDevice.SerialNumber == serialNumber)
@@ -258,7 +261,7 @@ namespace GMKDriverNET
                         }
 
                         GMKController controller = new GMKController(device.Clone() as UsbDevice, config, _console);
-                        _gmkDevices.Add(controller);
+                        newDevices.Add(controller);
                     }
                 }
             }    
@@ -327,7 +330,7 @@ namespace GMKDriverNET
                     {
                         if(currentWindow.Contains(config.gameAssociation) && device.Config.name != config.name && config.gameAssociation != string.Empty)
                         {
-                            device.WriteLine("Auto config found for application: " + config.gameAssociation);
+                            device.WriteLine(LanguageHelper.LookupPhrase("autoConfigFound") + config.gameAssociation);
                             device.Config = config;
                         }
                     }

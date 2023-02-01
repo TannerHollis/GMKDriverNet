@@ -45,6 +45,54 @@ namespace GMKDriverNETUI
             _device = device;
         }
 
+        private void UpdateTextWithLanguage()
+        {
+            this.Text = LanguageHelper.LookupPhrase("configEditor");
+            
+            // Config Editor Window
+            serialNumberLabel.Text = LanguageHelper.LookupPhrase("serialNumber");
+            gameAssociationLabel.Text = LanguageHelper.LookupPhrase("gameAssoc");
+            deviceTypeLabel.Text = LanguageHelper.LookupPhrase("deviceType");
+            configurationsGroupBox.Text = LanguageHelper.LookupPhrase("configs");
+            configsView.Columns[0].Text = LanguageHelper.LookupPhrase("configName");
+            configsView.Columns[1].Text = LanguageHelper.LookupPhrase("defaultConfig");
+            loadButton.Text = LanguageHelper.LookupPhrase("load");
+            saveButton.Text = LanguageHelper.LookupPhrase("save");
+            selectionHelp.Text = LanguageHelper.LookupPhrase("selectionHelp");
+            configurationSettingsGroupBox.Text = LanguageHelper.LookupPhrase("configSettings");
+            _joystickBindingsNode.Text = LanguageHelper.LookupPhrase("joystickBindings");
+            _buttonBindingsNode.Text = LanguageHelper.LookupPhrase("buttonBindings");
+            _triggerBindingsNode.Text = LanguageHelper.LookupPhrase("triggerBindings");
+
+            // Config Context menu
+            setActiveMenuItem.Text = LanguageHelper.LookupPhrase("setActive");
+            addConfigMenuItem.Text = LanguageHelper.LookupPhrase("addConfig");
+            newConfigMenuItem.Text = LanguageHelper.LookupPhrase("newConfig");
+            fromExistingMenuItem.Text = LanguageHelper.LookupPhrase("newConfigFromExisting");
+            renameMenuItem.Text = LanguageHelper.LookupPhrase("renameConfig");
+            removeMenuItem.Text = LanguageHelper.LookupPhrase("removeConfig");
+            makeDefaultMenuItem.Text = LanguageHelper.LookupPhrase("makeDefault");
+
+            // Binding context menu
+            addBindingToolStripMenuItem.Text = LanguageHelper.LookupPhrase("addBinding");
+            removeBindingToolStripMenuItem.Text = LanguageHelper.LookupPhrase("removeBinding");
+            buttonToolStripMenuItem.Text = LanguageHelper.LookupPhrase("button");
+            joystickToolStripMenuItem.Text = LanguageHelper.LookupPhrase("joystick");
+            triggerToolStripMenuItem.Text = LanguageHelper.LookupPhrase("trigger");
+            buttonAsButtonToolStripMenuItem.Text = LanguageHelper.LookupPhrase("buttonAsButton");
+            buttonAsJoystickToolStripMenuItem.Text = LanguageHelper.LookupPhrase("buttonAsJoystick");
+            buttonAsTriggerToolStripMenuItem.Text = LanguageHelper.LookupPhrase("buttonAsTrigger");
+            buttonAsKeyboardToolStripMenuItem.Text = LanguageHelper.LookupPhrase("buttonAsKeyboard");
+            joystickAsButtonToolStripMenuItem.Text = LanguageHelper.LookupPhrase("joystickAsButton");
+            joystickAsJoystickToolStripMenuItem.Text = LanguageHelper.LookupPhrase("joystickAsJoystick");
+            joystickAsTriggerToolStripMenuItem.Text = LanguageHelper.LookupPhrase("joystickAsTrigger");
+            joystickAsKeyboardToolStripMenuItem.Text = LanguageHelper.LookupPhrase("joystickAsKeyboard");
+            triggerAsButtonToolStripMenuItem.Text = LanguageHelper.LookupPhrase("triggerAsButton");
+            triggerAsJoystickToolStripMenuItem.Text = LanguageHelper.LookupPhrase("triggerAsJoystick");
+            triggerAsTriggerToolStripMenuItem.Text = LanguageHelper.LookupPhrase("triggerAsTrigger");
+            triggerAsKeyboardToolStripMenuItem.Text = LanguageHelper.LookupPhrase("triggerAsKeyboard");
+        }
+
         private void SetConfigsView()
         {
             GMKDriver.DeviceList = DeviceList.Load();
@@ -73,7 +121,7 @@ namespace GMKDriverNETUI
                 if (config.name == _configAssociation.defaultConfigFile)
                 {
                     ListViewItem.ListViewSubItem subItem = new ListViewItem.ListViewSubItem();
-                    subItem.Text = "Default";
+                    subItem.Text = LanguageHelper.LookupPhrase("default");
                     item.SubItems.Add(subItem);
                 }
 
@@ -188,9 +236,9 @@ namespace GMKDriverNETUI
             bindingsTreeView.Nodes.Clear();
 
             // Declare bindings parents
-            _buttonBindingsNode = new TreeNode("Button Bindings");
-            _joystickBindingsNode = new TreeNode("Joystick Bindings");
-            _triggerBindingsNode = new TreeNode("Trigger Bindings");
+            _buttonBindingsNode = new TreeNode(LanguageHelper.LookupPhrase("buttonBindings"));
+            _joystickBindingsNode = new TreeNode(LanguageHelper.LookupPhrase("joystickBindings"));
+            _triggerBindingsNode = new TreeNode(LanguageHelper.LookupPhrase("triggerBindings"));
 
             if(_currentConfig.type == GMKControllerType.Joystick)
             {
@@ -331,7 +379,7 @@ namespace GMKDriverNETUI
 
                 object node = bindingsTreeView.SelectedNode;
                 object type = bindingsTreeView.SelectedNode.Tag;
-                Console.WriteLine(node.ToString());
+
                 switch (type)
                 {
                     case ButtonAsButton binding:
@@ -655,6 +703,8 @@ namespace GMKDriverNETUI
             LoadWidgets();
 
             LoadConfiguration(DeviceConfig.FromFile(_configAssociation.defaultConfigFile, _device.Type));
+
+            UpdateTextWithLanguage();
 
             _initialized = true;
         }

@@ -11,6 +11,7 @@ using LibUsbDotNet;
 using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client;
 using System.Threading;
+using GMKDriverNet;
 
 namespace GMKDriverNET
 {
@@ -94,20 +95,20 @@ namespace GMKDriverNET
 
         public void Stop()
         {
-            WriteLine("Driver stopped.");
+            WriteLine(LanguageHelper.LookupPhrase("driverStopped"));
             _run = false;
             _paused = false;
         }
 
         public void Resume()
         {
-            WriteLine("Driver resumed.");
+            WriteLine(LanguageHelper.LookupPhrase("driverResumed"));
             _paused = false;
         }
 
         public void Pause()
         {
-            WriteLine("Driver paused.");
+            WriteLine(LanguageHelper.LookupPhrase("driverPaused"));
             _paused = true;
         }
 
@@ -148,15 +149,15 @@ namespace GMKDriverNET
 
                 xbox360Controller.Connect();
 
-                WriteLine("Starting driver...");
+                WriteLine(LanguageHelper.LookupPhrase("driverStarted"));
 
-                if(_type == GMKControllerType.Joystick)
+                if (_type == GMKControllerType.Joystick)
                 {
-                    WriteLine("Rotate Joystick to complete calibration.");
+                    WriteLine(LanguageHelper.LookupPhrase("rotateJoystick"));
                 }
                 else if(_type == GMKControllerType.Controller)
                 {
-                    WriteLine("Rotate Joysticks to complete calibration.");
+                    WriteLine(LanguageHelper.LookupPhrase("rotateJoysticks"));
                 }
 
                 _run = true;
@@ -197,7 +198,7 @@ namespace GMKDriverNET
                     return;
                 }
 
-                WriteLine("Device disconnected.");
+                WriteLine(LanguageHelper.LookupPhrase("deviceDisconnected"));
             }
             catch (Exception ex)
             {

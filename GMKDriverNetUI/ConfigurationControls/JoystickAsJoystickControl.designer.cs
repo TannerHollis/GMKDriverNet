@@ -34,7 +34,7 @@
             this.outputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
             this.inputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
             this.rotateLabel = new System.Windows.Forms.Label();
-            this.inputButtonLabel = new System.Windows.Forms.Label();
+            this.inputJoystickLabel = new System.Windows.Forms.Label();
             this.outputJoystickLabel = new System.Windows.Forms.Label();
             this.linearLabel = new System.Windows.Forms.Label();
             this.deadzoneLabel = new System.Windows.Forms.Label();
@@ -96,17 +96,17 @@
             this.rotateLabel.Text = "Rotate (Clockwise)";
             this.rotateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // inputButtonLabel
+            // inputJoystickLabel
             // 
-            this.inputButtonLabel.AutoSize = true;
-            this.inputButtonLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputButtonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputButtonLabel.Location = new System.Drawing.Point(3, 0);
-            this.inputButtonLabel.Name = "inputButtonLabel";
-            this.inputButtonLabel.Size = new System.Drawing.Size(171, 47);
-            this.inputButtonLabel.TabIndex = 0;
-            this.inputButtonLabel.Text = "Input Joystick";
-            this.inputButtonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.inputJoystickLabel.AutoSize = true;
+            this.inputJoystickLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputJoystickLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputJoystickLabel.Location = new System.Drawing.Point(3, 0);
+            this.inputJoystickLabel.Name = "inputJoystickLabel";
+            this.inputJoystickLabel.Size = new System.Drawing.Size(171, 47);
+            this.inputJoystickLabel.TabIndex = 0;
+            this.inputJoystickLabel.Text = "Input Joystick";
+            this.inputJoystickLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // outputJoystickLabel
             // 
@@ -165,7 +165,7 @@
             this.tableLayoutPanel1.Controls.Add(this.deadzoneLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.linearLabel, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.outputJoystickLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.inputButtonLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.inputJoystickLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.rotateLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.inputJoystick, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.outputJoystick, 1, 1);
@@ -214,7 +214,7 @@
         private JoystickControl outputJoystick;
         private JoystickControl inputJoystick;
         private System.Windows.Forms.Label rotateLabel;
-        private System.Windows.Forms.Label inputButtonLabel;
+        private System.Windows.Forms.Label inputJoystickLabel;
         private System.Windows.Forms.Label outputJoystickLabel;
         private System.Windows.Forms.Label linearLabel;
         private System.Windows.Forms.Label deadzoneLabel;

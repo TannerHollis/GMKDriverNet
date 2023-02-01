@@ -30,6 +30,8 @@ namespace GMKDriverNETUI
         {
             InitializeComponent();
 
+            UpdateTextWithLanguage();
+
             bool isStartupApp = GMKDriver.IsStartupApp();
 
             removeFromStartupAppsToolStripMenuItem.Enabled = isStartupApp;
@@ -39,8 +41,8 @@ namespace GMKDriverNETUI
 
             if (!viGEmInstalled)
             {
-                consoleBox.AppendText("Could not find ViGEm Bus Driver Installed on this computer\r\n");
-                consoleBox.AppendText("Please download the latest release from: https://github.com/ViGEm/ViGEmBus/releases\r\n");
+                consoleBox.AppendText(LanguageHelper.LookupPhrase("viGEmNotInstalled1") + "\r\n");
+                consoleBox.AppendText(LanguageHelper.LookupPhrase("viGEmNotInstalled2") + "\r\n");
             }
             else
             {
@@ -48,6 +50,98 @@ namespace GMKDriverNETUI
                 mainThread.Start(consoleBox);
                 updateDeviceListTimer.Enabled = true;
                 checkApplicationTimer.Enabled = true;
+            }
+        }
+
+        private void ChangeLanguage(object sender, EventArgs e)
+        {
+            string newLanguage = (string)((ToolStripMenuItem)sender).Tag;
+            UncheckLanguages();
+            LanguageHelper.ChangeLanguage(newLanguage);
+            UpdateTextWithLanguage();
+        }
+
+        private void UpdateTextWithLanguage()
+        {
+            this.Text = LanguageHelper.LookupPhrase("gmkDriver");
+            settingsToolStripMenuItem.Text = LanguageHelper.LookupPhrase("settings");
+            aboutToolStripMenuItem.Text = LanguageHelper.LookupPhrase("about");
+            setAsStartupAppToolStripMenuItem.Text = LanguageHelper.LookupPhrase("setAsStartupApp");
+            setAsStartupAppToolStripMenuItem.Text = LanguageHelper.LookupPhrase("removeFromStartupApps");
+            languageToolStripMenuItem.Text = LanguageHelper.LookupPhrase("language");
+            deviceGroupBox.Text = LanguageHelper.LookupPhrase("devices");
+            CheckLanguage(LanguageHelper.GetLanguage());
+        }
+
+        private void UncheckLanguages()
+        {
+            eNToolStripMenuItem.Checked = false;
+            eSToolStripMenuItem.Checked = false;
+            fRToolStripMenuItem.Checked = false;
+            aRToolStripMenuItem.Checked = false;
+            rUToolStripMenuItem.Checked = false;
+            pTToolStripMenuItem.Checked = false;
+            iDToolStripMenuItem.Checked = false;
+            zHToolStripMenuItem.Checked = false;
+            dEToolStripMenuItem.Checked = false;
+            jAToolStripMenuItem.Checked = false;
+            hIToolStripMenuItem.Checked = false;
+        }
+
+
+
+        private void CheckLanguage(string language)
+        {
+            LanguageHelper.ChangeLanguage(language);
+
+            switch(language)
+            {
+                case "EN":
+                    eNToolStripMenuItem.Checked = true;
+                    return;
+
+                case "ES":
+                    eSToolStripMenuItem.Checked = true;
+                    return;
+
+                case "FR":
+                    fRToolStripMenuItem.Checked = true;
+                    return;
+
+                case "AR":
+                    aRToolStripMenuItem.Checked = true;
+                    return;
+
+                case "RU":
+                    rUToolStripMenuItem.Checked= true;
+                    return;
+
+                case "PT":
+                    pTToolStripMenuItem.Checked = true;
+                    return;
+
+                case "ID":
+                    iDToolStripMenuItem.Checked = true;
+                    return;
+
+                case "ZH":
+                    zHToolStripMenuItem.Checked = true;
+                    return;
+
+                case "DE":
+                    dEToolStripMenuItem.Checked = true;
+                    return;
+
+                case "JA":
+                    jAToolStripMenuItem.Checked = true;
+                    return;
+
+                case "HI":
+                    hIToolStripMenuItem.Checked = true;
+                    return;
+
+                default:
+                    return;
             }
         }
 
@@ -171,5 +265,7 @@ namespace GMKDriverNETUI
             about.SetVersion(GMKDriver.Version);
             about.ShowDialog();
         }
+
+        
     }
 }

@@ -32,7 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gmkDriverLabel = new System.Windows.Forms.Label();
             this.versionLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.supportLabel = new System.Windows.Forms.Label();
             this.version = new System.Windows.Forms.Label();
             this.gmkDiscordLink = new System.Windows.Forms.LinkLabel();
             this.gmkWebsiteLabel = new System.Windows.Forms.LinkLabel();
@@ -47,7 +47,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Controls.Add(this.gmkDriverLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.versionLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.supportLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.version, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.gmkDiscordLink, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.gmkWebsiteLabel, 2, 2);
@@ -86,17 +86,17 @@
             this.versionLabel.Text = "Version:";
             this.versionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label1
+            // supportLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 42);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Support:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.supportLabel.AutoSize = true;
+            this.supportLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.supportLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supportLabel.Location = new System.Drawing.Point(3, 68);
+            this.supportLabel.Name = "supportLabel";
+            this.supportLabel.Size = new System.Drawing.Size(98, 42);
+            this.supportLabel.TabIndex = 2;
+            this.supportLabel.Text = "Support:";
+            this.supportLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // version
             // 
@@ -158,7 +158,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label gmkDriverLabel;
         private System.Windows.Forms.Label versionLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label supportLabel;
         private System.Windows.Forms.Label version;
         private System.Windows.Forms.LinkLabel gmkDiscordLink;
         private System.Windows.Forms.LinkLabel gmkWebsiteLabel;

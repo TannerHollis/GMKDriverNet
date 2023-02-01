@@ -19,6 +19,16 @@ namespace GMKDriverNETUI.ConfigurationControls
         {
             InitializeComponent();
             _updateForm = UpdateForm;
+            UpdateTextWithLanguage();
+        }
+
+        private void UpdateTextWithLanguage()
+        {
+            inputTriggerLabel.Text = LanguageHelper.LookupPhrase("inputTrigger");
+            outputJoystickLabel.Text = LanguageHelper.LookupPhrase("outputJoystick");
+            outputAxisLabel.Text = LanguageHelper.LookupPhrase("outputAxis");
+            thresholdLabel.Text = LanguageHelper.LookupPhrase("deadzone");
+            linearLabel.Text = LanguageHelper.LookupPhrase("linear");
         }
 
         public void LoadWidget(TreeNode node, DeviceConfig config)

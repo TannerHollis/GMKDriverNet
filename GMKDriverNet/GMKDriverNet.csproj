@@ -7,8 +7,8 @@
     <ProjectGuid>{03D9BFB9-9A88-40CB-BBAC-2E4FBE1CB772}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GMKDriverNet</RootNamespace>
-    <AssemblyName>GMKDriverNet</AssemblyName>
+    <RootNamespace>GMKDriverNET</RootNamespace>
+    <AssemblyName>GMKDriverNET</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -93,6 +93,8 @@
     <Compile Include="Bindings\JoystickAsKeyboard.cs" />
     <Compile Include="Bindings\JoystickAsTrigger.cs" />
     <Compile Include="Bindings\JoystickConfigs.cs" />
+    <Compile Include="KeypressEmulator.cs" />
+    <Compile Include="LanguageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\TriggerAsButton.cs" />
     <Compile Include="Bindings\TriggerAsJoystick.cs" />

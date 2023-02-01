@@ -21,6 +21,12 @@ namespace GMKDriverNETUI.ConfigurationControls
             _updateForm = UpdateForm;
         }
 
+        private void UpdateTextWithLanguage()
+        {
+            inputButtonLabel.Text = LanguageHelper.LookupPhrase("inputButton");
+            outputKeyLabel.Text = LanguageHelper.LookupPhrase("outputKey");
+        }
+
         public void LoadWidget(TreeNode node, DeviceConfig config)
         {
             _node = node;
