@@ -64,3 +64,5 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigurationControls.Snap76Control.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\wordLookups.json
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigNameWindow.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.DeleteConfigWindow.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.OverwriteConfigWindow.resources

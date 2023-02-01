@@ -102,6 +102,7 @@
     <Compile Include="Bindings\TriggerAsKeyboard.cs" />
     <Compile Include="Bindings\TriggerAsTrigger.cs" />
     <Compile Include="Bindings\TriggerConfigs.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="XInputController.cs" />
   </ItemGroup>
   <ItemGroup>

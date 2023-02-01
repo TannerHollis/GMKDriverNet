@@ -129,7 +129,7 @@ namespace GMKDriverNET
 
         public static bool ConfigNameExists(string name)
         {
-            foreach(string fileName in Directory.GetFiles(GetDeviceConfigFolder(), "*.json"))
+            foreach(string fileName in Directory.GetFiles(Settings.ConfigsFolderPath, "*.json"))
             {
                 if(Path.GetFileNameWithoutExtension(fileName) == name)
                 {
@@ -144,33 +144,29 @@ namespace GMKDriverNET
             JsonSerializerOptions options = new JsonSerializerOptions();
             options.WriteIndented= true;
 
-            if(!Directory.Exists(GetDeviceConfigFolder()))
+            if(!Directory.Exists(Settings.ConfigsFolderPath))
             {
-                Directory.CreateDirectory(GetDeviceConfigFolder());
+                Directory.CreateDirectory(Settings.ConfigsFolderPath);
             }
 
-            string fileName = Path.Combine(GetDeviceConfigFolder(), name + ".json");
+            string fileName = Path.Combine(Settings.ConfigsFolderPath, name + ".json");
 
             string jsonString = JsonSerializer.Serialize<DeviceConfig>(this, options);
             File.WriteAllText(fileName, jsonString);
         }
 
-        public static string GetDeviceConfigFolder()
-        {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GMKDriver\\Configs");
-        }
-
         public static DeviceConfig FromFile(string file, GMKControllerType type)
         {
-            string fileName = Path.Combine(GetDeviceConfigFolder(), file + ".json");
+            string fileName = Path.Combine(Settings.ConfigsFolderPath, file + ".json");
             string jsonString = File.ReadAllText(fileName);
             try
             {
                 DeviceConfig config = JsonSerializer.Deserialize<DeviceConfig>(jsonString);
                 if(config.type != type)
                 {
-                    GMKDriver.WriteLine("The config type, \"" + file + "\" does not match the device type, \"" + type + "\".");
-                    GMKDriver.WriteLine("Loading the default config instead.");
+                    string line = string.Format(LanguageHelper.LookupPhrase("defaultLoaded1"), file, type);
+                    GMKDriver.WriteLine(line);
+                    GMKDriver.WriteLine(LanguageHelper.LookupPhrase("defaultLoaded2"));
                     
                     if(type == GMKControllerType.Joystick)
                     {
@@ -190,8 +186,9 @@ namespace GMKDriverNET
             }
             catch
             {
-                GMKDriver.WriteLine("Failed to open config \"" + file + "\", loading default config instead.");
-                GMKDriver.WriteLine("Please consider removing config \"" + file + "\" from this device.");
+                string line = string.Format(LanguageHelper.LookupPhrase("failedOpenConfig1"), file);
+                GMKDriver.WriteLine(line);
+                GMKDriver.WriteLine(LanguageHelper.LookupPhrase("failedOpenConfig2"));
                 DeviceConfig config = DeviceConfig.DefaultController;
                 config.name = file;
                 return config;

@@ -14,10 +14,13 @@ namespace GMKDriverNETUI
 {
     public partial class Main : Form
     {
-        Thread mainThread;
-        bool allowClosing = false;
-        int devicesConnected = 0;
-        bool viGEmInstalled;
+        // DEBUG warning
+        public bool _isDebugging = false;
+
+        Thread _mainThread;
+        bool _allowClosing = false;
+        int _devicesConnected = 0;
+        bool _viGEmInstalled;
 
         public static void ThreadProc(object consoleOutputObject)
         {
@@ -37,17 +40,17 @@ namespace GMKDriverNETUI
             removeFromStartupAppsToolStripMenuItem.Enabled = isStartupApp;
             setAsStartupAppToolStripMenuItem.Enabled = !isStartupApp;
 
-            viGEmInstalled = GMKDriver.CheckViGEmInstalled();
+            _viGEmInstalled = GMKDriver.CheckViGEmInstalled();
 
-            if (!viGEmInstalled)
+            if (!_viGEmInstalled && !_isDebugging)
             {
                 consoleBox.AppendText(LanguageHelper.LookupPhrase("viGEmNotInstalled1") + "\r\n");
                 consoleBox.AppendText(LanguageHelper.LookupPhrase("viGEmNotInstalled2") + "\r\n");
             }
             else
             {
-                mainThread = new Thread(new ParameterizedThreadStart(ThreadProc));
-                mainThread.Start(consoleBox);
+                _mainThread = new Thread(new ParameterizedThreadStart(ThreadProc));
+                _mainThread.Start(consoleBox);
                 updateDeviceListTimer.Enabled = true;
                 checkApplicationTimer.Enabled = true;
             }
@@ -57,7 +60,7 @@ namespace GMKDriverNETUI
         {
             string newLanguage = (string)((ToolStripMenuItem)sender).Tag;
             UncheckLanguages();
-            LanguageHelper.ChangeLanguage(newLanguage);
+            Settings.SetLanguage(newLanguage);
             UpdateTextWithLanguage();
         }
 
@@ -70,7 +73,7 @@ namespace GMKDriverNETUI
             setAsStartupAppToolStripMenuItem.Text = LanguageHelper.LookupPhrase("removeFromStartupApps");
             languageToolStripMenuItem.Text = LanguageHelper.LookupPhrase("language");
             deviceGroupBox.Text = LanguageHelper.LookupPhrase("devices");
-            CheckLanguage(LanguageHelper.GetLanguage());
+            CheckLanguage(Settings.GetLanguage());
         }
 
         private void UncheckLanguages()
@@ -88,12 +91,8 @@ namespace GMKDriverNETUI
             hIToolStripMenuItem.Checked = false;
         }
 
-
-
         private void CheckLanguage(string language)
         {
-            LanguageHelper.ChangeLanguage(language);
-
             switch(language)
             {
                 case "EN":
@@ -150,7 +149,7 @@ namespace GMKDriverNETUI
             if(e.CloseReason == CloseReason.UserClosing)
             {   
                 this.Hide();
-                if(!allowClosing)
+                if(!_allowClosing)
                 {
                     trayIcon.Visible = true;
                     e.Cancel = true;
@@ -166,12 +165,12 @@ namespace GMKDriverNETUI
 
         private void Main_Exit(object sender, EventArgs e)
         {
-            if(viGEmInstalled)
+            if(_viGEmInstalled)
             {
                 GMKDriver.Stop();
-                mainThread.Join();
+                _mainThread.Join();
             }
-            allowClosing = true;
+            _allowClosing = true;
             this.Close();
         }
 
@@ -188,7 +187,7 @@ namespace GMKDriverNETUI
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
-            if(devicesConnected != GMKDriver.GMKDevices.Length)
+            if(_devicesConnected != GMKDriver.GMKDevices.Length)
             {
                 deviceView.Items.Clear();
                 foreach (GMKDevice device in GMKDriver.GMKDevices)
@@ -198,7 +197,7 @@ namespace GMKDriverNETUI
                     item.ImageIndex = 0;
                     deviceView.Items.Add(item);
                 }
-                devicesConnected = GMKDriver.GMKDevices.Length;
+                _devicesConnected = GMKDriver.GMKDevices.Length;
             }
         }
 
@@ -218,11 +217,11 @@ namespace GMKDriverNETUI
                 GMKDevice selectedDevice = (GMKDevice)deviceView.SelectedItems[0].Tag;
                 if(selectedDevice.IsPaused)
                 {
-                    deviceViewContextMenu.Items["pauseDriverMenuItem"].Text = "Resume Driver";
+                    deviceViewContextMenu.Items["pauseDriverMenuItem"].Text = LanguageHelper.LookupPhrase("resumeDriver");
                 }
                 else
                 {
-                    deviceViewContextMenu.Items["pauseDriverMenuItem"].Text = "Pause Driver";
+                    deviceViewContextMenu.Items["pauseDriverMenuItem"].Text = LanguageHelper.LookupPhrase("pauseDriver");
                 }
             }
         }

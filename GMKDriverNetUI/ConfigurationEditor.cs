@@ -230,11 +230,11 @@ namespace GMKDriverNETUI
             _joystickBindingsNode = new TreeNode(LanguageHelper.LookupPhrase("joystickBindings"));
             _triggerBindingsNode = new TreeNode(LanguageHelper.LookupPhrase("triggerBindings"));
 
-            if(_currentConfig.type == GMKControllerType.Joystick)
-            {
-                bindingsTreeView.Nodes.Add(_buttonBindingsNode);
-                bindingsTreeView.Nodes.Add(_joystickBindingsNode);
-            }
+            // Add Joystick specific binding nodes
+            bindingsTreeView.Nodes.Add(_buttonBindingsNode);
+            bindingsTreeView.Nodes.Add(_joystickBindingsNode);
+
+            // Add Controller specific binding nodes
             if (_currentConfig.type == GMKControllerType.Controller)
             {
                 bindingsTreeView.Nodes.Add(_triggerBindingsNode);
@@ -490,8 +490,9 @@ namespace GMKDriverNETUI
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to overwrite configuration?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            OverwriteConfigWindow overwriteWindow = new OverwriteConfigWindow();
+            overwriteWindow.ShowDialog();
+            if (overwriteWindow.DialogResult == DialogResult.Yes)
             {
                 _currentConfig.ToFile();
                 if(_currentConfig.name == _device.Config.name)
@@ -548,16 +549,17 @@ namespace GMKDriverNETUI
             {
                 DeviceConfig config = (DeviceConfig)configsView.SelectedItems[0].Tag;
 
-                DialogResult result = MessageBox.Show("Delete this from the hard drive?", "Remove Configuration", MessageBoxButtons.YesNoCancel);
-
+                DeleteConfigWindow deleteConfigWindow = new DeleteConfigWindow();
+                deleteConfigWindow.ShowDialog();
+                
                 // If user selected cancel, return
-                if(result == DialogResult.Cancel)
+                if(deleteConfigWindow.DialogResult == DialogResult.Cancel)
                 {
                     return;
                 }
 
                 // Remove confiugration
-                GMKDriver.DeviceList.RemoveConfiguration(_device.SerialNumber, config, result == DialogResult.Yes);
+                GMKDriver.DeviceList.RemoveConfiguration(_device.SerialNumber, config, deleteConfigWindow.DialogResult == DialogResult.Yes);
                 
                 // Reset configs view
                 SetConfigsView();
@@ -575,7 +577,7 @@ namespace GMKDriverNETUI
         private void fromExistingMenuItem_Click(object sender, EventArgs e)
         {
             // Initialize the open folder directory to the default path
-            openConfigFileDialog.InitialDirectory = DeviceConfig.GetDeviceConfigFolder();
+            openConfigFileDialog.InitialDirectory = Settings.ConfigsFolderPath;
             DialogResult result = openConfigFileDialog.ShowDialog();
             
             // If file was selected, try opening file.
@@ -695,7 +697,7 @@ namespace GMKDriverNETUI
 
         private void gameAssociationName_MouseHover(object sender, EventArgs e)
         {
-            gameAssociationToolTip.SetToolTip(gameAssociationName, "Enter a basic application name to auto-switch to this configuration whenever the application is active. (e.g. \"Fortnite\" or \"Rocket League\")");
+            gameAssociationToolTip.SetToolTip(gameAssociationName, LanguageHelper.LookupPhrase("gameAssocTooltip"));
         }
 
         private void configurationEditor_Load(object sender, EventArgs e)

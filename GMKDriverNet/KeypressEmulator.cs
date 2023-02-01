@@ -10,21 +10,6 @@ namespace GMKDriverNET
     
     public class KeypressEmulator
     {
-        private static List<INPUT> _currentKeys = new List<INPUT>();
-
-        private static int FindKey(ScanCodeShort keyCode)
-        {
-            for(int i = 0; i < _currentKeys.Count(); i++)
-            {
-                if(keyCode == _currentKeys[i].U.ki.wScan)
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
         public static void KeyUp(ScanCodeShort keyCode)
         {
             INPUT[] Inputs = new INPUT[1];
