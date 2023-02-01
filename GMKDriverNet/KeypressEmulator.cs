@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GMKDriverNet
+namespace GMKDriverNET
 {
     
     public class KeypressEmulator
@@ -37,7 +37,7 @@ namespace GMKDriverNet
             SendInput(1, Inputs, INPUT.Size);
         }
 
-        public void KeyDown(ScanCodeShort keyCode)
+        public static void KeyDown(ScanCodeShort keyCode)
         {
             INPUT[] Inputs = new INPUT[1];
             INPUT Input = new INPUT();

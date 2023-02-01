@@ -1,5 +1,4 @@
-﻿using GMKDriverNet;
-using LibUsbDotNet.LibUsb;
+﻿using LibUsbDotNet.LibUsb;
 using Nefarius.ViGEm.Client;
 using System;
 using System.Collections.Generic;

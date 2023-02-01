@@ -204,23 +204,23 @@ namespace GMKDriverNET
             }
 
             // ButtonAsKeyboard
-            //foreach(ButtonAsKeyboard asKeyboard in config.buttons.asKeyboards)
-            //{
-            //    bool state = GetButton(asKeyboard.input);
-            //    if(state)
-            //    {
-            //        KeyDown(asKeyboard.key);
-            //        asKeyboard.IsPressed = true;
-            //    }
-            //    if(!state && asKeyboard.IsPressed)
-            //    {
-            //        KeyUp(asKeyboard.key);
-            //        asKeyboard.IsPressed = false;
-            //    }
-            //}
+            foreach (ButtonAsKeyboard asKeyboard in config.buttons.asKeyboards)
+            {
+                bool state = GetButton(asKeyboard.input);
+                if (state)
+                {
+                    KeypressEmulator.KeyDown((KeypressEmulator.ScanCodeShort)0x41);
+                    asKeyboard.IsPressed = true;
+                }
+                if (!state && asKeyboard.IsPressed)
+                {
+                    KeypressEmulator.KeyUp((KeypressEmulator.ScanCodeShort)0x41);
+                    asKeyboard.IsPressed = false;
+                }
+            }
 
             // JoystickAsButton
-            foreach(JoystickAsButton asButton in config.joysticks.asButtons)
+            foreach (JoystickAsButton asButton in config.joysticks.asButtons)
             {
                 float value = GetPercentageInt16(GetJoystick(asButton.input, asButton.inputAxis));
 
@@ -242,7 +242,7 @@ namespace GMKDriverNET
                 double rotateRadians = Deg2Rad(asJoystick.rotate);
 
                 // Apply rotation to input
-                angle += rotateRadians;
+                angle -= rotateRadians;
 
                 // Adjust value between -180 and 180
                 angle = (angle + 3 * Math.PI) % (2 * Math.PI) - Math.PI;

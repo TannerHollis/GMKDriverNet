@@ -53,7 +53,6 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.configurationEditor.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.Main.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.Properties.Resources.resources
-C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigName.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.csproj.GenerateResource.cache
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.csproj.CoreCompileInputs.cache
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.exe.manifest
@@ -63,5 +62,5 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.pdb
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.AboutWindow.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigurationControls.Snap76Control.resources
-C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\wordLookups.csv
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\wordLookups.json
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigNameWindow.resources

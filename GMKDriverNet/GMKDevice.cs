@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Configuration;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using LibUsbDotNet;
 using LibUsbDotNet.LibUsb;
 using LibUsbDotNet.Main;
-using LibUsbDotNet;
-using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client;
+using Nefarius.ViGEm.Client.Targets;
+using System;
 using System.Threading;
-using GMKDriverNet;
+using System.Windows.Forms;
 
 namespace GMKDriverNET
 {
