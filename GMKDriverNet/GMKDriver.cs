@@ -130,18 +130,12 @@ namespace GMKDriverNET
             {
                 List<GMKDevice> newDevices = new List<GMKDevice>();
 
-                WriteLine(LanguageHelper.LookupPhrase("scanning"));
-
                 _run = true;
 
                 while (_run)
                 {
                     // Scan for devices and start their respective driver
                     newDevices = ScanAndStartDevices(context);
-
-                    // If no devices connected, inform user
-                    if (newDevices.Count() == 0)
-                        WriteLine(LanguageHelper.LookupPhrase("noDevicesDetected"));
 
                     // Inform user device was connected
                     foreach (GMKDevice device in newDevices)
@@ -154,12 +148,9 @@ namespace GMKDriverNET
                     // Wait for device enumeration by polling, only continue if device count changes
                     while (beginNumberOfDevices == GetAttachedDevicesCount(context) && _run)
                     {
-                        Thread.Sleep(750);
+                        Thread.Sleep(250);
                     }
-
-                    WriteLine(LanguageHelper.LookupPhrase("rescanning"));
                 }
-
                 Stop();
                 newDevices.Clear();
             }
