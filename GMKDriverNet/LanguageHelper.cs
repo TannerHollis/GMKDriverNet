@@ -35,8 +35,6 @@ namespace GMKDriverNET
     {
         public List<WordLookup> Lookups { get; set; }
 
-        public string Language { get; set; }
-
         public WordLookups()
         {
             Lookups = new List<WordLookup>();
@@ -72,12 +70,6 @@ namespace GMKDriverNET
             }
         }
 
-        public static void ChangeLanguage(string language)
-        {
-            _lookups.Language = language;
-            _lookups.ToFile();
-        }
-
         public static string LookupPhrase(string shortHand)
         {
             Load();
@@ -85,7 +77,7 @@ namespace GMKDriverNET
             {
                 if(shortHand == lookup.shortHand)
                 {
-                    switch(_lookups.Language)
+                    switch(Settings.GetLanguage())
                     {
                         case "EN":
                             return lookup.EN;
@@ -129,11 +121,6 @@ namespace GMKDriverNET
                 }
             }
             return "N/A";
-        }
-
-        public static string GetLanguage()
-        {
-            return _lookups.Language;
         }
     }
 }

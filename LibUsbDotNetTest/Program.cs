@@ -1,17 +1,8 @@
-﻿using LibUsbDotNet.LibUsb;
-using LibUsbDotNet.Main;
-using LibUsbDotNet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using GMKDriverNET;
-using System.Runtime.InteropServices;
-using System.IO;
-using GMKDriverNet;
+﻿using GMKDriverNET;
 using Microsoft.VisualBasic.FileIO;
+using System;
+using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace LibUsbDotNetTest
 {
@@ -20,12 +11,34 @@ namespace LibUsbDotNetTest
         public static void Main(string[] args)
         {
             CreateLanguageLookupFile();
+
+            foreach(char letter in "Tanner")
+            {
+                Keys key = ConvertCharToVirtualKey(letter);
+                Console.WriteLine((int)letter);
+            }
+            Console.ReadLine();
         }
+
+        public static Keys ConvertCharToVirtualKey(char ch)
+        {
+            short vkey = VkKeyScan(ch);
+            Keys retval = (Keys)(vkey & 0xff);
+            int modifiers = vkey >> 8;
+
+            if ((modifiers & 1) != 0) retval |= Keys.Shift;
+            if ((modifiers & 2) != 0) retval |= Keys.Control;
+            if ((modifiers & 4) != 0) retval |= Keys.Alt;
+
+            return retval;
+        }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern short VkKeyScan(char ch);
 
         private static void CreateLanguageLookupFile()
         {
             WordLookups lookups = new WordLookups();
-            lookups.Language = "EN";
 
             using (TextFieldParser parser = new TextFieldParser("wordLookups.csv"))
             {
