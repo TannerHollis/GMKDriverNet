@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace GMKDriverNET
 {
+    
+
     public class DeviceList
     {
         public List<DeviceConfigCollection> associations { get; set; }
@@ -19,16 +21,26 @@ namespace GMKDriverNET
             associations = new List<DeviceConfigCollection>();
         }
 
+        public static string GetDeviceListFileName()
+        {
+            return Path.Combine(GetGMKDriverFolder(), "deviceList.json");
+        }
+
+        public static string GetGMKDriverFolder()
+        {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GMKDriver");
+        }
+
         public static DeviceList Load()
         {
             // If GMKDriver folder doesn't exist, make dir
-            if(!Directory.Exists(Settings.GMKDriverFolderPath))
+            if(!Directory.Exists(GetGMKDriverFolder()))
             {
-                Directory.CreateDirectory(Settings.GMKDriverFolderPath);
+                Directory.CreateDirectory(GetGMKDriverFolder());
             }
 
             // Get device List file, if it doesn't exist, create one
-            string fileName = Settings.DeviceListFileName;
+            string fileName = GetDeviceListFileName();
             if (!File.Exists(fileName))
             {
                 DeviceList newDeviceList = new DeviceList();
@@ -57,7 +69,7 @@ namespace GMKDriverNET
             options.WriteIndented = true;
 
             string jsonString = JsonSerializer.Serialize<DeviceList>(this, options);
-            File.WriteAllText(Settings.DeviceListFileName, jsonString);
+            File.WriteAllText(GetDeviceListFileName(), jsonString);
             _fileChanged = true;
         }
 
@@ -131,7 +143,7 @@ namespace GMKDriverNET
             
             if(delete)
             {
-                string fileName = Path.Combine(Settings.ConfigsFolderPath, config.name + ".json");
+                string fileName = Path.Combine(DeviceConfig.GetDeviceConfigFolder(), config.name + ".json");
                 File.Delete(fileName);
             }
             Save();
