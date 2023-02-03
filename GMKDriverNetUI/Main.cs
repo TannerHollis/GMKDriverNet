@@ -162,6 +162,8 @@ namespace GMKDriverNETUI
         {
             if (_viGEmInstalled)
             {
+                checkApplicationTimer.Enabled = false;
+                updateDeviceListTimer.Enabled = false;
                 GMKDriver.Stop();
                 _mainThread.Join();
             }

@@ -22,7 +22,7 @@ namespace GMKDriverNET.Bindings
             this.key = new List<byte>();
         }
 
-        public TriggerAsKeyboard(TriggerIO input, byte[] key, float deadzone)
+        public TriggerAsKeyboard(TriggerIO input, List<byte> key, float deadzone)
         {
             this.input = input;
             this.key = new List<byte> { key[0], key[1], key[2] };

@@ -16,7 +16,7 @@ namespace GMKDriverNET.Bindings
             return input.ToString() + " -> " + LanguageHelper.LookupPhrase("keyPress");
         }
 
-        public ButtonAsKeyboard(ButtonIO input, byte[] key)
+        public ButtonAsKeyboard(ButtonIO input, List<byte> key)
         {
             this.input = input;
             this.key = new List<byte> { key[0], key[1], key[2] };

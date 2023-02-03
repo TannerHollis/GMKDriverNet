@@ -2,6 +2,7 @@
 using GMKDriverNET.Bindings;
 using GMKDriverNETUI.ConfigurationControls;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -618,7 +619,7 @@ namespace GMKDriverNETUI
 
         private void buttonAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, new byte[] { 0x00, 0x00, 0x00 }));
+            _currentConfig.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, new List<byte> { 0x00, 0x00, 0x00 }));
             LoadConfiguration(_currentConfig);
         }
 
@@ -642,7 +643,7 @@ namespace GMKDriverNETUI
 
         private void joystickAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, Axis.XPositive, new byte[] { 0x00, 0x00, 0x00 }, 0.0f, 0.2f));
+            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, Axis.XPositive, new List<byte> { 0x00, 0x00, 0x00 }, 0.0f, 0.2f));
             LoadConfiguration(_currentConfig);
         }
 
@@ -666,7 +667,7 @@ namespace GMKDriverNETUI
 
         private void triggerAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.triggers.asKeyboards.Add(new TriggerAsKeyboard(TriggerIO.LeftTrigger, new byte[] { 0x00, 0x00, 0x00 }, 0.2f));
+            _currentConfig.triggers.asKeyboards.Add(new TriggerAsKeyboard(TriggerIO.LeftTrigger, new List<byte> { 0x00, 0x00, 0x00 }, 0.2f));
             LoadConfiguration(_currentConfig);
         }
 

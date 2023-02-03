@@ -198,7 +198,7 @@ namespace GMKDriverNET
             get
             {
                 DeviceConfig c = new DeviceConfig("Default_Controller_v1.0", GMKControllerType.Controller);
-
+                
                 // Buttons
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.B, ButtonIO.B));
@@ -235,7 +235,7 @@ namespace GMKDriverNET
             get
             {
                 DeviceConfig c = new DeviceConfig("Default_Joystick_v1.0", GMKControllerType.Joystick);
-
+                
                 // Buttons
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
 

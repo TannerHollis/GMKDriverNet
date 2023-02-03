@@ -24,7 +24,7 @@ namespace GMKDriverNET.Bindings
             this.key = new List<byte>();
         }
 
-        public JoystickAsKeyboard(JoystickIO input, Axis inputAxis, byte[] key, float rotate, float deadzone)
+        public JoystickAsKeyboard(JoystickIO input, Axis inputAxis, List<byte> key, float rotate, float deadzone)
         {
             this.input = input;
             this.inputAxis = inputAxis;
