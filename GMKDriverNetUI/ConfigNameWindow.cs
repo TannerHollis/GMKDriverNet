@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using GMKDriverNET;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GMKDriverNETUI
 {
@@ -21,6 +14,15 @@ namespace GMKDriverNETUI
         public ConfigNameWindow()
         {
             InitializeComponent();
+            UpdateTextWithLanguage();
+        }
+
+        private void UpdateTextWithLanguage()
+        {
+            this.Text = LanguageHelper.LookupPhrase("configName");
+            nameLabel.Text = LanguageHelper.LookupPhrase("configName");
+            okButton.Text = LanguageHelper.LookupPhrase("ok");
+            makeDefaultLabel.Text = LanguageHelper.LookupPhrase("makeDefault");
         }
 
         public void LoadWindow(string name, bool makeDefault)
@@ -39,13 +41,10 @@ namespace GMKDriverNETUI
             _name = name.Text;
             _makeDefault = makeDefault.Checked;
 
-            if(GMKDriverNET.DeviceConfig.ConfigNameExists(_name))
+            if (DeviceConfig.ConfigNameExists(_name))
             {
-                DialogResult result = MessageBox.Show("There is already a configuration named: \"" + _name + "\", overwrite this configuration?", "Overwrite this configuration?", MessageBoxButtons.YesNo);   
-                if(result == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                ErrorWindow errorWindow = new ErrorWindow(LanguageHelper.LookupPhrase("configNameAlreadyFound"));
+                errorWindow.ShowDialog();
             }
             else
             {

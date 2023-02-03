@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -9,7 +8,7 @@ namespace GMKDriverNETUI.ConfigurationControls
     {
         private JoystickAsButton _joystickAsButton;
         private TreeNode _node;
-        
+
         private bool _initialized;
 
         private delegate void OnUpdateForm();
@@ -27,7 +26,8 @@ namespace GMKDriverNETUI.ConfigurationControls
             inputJoystickLabel.Text = LanguageHelper.LookupPhrase("inputJoystick");
             inputAxisLabel.Text = LanguageHelper.LookupPhrase("inputAxis");
             outputButtonLabel.Text = LanguageHelper.LookupPhrase("outputButton");
-            thresholdLabel.Text = LanguageHelper.LookupPhrase("deadzone");
+            rotateLabel.Text = LanguageHelper.LookupPhrase("rotate");
+            deadzoneLabel.Text = LanguageHelper.LookupPhrase("deadzone");
         }
 
         public void LoadWidget(TreeNode node, DeviceConfig config)
@@ -39,8 +39,9 @@ namespace GMKDriverNETUI.ConfigurationControls
             inputJoystick.LoadJoystick(_joystickAsButton.input, config.type, false, _updateForm);
             inputAxis.LoadAxis(_joystickAsButton.inputAxis, _updateForm);
             outputButton.LoadButton(_joystickAsButton.output, config.type, true, _updateForm);
+            rotate.LoadRotate(_joystickAsButton.rotate, _updateForm);
             deadzone.LoadDeadzone(_joystickAsButton.deadzone, _updateForm);
-            
+
             this.Visible = true;
             _initialized = true;
         }
@@ -52,6 +53,7 @@ namespace GMKDriverNETUI.ConfigurationControls
                 _joystickAsButton.input = inputJoystick.Joystick;
                 _joystickAsButton.inputAxis = inputAxis.Axis;
                 _joystickAsButton.output = outputButton.Button;
+                _joystickAsButton.rotate = rotate.Rotate;
                 _joystickAsButton.deadzone = deadzone.Deadzone;
 
                 _node.Text = _joystickAsButton.ToString();

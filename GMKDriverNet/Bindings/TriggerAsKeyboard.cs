@@ -1,21 +1,32 @@
-﻿namespace GMKDriverNET.Bindings
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace GMKDriverNET.Bindings
 {
     public class TriggerAsKeyboard
     {
         public TriggerIO input { get; set; }
-        public byte key { get; set; }
+        public List<byte> key { get; set; }
         public float deadzone { get; set; }
+
+        [JsonIgnore]
+        public bool IsPressed;
 
         public override string ToString()
         {
-            return input.ToString() + " -> " + (char)key;
+            return input.ToString() + " -> " + LanguageHelper.LookupPhrase("keyPress");
         }
 
-        public TriggerAsKeyboard(TriggerIO input, byte key, float threshold)
+        public TriggerAsKeyboard()
+        {
+            this.key = new List<byte>();
+        }
+
+        public TriggerAsKeyboard(TriggerIO input, byte[] key, float deadzone)
         {
             this.input = input;
-            this.key = key;
-            this.deadzone = threshold;
+            this.key = new List<byte> { key[0], key[1], key[2] };
+            this.deadzone = deadzone;
         }
     }
 }

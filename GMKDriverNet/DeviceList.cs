@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace GMKDriverNET
 {
@@ -22,7 +18,7 @@ namespace GMKDriverNET
         public static DeviceList Load()
         {
             // If GMKDriver folder doesn't exist, make dir
-            if(!Directory.Exists(Settings.GMKDriverFolderPath))
+            if (!Directory.Exists(Settings.GMKDriverFolderPath))
             {
                 Directory.CreateDirectory(Settings.GMKDriverFolderPath);
             }
@@ -41,9 +37,9 @@ namespace GMKDriverNET
             DeviceList deviceList = JsonSerializer.Deserialize<DeviceList>(jsonString);
 
             // Load each config once, saves time in future. However each configuration will be reloaded from files each time this function
-            foreach(DeviceConfigCollection configAssociations in deviceList.associations)
+            foreach (DeviceConfigCollection configAssociations in deviceList.associations)
             {
-                foreach(string configFile in configAssociations.configFiles)
+                foreach (string configFile in configAssociations.configFiles)
                 {
                     configAssociations.Configs.Add(DeviceConfig.FromFile(configFile, configAssociations.type));
                 }
@@ -63,15 +59,15 @@ namespace GMKDriverNET
 
         public DeviceConfigCollection LookupSerialNumber(string serialNumber)
         {
-            if(_fileChanged)
+            if (_fileChanged)
             {
-                Load();
+                associations = Load().associations;
                 _fileChanged = false;
             }
 
-            foreach(DeviceConfigCollection association in associations)
+            foreach (DeviceConfigCollection association in associations)
             {
-                if(association.serialNumber == serialNumber)
+                if (association.serialNumber == serialNumber)
                 {
                     return association;
                 }
@@ -101,8 +97,8 @@ namespace GMKDriverNET
 
             config.ToFile();
             configAssociation.configFiles.Add(file);
-            
-            if(configAssociation.defaultConfigFile == null || setDefault)
+
+            if (configAssociation.defaultConfigFile == null || setDefault)
             {
                 configAssociation.defaultConfigFile = file;
             }
@@ -117,19 +113,19 @@ namespace GMKDriverNET
             {
                 if (configFile == config.name)
                 {
-                    return false;
+                    return true;
                 }
             }
 
-            return true;
+            return false;
         }
 
         public void RemoveConfiguration(string serialNumber, DeviceConfig config, bool delete)
         {
             DeviceConfigCollection configAssociation = LookupSerialNumber(serialNumber);
             configAssociation.configFiles.Remove(config.name);
-            
-            if(delete)
+
+            if (delete)
             {
                 string fileName = Path.Combine(Settings.ConfigsFolderPath, config.name + ".json");
                 File.Delete(fileName);

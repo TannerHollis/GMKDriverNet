@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -9,7 +8,7 @@ namespace GMKDriverNETUI.ConfigurationControls
     {
         private ButtonAsJoystick _buttonAsJoystick;
         private TreeNode _node;
-        
+
         private bool _initialized;
 
         private delegate void OnUpdateForm();
@@ -38,7 +37,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             inputButton.LoadButton(_buttonAsJoystick.input, config.type, false, _updateForm);
             outputJoystick.LoadJoystick(_buttonAsJoystick.output, config.type, true, _updateForm);
             outputAxis.LoadAxis(_buttonAsJoystick.outputAxis, _updateForm);
-            
+
             this.Visible = true;
             _initialized = true;
         }

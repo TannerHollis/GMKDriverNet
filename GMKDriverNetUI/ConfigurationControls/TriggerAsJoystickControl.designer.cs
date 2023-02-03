@@ -33,7 +33,7 @@
             this.outputAxisLabel = new System.Windows.Forms.Label();
             this.outputJoystickLabel = new System.Windows.Forms.Label();
             this.inputTriggerLabel = new System.Windows.Forms.Label();
-            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.deadzoneLabel = new System.Windows.Forms.Label();
             this.inputTrigger = new GMKDriverNETUI.ConfigurationControls.TriggerControl();
             this.outputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
             this.outputAxis = new GMKDriverNETUI.ConfigurationControls.AxisControl();
@@ -51,7 +51,7 @@
             this.tableLayoutPanel1.Controls.Add(this.outputAxisLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.outputJoystickLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.inputTriggerLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.thresholdLabel, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.deadzoneLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.inputTrigger, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.outputJoystick, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.outputAxis, 1, 2);
@@ -117,17 +117,17 @@
             this.inputTriggerLabel.Text = "Input Trigger";
             this.inputTriggerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // thresholdLabel
+            // deadzoneLabel
             // 
-            this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thresholdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thresholdLabel.Location = new System.Drawing.Point(3, 168);
-            this.thresholdLabel.Name = "thresholdLabel";
-            this.thresholdLabel.Size = new System.Drawing.Size(171, 56);
-            this.thresholdLabel.TabIndex = 10;
-            this.thresholdLabel.Text = "Deadzone";
-            this.thresholdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deadzoneLabel.AutoSize = true;
+            this.deadzoneLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deadzoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deadzoneLabel.Location = new System.Drawing.Point(3, 168);
+            this.deadzoneLabel.Name = "deadzoneLabel";
+            this.deadzoneLabel.Size = new System.Drawing.Size(171, 56);
+            this.deadzoneLabel.TabIndex = 10;
+            this.deadzoneLabel.Text = "Deadzone";
+            this.deadzoneLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // inputTrigger
             // 
@@ -187,7 +187,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label outputJoystickLabel;
         private System.Windows.Forms.Label inputTriggerLabel;
-        private System.Windows.Forms.Label thresholdLabel;
+        private System.Windows.Forms.Label deadzoneLabel;
         private System.Windows.Forms.Label outputAxisLabel;
         private System.Windows.Forms.Label linearLabel;
         private TriggerControl inputTrigger;

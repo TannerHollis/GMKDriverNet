@@ -33,7 +33,7 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.makeDefaultLabel = new System.Windows.Forms.Label();
             this.makeDefault = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +46,7 @@
             this.tableLayoutPanel1.Controls.Add(this.nameLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.name, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.okButton, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.makeDefaultLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.makeDefault, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -92,17 +92,17 @@
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
-            // label1
+            // makeDefaultLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 30);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Make Default";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.makeDefaultLabel.AutoSize = true;
+            this.makeDefaultLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.makeDefaultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.makeDefaultLabel.Location = new System.Drawing.Point(3, 47);
+            this.makeDefaultLabel.Name = "makeDefaultLabel";
+            this.makeDefaultLabel.Size = new System.Drawing.Size(127, 30);
+            this.makeDefaultLabel.TabIndex = 3;
+            this.makeDefaultLabel.Text = "Make Default";
+            this.makeDefaultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // makeDefault
             // 
@@ -114,7 +114,7 @@
             this.makeDefault.TabIndex = 4;
             this.makeDefault.UseVisualStyleBackColor = true;
             // 
-            // ConfigName
+            // ConfigNameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -123,7 +123,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ConfigName";
+            this.Name = "ConfigNameWindow";
             this.Text = "Config Name";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -137,7 +137,7 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label makeDefaultLabel;
         private System.Windows.Forms.CheckBox makeDefault;
     }
 }

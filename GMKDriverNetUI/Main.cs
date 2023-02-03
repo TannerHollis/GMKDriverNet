@@ -1,13 +1,7 @@
 ﻿using GMKDriverNET;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GMKDriverNETUI
@@ -73,6 +67,7 @@ namespace GMKDriverNETUI
             setAsStartupAppToolStripMenuItem.Text = LanguageHelper.LookupPhrase("removeFromStartupApps");
             languageToolStripMenuItem.Text = LanguageHelper.LookupPhrase("language");
             deviceGroupBox.Text = LanguageHelper.LookupPhrase("devices");
+            editBindingsMenuItem.Text = LanguageHelper.LookupPhrase("editBindings");
             CheckLanguage(Settings.GetLanguage());
         }
 
@@ -93,7 +88,7 @@ namespace GMKDriverNETUI
 
         private void CheckLanguage(string language)
         {
-            switch(language)
+            switch (language)
             {
                 case "EN":
                     eNToolStripMenuItem.Checked = true;
@@ -112,7 +107,7 @@ namespace GMKDriverNETUI
                     return;
 
                 case "RU":
-                    rUToolStripMenuItem.Checked= true;
+                    rUToolStripMenuItem.Checked = true;
                     return;
 
                 case "PT":
@@ -146,10 +141,10 @@ namespace GMKDriverNETUI
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(e.CloseReason == CloseReason.UserClosing)
-            {   
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
                 this.Hide();
-                if(!_allowClosing)
+                if (!_allowClosing)
                 {
                     trayIcon.Visible = true;
                     e.Cancel = true;
@@ -165,7 +160,7 @@ namespace GMKDriverNETUI
 
         private void Main_Exit(object sender, EventArgs e)
         {
-            if(_viGEmInstalled)
+            if (_viGEmInstalled)
             {
                 GMKDriver.Stop();
                 _mainThread.Join();
@@ -187,7 +182,7 @@ namespace GMKDriverNETUI
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
-            if(_devicesConnected != GMKDriver.GMKDevices.Length)
+            if (_devicesConnected != GMKDriver.GMKDevices.Length)
             {
                 deviceView.Items.Clear();
                 foreach (GMKDevice device in GMKDriver.GMKDevices)
@@ -202,7 +197,7 @@ namespace GMKDriverNETUI
         }
 
         private void editBindingsToolStripMenuItem_Click(object sender, EventArgs e)
-        { 
+        {
             GMKDevice selectedDevice = (GMKDevice)deviceView.SelectedItems[0].Tag;
             configurationEditor editor = new configurationEditor(selectedDevice);
             editor.ShowDialog();
@@ -212,10 +207,10 @@ namespace GMKDriverNETUI
         {
             e.Cancel = deviceView.SelectedItems.Count == 0;
 
-            if(deviceView.SelectedItems.Count > 0)
+            if (deviceView.SelectedItems.Count > 0)
             {
                 GMKDevice selectedDevice = (GMKDevice)deviceView.SelectedItems[0].Tag;
-                if(selectedDevice.IsPaused)
+                if (selectedDevice.IsPaused)
                 {
                     deviceViewContextMenu.Items["pauseDriverMenuItem"].Text = LanguageHelper.LookupPhrase("resumeDriver");
                 }
@@ -229,7 +224,7 @@ namespace GMKDriverNETUI
         private void pauseDriverMenuItem_Click(object sender, EventArgs e)
         {
             GMKDevice selectedDevice = (GMKDevice)deviceView.SelectedItems[0].Tag;
-            if(selectedDevice.IsPaused)
+            if (selectedDevice.IsPaused)
             {
                 selectedDevice.Resume();
             }
@@ -265,6 +260,6 @@ namespace GMKDriverNETUI
             about.ShowDialog();
         }
 
-        
+
     }
 }

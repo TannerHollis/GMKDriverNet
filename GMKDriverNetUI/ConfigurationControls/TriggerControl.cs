@@ -6,7 +6,7 @@ namespace GMKDriverNETUI.ConfigurationControls
 {
     public partial class TriggerControl : UserControl
     {
-        private string[] joystickInputTriggers = {  };
+        private string[] joystickInputTriggers = { };
         private string[] controllerInputTriggers = { "Left Joystick", "Right Joystick" };
         private string[] outputTriggers = { "Left Joystick", "Right Joystick" };
 
@@ -42,13 +42,13 @@ namespace GMKDriverNETUI.ConfigurationControls
             _trigger = asTrigger;
             trigger.SelectedIndex = (int)asTrigger;
             _updateForm = updateForm;
-            
+
             _isInitialized = true;
         }
 
         private void button_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_isInitialized)
+            if (_isInitialized)
             {
                 _trigger = (TriggerIO)trigger.SelectedIndex;
                 _updateForm.DynamicInvoke();

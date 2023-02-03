@@ -1,7 +1,7 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -26,7 +26,7 @@ namespace GMKDriverNETUI.ConfigurationControls
         {
             inputTriggerLabel.Text = LanguageHelper.LookupPhrase("inputTrigger");
             outputKeyLabel.Text = LanguageHelper.LookupPhrase("outputKey");
-            thresholdLabel.Text = LanguageHelper.LookupPhrase("deadzone");
+            deadzoneLabel.Text = LanguageHelper.LookupPhrase("deadzone");
         }
 
         public void LoadWidget(TreeNode node, DeviceConfig config)
@@ -36,7 +36,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             _initialized = false;
 
             inputTrigger.LoadTrigger(_triggerAsKeyboard.input, config.type, false, _updateForm);
-            key.LoadKey(_triggerAsKeyboard.key, _updateForm);
+            key.LoadKey(_triggerAsKeyboard.key.ToArray(), _updateForm);
             deadzone.LoadDeadzone(_triggerAsKeyboard.deadzone, _updateForm);
 
             this.Visible = true;
@@ -48,7 +48,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             if (_initialized)
             {
                 _triggerAsKeyboard.input = inputTrigger.Trigger;
-                _triggerAsKeyboard.key = key.Key;
+                _triggerAsKeyboard.key = key.Key.ToList<byte>();
                 _triggerAsKeyboard.deadzone = deadzone.Deadzone;
 
                 _node.Text = _triggerAsKeyboard.ToString();

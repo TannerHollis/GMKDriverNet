@@ -42,13 +42,13 @@ namespace GMKDriverNETUI.ConfigurationControls
             _button = asButton;
             button.SelectedIndex = (int)asButton;
             _updateForm = updateForm;
-            
+
             _isInitialized = true;
         }
 
         private void button_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_isInitialized)
+            if (_isInitialized)
             {
                 _button = (ButtonIO)button.SelectedIndex;
                 _updateForm.DynamicInvoke();

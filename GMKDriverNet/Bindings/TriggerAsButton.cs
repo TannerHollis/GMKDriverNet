@@ -11,11 +11,11 @@
             return input.ToString() + " -> " + output.ToString();
         }
 
-        public TriggerAsButton(TriggerIO input, ButtonIO output, float threshold)
+        public TriggerAsButton(TriggerIO input, ButtonIO output, float deadzone)
         {
             this.input = input;
             this.output = output;
-            this.deadzone = threshold;
+            this.deadzone = deadzone;
         }
     }
 }

@@ -2,7 +2,6 @@
 using GMKDriverNET.Bindings;
 using GMKDriverNETUI.ConfigurationControls;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -47,7 +46,7 @@ namespace GMKDriverNETUI
         private void UpdateTextWithLanguage()
         {
             this.Text = LanguageHelper.LookupPhrase("configEditor");
-            
+
             // Config Editor Window
             serialNumberLabel.Text = LanguageHelper.LookupPhrase("serialNumber");
             gameAssociationLabel.Text = LanguageHelper.LookupPhrase("gameAssoc");
@@ -103,7 +102,7 @@ namespace GMKDriverNETUI
                 ListViewItem item = new ListViewItem(config.name);
                 item.Tag = config;
 
-                if(config.name == _device.Config.name)
+                if (config.name == _device.Config.name)
                 {
                     item.Font = new Font(item.Font, FontStyle.Bold);
                 }
@@ -207,6 +206,8 @@ namespace GMKDriverNETUI
 
         private void LoadConfiguration(DeviceConfig config)
         {
+            _initialized = false;
+
             CloseWidgets(true);
 
             currentConfigName.Text = config.name;
@@ -214,10 +215,7 @@ namespace GMKDriverNETUI
             deviceType.Text = _device.Type.ToString();
 
             gameAssociationEnabled.Checked = config.gameAssociationEnabled;
-            if(config.gameAssociationEnabled)
-                gameAssociationName.Text = config.gameAssociation;
-            else
-                gameAssociationName.Text = "";
+            gameAssociationName.Text = config.gameAssociation;
             gameAssociationName.Enabled = config.gameAssociationEnabled;
 
             _currentConfig = config;
@@ -355,6 +353,8 @@ namespace GMKDriverNETUI
             }
 
             bindingsTreeView.ExpandAll();
+
+            _initialized = true;
         }
 
         private void bindingsTreeView_DoubleClick(object sender, EventArgs e)
@@ -427,7 +427,7 @@ namespace GMKDriverNETUI
 
         private void configsView_Click(object sender, EventArgs e)
         {
-            if(configsView.SelectedItems.Count > 0)
+            if (configsView.SelectedItems.Count > 0)
             {
                 DeviceConfig selectedConfig = (DeviceConfig)configsView.SelectedItems[0].Tag;
                 if (selectedConfig.name == _currentConfig.name)
@@ -443,7 +443,7 @@ namespace GMKDriverNETUI
 
         private void configsViewContextMenu_Opening(object sender, CancelEventArgs e)
         {
-            if(configsView.SelectedItems.Count == 0)
+            if (configsView.SelectedItems.Count == 0)
             {
                 renameMenuItem.Enabled &= false;
                 removeMenuItem.Enabled &= false;
@@ -466,9 +466,9 @@ namespace GMKDriverNETUI
             ConfigNameWindow configNameWindow = new ConfigNameWindow();
             configNameWindow.ShowDialog();
 
-            if(configNameWindow.ConfigurationName != string.Empty && configNameWindow.DialogResult == DialogResult.OK)
+            if (configNameWindow.ConfigurationName != string.Empty && configNameWindow.DialogResult == DialogResult.OK)
             {
-                if(_device.Type == GMKControllerType.Joystick)
+                if (_device.Type == GMKControllerType.Joystick)
                 {
                     DeviceConfig config = DeviceConfig.DefaultJoystick;
                     config.name = configNameWindow.ConfigurationName;
@@ -494,8 +494,9 @@ namespace GMKDriverNETUI
             overwriteWindow.ShowDialog();
             if (overwriteWindow.DialogResult == DialogResult.Yes)
             {
+                _currentConfig.gameAssociation = gameAssociationName.Text;
                 _currentConfig.ToFile();
-                if(_currentConfig.name == _device.Config.name)
+                if (_currentConfig.name == _device.Config.name)
                 {
                     _device.Config = _currentConfig;
                 }
@@ -524,12 +525,12 @@ namespace GMKDriverNETUI
 
             // Show ConfigName Window
             configNameWindow.ShowDialog();
-            
+
             // If Dialog Result is valid, rename config 
             if (configNameWindow.DialogResult == DialogResult.OK)
             {
                 GMKDriver.DeviceList.RenameConfiguration(_device.SerialNumber, config, configNameWindow.ConfigurationName);
-                if(configNameWindow.MakeDefault)
+                if (configNameWindow.MakeDefault)
                 {
                     GMKDriver.DeviceList.SetDefaultConfiguration(_device.SerialNumber, config);
                 }
@@ -551,16 +552,16 @@ namespace GMKDriverNETUI
 
                 DeleteConfigWindow deleteConfigWindow = new DeleteConfigWindow();
                 deleteConfigWindow.ShowDialog();
-                
+
                 // If user selected cancel, return
-                if(deleteConfigWindow.DialogResult == DialogResult.Cancel)
+                if (deleteConfigWindow.DialogResult == DialogResult.Cancel)
                 {
                     return;
                 }
 
                 // Remove confiugration
                 GMKDriver.DeviceList.RemoveConfiguration(_device.SerialNumber, config, deleteConfigWindow.DialogResult == DialogResult.Yes);
-                
+
                 // Reset configs view
                 SetConfigsView();
             }
@@ -579,9 +580,9 @@ namespace GMKDriverNETUI
             // Initialize the open folder directory to the default path
             openConfigFileDialog.InitialDirectory = Settings.ConfigsFolderPath;
             DialogResult result = openConfigFileDialog.ShowDialog();
-            
+
             // If file was selected, try opening file.
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 string configName = Path.GetFileNameWithoutExtension(openConfigFileDialog.FileName);
                 DeviceConfig config = DeviceConfig.FromFile(configName, _device.Type);
@@ -617,31 +618,31 @@ namespace GMKDriverNETUI
 
         private void buttonAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, 0xFF));
+            _currentConfig.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, new byte[] { 0x00, 0x00, 0x00 }));
             LoadConfiguration(_currentConfig);
         }
 
         private void joystickAsButtonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asButtons.Add(new JoystickAsButton(JoystickIO.LeftJoystick, Axis.XPositive, ButtonIO.A, 0.2f));
+            _currentConfig.joysticks.asButtons.Add(new JoystickAsButton(JoystickIO.LeftJoystick, Axis.XPositive, ButtonIO.A, 0.0f, 0.2f));
             LoadConfiguration(_currentConfig);
         }
 
         private void joystickAsJoystickToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, true, false, 20));
+            _currentConfig.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, 0.2f, true, false, 20));
             LoadConfiguration(_currentConfig);
         }
 
         private void joystickAsTriggerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asTriggers.Add(new JoystickAsTrigger(JoystickIO.LeftJoystick, Axis.XPositive, TriggerIO.LeftTrigger, 0.2f, true));
+            _currentConfig.joysticks.asTriggers.Add(new JoystickAsTrigger(JoystickIO.LeftJoystick, Axis.XPositive, TriggerIO.LeftTrigger, 0.0f, 0.2f, true));
             LoadConfiguration(_currentConfig);
         }
 
         private void joystickAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, Axis.XPositive, 0xFF, 0.2f));
+            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, Axis.XPositive, new byte[] { 0x00, 0x00, 0x00 }, 0.0f, 0.2f));
             LoadConfiguration(_currentConfig);
         }
 
@@ -665,13 +666,20 @@ namespace GMKDriverNETUI
 
         private void triggerAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.triggers.asKeyboards.Add(new TriggerAsKeyboard(TriggerIO.LeftTrigger, 0xFF, 0.2f));
+            _currentConfig.triggers.asKeyboards.Add(new TriggerAsKeyboard(TriggerIO.LeftTrigger, new byte[] { 0x00, 0x00, 0x00 }, 0.2f));
             LoadConfiguration(_currentConfig);
         }
 
         private void bindingEditorContextMenu_Opening(object sender, CancelEventArgs e)
         {
-            removeBindingToolStripMenuItem.Enabled = bindingsTreeView.SelectedNode.Tag != null;
+            if(bindingsTreeView.SelectedNode == null)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                removeBindingToolStripMenuItem.Enabled = bindingsTreeView.SelectedNode.Tag != null;
+            }
         }
 
         private void removeBindingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -682,17 +690,11 @@ namespace GMKDriverNETUI
 
         private void gameAssociationEnabled_CheckedChanged(object sender, EventArgs e)
         {
-            if(_initialized)
+            if (_initialized)
             {
                 _currentConfig.gameAssociationEnabled = gameAssociationEnabled.Checked;
                 gameAssociationName.Enabled = gameAssociationEnabled.Checked;
             }
-        }
-
-        private void gameAssociationName_TextChanged(object sender, EventArgs e)
-        {
-            if(_initialized)
-                _currentConfig.gameAssociation = gameAssociationName.Text;
         }
 
         private void gameAssociationName_MouseHover(object sender, EventArgs e)
@@ -708,11 +710,19 @@ namespace GMKDriverNETUI
 
             LoadWidgets();
 
-            LoadConfiguration(DeviceConfig.FromFile(_configAssociation.defaultConfigFile, _device.Type));
+            LoadConfiguration(_device.Config);
 
             UpdateTextWithLanguage();
 
             _initialized = true;
+        }
+
+        private void gameAssociationName_TextChanged(object sender, EventArgs e)
+        {
+            if (_initialized)
+            {
+                _currentConfig.gameAssociation = gameAssociationName.Text;
+            }
         }
     }
 }

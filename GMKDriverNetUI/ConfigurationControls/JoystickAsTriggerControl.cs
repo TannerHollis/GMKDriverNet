@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -9,7 +8,7 @@ namespace GMKDriverNETUI.ConfigurationControls
     {
         private JoystickAsTrigger _joystickAsKeyboard;
         private TreeNode _node;
-        
+
         private bool _initialized;
 
         private delegate void OnUpdateForm();
@@ -27,7 +26,8 @@ namespace GMKDriverNETUI.ConfigurationControls
             inputJoystickLabel.Text = LanguageHelper.LookupPhrase("inputJoystick");
             inputAxisLabel.Text = LanguageHelper.LookupPhrase("inputAxis");
             outputTriggerLabel.Text = LanguageHelper.LookupPhrase("outputTrigger");
-            thresholdLabel.Text = LanguageHelper.LookupPhrase("deadzone");
+            rotateLabel.Text = LanguageHelper.LookupPhrase("rotate");
+            deadzoneLabel.Text = LanguageHelper.LookupPhrase("deadzone");
             linearLabel.Text = LanguageHelper.LookupPhrase("linear");
         }
 
@@ -40,6 +40,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             inputJoystick.LoadJoystick(_joystickAsKeyboard.input, config.type, false, _updateForm);
             inputAxis.LoadAxis(_joystickAsKeyboard.inputAxis, _updateForm);
             outputTrigger.LoadTrigger(_joystickAsKeyboard.output, config.type, true, _updateForm);
+            rotate.LoadRotate(_joystickAsKeyboard.rotate, _updateForm);
             deadzone.LoadDeadzone(_joystickAsKeyboard.deadzone, _updateForm);
             linear.LoadBool(_joystickAsKeyboard.linear, _updateForm);
 
@@ -54,6 +55,7 @@ namespace GMKDriverNETUI.ConfigurationControls
                 _joystickAsKeyboard.input = inputJoystick.Joystick;
                 _joystickAsKeyboard.inputAxis = inputAxis.Axis;
                 _joystickAsKeyboard.output = outputTrigger.Trigger;
+                _joystickAsKeyboard.rotate = rotate.Rotate;
                 _joystickAsKeyboard.deadzone = deadzone.Deadzone;
                 _joystickAsKeyboard.linear = linear.Bool;
 

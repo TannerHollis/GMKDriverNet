@@ -27,7 +27,7 @@ namespace GMKDriverNETUI.ConfigurationControls
 
         private void bool_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_isInitialized)
+            if (_isInitialized)
             {
                 _bool = checkBox.Checked;
                 _updateForm.DynamicInvoke();

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace GMKDriverNET
 {
@@ -64,7 +59,7 @@ namespace GMKDriverNET
 
         public static void Load()
         {
-            if(_lookups == null)
+            if (_lookups == null)
             {
                 _lookups = WordLookups.FromFile();
             }
@@ -73,11 +68,11 @@ namespace GMKDriverNET
         public static string LookupPhrase(string shortHand)
         {
             Load();
-            foreach(WordLookup lookup in _lookups.Lookups)
+            foreach (WordLookup lookup in _lookups.Lookups)
             {
-                if(shortHand == lookup.shortHand)
+                if (shortHand == lookup.shortHand)
                 {
-                    switch(Settings.GetLanguage())
+                    switch (Settings.GetLanguage())
                     {
                         case "EN":
                             return lookup.EN;

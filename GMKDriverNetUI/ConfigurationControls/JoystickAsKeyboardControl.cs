@@ -1,7 +1,7 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -26,8 +26,9 @@ namespace GMKDriverNETUI.ConfigurationControls
         {
             inputJoystickLabel.Text = LanguageHelper.LookupPhrase("inputJoystick");
             inputAxisLabel.Text = LanguageHelper.LookupPhrase("inputAxis");
-            keyLabel.Text = LanguageHelper.LookupPhrase("outputKey");
-            thresholdLabel.Text = LanguageHelper.LookupPhrase("deadzone");
+            keyLabel.Text = LanguageHelper.LookupPhrase("outputKeys");
+            rotateLabel.Text = LanguageHelper.LookupPhrase("rotate");
+            deadzoneLabel.Text = LanguageHelper.LookupPhrase("deadzone");
         }
 
         public void LoadWidget(TreeNode node, DeviceConfig config)
@@ -38,7 +39,8 @@ namespace GMKDriverNETUI.ConfigurationControls
 
             inputJoystick.LoadJoystick(_joystickAsKeyboard.input, config.type, false, _updateForm);
             inputAxis.LoadAxis(_joystickAsKeyboard.inputAxis, _updateForm);
-            key.LoadKey(_joystickAsKeyboard.key, _updateForm);
+            key.LoadKey(_joystickAsKeyboard.key.ToArray(), _updateForm);
+            rotate.LoadRotate(_joystickAsKeyboard.rotate, _updateForm);
             deadzone.LoadDeadzone(_joystickAsKeyboard.deadzone, _updateForm);
 
             this.Visible = true;
@@ -51,7 +53,8 @@ namespace GMKDriverNETUI.ConfigurationControls
             {
                 _joystickAsKeyboard.input = inputJoystick.Joystick;
                 _joystickAsKeyboard.inputAxis = inputAxis.Axis;
-                _joystickAsKeyboard.key = key.Key;
+                _joystickAsKeyboard.key = key.Key.ToList<byte>();
+                _joystickAsKeyboard.rotate = rotate.Rotate;
                 _joystickAsKeyboard.deadzone = deadzone.Deadzone;
 
                 _node.Text = _joystickAsKeyboard.ToString();

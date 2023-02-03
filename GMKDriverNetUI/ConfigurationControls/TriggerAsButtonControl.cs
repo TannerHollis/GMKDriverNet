@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -26,7 +25,7 @@ namespace GMKDriverNETUI.ConfigurationControls
         {
             inputTriggerLabel.Text = LanguageHelper.LookupPhrase("inputTrigger");
             outputButtonLabel.Text = LanguageHelper.LookupPhrase("outputButton");
-            thresholdLabel.Text = LanguageHelper.LookupPhrase("deadzone");
+            deadzoneLabel.Text = LanguageHelper.LookupPhrase("deadzone");
         }
 
         public void LoadWidget(TreeNode node, DeviceConfig config)
@@ -38,7 +37,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             inputTrigger.LoadTrigger(_triggerAsButton.input, config.type, false, _updateForm);
             outputButton.LoadButton(_triggerAsButton.output, config.type, true, _updateForm);
             deadzone.LoadDeadzone(_triggerAsButton.deadzone, _updateForm);
-            
+
             this.Visible = true;
             _initialized = true;
         }
@@ -50,7 +49,7 @@ namespace GMKDriverNETUI.ConfigurationControls
                 _triggerAsButton.input = inputTrigger.Trigger;
                 _triggerAsButton.output = outputButton.Button;
                 _triggerAsButton.deadzone = deadzone.Deadzone;
-                
+
                 _node.Text = _triggerAsButton.ToString();
             }
         }

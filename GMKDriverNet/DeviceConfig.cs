@@ -1,12 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using GMKDriverNET.Bindings;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-
-using GMKDriverNET.Bindings;
 
 namespace GMKDriverNET
 {
@@ -67,11 +61,14 @@ namespace GMKDriverNET
             buttons = new ButtonConfigs();
             joysticks = new JoystickConfigs();
             triggers = new TriggerConfigs();
+
+            this.gameAssociation = string.Empty;
+            this.gameAssociationEnabled = false;
         }
 
         public void RemoveBinding(object bindingIn)
         {
-            switch(bindingIn)
+            switch (bindingIn)
             {
                 case ButtonAsButton binding:
                     buttons.asButtons.Remove(binding);
@@ -129,9 +126,9 @@ namespace GMKDriverNET
 
         public static bool ConfigNameExists(string name)
         {
-            foreach(string fileName in Directory.GetFiles(Settings.ConfigsFolderPath, "*.json"))
+            foreach (string fileName in Directory.GetFiles(Settings.ConfigsFolderPath, "*.json"))
             {
-                if(Path.GetFileNameWithoutExtension(fileName) == name)
+                if (Path.GetFileNameWithoutExtension(fileName) == name)
                 {
                     return true;
                 }
@@ -142,9 +139,9 @@ namespace GMKDriverNET
         public void ToFile()
         {
             JsonSerializerOptions options = new JsonSerializerOptions();
-            options.WriteIndented= true;
+            options.WriteIndented = true;
 
-            if(!Directory.Exists(Settings.ConfigsFolderPath))
+            if (!Directory.Exists(Settings.ConfigsFolderPath))
             {
                 Directory.CreateDirectory(Settings.ConfigsFolderPath);
             }
@@ -162,20 +159,20 @@ namespace GMKDriverNET
             try
             {
                 DeviceConfig config = JsonSerializer.Deserialize<DeviceConfig>(jsonString);
-                if(config.type != type)
+                if (config.type != type)
                 {
                     string line = string.Format(LanguageHelper.LookupPhrase("defaultLoaded1"), file, type);
                     GMKDriver.WriteLine(line);
                     GMKDriver.WriteLine(LanguageHelper.LookupPhrase("defaultLoaded2"));
-                    
-                    if(type == GMKControllerType.Joystick)
+
+                    if (type == GMKControllerType.Joystick)
                     {
                         DeviceConfig defaultConfig = DeviceConfig.DefaultJoystick;
                         defaultConfig.name = file;
                         return defaultConfig;
                     }
 
-                    if(type == GMKControllerType.Controller)
+                    if (type == GMKControllerType.Controller)
                     {
                         DeviceConfig defaultConfig = DeviceConfig.DefaultController;
                         defaultConfig.name = file;
@@ -193,12 +190,12 @@ namespace GMKDriverNET
                 config.name = file;
                 return config;
             }
-            
+
         }
 
         public static DeviceConfig DefaultController
         {
-            get 
+            get
             {
                 DeviceConfig c = new DeviceConfig("Default_Controller_v1.0", GMKControllerType.Controller);
 
@@ -219,8 +216,8 @@ namespace GMKDriverNET
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.Right, ButtonIO.Right));
 
                 // Joysticks
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.1f, true, false, 20));
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.RightJoystick, JoystickIO.RightJoystick, 0.1f, true, false, 20));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, 0.1f, true, false, 20));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.RightJoystick, JoystickIO.RightJoystick, 0.0f, 0.1f, true, false, 20));
 
                 // Triggers
                 c.triggers.asTriggers.Add(new TriggerAsTrigger(TriggerIO.LeftTrigger, TriggerIO.LeftTrigger, true));
@@ -243,7 +240,7 @@ namespace GMKDriverNET
                 c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
 
                 // Joysticks
-                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.1f, true, false, 20));
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, 0.1f, true, false, 20));
 
                 return c;
             }

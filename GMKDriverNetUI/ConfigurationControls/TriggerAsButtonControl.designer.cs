@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.outputButtonLabel = new System.Windows.Forms.Label();
             this.inputTriggerLabel = new System.Windows.Forms.Label();
-            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.deadzoneLabel = new System.Windows.Forms.Label();
             this.inputTrigger = new GMKDriverNETUI.ConfigurationControls.TriggerControl();
             this.outputButton = new GMKDriverNETUI.ConfigurationControls.ButtonControl();
             this.deadzone = new GMKDriverNETUI.ConfigurationControls.DeadzoneControl();
@@ -45,7 +45,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30201F));
             this.tableLayoutPanel1.Controls.Add(this.outputButtonLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.inputTriggerLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.thresholdLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.deadzoneLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.inputTrigger, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.outputButton, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.deadzone, 1, 2);
@@ -85,17 +85,17 @@
             this.inputTriggerLabel.Text = "Input Trigger";
             this.inputTriggerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // thresholdLabel
+            // deadzoneLabel
             // 
-            this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thresholdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thresholdLabel.Location = new System.Drawing.Point(3, 188);
-            this.thresholdLabel.Name = "thresholdLabel";
-            this.thresholdLabel.Size = new System.Drawing.Size(171, 95);
-            this.thresholdLabel.TabIndex = 10;
-            this.thresholdLabel.Text = "Deadzone";
-            this.thresholdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deadzoneLabel.AutoSize = true;
+            this.deadzoneLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deadzoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deadzoneLabel.Location = new System.Drawing.Point(3, 188);
+            this.deadzoneLabel.Name = "deadzoneLabel";
+            this.deadzoneLabel.Size = new System.Drawing.Size(171, 95);
+            this.deadzoneLabel.TabIndex = 10;
+            this.deadzoneLabel.Text = "Deadzone";
+            this.deadzoneLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // inputTrigger
             // 
@@ -139,7 +139,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label outputButtonLabel;
         private System.Windows.Forms.Label inputTriggerLabel;
-        private System.Windows.Forms.Label thresholdLabel;
+        private System.Windows.Forms.Label deadzoneLabel;
         private TriggerControl inputTrigger;
         private ButtonControl outputButton;
         private DeadzoneControl deadzone;

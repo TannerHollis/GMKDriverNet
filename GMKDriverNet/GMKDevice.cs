@@ -9,7 +9,8 @@ using System.Windows.Forms;
 
 namespace GMKDriverNET
 {
-    public enum  GMKControllerType{
+    public enum GMKControllerType
+    {
         Joystick = 0,
         Controller,
         Undefined
@@ -34,21 +35,22 @@ namespace GMKDriverNET
         public int PID { get { return _pid; } }
         public int InterfaceN { get { return _interfaceN; } }
         public int EndpointN { get { return _endpoint; } }
-        public bool IsRunning {  get { return _run; } }
+        public bool IsRunning { get { return _run; } }
 
-        public DeviceConfig Config { 
-            get 
-            { 
-                return _config; 
-            } 
-            set 
+        public DeviceConfig Config
+        {
+            get
             {
-                if(value.name != _config.name)
+                return _config;
+            }
+            set
+            {
+                if (value.name != _config.name)
                 {
                     WriteLine("Configuration loaded: " + value.name);
                     _config = value;
                 }
-                else if(value.name == _config.name)
+                else if (value.name == _config.name)
                 {
                     WriteLine("Configuration updated.");
                     _config = value;
@@ -149,7 +151,7 @@ namespace GMKDriverNET
                 {
                     WriteLine(LanguageHelper.LookupPhrase("rotateJoystick"));
                 }
-                else if(_type == GMKControllerType.Controller)
+                else if (_type == GMKControllerType.Controller)
                 {
                     WriteLine(LanguageHelper.LookupPhrase("rotateJoysticks"));
                 }
@@ -176,7 +178,7 @@ namespace GMKDriverNET
                         controller.SetController(xbox360Controller);
                     }
 
-                    if(_paused)
+                    if (_paused)
                     {
                         XInputController tmp = new XInputController();
                         tmp.SetController(xbox360Controller);
@@ -205,11 +207,11 @@ namespace GMKDriverNET
                 {
                     if (_hidDevice.IsOpen)
                     {
-                        
+
                         IUsbDevice wholeUsbDevice = _hidDevice as IUsbDevice;
                         // null check
                         wholeUsbDevice?.ReleaseInterface(_interfaceN);
-                        
+
                         _hidDevice.Close();
                     }
                     _hidDevice = null;

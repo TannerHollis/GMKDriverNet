@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace GMKDriverNET
 {
@@ -39,11 +35,11 @@ namespace GMKDriverNET
 
         public void ToFile()
         {
-            if(!Directory.Exists(GMKDriverFolderPath))
+            if (!Directory.Exists(GMKDriverFolderPath))
             {
                 Directory.CreateDirectory(GMKDriverFolderPath);
             }
-            
+
             JsonSerializerOptions options = new JsonSerializerOptions();
             options.WriteIndented = true;
 

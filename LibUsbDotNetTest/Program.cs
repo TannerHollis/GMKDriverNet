@@ -1,17 +1,7 @@
-﻿using LibUsbDotNet.LibUsb;
-using LibUsbDotNet.Main;
-using LibUsbDotNet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using GMKDriverNET;
-using System.Runtime.InteropServices;
-using System.IO;
-using GMKDriverNet;
+﻿using GMKDriverNET;
 using Microsoft.VisualBasic.FileIO;
+using System;
+using System.Threading;
 
 namespace LibUsbDotNetTest
 {
@@ -20,21 +10,37 @@ namespace LibUsbDotNetTest
         public static void Main(string[] args)
         {
             CreateLanguageLookupFile();
+
+            TestKeypressEmulator();
+        }
+
+        private static void TestKeypressEmulator()
+        {
+            for(int i = 3; i > 0; i--)
+            {
+                Console.WriteLine("{0}...", i);
+                Thread.Sleep(1000);
+            }
+
+            KeypressEmulator.KeyDown(KeypressEmulator.ScanCodeShort.KEY_A);
+
+            Thread.Sleep(1000);
+
+            KeypressEmulator.KeyUp(KeypressEmulator.ScanCodeShort.KEY_A);
         }
 
         private static void CreateLanguageLookupFile()
         {
             WordLookups lookups = new WordLookups();
-            lookups.Language = "EN";
 
             using (TextFieldParser parser = new TextFieldParser("wordLookups.csv"))
             {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(",");
-                
+
                 // Read column Headers
                 string[] fields = parser.ReadFields();
-                
+
                 // Loop until end of document
                 while (!parser.EndOfData)
                 {
@@ -58,6 +64,8 @@ namespace LibUsbDotNetTest
 
                 lookups.ToFile();
             }
+
+            Console.WriteLine("language file written..");
         }
     }
 }

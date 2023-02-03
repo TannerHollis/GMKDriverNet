@@ -1,23 +1,37 @@
-﻿namespace GMKDriverNET.Bindings
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace GMKDriverNET.Bindings
 {
     public class JoystickAsKeyboard
     {
         public JoystickIO input { get; set; }
         public Axis inputAxis { get; set; }
-        public byte key { get; set; }
+        public List<byte> key { get; set; }
+        public float rotate { get; set; }
         public float deadzone { get; set; }
+
+        [JsonIgnore]
+        public bool IsPressed;
 
         public override string ToString()
         {
-            return input.ToString() + ":" + DeviceConfig.AxisToString(inputAxis) + " -> " + (char)key;
+            return input.ToString() + ":" + DeviceConfig.AxisToString(inputAxis) + " -> " + LanguageHelper.LookupPhrase("keyPress");
         }
 
-        public JoystickAsKeyboard(JoystickIO input, Axis inputAxis, byte key, float threshold)
+        public JoystickAsKeyboard()
+        {
+            this.key = new List<byte>();
+        }
+
+        public JoystickAsKeyboard(JoystickIO input, Axis inputAxis, byte[] key, float rotate, float deadzone)
         {
             this.input = input;
             this.inputAxis = inputAxis;
-            this.key = key;
-            this.deadzone = threshold;
+            this.key = new List<byte> { key[0], key[1], key[2] };
+            this.rotate = rotate;
+            this.deadzone = deadzone;
+            this.IsPressed = false;
         }
     }
 }

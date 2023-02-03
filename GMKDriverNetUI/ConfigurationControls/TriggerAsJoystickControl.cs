@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -27,7 +26,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             inputTriggerLabel.Text = LanguageHelper.LookupPhrase("inputTrigger");
             outputJoystickLabel.Text = LanguageHelper.LookupPhrase("outputJoystick");
             outputAxisLabel.Text = LanguageHelper.LookupPhrase("outputAxis");
-            thresholdLabel.Text = LanguageHelper.LookupPhrase("deadzone");
+            deadzoneLabel.Text = LanguageHelper.LookupPhrase("deadzone");
             linearLabel.Text = LanguageHelper.LookupPhrase("linear");
         }
 
@@ -54,7 +53,7 @@ namespace GMKDriverNETUI.ConfigurationControls
                 _triggerAsJoystick.output = outputJoystick.Joystick;
                 _triggerAsJoystick.outputAxis = outputAxis.Axis;
                 _triggerAsJoystick.linear = linear.Bool;
-                
+
                 _node.Text = _triggerAsJoystick.ToString();
             }
         }

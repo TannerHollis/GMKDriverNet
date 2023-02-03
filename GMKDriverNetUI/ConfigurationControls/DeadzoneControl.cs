@@ -10,7 +10,7 @@ namespace GMKDriverNETUI.ConfigurationControls
         private Delegate _updateForm;
         private bool _isInitialized;
         private bool _selecting;
-        
+
         private float Granularity = 5.0f;
 
         public float Deadzone { get { return _deadzone; } }
@@ -32,7 +32,7 @@ namespace GMKDriverNETUI.ConfigurationControls
         {
             _isInitialized = false;
             _deadzone = asDeadzone;
-            UpdateDeadzone((int)(asDeadzone*100.0f));
+            UpdateDeadzone((int)(asDeadzone * 100.0f));
             _updateForm = updateForm;
             _isInitialized = true;
         }
@@ -42,7 +42,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             if (_isInitialized)
             {
                 UpdateDeadzone(deadzone.Value);
-                if(!_selecting)
+                if (!_selecting)
                     _updateForm.DynamicInvoke();
             }
         }

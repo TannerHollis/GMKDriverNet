@@ -10,14 +10,14 @@ namespace GMKDriverNETUI.ConfigurationControls
         private Delegate _updateForm;
         private bool _isInitialized;
         private bool _selecting;
-        
+
         private float Granularity = 10.0f;
 
         public float Rotate { get { return _rotate; } }
 
         public RotateControl()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             UpdateTextWithLanguage();
         }
 

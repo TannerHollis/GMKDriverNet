@@ -37,18 +37,18 @@ namespace GMKDriverNETUI.ConfigurationControls
             _isInitialized = false;
 
             _bool = asBool;
-            
+
             checkBox.Checked = asBool;
             snap76Intensity.SelectedIndex = GetIntensity(intensity);
             snap76Intensity.Enabled = _bool;
             _updateForm = updateForm;
-            
+
             _isInitialized = true;
         }
 
         public int GetIntensity(int intensity)
         {
-            switch(intensity)
+            switch (intensity)
             {
                 case 20:
                     return 0;
@@ -96,7 +96,7 @@ namespace GMKDriverNETUI.ConfigurationControls
 
         private void bool_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_isInitialized)
+            if (_isInitialized)
             {
                 _bool = checkBox.Checked;
                 snap76Intensity.Enabled = _bool;

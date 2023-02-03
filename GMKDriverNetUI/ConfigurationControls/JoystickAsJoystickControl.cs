@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -9,7 +8,7 @@ namespace GMKDriverNETUI.ConfigurationControls
     {
         private JoystickAsJoystick _joystickAsJoystick;
         private TreeNode _node;
-        
+
         private bool _initialized;
 
         private delegate void OnUpdateForm();
@@ -51,7 +50,7 @@ namespace GMKDriverNETUI.ConfigurationControls
 
         private void UpdateForm()
         {
-            if(_initialized)
+            if (_initialized)
             {
                 _joystickAsJoystick.input = inputJoystick.Joystick;
                 _joystickAsJoystick.output = outputJoystick.Joystick;

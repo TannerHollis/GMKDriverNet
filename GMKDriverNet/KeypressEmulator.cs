@@ -1,15 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GMKDriverNET
 {
-    
+
     public class KeypressEmulator
     {
+        public static void KeysUp(byte[] keys)
+        {
+            foreach(byte key in keys)
+            {
+                if(key != 0x00)
+                    KeyUp((ScanCodeShort)key);
+            }
+        }
+
         public static void KeyUp(ScanCodeShort keyCode)
         {
             INPUT[] Inputs = new INPUT[1];
@@ -20,6 +25,15 @@ namespace GMKDriverNET
             Inputs[0] = Input;
 
             SendInput(1, Inputs, INPUT.Size);
+        }
+
+        public static void KeysDown(byte[] keys)
+        {
+            foreach (byte key in keys)
+            {
+                if (key != 0x00)
+                    KeyDown((ScanCodeShort)key);
+            }
         }
 
         public static void KeyDown(ScanCodeShort keyCode)
@@ -35,7 +49,7 @@ namespace GMKDriverNET
         }
 
         [DllImport("user32.dll")]
-        internal static extern uint SendInput( uint nInputs, [MarshalAs(UnmanagedType.LPArray), In] INPUT[] pInputs, int cbSize);
+        internal static extern uint SendInput(uint nInputs, [MarshalAs(UnmanagedType.LPArray), In] INPUT[] pInputs, int cbSize);
 
         // Declare INPUT struct
         [StructLayout(LayoutKind.Sequential)]
@@ -986,6 +1000,456 @@ namespace GMKDriverNET
             NONAME = 0,
             PA1 = 0,
             OEM_CLEAR = 0,
+        }
+
+        public static ScanCodeShort KeyToScanCode(string key)
+        {
+            switch(key)
+            {
+                case "A":
+                    return ScanCodeShort.KEY_A;
+
+                case "B":
+                    return ScanCodeShort.KEY_B;
+
+                case "C":
+                    return ScanCodeShort.KEY_C;
+
+                case "D":
+                    return ScanCodeShort.KEY_D;
+
+                case "E":
+                    return ScanCodeShort.KEY_E; 
+
+                case "F":
+                    return ScanCodeShort.KEY_F;
+
+                case "G":
+                    return ScanCodeShort.KEY_G;
+
+                case "H":
+                    return ScanCodeShort.KEY_H;
+
+                case "I":
+                    return ScanCodeShort.KEY_I;
+
+                case "J":
+                    return ScanCodeShort.KEY_J;
+
+                case "K":
+                    return ScanCodeShort.KEY_K;
+
+                case "L":
+                    return ScanCodeShort.KEY_L;
+
+                case "M":
+                    return ScanCodeShort.KEY_M;
+
+                case "N":
+                    return ScanCodeShort.KEY_N;
+
+                case "O":
+                    return ScanCodeShort.KEY_O;
+
+                case "P":
+                    return ScanCodeShort.KEY_P;
+
+                case "Q":
+                    return ScanCodeShort.KEY_Q;
+
+                case "R":
+                    return ScanCodeShort.KEY_R;
+
+                case "S":
+                    return ScanCodeShort.KEY_S;
+
+                case "T":
+                    return ScanCodeShort.KEY_T;
+
+                case "U":
+                    return ScanCodeShort.KEY_U;
+
+                case "V":
+                    return ScanCodeShort.KEY_V;
+
+                case "W":
+                    return ScanCodeShort.KEY_W;
+
+                case "X":
+                    return ScanCodeShort.KEY_X;
+
+                case "Y":
+                    return ScanCodeShort.KEY_Y;
+
+                case "Z":
+                    return ScanCodeShort.KEY_Z;
+
+                case "F1":
+                    return ScanCodeShort.F1;
+
+                case "F2":
+                    return ScanCodeShort.F2;
+
+                case "F3":
+                    return ScanCodeShort.F3;
+
+                case "F4":
+                    return ScanCodeShort.F4;
+
+                case "F5":
+                    return ScanCodeShort.F5;
+
+                case "F6":
+                    return ScanCodeShort.F6;
+
+                case "F7":
+                    return ScanCodeShort.F7;
+
+                case "F8":
+                    return ScanCodeShort.F8;
+
+                case "F9":
+                    return ScanCodeShort.F9;
+
+                case "F10":
+                    return ScanCodeShort.F10;
+
+                case "F11":
+                    return ScanCodeShort.F11;
+
+                case "F12":
+                    return ScanCodeShort.F12;
+
+                case "` | ~":
+                    return ScanCodeShort.OEM_3;
+
+                case "1 | !":
+                    return ScanCodeShort.KEY_1;
+
+                case "2 | @":
+                    return ScanCodeShort.KEY_2;
+
+                case "3 | #":
+                    return ScanCodeShort.KEY_3;
+
+                case "4 | $":
+                    return ScanCodeShort.KEY_4;
+
+                case "5 | %":
+                    return ScanCodeShort.KEY_5;
+
+                case "6 | ^":
+                    return ScanCodeShort.KEY_6;
+
+                case "7 | &":
+                    return ScanCodeShort.KEY_7;
+
+                case "8 | *":
+                    return ScanCodeShort.KEY_8;
+
+                case "9 | (":
+                    return ScanCodeShort.KEY_9;
+
+                case "0 | )":
+                    return ScanCodeShort.KEY_0;
+
+                case "ENTER":
+                    return ScanCodeShort.RETURN;
+
+                case "BACKSPACE":
+                    return ScanCodeShort.BACK;
+
+                case "LSHIFT":
+                    return ScanCodeShort.LSHIFT;
+
+                case "RSHIFT":
+                    return ScanCodeShort.RSHIFT;
+
+                case "CTRL":
+                    return ScanCodeShort.LCONTROL;
+
+                case "CAPS":
+                    return ScanCodeShort.CAPITAL;
+
+                case "TAB":
+                    return ScanCodeShort.TAB;
+
+                case "WINDOWS":
+                    return ScanCodeShort.LWIN;
+
+                case "SPACE":
+                    return ScanCodeShort.SPACE;
+
+                case ", | <":
+                    return ScanCodeShort.OEM_COMMA;
+
+                case ". | >":
+                    return ScanCodeShort.OEM_PERIOD;
+
+                case "/ | ?":
+                    return ScanCodeShort.DIVIDE;
+
+                case "; | :":
+                    return ScanCodeShort.OEM_1;
+
+                case "' | \"":
+                    return ScanCodeShort.OEM_7;
+
+                case "[ | {":
+                    return ScanCodeShort.OEM_4;
+
+                case "] | }":
+                    return ScanCodeShort.OEM_6;
+
+                case "- | _":
+                    return ScanCodeShort.OEM_MINUS;
+
+                case "= | +":
+                    return ScanCodeShort.OEM_PLUS;
+
+                case "\\ | |":
+                    return ScanCodeShort.OEM_5;
+
+                case "UP":
+                    return ScanCodeShort.UP;
+
+                case "DOWN":
+                    return ScanCodeShort.DOWN;
+
+                case "LEFT":
+                    return ScanCodeShort.LEFT;
+
+                case "RIGHT":
+                    return ScanCodeShort.RIGHT;
+
+                default:
+                    return 0x00;
+            }
+        }
+
+        public static string ScanCodeToKey(ScanCodeShort scanCode)
+        {
+            switch (scanCode)
+            {
+                case ScanCodeShort.KEY_A:
+                    return "A";
+
+                case ScanCodeShort.KEY_B:
+                    return "B";
+
+                case ScanCodeShort.KEY_C:
+                    return "C";
+
+                case ScanCodeShort.KEY_D:
+                    return "D";
+
+                case ScanCodeShort.KEY_E:
+                    return "E";
+
+                case ScanCodeShort.KEY_F:
+                    return "F";
+
+                case ScanCodeShort.KEY_G:
+                    return "G";
+
+                case ScanCodeShort.KEY_H:
+                    return "H";
+
+                case ScanCodeShort.KEY_I:
+                    return "I";
+
+                case ScanCodeShort.KEY_J:
+                    return "J";
+
+                case ScanCodeShort.KEY_K:
+                    return "K";
+
+                case ScanCodeShort.KEY_L:
+                    return "L";
+
+                case ScanCodeShort.KEY_M:
+                    return "M";
+
+                case ScanCodeShort.KEY_N:
+                    return "N";
+
+                case ScanCodeShort.KEY_O:
+                    return "O";
+
+                case ScanCodeShort.KEY_P:
+                    return "P";
+
+                case ScanCodeShort.KEY_Q:
+                    return "Q";
+
+                case ScanCodeShort.KEY_R:
+                    return "R";
+
+                case ScanCodeShort.KEY_S:
+                    return "S";
+
+                case ScanCodeShort.KEY_T:
+                    return "T";
+
+                case ScanCodeShort.KEY_U:
+                    return "U";
+
+                case ScanCodeShort.KEY_V:
+                    return "V";
+
+                case ScanCodeShort.KEY_W:
+                    return "W";
+
+                case ScanCodeShort.KEY_X:
+                    return "X";
+
+                case ScanCodeShort.KEY_Y:
+                    return "Y";
+
+                case ScanCodeShort.KEY_Z:
+                    return "Z";
+
+                case ScanCodeShort.F1:
+                    return "F1";
+
+                case ScanCodeShort.F2:
+                    return "F2";
+
+                case ScanCodeShort.F3:
+                    return "F3";
+
+                case ScanCodeShort.F4:
+                    return "F4";
+
+                case ScanCodeShort.F5:
+                    return "F5";
+
+                case ScanCodeShort.F6:
+                    return "F6";
+
+                case ScanCodeShort.F7:
+                    return "F7";
+
+                case ScanCodeShort.F8:
+                    return "F8";
+
+                case ScanCodeShort.F9:
+                    return "F9";
+
+                case ScanCodeShort.F10:
+                    return "F10";
+
+                case ScanCodeShort.F11:
+                    return "F11";
+
+                case ScanCodeShort.F12:
+                    return "F12";
+
+                case ScanCodeShort.OEM_3:
+                    return "` | ~";
+
+                case ScanCodeShort.KEY_1:
+                    return "1 | !";
+
+                case ScanCodeShort.KEY_2:
+                    return "2 | @";
+
+                case ScanCodeShort.KEY_3:
+                    return "3 | #";
+
+                case ScanCodeShort.KEY_4:
+                    return "4 | $";
+
+                case ScanCodeShort.KEY_5:
+                    return "5 | %";
+
+                case ScanCodeShort.KEY_6:
+                    return "6 | ^";
+
+                case ScanCodeShort.KEY_7:
+                    return "7 | &";
+
+                case ScanCodeShort.KEY_8:
+                    return "8 | *";
+
+                case ScanCodeShort.KEY_9:
+                    return "9 | (";
+
+                case ScanCodeShort.KEY_0:
+                    return "0 | )";
+
+                case ScanCodeShort.RETURN:
+                    return "ENTER";
+
+                case ScanCodeShort.BACK:
+                    return "BACKSPACE";
+
+                case ScanCodeShort.LSHIFT:
+                    return "LSHIFT";
+
+                case ScanCodeShort.RSHIFT:
+                    return "RSHIFT";
+
+                case ScanCodeShort.LCONTROL:
+                    return "CTRL";
+
+                case ScanCodeShort.CAPITAL:
+                    return "CAPS";
+
+                case ScanCodeShort.TAB:
+                    return "TAB";
+
+                case ScanCodeShort.LWIN:
+                    return "WINDOWS";
+
+                case ScanCodeShort.SPACE:
+                    return "SPACE";
+
+                case ScanCodeShort.OEM_COMMA:
+                    return ", | <";
+
+                case ScanCodeShort.OEM_PERIOD:
+                    return ". | >";
+
+                case ScanCodeShort.DIVIDE:
+                    return "/ | ?";
+
+                case ScanCodeShort.OEM_1:
+                    return "; | :";
+
+                case ScanCodeShort.OEM_7:
+                    return "' | \"";
+
+                case ScanCodeShort.OEM_4:
+                    return "[ | {";
+
+                case ScanCodeShort.OEM_6:
+                    return "] | }";
+
+                case ScanCodeShort.OEM_MINUS:
+                    return "- | _";
+
+                case ScanCodeShort.OEM_PLUS:
+                    return "= | +";
+
+                case ScanCodeShort.OEM_5:
+                    return "\\ | |";
+
+                case ScanCodeShort.UP:
+                    return "UP";
+
+                case ScanCodeShort.DOWN:
+                    return "DOWN";
+
+                case ScanCodeShort.LEFT:
+                    return "LEFT";
+
+                case ScanCodeShort.RIGHT:
+                    return "RIGHT";
+
+                default:
+                    return "None";
+            }
         }
 
         /// <summary>

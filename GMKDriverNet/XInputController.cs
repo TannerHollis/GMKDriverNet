@@ -1,15 +1,8 @@
-﻿using Nefarius.ViGEm.Client.Targets;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using GMKDriverNET.Bindings;
+using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client.Targets.Xbox360;
-
-using GMKDriverNET.Bindings;
-using System.Runtime.InteropServices;
+using System;
+using System.Windows.Forms;
 
 namespace GMKDriverNET
 {
@@ -61,7 +54,7 @@ namespace GMKDriverNET
             _reserved = false;
             a = false;
             b = false;
-            x = false; 
+            x = false;
             y = false;
             leftX = 0;
             leftY = 0;
@@ -155,7 +148,7 @@ namespace GMKDriverNET
             buttons[1] |= (byte)((b ? one : zero) << 5);
             buttons[1] |= (byte)((x ? one : zero) << 6);
             buttons[1] |= (byte)((y ? one : zero) << 7);
-            return new byte[] { 
+            return new byte[] {
                 buttons[0],
                 buttons[1],
                 (byte)(leftX & 0xFF),
@@ -176,24 +169,24 @@ namespace GMKDriverNET
             XInputController tmp = new XInputController();
 
             // ButtonAsButton
-            foreach(ButtonAsButton asButton in config.buttons.asButtons)
+            foreach (ButtonAsButton asButton in config.buttons.asButtons)
             {
                 tmp.SetButton(asButton.output, GetButton(asButton.input));
             }
 
             // ButtonAsJoystick
-            foreach(ButtonAsJoystick asJoystick in config.buttons.asJoysticks)
+            foreach (ButtonAsJoystick asJoystick in config.buttons.asJoysticks)
             {
                 bool state = GetButton(asJoystick.input);
-                if(state)
+                if (state)
                 {
                     int value = state ? Int16.MaxValue : 0;
                     tmp.SetJoystick(asJoystick.output, asJoystick.outputAxis, value);
                 }
             }
-            
+
             // ButtonAsTrigger
-            foreach(ButtonAsTrigger asTrigger in config.buttons.asTriggers)
+            foreach (ButtonAsTrigger asTrigger in config.buttons.asTriggers)
             {
                 bool state = GetButton(asTrigger.input);
                 if (state)
@@ -207,14 +200,14 @@ namespace GMKDriverNET
             foreach (ButtonAsKeyboard asKeyboard in config.buttons.asKeyboards)
             {
                 bool state = GetButton(asKeyboard.input);
-                if (state)
+                if (state && !asKeyboard.IsPressed)
                 {
-                    KeypressEmulator.KeyDown((KeypressEmulator.ScanCodeShort)0x41);
+                    KeypressEmulator.KeysDown(asKeyboard.key.ToArray());
                     asKeyboard.IsPressed = true;
                 }
                 if (!state && asKeyboard.IsPressed)
                 {
-                    KeypressEmulator.KeyUp((KeypressEmulator.ScanCodeShort)0x41);
+                    KeypressEmulator.KeysUp(asKeyboard.key.ToArray());
                     asKeyboard.IsPressed = false;
                 }
             }
@@ -222,34 +215,26 @@ namespace GMKDriverNET
             // JoystickAsButton
             foreach (JoystickAsButton asButton in config.joysticks.asButtons)
             {
-                float value = GetPercentageInt16(GetJoystick(asButton.input, asButton.inputAxis));
+                // Get x and y position as a percetnage 0.0 and 1.0
+                double x = GetPercentageInt16(GetJoystick(asButton.input, Axis.XPositive));
+                double y = GetPercentageInt16(GetJoystick(asButton.input, Axis.YPositive));
 
-                tmp.SetButton(asButton.output, value > asButton.deadzone);
+                RotatedJoystick rJoy = new RotatedJoystick(x, y, asButton.rotate);
+
+                tmp.SetButton(asButton.output, rJoy.IsPastAxisDeadzone(asButton.deadzone, asButton.inputAxis));
             }
 
             // JoystickAsJoystick
-            foreach(JoystickAsJoystick asJoystick in config.joysticks.asJoysticks)
+            foreach (JoystickAsJoystick asJoystick in config.joysticks.asJoysticks)
             {
                 // Get x and y position as a percetnage 0.0 and 1.0
                 double x = GetPercentageInt16(GetJoystick(asJoystick.input, Axis.XPositive));
                 double y = GetPercentageInt16(GetJoystick(asJoystick.input, Axis.YPositive));
 
-                // Get angle and magnitude of input joystick
-                double angle = Math.Atan2(y, x);
-                double mag = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+                RotatedJoystick rJoy = new RotatedJoystick(x, y, asJoystick.rotate);
 
-                // Calculate rotation in rads
-                double rotateRadians = Deg2Rad(asJoystick.rotate);
-
-                // Apply rotation to input
-                angle -= rotateRadians;
-
-                // Adjust value between -180 and 180
-                angle = (angle + 3 * Math.PI) % (2 * Math.PI) - Math.PI;
-
-                // Perform normal rotation
-                double newX = mag * Math.Cos(angle);
-                double newY = mag * Math.Sin(angle);
+                double newX = rJoy.X;
+                double newY = rJoy.Y;
 
                 // If snap mode is enabled
                 if (asJoystick.snapMode76)
@@ -259,23 +244,23 @@ namespace GMKDriverNET
                     float angleLeft = (float)Deg2Rad(90.0f + asJoystick.snap76Intensity);
 
                     // If within 10 degrees and setpoint in the 1st quadrant, snap to 14 degrees
-                    if ((angle > snapRightZone && angle < angleRight))
+                    if ((rJoy.Angle > snapRightZone && rJoy.Angle < angleRight))
                     {
-                        newX = mag * Math.Cos(snapRightAngle);
-                        newY = mag * Math.Sin(snapRightAngle);
+                        newX = rJoy.Mag * Math.Cos(snapRightAngle);
+                        newY = rJoy.Mag * Math.Sin(snapRightAngle);
                     }
                     // If within setpoint and 170 in the 2nd quadrant, snap to 166 degrees
-                    else if ((angle < snapLeftZone && angle > angleLeft))
+                    else if ((rJoy.Angle < snapLeftZone && rJoy.Angle > angleLeft))
                     {
-                        newX = mag * Math.Cos(snapLeftAngle);
-                        newY = mag * Math.Sin(snapLeftAngle);
+                        newX = rJoy.Mag * Math.Cos(snapLeftAngle);
+                        newY = rJoy.Mag * Math.Sin(snapLeftAngle);
                     }
                 }
 
                 int newXInt;
                 int newYInt;
 
-                if (mag > asJoystick.deadzone)
+                if (rJoy.Mag > asJoystick.deadzone)
                 {
                     newXInt = GetInt((float)newX, asJoystick.linear);
                     newYInt = GetInt((float)newY, asJoystick.linear);
@@ -291,17 +276,46 @@ namespace GMKDriverNET
             }
 
             // JoystickAsTrigger
-            foreach(JoystickAsTrigger asTrigger in config.joysticks.asTriggers)
+            foreach (JoystickAsTrigger asTrigger in config.joysticks.asTriggers)
             {
-                float value = GetPercentageInt16(GetJoystick(asTrigger.input, asTrigger.inputAxis));
-                
-                int newValue = value > asTrigger.deadzone ? GetInt((float)value, asTrigger.linear) : (char)0;
+                // Get x and y position as a percetnage 0.0 and 1.0
+                double x = GetPercentageInt16(GetJoystick(asTrigger.input, Axis.XPositive));
+                double y = GetPercentageInt16(GetJoystick(asTrigger.input, Axis.YPositive));
+
+                RotatedJoystick rJoy = new RotatedJoystick(x, y, asTrigger.rotate);
+
+                bool pastDeadzone = rJoy.IsPastAxisDeadzone(asTrigger.deadzone, asTrigger.inputAxis);
+
+                int newValue = pastDeadzone ? GetInt((float)rJoy.GetAxis(asTrigger.inputAxis), asTrigger.linear) : (char)0;
 
                 tmp.SetTrigger(asTrigger.output, newValue);
             }
 
+            // JoystickAsKeyboard
+            foreach(JoystickAsKeyboard asKeyboard in config.joysticks.asKeyboards)
+            {
+                // Get x and y position as a percentage 0.0 and 1.0
+                double x = GetPercentageInt16(GetJoystick(asKeyboard.input, Axis.XPositive));
+                double y = GetPercentageInt16(GetJoystick(asKeyboard.input, Axis.YPositive));
+
+                RotatedJoystick rJoy = new RotatedJoystick(x, y, asKeyboard.rotate);
+
+                bool state = rJoy.IsPastAxisDeadzone(asKeyboard.deadzone, asKeyboard.inputAxis);
+
+                if (state && !asKeyboard.IsPressed)
+                {
+                    KeypressEmulator.KeysDown(asKeyboard.key.ToArray());
+                    asKeyboard.IsPressed = true;
+                }
+                if (!state && asKeyboard.IsPressed)
+                {
+                    KeypressEmulator.KeysUp(asKeyboard.key.ToArray());
+                    asKeyboard.IsPressed = false;
+                }
+            }
+
             // TriggerAsButton
-            foreach(TriggerAsButton asButton in config.triggers.asButtons)
+            foreach (TriggerAsButton asButton in config.triggers.asButtons)
             {
                 float value = GetPercentageUInt8(GetTrigger(asButton.input));
 
@@ -309,7 +323,7 @@ namespace GMKDriverNET
             }
 
             // TriggerAsJoystick
-            foreach(TriggerAsJoystick asJoystick in config.triggers.asJoysticks)
+            foreach (TriggerAsJoystick asJoystick in config.triggers.asJoysticks)
             {
                 float value = GetPercentageUInt8(GetTrigger(asJoystick.input));
 
@@ -319,7 +333,7 @@ namespace GMKDriverNET
             }
 
             // TriggerAsTrigger
-            foreach(TriggerAsTrigger asTrigger in config.triggers.asTriggers)
+            foreach (TriggerAsTrigger asTrigger in config.triggers.asTriggers)
             {
                 float value = GetTrigger(asTrigger.input);
 
@@ -330,6 +344,94 @@ namespace GMKDriverNET
 
             Map(tmp);
         }
+
+        class RotatedJoystick
+        {
+            public double X;
+            public double Y;
+            public double Mag;
+            public double Angle;
+
+            public RotatedJoystick(double x, double y, double rotation)
+            {
+                RotateJoystick(x, y, rotation);
+            }
+
+            private void RotateJoystick(double x, double y, double rotation)
+            {
+                // Get angle and magnitude of input joystick
+                double angle = Math.Atan2(y, x);
+                double mag = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+
+                // Calculate rotation in rads
+                double rotateRadians = Deg2Rad(rotation);
+
+                // Apply rotation to input
+                angle -= rotateRadians;
+
+                // Adjust value between -180 and 180
+                angle = (angle + 3 * Math.PI) % (2 * Math.PI) - Math.PI;
+
+                // Perform normal rotation
+                double newX = mag * Math.Cos(angle);
+                double newY = mag * Math.Sin(angle);
+
+                // Store values
+                this.X = newX;
+                this.Y = newY;
+                this.Mag = mag;
+                this.Angle = angle;
+            }
+
+            public double GetAxis(Axis axis)
+            {
+                switch (axis)
+                {
+                    case Axis.XPositive:
+                        return X;
+
+                    case Axis.XNegative:
+                        return -X;
+
+                    case Axis.YPositive:
+                        return Y;
+
+                    case Axis.YNegative:
+                        return -Y;
+
+                    default:
+                        return 0.0;
+                }
+            }
+
+            public bool IsPastAxisDeadzone(float deadzone, Axis axis)
+            {
+                switch(axis)
+                {
+                    case Axis.XPositive:
+                        return X > deadzone;
+
+                    case Axis.XNegative:
+                        return -X > deadzone;
+
+                    case Axis.YPositive:
+                        return Y > deadzone;
+
+                    case Axis.YNegative:
+                        return -Y > deadzone;
+
+                    default:
+                        return false;
+                }
+            }
+
+            public bool IsPastDeadzone(float deadzone)
+            {
+                return Mag > deadzone;
+            }
+        }
+
+        
 
         private static double Rad2Deg(double rad)
         {
@@ -353,11 +455,11 @@ namespace GMKDriverNET
 
         private static int GetInt(float value, bool linear = false)
         {
-            if(linear)
+            if (linear)
             {
                 float maxVal = (float)Int16.MaxValue;
                 float ret = value * maxVal;
-                if(Math.Abs(ret) > maxVal)
+                if (Math.Abs(ret) > maxVal)
                 {
                     ret = Math.Sign(ret) * maxVal;
                 }
@@ -371,7 +473,7 @@ namespace GMKDriverNET
 
         private void SetTrigger(TriggerIO trigger, int value)
         {
-            switch(trigger)
+            switch (trigger)
             {
                 case TriggerIO.LeftTrigger:
                     triggerLeft += value;
@@ -389,7 +491,7 @@ namespace GMKDriverNET
 
         private int GetTrigger(TriggerIO trigger)
         {
-            switch(trigger)
+            switch (trigger)
             {
                 case TriggerIO.LeftTrigger:
                     return triggerLeft;
@@ -404,10 +506,10 @@ namespace GMKDriverNET
 
         private void SetJoystick(JoystickIO joystick, Axis axis, int value)
         {
-            switch(joystick)
+            switch (joystick)
             {
                 case JoystickIO.LeftJoystick:
-                    switch(axis)
+                    switch (axis)
                     {
                         case Axis.XPositive:
                             leftX += value;
@@ -627,7 +729,21 @@ namespace GMKDriverNET
 
         public void SetController(in IXbox360Controller controller)
         {
-            controller.SetButtonsFull(buttons);
+            controller.SetButtonState(Xbox360Button.A, a);
+            controller.SetButtonState(Xbox360Button.B, b);
+            controller.SetButtonState(Xbox360Button.X, x);
+            controller.SetButtonState(Xbox360Button.Y, y);
+            controller.SetButtonState(Xbox360Button.Back, back);
+            controller.SetButtonState(Xbox360Button.Start, start);
+            controller.SetButtonState(Xbox360Button.LeftShoulder, lb);
+            controller.SetButtonState(Xbox360Button.RightShoulder, rb);
+            controller.SetButtonState(Xbox360Button.LeftThumb, lth);
+            controller.SetButtonState(Xbox360Button.RightThumb, rth);
+            controller.SetButtonState(Xbox360Button.Up, up);
+            controller.SetButtonState(Xbox360Button.Down, down);
+            controller.SetButtonState(Xbox360Button.Left, left);
+            controller.SetButtonState(Xbox360Button.Right, right);
+            controller.SetButtonState(Xbox360Button.Guide, xbox);
             controller.SetAxisValue(Xbox360Axis.LeftThumbX, (Int16)Clamp(leftX, (int)(-Int16.MaxValue), (int)(Int16.MaxValue)));
             controller.SetAxisValue(Xbox360Axis.LeftThumbY, (Int16)Clamp(leftY, (int)(-Int16.MaxValue), (int)(Int16.MaxValue)));
             controller.SetAxisValue(Xbox360Axis.RightThumbX, (Int16)Clamp(rightX, (int)(-Int16.MaxValue), (int)(Int16.MaxValue)));
@@ -638,11 +754,11 @@ namespace GMKDriverNET
 
         public int Clamp(int input, int min, int max)
         {
-            if (input > max) 
+            if (input > max)
                 return max;
-            else if (input < min) 
+            else if (input < min)
                 return min;
-            else 
+            else
                 return input;
         }
     }

@@ -42,7 +42,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             _joystick = asJoystick;
             joystick.SelectedIndex = (int)asJoystick;
             _updateForm = updateForm;
-            
+
             _isInitialized = true;
         }
 

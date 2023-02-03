@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
-
-using GMKDriverNET;
+﻿using GMKDriverNET;
 using GMKDriverNET.Bindings;
+using System.Windows.Forms;
 
 namespace GMKDriverNETUI.ConfigurationControls
 {
@@ -9,7 +8,7 @@ namespace GMKDriverNETUI.ConfigurationControls
     {
         private ButtonAsTrigger _buttonAsTrigger;
         private TreeNode _node;
-        
+
         private bool _initialized;
 
         private delegate void OnUpdateForm();
@@ -36,7 +35,7 @@ namespace GMKDriverNETUI.ConfigurationControls
 
             inputButton.LoadButton(_buttonAsTrigger.input, config.type, false, _updateForm);
             outputTrigger.LoadTrigger(_buttonAsTrigger.output, config.type, true, _updateForm);
-            
+
             this.Visible = true;
             _initialized = true;
         }

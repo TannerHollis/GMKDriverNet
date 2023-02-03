@@ -28,7 +28,7 @@ namespace GMKDriverNETUI.ConfigurationControls
 
         private void button_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_isInitialized)
+            if (_isInitialized)
             {
                 _axis = (Axis)axis.SelectedIndex;
                 _updateForm.DynamicInvoke();
