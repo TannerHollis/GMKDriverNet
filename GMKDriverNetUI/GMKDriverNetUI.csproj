@@ -28,8 +28,8 @@
     <PublisherName>Gaming Mod Kits</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>48</ApplicationRevision>
-    <ApplicationVersion>0.94.0.%2a</ApplicationVersion>
+    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationVersion>0.95.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -96,6 +96,13 @@
     </Compile>
     <Compile Include="AboutWindow.Designer.cs">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logger.cs" />
+    <Compile Include="ConfigurationControls\JoystickKeyboardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControls\JoystickKeyboardControl.Designer.cs">
+      <DependentUpon>JoystickKeyboardControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigurationControls\Snap76Control.cs">
       <SubType>UserControl</SubType>
@@ -261,12 +268,24 @@
     <Compile Include="ConfigNameWindow.Designer.cs">
       <DependentUpon>ConfigNameWindow.cs</DependentUpon>
     </Compile>
-    <Content Include="KeyboardCharacters.txt" />
+    <Compile Include="UpdateWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateWindow.Designer.cs">
+      <DependentUpon>UpdateWindow.cs</DependentUpon>
+    </Compile>
+    <Content Include="KeyboardCharacters.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="libusb-1.0">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationControls\JoystickKeyboardControl.resx">
+      <DependentUpon>JoystickKeyboardControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationControls\Snap76Control.resx">
       <DependentUpon>Snap76Control.cs</DependentUpon>
@@ -362,6 +381,9 @@
       <Link>deviceList.json</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="UpdateWindow.resx">
+      <DependentUpon>UpdateWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

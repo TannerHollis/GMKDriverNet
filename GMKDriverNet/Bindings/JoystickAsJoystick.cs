@@ -15,6 +15,11 @@
             return input.ToString() + " -> " + output.ToString();
         }
 
+        public JoystickAsJoystick()
+        {
+            // Do nothing...
+        }
+
         public JoystickAsJoystick(JoystickIO input, JoystickIO output, float rotate, float deadzone, bool linear, bool snapMode76, int snap76Intensity)
         {
             this.input = input;

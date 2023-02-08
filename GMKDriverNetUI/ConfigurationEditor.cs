@@ -643,7 +643,7 @@ namespace GMKDriverNETUI
 
         private void joystickAsKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, Axis.XPositive, new List<byte> { 0x00, 0x00, 0x00 }, 0.0f, 0.2f));
+            _currentConfig.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, new List<byte> { 0x00, 0x00, 0x00, 0x00 }, 0.0f, 0.2f));
             LoadConfiguration(_currentConfig);
         }
 
@@ -707,6 +707,10 @@ namespace GMKDriverNETUI
         {
             _initialized = false;
 
+            this.Cursor = Cursors.WaitCursor;
+
+            CheckDefaultMappingsAdded();
+
             SetConfigsView();
 
             LoadWidgets();
@@ -714,6 +718,8 @@ namespace GMKDriverNETUI
             LoadConfiguration(_device.Config);
 
             UpdateTextWithLanguage();
+
+            this.Cursor = Cursors.Default;
 
             _initialized = true;
         }
@@ -723,6 +729,18 @@ namespace GMKDriverNETUI
             if (_initialized)
             {
                 _currentConfig.gameAssociation = gameAssociationName.Text;
+            }
+        }
+
+        private void CheckDefaultMappingsAdded()
+        {
+            if(_device.Type == GMKControllerType.Joystick)
+            {
+                DeviceConfig config = DeviceConfig.DefaultJoystickKeyboard;
+                if (!GMKDriver.DeviceList.IsConfigurationAlreadyAdded(_device.SerialNumber, config))
+                {
+                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, false);
+                }
             }
         }
     }

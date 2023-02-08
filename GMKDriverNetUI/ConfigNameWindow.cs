@@ -9,6 +9,7 @@ namespace GMKDriverNETUI
     {
         private string _name;
         private bool _makeDefault;
+        private bool _isInitialized;
         public string ConfigurationName { get { return _name; } }
         public bool MakeDefault { get { return _makeDefault; } }
         public ConfigNameWindow()
@@ -22,13 +23,19 @@ namespace GMKDriverNETUI
             this.Text = LanguageHelper.LookupPhrase("configName");
             nameLabel.Text = LanguageHelper.LookupPhrase("configName");
             okButton.Text = LanguageHelper.LookupPhrase("ok");
+            cancelButton.Text = LanguageHelper.LookupPhrase("cancel");
             makeDefaultLabel.Text = LanguageHelper.LookupPhrase("makeDefault");
         }
 
         public void LoadWindow(string name, bool makeDefault)
         {
+            _isInitialized = false;
+            
             _name = name;
+            this.name.Text = _name;
             _makeDefault = makeDefault;
+            
+            _isInitialized = true;
         }
 
         public string RemoveInvalidChars(string filename)
@@ -43,7 +50,8 @@ namespace GMKDriverNETUI
 
             if (DeviceConfig.ConfigNameExists(_name))
             {
-                ErrorWindow errorWindow = new ErrorWindow(LanguageHelper.LookupPhrase("configNameAlreadyFound"));
+                string errorString = string.Format(LanguageHelper.LookupPhrase("configNameAlreadyFound"), _name);
+                ErrorWindow errorWindow = new ErrorWindow(errorString);
                 errorWindow.ShowDialog();
             }
             else
@@ -55,9 +63,18 @@ namespace GMKDriverNETUI
 
         private void name_TextChanged(object sender, EventArgs e)
         {
-            name.Text = RemoveInvalidChars(name.Text);
-            name.SelectionStart = name.Text.Length;
-            name.SelectionLength = 0;
+            if(_isInitialized)
+            {
+                name.Text = RemoveInvalidChars(name.Text);
+                name.SelectionStart = name.Text.Length;
+                name.SelectionLength = 0;
+            }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

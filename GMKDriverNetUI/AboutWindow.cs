@@ -15,7 +15,7 @@ namespace GMKDriverNETUI
         {
             this.Text = GMKDriverNET.LanguageHelper.LookupPhrase("about");
             this.versionLabel.Text = GMKDriverNET.LanguageHelper.LookupPhrase("version");
-            this.supportLabel.Text = GMKDriverNET.LanguageHelper.LookupPhrase("version");
+            this.supportLabel.Text = GMKDriverNET.LanguageHelper.LookupPhrase("support");
             this.gmkWebsiteLabel.Text = GMKDriverNET.LanguageHelper.LookupPhrase("gmkWebsite");
         }
 

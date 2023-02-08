@@ -623,6 +623,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "configurationEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Configuration Editor";
             this.Load += new System.EventHandler(this.configurationEditor_Load);
             this.gridLayout.ResumeLayout(false);

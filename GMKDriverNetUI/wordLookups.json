@@ -13,7 +13,8 @@
       "ZH": "\u8FDE\u63A5\u8BBE\u5907",
       "DE": "Ger\u00E4t angeschlossen",
       "JA": "\u63A5\u7D9A\u3055\u308C\u305F\u30C7\u30D0\u30A4\u30B9",
-      "HI": "\u0921\u093F\u0935\u093E\u0907\u0938 \u091C\u0941\u0921\u093C\u093E \u0939\u0941\u0906 \u0939\u0948"
+      "HI": "\u0921\u093F\u0935\u093E\u0907\u0938 \u091C\u0941\u0921\u093C\u093E \u0939\u0941\u0906 \u0939\u0948",
+      "NL": "Apparaat verbonden"
     },
     {
       "shortHand": "deviceDisconnected",
@@ -28,7 +29,8 @@
       "ZH": "\u8BBE\u5907\u65AD\u5F00\u8FDE\u63A5",
       "DE": "Ger\u00E4t getrennt",
       "JA": "\u30C7\u30D0\u30A4\u30B9\u304C\u5207\u65AD\u3055\u308C\u307E\u3057\u305F",
-      "HI": "\u0921\u093F\u0935\u093E\u0907\u0938 \u0921\u093F\u0938\u094D\u0915\u0928\u0947\u0915\u094D\u091F \u0915\u093F\u092F\u093E \u0917\u092F\u093E"
+      "HI": "\u0921\u093F\u0935\u093E\u0907\u0938 \u0921\u093F\u0938\u094D\u0915\u0928\u0947\u0915\u094D\u091F \u0915\u093F\u092F\u093E \u0917\u092F\u093E",
+      "NL": "Apparaat afgekoppeld"
     },
     {
       "shortHand": "rotateJoysticks",
@@ -43,7 +45,8 @@
       "ZH": "\u63D0\u9192\uFF1A\u65CB\u8F6C\u64CD\u7EB5\u6746\u4EE5\u5B8C\u6210\u6821\u51C6\u3002",
       "DE": "Erinnerung: Drehen Sie Joysticks, um die Kalibrierung zu vervollst\u00E4ndigen.",
       "JA": "\u30EA\u30DE\u30A4\u30F3\u30C0\u30FC\uFF1A\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF\u3092\u56DE\u8EE2\u3055\u305B\u3066\u30AD\u30E3\u30EA\u30D6\u30EC\u30FC\u30B7\u30E7\u30F3\u3092\u5B8C\u4E86\u3057\u307E\u3059\u3002",
-      "HI": "\u0905\u0928\u0941\u0938\u094D\u092E\u093E\u0930\u0915: \u0905\u0902\u0936\u093E\u0902\u0915\u0928 \u0915\u094B \u092A\u0942\u0930\u093E \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915\u094D\u0938 \u0915\u094B \u0918\u0941\u092E\u093E\u090F\u0902\u0964"
+      "HI": "\u0905\u0928\u0941\u0938\u094D\u092E\u093E\u0930\u0915: \u0905\u0902\u0936\u093E\u0902\u0915\u0928 \u0915\u094B \u092A\u0942\u0930\u093E \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915\u094D\u0938 \u0915\u094B \u0918\u0941\u092E\u093E\u090F\u0902\u0964",
+      "NL": "Herinnering: roteer joysticks om kalibratie te voltooien."
     },
     {
       "shortHand": "rotateJoystick",
@@ -58,7 +61,8 @@
       "ZH": "\u63D0\u9192\uFF1A\u65CB\u8F6C\u64CD\u7EB5\u6746\u4EE5\u5B8C\u6210\u6821\u51C6\u3002",
       "DE": "Erinnerung: Drehen Sie Joystick, um die Kalibrierung zu vervollst\u00E4ndigen.",
       "JA": "\u30EA\u30DE\u30A4\u30F3\u30C0\u30FC\uFF1A\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF\u3092\u56DE\u8EE2\u3055\u305B\u3066\u30AD\u30E3\u30EA\u30D6\u30EC\u30FC\u30B7\u30E7\u30F3\u3092\u5B8C\u4E86\u3057\u307E\u3059\u3002",
-      "HI": "\u0905\u0928\u0941\u0938\u094D\u092E\u093E\u0930\u0915: \u0905\u0902\u0936\u093E\u0902\u0915\u0928 \u092A\u0942\u0930\u093E \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0915\u094B \u0918\u0941\u092E\u093E\u090F\u0902\u0964"
+      "HI": "\u0905\u0928\u0941\u0938\u094D\u092E\u093E\u0930\u0915: \u0905\u0902\u0936\u093E\u0902\u0915\u0928 \u092A\u0942\u0930\u093E \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0915\u094B \u0918\u0941\u092E\u093E\u090F\u0902\u0964",
+      "NL": "Herinnering: roteer joystick om kalibratie te voltooien."
     },
     {
       "shortHand": "driverStarted",
@@ -73,7 +77,8 @@
       "ZH": "\u9A7E\u9A76\u5458\u5F00\u59CB",
       "DE": "Fahrer begann",
       "JA": "\u30C9\u30E9\u30A4\u30D0\u30FC\u304C\u59CB\u307E\u308A\u307E\u3057\u305F",
-      "HI": "\u091A\u093E\u0932\u0915 \u0928\u0947 \u0936\u0941\u0930\u0942 \u0915\u093F\u092F\u093E"
+      "HI": "\u091A\u093E\u0932\u0915 \u0928\u0947 \u0936\u0941\u0930\u0942 \u0915\u093F\u092F\u093E",
+      "NL": "Bestuurder begon"
     },
     {
       "shortHand": "driverStopped",
@@ -88,7 +93,8 @@
       "ZH": "\u9A7E\u9A76\u5458\u505C\u4E86\u4E0B\u6765",
       "DE": "Fahrer blieb stehen",
       "JA": "\u30C9\u30E9\u30A4\u30D0\u30FC\u304C\u505C\u6B62\u3057\u307E\u3057\u305F",
-      "HI": "\u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u0930\u0941\u0915 \u0917\u092F\u093E"
+      "HI": "\u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u0930\u0941\u0915 \u0917\u092F\u093E",
+      "NL": "Driver stopte"
     },
     {
       "shortHand": "driverResumed",
@@ -103,7 +109,8 @@
       "ZH": "\u9A7E\u9A76\u5458\u6062\u590D",
       "DE": "Fahrer wieder aufgenommen",
       "JA": "\u30C9\u30E9\u30A4\u30D0\u30FC\u304C\u518D\u958B\u3057\u307E\u3057\u305F",
-      "HI": "\u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u092B\u093F\u0930 \u0938\u0947 \u0936\u0941\u0930\u0942 \u0939\u0941\u0906"
+      "HI": "\u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u092B\u093F\u0930 \u0938\u0947 \u0936\u0941\u0930\u0942 \u0939\u0941\u0906",
+      "NL": "Bestuurder werd hervat"
     },
     {
       "shortHand": "driverPaused",
@@ -118,7 +125,8 @@
       "ZH": "\u53F8\u673A\u505C\u4E0B\u6765",
       "DE": "Fahrer machte eine Pause",
       "JA": "\u30C9\u30E9\u30A4\u30D0\u30FC\u306F\u4E00\u6642\u505C\u6B62\u3057\u307E\u3057\u305F",
-      "HI": "\u091A\u093E\u0932\u0915 \u0928\u0947 \u0930\u094B\u0915\u093E"
+      "HI": "\u091A\u093E\u0932\u0915 \u0928\u0947 \u0930\u094B\u0915\u093E",
+      "NL": "Bestuurder gepauzeerd"
     },
     {
       "shortHand": "autoConfigFound",
@@ -133,7 +141,8 @@
       "ZH": "\u4E3A\u5E94\u7528\u7A0B\u5E8F\u627E\u5230\u7684\u81EA\u52A8\u914D\u7F6E\uFF1A",
       "DE": "Automatische Konfiguration f\u00FCr die Anwendung:",
       "JA": "\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u7528\u306B\u898B\u3064\u304B\u3063\u305F\u81EA\u52D5\u69CB\u6210\uFF1A",
-      "HI": "\u090F\u092A\u094D\u0932\u093F\u0915\u0947\u0936\u0928 \u0915\u0947 \u0932\u093F\u090F \u092A\u093E\u092F\u093E \u0917\u092F\u093E \u0938\u094D\u0935\u091A\u093E\u0932\u093F\u0924 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928:"
+      "HI": "\u090F\u092A\u094D\u0932\u093F\u0915\u0947\u0936\u0928 \u0915\u0947 \u0932\u093F\u090F \u092A\u093E\u092F\u093E \u0917\u092F\u093E \u0938\u094D\u0935\u091A\u093E\u0932\u093F\u0924 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928:",
+      "NL": "Automatische configuratie gevonden voor toepassing:"
     },
     {
       "shortHand": "about",
@@ -141,14 +150,15 @@
       "ES": "Acerca de",
       "AF": "Rondom",
       "AR": "\u0639\u0646",
-      "FR": "\u00C0 propos de",
+      "FR": "\u00C0 propos",
       "RU": "\u041E",
-      "PT": "Cerca de",
+      "PT": "Sobre",
       "ID": "Tentang",
       "ZH": "\u5173\u4E8E",
-      "DE": "\u00DCber",
+      "DE": "Um",
       "JA": "\u3060\u3044\u305F\u3044",
-      "HI": "\u092C\u093E\u0930\u0947 \u092E\u0947\u0902"
+      "HI": "\u0915\u0947 \u092C\u093E\u0930\u0947 \u092E\u0947\u0902",
+      "NL": "Over"
     },
     {
       "shortHand": "version",
@@ -163,7 +173,8 @@
       "ZH": "\u7248\u672C\uFF1A",
       "DE": "Ausf\u00FChrung:",
       "JA": "\u30D0\u30FC\u30B8\u30E7\u30F3\uFF1A",
-      "HI": "\u0938\u0902\u0938\u094D\u0915\u0930\u0923:"
+      "HI": "\u0938\u0902\u0938\u094D\u0915\u0930\u0923:",
+      "NL": "Versie:"
     },
     {
       "shortHand": "support",
@@ -173,12 +184,13 @@
       "AR": "\u064A\u062F\u0639\u0645:",
       "FR": "Soutien:",
       "RU": "\u041F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0442\u044C:",
-      "PT": "Apoio, suporte:",
-      "ID": "Dukung:",
+      "PT": "Apoiar:",
+      "ID": "Mendukung:",
       "ZH": "\u652F\u6301\uFF1A",
-      "DE": "Die Unterst\u00FCtzung:",
+      "DE": "Unterst\u00FCtzung:",
       "JA": "\u30B5\u30DD\u30FC\u30C8\uFF1A",
-      "HI": "\u0938\u0939\u093E\u092F\u0924\u093E:"
+      "HI": "\u0938\u0939\u093E\u092F\u0924\u093E:",
+      "NL": "Steun:"
     },
     {
       "shortHand": "gmkWebsite",
@@ -193,7 +205,8 @@
       "ZH": "GMK\u7F51\u7AD9",
       "DE": "GMK -Website",
       "JA": "GMK\u30A6\u30A7\u30D6\u30B5\u30A4\u30C8",
-      "HI": "\u091C\u0940\u090F\u092E\u0915\u0947 \u0935\u0947\u092C\u0938\u093E\u0907\u091F"
+      "HI": "\u091C\u0940\u090F\u092E\u0915\u0947 \u0935\u0947\u092C\u0938\u093E\u0907\u091F",
+      "NL": "GMK -website"
     },
     {
       "shortHand": "gmkDriver",
@@ -208,7 +221,8 @@
       "ZH": "GMK\u9A71\u52A8\u7A0B\u5E8F",
       "DE": "GMK -Treiber",
       "JA": "GMK\u30C9\u30E9\u30A4\u30D0\u30FC",
-      "HI": "\u091C\u0940\u090F\u092E\u0915\u0947 \u0921\u094D\u0930\u093E\u0907\u0935\u0930"
+      "HI": "\u091C\u0940\u090F\u092E\u0915\u0947 \u0921\u094D\u0930\u093E\u0907\u0935\u0930",
+      "NL": "GMK -stuurprogramma"
     },
     {
       "shortHand": "settings",
@@ -223,7 +237,8 @@
       "ZH": "\u8BBE\u7F6E",
       "DE": "Einstellungen",
       "JA": "\u8A2D\u5B9A",
-      "HI": "\u0938\u092E\u093E\u092F\u094B\u091C\u0928"
+      "HI": "\u0938\u092E\u093E\u092F\u094B\u091C\u0928",
+      "NL": "Instellingen"
     },
     {
       "shortHand": "setAsStartupApp",
@@ -238,7 +253,8 @@
       "ZH": "\u8BBE\u7F6E\u4E3A\u542F\u52A8\u5E94\u7528\u7A0B\u5E8F",
       "DE": "Setzen Sie als Start -App",
       "JA": "\u8D77\u52D5\u30A2\u30D7\u30EA\u3068\u3057\u3066\u8A2D\u5B9A\u3057\u307E\u3059",
-      "HI": "\u0938\u094D\u091F\u093E\u0930\u094D\u091F\u0905\u092A \u0910\u092A \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u0938\u0947\u091F \u0915\u0930\u0947\u0902"
+      "HI": "\u0938\u094D\u091F\u093E\u0930\u094D\u091F\u0905\u092A \u0910\u092A \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u0938\u0947\u091F \u0915\u0930\u0947\u0902",
+      "NL": "Stel in als opstart -app"
     },
     {
       "shortHand": "removeFromStartupApps",
@@ -253,7 +269,8 @@
       "ZH": "\u4ECE\u542F\u52A8\u5E94\u7528\u7A0B\u5E8F\u4E2D\u5220\u9664",
       "DE": "Entfernen Sie aus Start -Apps",
       "JA": "\u8D77\u52D5\u30A2\u30D7\u30EA\u304B\u3089\u524A\u9664\u3057\u307E\u3059",
-      "HI": "\u0938\u094D\u091F\u093E\u0930\u094D\u091F\u0905\u092A \u0910\u092A\u094D\u0938 \u0938\u0947 \u0928\u093F\u0915\u093E\u0932\u0947\u0902"
+      "HI": "\u0938\u094D\u091F\u093E\u0930\u094D\u091F\u0905\u092A \u0910\u092A\u094D\u0938 \u0938\u0947 \u0928\u093F\u0915\u093E\u0932\u0947\u0902",
+      "NL": "Verwijderen uit opstart -apps"
     },
     {
       "shortHand": "devices",
@@ -268,7 +285,8 @@
       "ZH": "\u8BBE\u5907",
       "DE": "Ger\u00E4te",
       "JA": "\u30C7\u30D0\u30A4\u30B9",
-      "HI": "\u0909\u092A\u0915\u0930\u0923"
+      "HI": "\u0909\u092A\u0915\u0930\u0923",
+      "NL": "Apparaat"
     },
     {
       "shortHand": "deviceType",
@@ -283,7 +301,8 @@
       "ZH": "\u8BBE\u5907\u7C7B\u578B\uFF1A",
       "DE": "Ger\u00E4tetyp:",
       "JA": "\u30C7\u30D0\u30A4\u30B9\u30BF\u30A4\u30D7\uFF1A",
-      "HI": "\u0909\u092A\u0915\u0930\u0923 \u0915\u093E \u092A\u094D\u0930\u0915\u093E\u0930:"
+      "HI": "\u0909\u092A\u0915\u0930\u0923 \u0915\u093E \u092A\u094D\u0930\u0915\u093E\u0930:",
+      "NL": "Soort apparaat:"
     },
     {
       "shortHand": "viGEmNotInstalled1",
@@ -298,7 +317,8 @@
       "ZH": "\u627E\u4E0D\u5230\u8FD9\u53F0\u8BA1\u7B97\u673A\u4E0A\u5B89\u88C5\u7684\u7EF4\u683C\u59C6\u516C\u5171\u6C7D\u8F66\u53F8\u673A",
       "DE": "Es konnte nicht finden, dass Vigem Busfahrer auf diesem Computer installiert wurde",
       "JA": "\u3053\u306E\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FC\u306B\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u3055\u308C\u3066\u3044\u308BVigem\u30D0\u30B9\u306E\u30C9\u30E9\u30A4\u30D0\u30FC\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F",
-      "HI": "\u0907\u0938 \u0915\u0902\u092A\u094D\u092F\u0942\u091F\u0930 \u092A\u0930 \u0938\u094D\u0925\u093E\u092A\u093F\u0924 \u0935\u093F\u091C\u0947\u092E \u092C\u0938 \u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u0928\u0939\u0940\u0902 \u092E\u093F\u0932\u093E"
+      "HI": "\u0907\u0938 \u0915\u0902\u092A\u094D\u092F\u0942\u091F\u0930 \u092A\u0930 \u0938\u094D\u0925\u093E\u092A\u093F\u0924 \u0935\u093F\u091C\u0947\u092E \u092C\u0938 \u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u0928\u0939\u0940\u0902 \u092E\u093F\u0932\u093E",
+      "NL": "Kon geen vigem buschauffeur op deze computer ge\u00EFnstalleerd zijn"
     },
     {
       "shortHand": "viGEmNotInstalled2",
@@ -313,7 +333,8 @@
       "ZH": "\u8BF7\u4ECE\u4EE5\u4E0B\u5185\u5BB9\u4E0B\u8F7D\u6700\u65B0\u7248\u672C\uFF1Ahttps\uFF1A//github.com/vigem/vigembus/releases",
       "DE": "Bitte laden Sie die neueste Version von: https://github.com/vigem/vigembus/release herunter",
       "JA": "https://github.com/vigem/vigembus/releases\u304B\u3089\u6700\u65B0\u30EA\u30EA\u30FC\u30B9\u3092\u30C0\u30A6\u30F3\u30ED\u30FC\u30C9\u3057\u3066\u304F\u3060\u3055\u3044",
-      "HI": "\u0915\u0943\u092A\u092F\u093E \u0928\u0935\u0940\u0928\u0924\u092E \u0930\u093F\u0932\u0940\u091C\u093C \u0921\u093E\u0909\u0928\u0932\u094B\u0921 \u0915\u0930\u0947\u0902: https://github.com/vigem/vigembus/releases"
+      "HI": "\u0915\u0943\u092A\u092F\u093E \u0928\u0935\u0940\u0928\u0924\u092E \u0930\u093F\u0932\u0940\u091C\u093C \u0921\u093E\u0909\u0928\u0932\u094B\u0921 \u0915\u0930\u0947\u0902: https://github.com/vigem/vigembus/releases",
+      "NL": "Download de nieuwste release van: https://github.com/vigem/vigembus/releases"
     },
     {
       "shortHand": "serialNumber",
@@ -328,7 +349,8 @@
       "ZH": "\u5E8F\u5217\u53F7\uFF1A",
       "DE": "Seriennummer:",
       "JA": "\u30B7\u30EA\u30A2\u30EB\u30CA\u30F3\u30D0\u30FC\uFF1A",
-      "HI": "\u0915\u094D\u0930\u092E\u093F\u0915 \u0938\u0902\u0916\u094D\u092F\u093E:"
+      "HI": "\u0915\u094D\u0930\u092E\u093F\u0915 \u0938\u0902\u0916\u094D\u092F\u093E:",
+      "NL": "Serienummer:"
     },
     {
       "shortHand": "gameAssoc",
@@ -343,7 +365,8 @@
       "ZH": "\u6E38\u620F\u534F\u4F1A\uFF1A",
       "DE": "Game Association:",
       "JA": "\u30B2\u30FC\u30E0\u5354\u4F1A\uFF1A",
-      "HI": "\u0916\u0947\u0932 \u090F\u0938\u094B\u0938\u093F\u090F\u0936\u0928:"
+      "HI": "\u0916\u0947\u0932 \u090F\u0938\u094B\u0938\u093F\u090F\u0936\u0928:",
+      "NL": "Game Association:"
     },
     {
       "shortHand": "configs",
@@ -358,7 +381,8 @@
       "ZH": "\u914D\u7F6E",
       "DE": "Konfigurationen",
       "JA": "\u69CB\u6210",
-      "HI": "\u0935\u093F\u0928\u094D\u092F\u093E\u0938"
+      "HI": "\u0935\u093F\u0928\u094D\u092F\u093E\u0938",
+      "NL": "Configuraties"
     },
     {
       "shortHand": "configName",
@@ -373,7 +397,8 @@
       "ZH": "\u914D\u7F6E\u540D\u79F0",
       "DE": "Konfigurationsname",
       "JA": "\u69CB\u6210\u540D",
-      "HI": "\u0935\u093F\u0928\u094D\u092F\u093E\u0938 \u0928\u093E\u092E"
+      "HI": "\u0935\u093F\u0928\u094D\u092F\u093E\u0938 \u0928\u093E\u092E",
+      "NL": "Configuratienaam"
     },
     {
       "shortHand": "defaultConfig",
@@ -388,7 +413,8 @@
       "ZH": "\u9ED8\u8BA4\u914D\u7F6E",
       "DE": "Standardkonfiguration",
       "JA": "\u30C7\u30D5\u30A9\u30EB\u30C8\u306E\u69CB\u6210",
-      "HI": "\u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u0935\u093F\u0928\u094D\u092F\u093E\u0938"
+      "HI": "\u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u0935\u093F\u0928\u094D\u092F\u093E\u0938",
+      "NL": "Standaard configuratie"
     },
     {
       "shortHand": "default",
@@ -398,12 +424,13 @@
       "AR": "\u062A\u0642\u0635\u064A\u0631",
       "FR": "D\u00E9faut",
       "RU": "\u041F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E",
-      "PT": "Predefini\u00E7\u00E3o",
+      "PT": "Padr\u00E3o",
       "ID": "Bawaan",
       "ZH": "\u9ED8\u8BA4",
       "DE": "Standard",
       "JA": "\u30C7\u30D5\u30A9\u30EB\u30C8",
-      "HI": "\u091A\u0942\u0915 \u091C\u093E\u0928\u093E"
+      "HI": "\u0917\u0932\u0924\u0940 \u0915\u0930\u0928\u093E",
+      "NL": "Standaard"
     },
     {
       "shortHand": "makeDefault",
@@ -418,37 +445,40 @@
       "ZH": "\u4F7F\u9ED8\u8BA4",
       "DE": "Machen Standard",
       "JA": "\u30C7\u30D5\u30A9\u30EB\u30C8\u306B\u3057\u307E\u3059",
-      "HI": "\u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u092C\u0928\u093E\u0928\u093E"
+      "HI": "\u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u092C\u0928\u093E\u0928\u093E",
+      "NL": "Standaard maken"
     },
     {
       "shortHand": "load",
       "EN": "Load",
       "ES": "Carga",
       "AF": "Vrag",
-      "AR": "\u062D\u0645\u0644",
-      "FR": "Charge",
+      "AR": "\u062D\u0645\u0648\u0644\u0629",
+      "FR": "Charger",
       "RU": "\u041D\u0430\u0433\u0440\u0443\u0437\u043A\u0430",
       "PT": "Carregar",
       "ID": "Memuat",
       "ZH": "\u52A0\u8F7D",
       "DE": "Belastung",
       "JA": "\u30ED\u30FC\u30C9",
-      "HI": "\u092D\u093E\u0930"
+      "HI": "\u092D\u093E\u0930",
+      "NL": "Laden"
     },
     {
       "shortHand": "save",
       "EN": "Save",
-      "ES": "Salvar",
+      "ES": "Ahorrar",
       "AF": "Red",
       "AR": "\u064A\u062D\u0641\u0638",
-      "FR": "Sauver",
-      "RU": "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
-      "PT": "Salve \uE051",
+      "FR": "Sauvegarder",
+      "RU": "\u0421\u043E\u0445\u0440\u0430\u043D\u044F\u0442\u044C",
+      "PT": "Salvar",
       "ID": "Menyimpan",
-      "ZH": "\u6551",
+      "ZH": "\u8282\u7701",
       "DE": "Speichern",
-      "JA": "\u30BB\u30FC\u30D6",
-      "HI": "\u092C\u091A\u093E\u0928\u093E"
+      "JA": "\u4FDD\u5B58",
+      "HI": "\u092C\u091A\u093E\u0928\u093E",
+      "NL": "Redden"
     },
     {
       "shortHand": "configSettings",
@@ -463,7 +493,8 @@
       "ZH": "\u914D\u7F6E\u8BBE\u7F6E",
       "DE": "Konfigurationseinstellungen",
       "JA": "\u69CB\u6210\u8A2D\u5B9A",
-      "HI": "\u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0938\u0947\u091F\u093F\u0902\u0917\u094D\u0938"
+      "HI": "\u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0938\u0947\u091F\u093F\u0902\u0917\u094D\u0938",
+      "NL": "Configuratie-instellingen"
     },
     {
       "shortHand": "editBindings",
@@ -478,7 +509,8 @@
       "ZH": "\u7F16\u8F91\u7ED1\u5B9A...",
       "DE": "Bindungen bearbeiten ...",
       "JA": "\u30D0\u30A4\u30F3\u30C7\u30A3\u30F3\u30B0\u3092\u7DE8\u96C6...",
-      "HI": "\u092C\u093E\u0907\u0902\u0921\u093F\u0902\u0917 \u0938\u0902\u092A\u093E\u0926\u093F\u0924 \u0915\u0930\u0947\u0902 ..."
+      "HI": "\u092C\u093E\u0907\u0902\u0921\u093F\u0902\u0917 \u0938\u0902\u092A\u093E\u0926\u093F\u0924 \u0915\u0930\u0947\u0902 ...",
+      "NL": "Bindingen bewerken ..."
     },
     {
       "shortHand": "buttonBindings",
@@ -493,7 +525,8 @@
       "ZH": "\u6309\u94AE\u7ED1\u5B9A",
       "DE": "Knopfbindungen",
       "JA": "\u30DC\u30BF\u30F3\u30D0\u30A4\u30F3\u30C7\u30A3\u30F3\u30B0",
-      "HI": "\u092C\u091F\u0928 \u092C\u093E\u0907\u0902\u0921\u093F\u0902\u0917"
+      "HI": "\u092C\u091F\u0928 \u092C\u093E\u0907\u0902\u0921\u093F\u0902\u0917",
+      "NL": "Knopbindingen"
     },
     {
       "shortHand": "joystickBindings",
@@ -508,7 +541,8 @@
       "ZH": "\u64CD\u7EB5\u6746\u7ED1\u5B9A",
       "DE": "Joystick -Bindungen",
       "JA": "\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF\u30D0\u30A4\u30F3\u30C7\u30A3\u30F3\u30B0",
-      "HI": "\u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u092C\u093E\u0907\u0902\u0921\u093F\u0902\u0917"
+      "HI": "\u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u092C\u093E\u0907\u0902\u0921\u093F\u0902\u0917",
+      "NL": "Joystick -bindingen"
     },
     {
       "shortHand": "selectionHelp",
@@ -523,7 +557,8 @@
       "ZH": "\u53CC\u51FB\u7ED1\u5B9A\u4EE5\u5F00\u59CB",
       "DE": "Doppelklicken Sie auf eine Bindung, um zu starten",
       "JA": "\u30D0\u30A4\u30F3\u30C7\u30A3\u30F3\u30B0\u3092\u30C0\u30D6\u30EB\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u958B\u59CB\u3057\u307E\u3059",
-      "HI": "\u0936\u0941\u0930\u0942 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u090F\u0915 \u092C\u0902\u0927\u0928 \u092A\u0930 \u0921\u092C\u0932-\u0915\u094D\u0932\u093F\u0915 \u0915\u0930\u0947\u0902"
+      "HI": "\u0936\u0941\u0930\u0942 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u090F\u0915 \u092C\u0902\u0927\u0928 \u092A\u0930 \u0921\u092C\u0932-\u0915\u094D\u0932\u093F\u0915 \u0915\u0930\u0947\u0902",
+      "NL": "Dubbelklik op een binding om te starten"
     },
     {
       "shortHand": "inputButton",
@@ -538,7 +573,8 @@
       "ZH": "\u8F93\u5165\u6309\u94AE",
       "DE": "Eingabetaste",
       "JA": "\u5165\u529B\u30DC\u30BF\u30F3",
-      "HI": "\u0907\u0928\u092A\u0941\u091F \u092C\u091F\u0928"
+      "HI": "\u0907\u0928\u092A\u0941\u091F \u092C\u091F\u0928",
+      "NL": "Invoerknop"
     },
     {
       "shortHand": "outputButton",
@@ -553,7 +589,8 @@
       "ZH": "\u8F93\u51FA\u6309\u94AE",
       "DE": "Ausgangstaste",
       "JA": "\u51FA\u529B\u30DC\u30BF\u30F3",
-      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u092C\u091F\u0928"
+      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u092C\u091F\u0928",
+      "NL": "Uitvoerknop"
     },
     {
       "shortHand": "inputJoystick",
@@ -568,7 +605,8 @@
       "ZH": "\u8F93\u5165\u64CD\u7EB5\u6746",
       "DE": "Geben Joystick ein",
       "JA": "\u5165\u529B\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF",
-      "HI": "\u0907\u0928\u092A\u0941\u091F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915"
+      "HI": "\u0907\u0928\u092A\u0941\u091F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915",
+      "NL": "Voer joystick in"
     },
     {
       "shortHand": "outputJoystick",
@@ -583,7 +621,8 @@
       "ZH": "\u8F93\u51FA\u64CD\u7EB5\u6746",
       "DE": "Ausgabe Joystick",
       "JA": "\u51FA\u529B\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF",
-      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915"
+      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915",
+      "NL": "Output joystick"
     },
     {
       "shortHand": "configEditor",
@@ -598,7 +637,8 @@
       "ZH": "\u914D\u7F6E\u7F16\u8F91\u5668",
       "DE": "Konfigurationseditor",
       "JA": "\u69CB\u6210\u30A8\u30C7\u30A3\u30BF\u30FC",
-      "HI": "\u0935\u093F\u0928\u094D\u092F\u093E\u0938 \u0938\u0902\u092A\u093E\u0926\u0915"
+      "HI": "\u0935\u093F\u0928\u094D\u092F\u093E\u0938 \u0938\u0902\u092A\u093E\u0926\u0915",
+      "NL": "Configuratie -editor"
     },
     {
       "shortHand": "rotate",
@@ -613,7 +653,8 @@
       "ZH": "\u8F93\u5165\u64CD\u7EB5\u6746\u65CB\u8F6C\uFF08\u987A\u65F6\u9488\uFF09",
       "DE": "Eingabe der Joystick -Rotation (im Uhrzeigersinn)",
       "JA": "\u5165\u529B\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF\u56DE\u8EE2\uFF08\u6642\u8A08\u56DE\u308A\uFF09",
-      "HI": "\u0907\u0928\u092A\u0941\u091F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0930\u094B\u091F\u0947\u0936\u0928 (\u0926\u0915\u094D\u0937\u093F\u0923\u093E\u0935\u0930\u094D\u0924)"
+      "HI": "\u0907\u0928\u092A\u0941\u091F \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0930\u094B\u091F\u0947\u0936\u0928 (\u0926\u0915\u094D\u0937\u093F\u0923\u093E\u0935\u0930\u094D\u0924)",
+      "NL": "Voer joystick rotatie in (met de klok mee)"
     },
     {
       "shortHand": "deadzone",
@@ -628,7 +669,8 @@
       "ZH": "\u76F2\u533A",
       "DE": "Todeszone",
       "JA": "\u30C7\u30C3\u30C9\u30BE\u30FC\u30F3",
-      "HI": "\u092E\u0943\u0924 \u0915\u094D\u0937\u0947\u0924\u094D\u0930"
+      "HI": "\u092E\u0943\u0924 \u0915\u094D\u0937\u0947\u0924\u094D\u0930",
+      "NL": "Dode zone"
     },
     {
       "shortHand": "linear",
@@ -643,7 +685,8 @@
       "ZH": "\u7EBF\u6027",
       "DE": "Linear",
       "JA": "\u7DDA\u5F62",
-      "HI": "\u0930\u0948\u0916\u093F\u0915"
+      "HI": "\u0930\u0947\u0916\u0940\u092F",
+      "NL": "Lineair"
     },
     {
       "shortHand": "snapMode",
@@ -658,7 +701,8 @@
       "ZH": "76\u00B0\u5FEB\u7167\u6A21\u5F0F",
       "DE": "76 \u00B0 Snap -Modus",
       "JA": "76\u00B0\u30B9\u30CA\u30C3\u30D7\u30E2\u30FC\u30C9",
-      "HI": "76 \u00B0 \u0938\u094D\u0928\u0948\u092A \u092E\u094B\u0921"
+      "HI": "76 \u00B0 \u0938\u094D\u0928\u0948\u092A \u092E\u094B\u0921",
+      "NL": "76 \u00B0 SNAP -modus"
     },
     {
       "shortHand": "snapIntensity",
@@ -673,7 +717,8 @@
       "ZH": "SNAP76\u5F3A\u5EA6",
       "DE": "Snap76 Intensit\u00E4t",
       "JA": "SNAP76\u5F37\u5EA6",
-      "HI": "\u0938\u094D\u0928\u0948\u092A 76 \u0924\u0940\u0935\u094D\u0930\u0924\u093E"
+      "HI": "\u0938\u094D\u0928\u0948\u092A 76 \u0924\u0940\u0935\u094D\u0930\u0924\u093E",
+      "NL": "Snap76 -intensiteit"
     },
     {
       "shortHand": "extremeTight",
@@ -688,7 +733,8 @@
       "ZH": "\u975E\u5E38\u7D27\uFF0820\u00B0\uFF09",
       "DE": "Extrem eng (20 \u00B0)",
       "JA": "\u975E\u5E38\u306B\u30BF\u30A4\u30C8\uFF0820\u00B0\uFF09",
-      "HI": "\u092C\u0947\u0939\u0926 \u0924\u0902\u0917 (20 \u00B0)"
+      "HI": "\u092C\u0947\u0939\u0926 \u0924\u0902\u0917 (20 \u00B0)",
+      "NL": "Extreem strak (20 \u00B0)"
     },
     {
       "shortHand": "tight",
@@ -703,7 +749,8 @@
       "ZH": "\u7D27\uFF0830\u00B0\uFF09",
       "DE": "Eng (30 \u00B0)",
       "JA": "\u30BF\u30A4\u30C8\uFF0830\u00B0\uFF09",
-      "HI": "\u0924\u0902\u0917 (30 \u00B0)"
+      "HI": "\u0924\u0902\u0917 (30 \u00B0)",
+      "NL": "Strak (30 \u00B0)"
     },
     {
       "shortHand": "medium",
@@ -718,7 +765,8 @@
       "ZH": "\u57F9\u517B\u57FA\uFF0840\u00B0\uFF09",
       "DE": "Medium (40 \u00B0)",
       "JA": "\u4E2D\uFF0840\u00B0\uFF09",
-      "HI": "\u092E\u0927\u094D\u092F\u092E (40 \u00B0)"
+      "HI": "\u092E\u0927\u094D\u092F\u092E (40 \u00B0)",
+      "NL": "Medium (40 \u00B0)"
     },
     {
       "shortHand": "loose",
@@ -733,7 +781,8 @@
       "ZH": "\u677E\u52A8\uFF0850\u00B0\uFF09",
       "DE": "Locker (50 \u00B0)",
       "JA": "\u30EB\u30FC\u30BA\uFF0850\u00B0\uFF09",
-      "HI": "\u0922\u0940\u0932\u093E (50 \u00B0)"
+      "HI": "\u0922\u0940\u0932\u093E (50 \u00B0)",
+      "NL": "Los (50 \u00B0)"
     },
     {
       "shortHand": "veryLoose",
@@ -748,7 +797,8 @@
       "ZH": "\u975E\u5E38\u677E\u6563\uFF0860\u00B0\uFF09",
       "DE": "Sehr locker (60 \u00B0)",
       "JA": "\u975E\u5E38\u306B\u3086\u308B\u3044\uFF0860\u00B0\uFF09",
-      "HI": "\u092C\u0939\u0941\u0924 \u0922\u0940\u0932\u093E (60 \u00B0)"
+      "HI": "\u092C\u0939\u0941\u0924 \u0922\u0940\u0932\u093E (60 \u00B0)",
+      "NL": "Erg los (60 \u00B0)"
     },
     {
       "shortHand": "reset",
@@ -757,28 +807,30 @@
       "AF": "Herstel",
       "AR": "\u0625\u0639\u0627\u062F\u0629 \u0636\u0628\u0637",
       "FR": "R\u00E9initialiser",
-      "RU": "\u0421\u0431\u0440\u043E\u0441 \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043A",
-      "PT": "Redefinir",
+      "RU": "\u041F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C",
+      "PT": "Reiniciar",
       "ID": "Mengatur ulang",
       "ZH": "\u91CD\u7F6E",
       "DE": "Zur\u00FCcksetzen",
       "JA": "\u30EA\u30BB\u30C3\u30C8",
-      "HI": "\u0930\u0940\u0938\u0947\u091F"
+      "HI": "\u0930\u0940\u0938\u0947\u091F",
+      "NL": "Resetten"
     },
     {
       "shortHand": "snap",
       "EN": "Snap",
-      "ES": "Siesta",
+      "ES": "Quebrar",
       "AF": "Klap",
-      "AR": "\u064A\u0641\u0631\u0642\u0639\u060C \u064A\u0646\u0641\u062C\u0631",
-      "FR": "Se casser",
+      "AR": "\u0641\u0631\u0642\u0639\u0629",
+      "FR": "Instantan\u00E9",
       "RU": "\u0429\u0435\u043B\u0447\u043E\u043A",
       "PT": "Foto",
       "ID": "Patah",
       "ZH": "\u6298\u65AD",
       "DE": "Schnappnahme",
       "JA": "\u30B9\u30CA\u30C3\u30D7",
-      "HI": "\u091A\u091F\u0915\u093E\u0928\u093E"
+      "HI": "\u091A\u091F\u0915\u093E\u0928\u093E",
+      "NL": "Hapje"
     },
     {
       "shortHand": "inputAxis",
@@ -793,7 +845,8 @@
       "ZH": "\u8F93\u5165\u8F74",
       "DE": "Eingangsachse",
       "JA": "\u5165\u529B\u8EF8",
-      "HI": "\u0907\u0928\u092A\u0941\u091F \u0905\u0915\u094D\u0937"
+      "HI": "\u0907\u0928\u092A\u0941\u091F \u0905\u0915\u094D\u0937",
+      "NL": "Invoeras"
     },
     {
       "shortHand": "outputAxis",
@@ -808,7 +861,8 @@
       "ZH": "\u8F93\u51FA\u8F74",
       "DE": "Ausgangsachse",
       "JA": "\u51FA\u529B\u8EF8",
-      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u0905\u0915\u094D\u0937"
+      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u0905\u0915\u094D\u0937",
+      "NL": "Outputas"
     },
     {
       "shortHand": "inputTrigger",
@@ -823,7 +877,8 @@
       "ZH": "\u8F93\u5165\u89E6\u53D1\u5668",
       "DE": "Eingabeausl\u00F6ser",
       "JA": "\u5165\u529B\u30C8\u30EA\u30AC\u30FC",
-      "HI": "\u0907\u0928\u092A\u0941\u091F \u091F\u094D\u0930\u093F\u0917\u0930"
+      "HI": "\u0907\u0928\u092A\u0941\u091F \u091F\u094D\u0930\u093F\u0917\u0930",
+      "NL": "Input -trigger"
     },
     {
       "shortHand": "outputTrigger",
@@ -838,7 +893,8 @@
       "ZH": "\u8F93\u51FA\u89E6\u53D1\u5668",
       "DE": "Ausgabeausl\u00F6ser",
       "JA": "\u51FA\u529B\u30C8\u30EA\u30AC\u30FC",
-      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u091F\u094D\u0930\u093F\u0917\u0930"
+      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u091F\u094D\u0930\u093F\u0917\u0930",
+      "NL": "Outputtrigger"
     },
     {
       "shortHand": "outputKeys",
@@ -853,22 +909,24 @@
       "ZH": "\u8F93\u51FA\u952E",
       "DE": "Ausgabeschl\u00FCssel",
       "JA": "\u51FA\u529B\u30AD\u30FC",
-      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u0915\u0940\u091C\u093C"
+      "HI": "\u0906\u0909\u091F\u092A\u0941\u091F \u0915\u0940\u091C\u093C",
+      "NL": "Uitvoersleutels"
     },
     {
       "shortHand": "off",
       "EN": "Off",
       "ES": "Apagado",
       "AF": "Af",
-      "AR": "\u0625\u064A\u0642\u0627\u0641",
+      "AR": "\u0639\u0646",
       "FR": "D\u00E9sactiv\u00E9",
       "RU": "\u0412\u044B\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044B\u0439",
       "PT": "Desligado",
       "ID": "Mati",
       "ZH": "\u79BB\u5F00",
-      "DE": "aus",
+      "DE": "Aus",
       "JA": "\u30AA\u30D5",
-      "HI": "\u092C\u0902\u0926"
+      "HI": "\u092C\u0902\u0926",
+      "NL": "Uit"
     },
     {
       "shortHand": "addBinding",
@@ -883,7 +941,8 @@
       "ZH": "\u6DFB\u52A0\u7ED1\u5B9A",
       "DE": "Bindung hinzuf\u00FCgen",
       "JA": "\u30D0\u30A4\u30F3\u30C7\u30A3\u30F3\u30B0\u3092\u8FFD\u52A0\u3057\u307E\u3059",
-      "HI": "\u092C\u093E\u0907\u0902\u0921\u093F\u0902\u0917 \u091C\u094B\u0921\u093C\u0947\u0902"
+      "HI": "\u092C\u093E\u0907\u0902\u0921\u093F\u0902\u0917 \u091C\u094B\u0921\u093C\u0947\u0902",
+      "NL": "Voeg binding toe"
     },
     {
       "shortHand": "removeBinding",
@@ -898,7 +957,8 @@
       "ZH": "\u5220\u9664\u7ED1\u5B9A",
       "DE": "Bindung entfernen",
       "JA": "\u30D0\u30A4\u30F3\u30C7\u30A3\u30F3\u30B0\u3092\u524A\u9664\u3057\u307E\u3059",
-      "HI": "\u092C\u0902\u0927\u0928 \u0915\u094B \u0939\u091F\u093E \u0926\u0947\u0902"
+      "HI": "\u092C\u0902\u0927\u0928 \u0915\u094B \u0939\u091F\u093E \u0926\u0947\u0902",
+      "NL": "Verwijder de binding"
     },
     {
       "shortHand": "button",
@@ -913,7 +973,8 @@
       "ZH": "\u6309\u94AE",
       "DE": "Taste",
       "JA": "\u30DC\u30BF\u30F3",
-      "HI": "\u092C\u091F\u0928"
+      "HI": "\u092C\u091F\u0928",
+      "NL": "Knop"
     },
     {
       "shortHand": "joystick",
@@ -928,22 +989,24 @@
       "ZH": "\u64CD\u7EB5\u6746",
       "DE": "Joystick",
       "JA": "\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF",
-      "HI": "\u091C\u094B\u0938\u094D\u091F\u093F\u0915"
+      "HI": "\u091C\u094B\u0938\u094D\u091F\u093F\u0915",
+      "NL": "Joystick"
     },
     {
       "shortHand": "trigger",
       "EN": "Trigger",
       "ES": "Desencadenar",
       "AF": "Sneller",
-      "AR": "\u0627\u062B\u0627\u0631",
-      "FR": "D\u00E9clencheur",
-      "RU": "\u0412\u044B\u0437\u044B\u0432\u0430\u0442\u044C",
-      "PT": "Desencadear",
+      "AR": "\u0645\u0634\u063A\u0644",
+      "FR": "D\u00E9clencher",
+      "RU": "\u041A\u0443\u0440\u043E\u043A",
+      "PT": "Acionar",
       "ID": "Pemicu",
       "ZH": "\u6273\u673A",
       "DE": "Abzug",
       "JA": "\u5F15\u304D\u91D1",
-      "HI": "\u091A\u093E\u0932\u0942 \u0915\u0930 \u0926\u0947\u0928\u093E"
+      "HI": "\u091A\u093E\u0932\u0942 \u0915\u0930 \u0926\u0947\u0928\u093E",
+      "NL": "Trekker"
     },
     {
       "shortHand": "buttonAsButton",
@@ -958,7 +1021,8 @@
       "ZH": "\u6309\u94AE\u4F5C\u4E3A\u6309\u94AE",
       "DE": "Taste als Schaltfl\u00E4che",
       "JA": "\u30DC\u30BF\u30F3\u3068\u3057\u3066\u30DC\u30BF\u30F3",
-      "HI": "\u092C\u091F\u0928 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u092C\u091F\u0928"
+      "HI": "\u092C\u091F\u0928 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u092C\u091F\u0928",
+      "NL": "Knop als knop"
     },
     {
       "shortHand": "buttonAsJoystick",
@@ -973,7 +1037,8 @@
       "ZH": "\u6309\u94AE\u4F5C\u4E3A\u64CD\u7EB5\u6746",
       "DE": "Knopf als Joystick",
       "JA": "\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF\u3068\u3057\u3066\u306E\u30DC\u30BF\u30F3",
-      "HI": "\u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u092C\u091F\u0928"
+      "HI": "\u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u092C\u091F\u0928",
+      "NL": "Knop als joystick"
     },
     {
       "shortHand": "buttonAsTrigger",
@@ -988,7 +1053,8 @@
       "ZH": "\u6309\u94AE\u4F5C\u4E3A\u89E6\u53D1\u5668",
       "DE": "Taste als Ausl\u00F6ser",
       "JA": "\u30C8\u30EA\u30AC\u30FC\u3068\u3057\u3066\u30DC\u30BF\u30F3",
-      "HI": "\u091F\u094D\u0930\u093F\u0917\u0930 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u092C\u091F\u0928"
+      "HI": "\u091F\u094D\u0930\u093F\u0917\u0930 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u092C\u091F\u0928",
+      "NL": "Knop als trigger"
     },
     {
       "shortHand": "buttonAsKeyboard",
@@ -1003,7 +1069,8 @@
       "ZH": "\u6309\u94AE\u4F5C\u4E3A\u952E\u76D8",
       "DE": "Taste als Tastatur",
       "JA": "\u30AD\u30FC\u30DC\u30FC\u30C9\u3068\u3057\u3066\u306E\u30DC\u30BF\u30F3",
-      "HI": "\u0915\u0940\u092C\u094B\u0930\u094D\u0921 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u092C\u091F\u0928"
+      "HI": "\u0915\u0940\u092C\u094B\u0930\u094D\u0921 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u092C\u091F\u0928",
+      "NL": "Knop als toetsenbord"
     },
     {
       "shortHand": "joystickAsButton",
@@ -1018,7 +1085,8 @@
       "ZH": "\u64CD\u7EB5\u6746\u4F5C\u4E3A\u6309\u94AE",
       "DE": "Joystick als Knopf",
       "JA": "\u30DC\u30BF\u30F3\u3068\u3057\u3066\u306E\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF",
-      "HI": "\u092C\u091F\u0928 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915"
+      "HI": "\u092C\u091F\u0928 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915",
+      "NL": "Joystick als knop"
     },
     {
       "shortHand": "joystickAsJoystick",
@@ -1033,7 +1101,8 @@
       "ZH": "\u64CD\u7EB5\u6746\u4F5C\u4E3A\u64CD\u7EB5\u6746",
       "DE": "Joystick als Joystick",
       "JA": "\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF\u3068\u3057\u3066\u306E\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF",
-      "HI": "\u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915"
+      "HI": "\u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915",
+      "NL": "Joystick als joystick"
     },
     {
       "shortHand": "joystickAsTrigger",
@@ -1048,7 +1117,8 @@
       "ZH": "\u64CD\u7EB5\u6746\u4F5C\u4E3A\u6273\u673A",
       "DE": "Joystick als Ausl\u00F6ser",
       "JA": "\u30C8\u30EA\u30AC\u30FC\u3068\u3057\u3066\u306E\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF",
-      "HI": "\u091F\u094D\u0930\u093F\u0917\u0930 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915"
+      "HI": "\u091F\u094D\u0930\u093F\u0917\u0930 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915",
+      "NL": "Joystick als trigger"
     },
     {
       "shortHand": "joystickAsKeyboard",
@@ -1063,7 +1133,8 @@
       "ZH": "\u64CD\u7EB5\u6746\u4F5C\u4E3A\u952E\u76D8",
       "DE": "Joystick als Tastatur",
       "JA": "\u30AD\u30FC\u30DC\u30FC\u30C9\u3068\u3057\u3066\u306E\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF",
-      "HI": "\u0915\u0940\u092C\u094B\u0930\u094D\u0921 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915"
+      "HI": "\u0915\u0940\u092C\u094B\u0930\u094D\u0921 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915",
+      "NL": "Joystick als toetsenbord"
     },
     {
       "shortHand": "triggerAsButton",
@@ -1078,7 +1149,8 @@
       "ZH": "\u89E6\u53D1\u4E3A\u6309\u94AE",
       "DE": "Trigger als Taste",
       "JA": "\u30DC\u30BF\u30F3\u3068\u3057\u3066\u30C8\u30EA\u30AC\u30FC\u3057\u307E\u3059",
-      "HI": "\u092C\u091F\u0928 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091F\u094D\u0930\u093F\u0917\u0930"
+      "HI": "\u092C\u091F\u0928 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091F\u094D\u0930\u093F\u0917\u0930",
+      "NL": "Trigger als knop"
     },
     {
       "shortHand": "triggerAsJoystick",
@@ -1093,7 +1165,8 @@
       "ZH": "\u6273\u673A\u4F5C\u4E3A\u64CD\u7EB5\u6746",
       "DE": "Trigger als Joystick",
       "JA": "\u30B8\u30E7\u30A4\u30B9\u30C6\u30A3\u30C3\u30AF\u3068\u3057\u3066\u30C8\u30EA\u30AC\u30FC",
-      "HI": "\u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091F\u094D\u0930\u093F\u0917\u0930"
+      "HI": "\u091C\u0949\u092F\u0938\u094D\u091F\u093F\u0915 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091F\u094D\u0930\u093F\u0917\u0930",
+      "NL": "Trigger als joystick"
     },
     {
       "shortHand": "triggerAsTrigger",
@@ -1108,7 +1181,8 @@
       "ZH": "\u89E6\u53D1\u4F5C\u4E3A\u89E6\u53D1\u5668",
       "DE": "Ausl\u00F6ser als Ausl\u00F6ser",
       "JA": "\u30C8\u30EA\u30AC\u30FC\u3068\u3057\u3066\u30C8\u30EA\u30AC\u30FC",
-      "HI": "\u091F\u094D\u0930\u093F\u0917\u0930 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091F\u094D\u0930\u093F\u0917\u0930"
+      "HI": "\u091F\u094D\u0930\u093F\u0917\u0930 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091F\u094D\u0930\u093F\u0917\u0930",
+      "NL": "Trigger als trigger"
     },
     {
       "shortHand": "triggerAsKeyboard",
@@ -1123,7 +1197,8 @@
       "ZH": "\u89E6\u53D1\u4F5C\u4E3A\u952E\u76D8",
       "DE": "Trigger als Tastatur",
       "JA": "\u30AD\u30FC\u30DC\u30FC\u30C9\u3068\u3057\u3066\u30C8\u30EA\u30AC\u30FC",
-      "HI": "\u0915\u0940\u092C\u094B\u0930\u094D\u0921 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091F\u094D\u0930\u093F\u0917\u0930"
+      "HI": "\u0915\u0940\u092C\u094B\u0930\u094D\u0921 \u0915\u0947 \u0930\u0942\u092A \u092E\u0947\u0902 \u091F\u094D\u0930\u093F\u0917\u0930",
+      "NL": "Trigger als toetsenbord"
     },
     {
       "shortHand": "setActive",
@@ -1138,7 +1213,8 @@
       "ZH": "\u8BBE\u7F6E\u6D3B\u52A8",
       "DE": "Aktivieren",
       "JA": "\u30A2\u30AF\u30C6\u30A3\u30D6\u306B\u8A2D\u5B9A\u3057\u307E\u3059",
-      "HI": "\u0938\u0915\u094D\u0930\u093F\u092F \u0928\u093F\u092F\u0924 \u0915\u0930\u0947\u0902"
+      "HI": "\u0938\u0915\u094D\u0930\u093F\u092F \u0928\u093F\u092F\u0924 \u0915\u0930\u0947\u0902",
+      "NL": "Activeren"
     },
     {
       "shortHand": "addConfig",
@@ -1153,7 +1229,8 @@
       "ZH": "\u6DFB\u52A0\u914D\u7F6E",
       "DE": "Konfiguration hinzuf\u00FCgen",
       "JA": "\u69CB\u6210\u3092\u8FFD\u52A0\u3057\u307E\u3059",
-      "HI": "\u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u091C\u094B\u0921\u093C\u0947\u0902"
+      "HI": "\u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u091C\u094B\u0921\u093C\u0947\u0902",
+      "NL": "Configuratie toevoegen"
     },
     {
       "shortHand": "renameConfig",
@@ -1168,7 +1245,8 @@
       "ZH": "\u6539\u540D",
       "DE": "Umbenennen",
       "JA": "\u540D\u524D\u3092\u5909\u66F4\u3057\u307E\u3059",
-      "HI": "\u0928\u093E\u092E \u092C\u0926\u0932\u0947\u0902"
+      "HI": "\u0928\u093E\u092E \u092C\u0926\u0932\u0947\u0902",
+      "NL": "Hernoeming"
     },
     {
       "shortHand": "removeConfig",
@@ -1176,14 +1254,15 @@
       "ES": "Eliminar",
       "AF": "Verwyder",
       "AR": "\u064A\u0632\u064A\u0644",
-      "FR": "\u00C9liminer",
+      "FR": "Retirer",
       "RU": "\u0423\u0434\u0430\u043B\u044F\u0442\u044C",
-      "PT": "Retirar",
+      "PT": "Remover",
       "ID": "Menghapus",
       "ZH": "\u6D88\u9664",
       "DE": "Entfernen",
-      "JA": "\u524A\u9664\u3059\u308B",
-      "HI": "\u0928\u093F\u0915\u093E\u0932\u0928\u093E"
+      "JA": "\u524A\u9664",
+      "HI": "\u0928\u093F\u0915\u093E\u0932\u0928\u093E",
+      "NL": "Verwijderen"
     },
     {
       "shortHand": "makeDefault",
@@ -1198,7 +1277,8 @@
       "ZH": "\u4F7F\u9ED8\u8BA4",
       "DE": "Machen Standard",
       "JA": "\u30C7\u30D5\u30A9\u30EB\u30C8\u306B\u3057\u307E\u3059",
-      "HI": "\u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u092C\u0928\u093E\u0928\u093E"
+      "HI": "\u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u092C\u0928\u093E\u0928\u093E",
+      "NL": "Standaard maken"
     },
     {
       "shortHand": "newConfig",
@@ -1213,7 +1293,8 @@
       "ZH": "\u65B0\u7684...",
       "DE": "Neu...",
       "JA": "\u65B0\u3057\u3044...",
-      "HI": "\u0928\u092F\u093E..."
+      "HI": "\u0928\u092F\u093E...",
+      "NL": "Nieuw..."
     },
     {
       "shortHand": "newConfigFromExisting",
@@ -1228,7 +1309,8 @@
       "ZH": "\u4ECE\u73B0\u6709...",
       "DE": "Von existierenden ...",
       "JA": "\u65E2\u5B58\u304B\u3089...",
-      "HI": "\u092E\u094C\u091C\u0942\u0926\u093E \u0938\u0947 ..."
+      "HI": "\u092E\u094C\u091C\u0942\u0926\u093E \u0938\u0947 ...",
+      "NL": "Van bestaande ..."
     },
     {
       "shortHand": "language",
@@ -1243,7 +1325,8 @@
       "ZH": "\u8BED\u8A00",
       "DE": "Sprache",
       "JA": "\u8A00\u8A9E",
-      "HI": "\u092D\u093E\u0937\u093E"
+      "HI": "\u092D\u093E\u0937\u093E",
+      "NL": "Taal"
     },
     {
       "shortHand": "overwriteConfig",
@@ -1258,7 +1341,8 @@
       "ZH": "\u60A8\u8981\u8986\u76D6\u914D\u7F6E\u5417\uFF1F",
       "DE": "M\u00F6chten Sie die Konfiguration \u00FCberschreiben?",
       "JA": "\u69CB\u6210\u3092\u4E0A\u66F8\u304D\u3057\u307E\u3059\u304B\uFF1F",
-      "HI": "\u0915\u094D\u092F\u093E \u0906\u092A \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0915\u094B \u0905\u0927\u093F\u0932\u0947\u0916\u093F\u0924 \u0915\u0930\u0928\u093E \u091A\u093E\u0939\u0924\u0947 \u0939\u0948\u0902?"
+      "HI": "\u0915\u094D\u092F\u093E \u0906\u092A \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0915\u094B \u0905\u0927\u093F\u0932\u0947\u0916\u093F\u0924 \u0915\u0930\u0928\u093E \u091A\u093E\u0939\u0924\u0947 \u0939\u0948\u0902?",
+      "NL": "Wilt u de configuratie overschrijven?"
     },
     {
       "shortHand": "overwrite",
@@ -1273,7 +1357,8 @@
       "ZH": "\u8986\u76D6\uFF1F",
       "DE": "\u00DCberschreiben?",
       "JA": "\u4E0A\u66F8\u304D\u3057\u307E\u3059\u304B\uFF1F",
-      "HI": "\u0905\u0927\u093F\u0932\u0947\u0916\u093F\u0924?"
+      "HI": "\u0905\u0927\u093F\u0932\u0947\u0916\u093F\u0924?",
+      "NL": "Overschrijven?"
     },
     {
       "shortHand": "yes",
@@ -1288,27 +1373,29 @@
       "ZH": "\u662F\u7684",
       "DE": "Ja",
       "JA": "\u306F\u3044",
-      "HI": "\u0939\u093E\u0901"
+      "HI": "\u0939\u093E\u0901",
+      "NL": "Ja"
     },
     {
       "shortHand": "no",
       "EN": "No",
       "ES": "No",
       "AF": "Geen",
-      "AR": "\u0631\u0642\u0645",
+      "AR": "\u0644\u0627",
       "FR": "Non",
       "RU": "\u041D\u0435\u0442",
       "PT": "N\u00E3o",
-      "ID": "Tidak",
+      "ID": "TIDAK",
       "ZH": "\u4E0D",
-      "DE": "Nein",
+      "DE": "NEIN",
       "JA": "\u3044\u3044\u3048",
-      "HI": "\u0928\u0939\u0940\u0902"
+      "HI": "\u0928\u0939\u0940\u0902",
+      "NL": "Nee"
     },
     {
       "shortHand": "ok",
       "EN": "OK",
-      "ES": "OK",
+      "ES": "DE ACUERDO",
       "AF": "Ok",
       "AR": "\u0646\u0639\u0645",
       "FR": "D\u0027ACCORD",
@@ -1317,8 +1404,9 @@
       "ID": "OKE",
       "ZH": "\u597D\u7684",
       "DE": "OK",
-      "JA": "\u308F\u304B\u3063\u305F",
-      "HI": "\u0920\u0940\u0915 \u0939\u0948"
+      "JA": "OK",
+      "HI": "\u0920\u0940\u0915",
+      "NL": "OK"
     },
     {
       "shortHand": "cancel",
@@ -1331,9 +1419,10 @@
       "PT": "Cancelar",
       "ID": "Membatalkan",
       "ZH": "\u53D6\u6D88",
-      "DE": "Absagen",
+      "DE": "Stornieren",
       "JA": "\u30AD\u30E3\u30F3\u30BB\u30EB",
-      "HI": "\u0930\u0926\u094D\u0926 \u0915\u0930\u0928\u093E"
+      "HI": "\u0930\u0926\u094D\u0926 \u0915\u0930\u0928\u093E",
+      "NL": "Annuleren"
     },
     {
       "shortHand": "deleteConfig",
@@ -1348,14 +1437,15 @@
       "ZH": "\u4ECE\u786C\u76D8\u9A71\u52A8\u5668\u4E2D\u5220\u9664\u6B64\u914D\u7F6E\uFF1F",
       "DE": "Diese Konfiguration aus der Festplatte l\u00F6schen?",
       "JA": "\u30CF\u30FC\u30C9\u30C9\u30E9\u30A4\u30D6\u304B\u3089\u3053\u306E\u69CB\u6210\u3092\u524A\u9664\u3057\u307E\u3059\u304B\uFF1F",
-      "HI": "\u0939\u093E\u0930\u094D\u0921 \u0921\u094D\u0930\u093E\u0907\u0935 \u0938\u0947 \u0907\u0938 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0915\u094B \u0939\u091F\u093E \u0926\u0947\u0902?"
+      "HI": "\u0939\u093E\u0930\u094D\u0921 \u0921\u094D\u0930\u093E\u0907\u0935 \u0938\u0947 \u0907\u0938 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0915\u094B \u0939\u091F\u093E \u0926\u0947\u0902?",
+      "NL": "Deze configuratie verwijderen uit de harde schijf?"
     },
     {
       "shortHand": "delete",
       "EN": "Delete",
       "ES": "Borrar",
       "AF": "Verwyder",
-      "AR": "\u062D\u0630\u0641",
+      "AR": "\u064A\u0645\u0633\u062D",
       "FR": "Supprimer",
       "RU": "\u0423\u0434\u0430\u043B\u0438\u0442\u044C",
       "PT": "Excluir",
@@ -1363,7 +1453,8 @@
       "ZH": "\u5220\u9664",
       "DE": "L\u00F6schen",
       "JA": "\u6D88\u53BB",
-      "HI": "\u092E\u093F\u091F\u093E\u0928\u093E"
+      "HI": "\u092E\u093F\u091F\u093E\u0928\u093E",
+      "NL": "Verwijderen"
     },
     {
       "shortHand": "gameAssocTooltip",
@@ -1378,7 +1469,8 @@
       "ZH": "\u6BCF\u5F53\u5E94\u7528\u7A0B\u5E8F\u5904\u4E8E\u6D3B\u52A8\u72B6\u6001\u65F6\uFF0C\u8F93\u5165\u81EA\u52A8\u5F00\u5173\u7684\u57FA\u672C\u5E94\u7528\u7A0B\u5E8F\u540D\u79F0\u3002 \uFF08\u4F8B\u5982\u201C Fortnite\u201D\u6216\u201C\u706B\u7BAD\u8054\u76DF\u201D\uFF09",
       "DE": "Geben Sie einen grundlegenden Anwendungsnamen ein, um diese Konfiguration automatisch zu schalten, wenn die Anwendung aktiv ist. (z. B. \u0022Fortnite\u0022 oder \u0022Rocket League\u0022)",
       "JA": "\u57FA\u672C\u7684\u306A\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u540D\u3092\u5165\u529B\u3057\u3066\u3001\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u304C\u30A2\u30AF\u30C6\u30A3\u30D6\u306B\u306A\u3063\u305F\u3068\u304D\u306F\u3044\u3064\u3067\u3082\u3053\u306E\u69CB\u6210\u306B\u81EA\u52D5\u30B9\u30A4\u30C3\u30C1\u3092\u8A2D\u5B9A\u3057\u307E\u3059\u3002 \uFF08\u4F8B\uFF1A\u300CFortnite\u300D\u307E\u305F\u306F\u300CRocket League\u300D\uFF09",
-      "HI": "\u091C\u092C \u092D\u0940 \u090F\u092A\u094D\u0932\u093F\u0915\u0947\u0936\u0928 \u0938\u0915\u094D\u0930\u093F\u092F \u0939\u094B\u0924\u093E \u0939\u0948, \u0924\u094B \u0907\u0938 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u092E\u0947\u0902 \u0911\u091F\u094B-\u0938\u094D\u0935\u093F\u091A \u0915\u0947 \u0932\u093F\u090F \u090F\u0915 \u092C\u0941\u0928\u093F\u092F\u093E\u0926\u0940 \u090F\u092A\u094D\u0932\u093F\u0915\u0947\u0936\u0928 \u0928\u093E\u092E \u0926\u0930\u094D\u091C \u0915\u0930\u0947\u0902\u0964 (\u091C\u0948\u0938\u0947 \u0022\u092B\u094B\u0930\u094D\u091F\u0928\u093E\u0907\u091F\u0022 \u092F\u093E \u0022\u0930\u0949\u0915\u0947\u091F \u0932\u0940\u0917\u0022)"
+      "HI": "\u091C\u092C \u092D\u0940 \u090F\u092A\u094D\u0932\u093F\u0915\u0947\u0936\u0928 \u0938\u0915\u094D\u0930\u093F\u092F \u0939\u094B\u0924\u093E \u0939\u0948, \u0924\u094B \u0907\u0938 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u092E\u0947\u0902 \u0911\u091F\u094B-\u0938\u094D\u0935\u093F\u091A \u0915\u0947 \u0932\u093F\u090F \u090F\u0915 \u092C\u0941\u0928\u093F\u092F\u093E\u0926\u0940 \u090F\u092A\u094D\u0932\u093F\u0915\u0947\u0936\u0928 \u0928\u093E\u092E \u0926\u0930\u094D\u091C \u0915\u0930\u0947\u0902\u0964 (\u091C\u0948\u0938\u0947 \u0022\u092B\u094B\u0930\u094D\u091F\u0928\u093E\u0907\u091F\u0022 \u092F\u093E \u0022\u0930\u0949\u0915\u0947\u091F \u0932\u0940\u0917\u0022)",
+      "NL": "Voer een basistoepassingsnaam in om automatisch te schakelen naar deze configuratie wanneer de toepassing actief is. (bijv. \u0022Fortnite\u0022 of \u0022Rocket League\u0022)"
     },
     {
       "shortHand": "resumeDriver",
@@ -1393,7 +1485,8 @@
       "ZH": "\u7B80\u5386\u9A71\u52A8\u7A0B\u5E8F",
       "DE": "Lebenslauf Fahrer",
       "JA": "\u5C65\u6B74\u66F8\u30C9\u30E9\u30A4\u30D0\u30FC",
-      "HI": "\u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u0915\u094B \u092B\u093F\u0930 \u0938\u0947 \u0936\u0941\u0930\u0942 \u0915\u0930\u0947\u0902"
+      "HI": "\u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u0915\u094B \u092B\u093F\u0930 \u0938\u0947 \u0936\u0941\u0930\u0942 \u0915\u0930\u0947\u0902",
+      "NL": "Hervatten bestuurder"
     },
     {
       "shortHand": "pauseDriver",
@@ -1408,7 +1501,8 @@
       "ZH": "\u6682\u505C\u9A71\u52A8\u7A0B\u5E8F",
       "DE": "Pause Fahrer",
       "JA": "\u30C9\u30E9\u30A4\u30D0\u30FC\u3092\u4E00\u6642\u505C\u6B62\u3057\u307E\u3059",
-      "HI": "\u0930\u094B\u0915\u0947\u0902 \u091A\u093E\u0932\u0915"
+      "HI": "\u0930\u094B\u0915\u0947\u0902 \u091A\u093E\u0932\u0915",
+      "NL": "Pauzeer bestuurder"
     },
     {
       "shortHand": "defaultLoaded2",
@@ -1423,7 +1517,8 @@
       "ZH": "\u6539\u4E3A\u52A0\u8F7D\u9ED8\u8BA4\u914D\u7F6E\u3002",
       "DE": "Laden Sie stattdessen die Standardkonfiguration.",
       "JA": "\u4EE3\u308F\u308A\u306B\u30C7\u30D5\u30A9\u30EB\u30C8\u306E\u69CB\u6210\u3092\u30ED\u30FC\u30C9\u3057\u307E\u3059\u3002",
-      "HI": "\u0907\u0938\u0915\u0947 \u092C\u091C\u093E\u092F \u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0932\u094B\u0921 \u0915\u0930\u0928\u093E\u0964"
+      "HI": "\u0907\u0938\u0915\u0947 \u092C\u091C\u093E\u092F \u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0932\u094B\u0921 \u0915\u0930\u0928\u093E\u0964",
+      "NL": "In plaats daarvan de standaardconfiguratie laden."
     },
     {
       "shortHand": "defaultLoaded1",
@@ -1438,7 +1533,8 @@
       "ZH": "\u914D\u7F6E\u201C {0}\u201D\u4E0D\u5339\u914D\u8BBE\u5907\u7C7B\u578B\uFF1A\u201C {1}\u201D\u3002",
       "DE": "Die Konfiguration \u0022{0}\u0022 stimmt nicht mit dem Ger\u00E4tetyp \u00FCberein: \u0022{1}\u0022.",
       "JA": "\u69CB\u6210\u300C{0}\u300D\u306F\u3001\u30C7\u30D0\u30A4\u30B9\u30BF\u30A4\u30D7\u300C{1}\u300D\u3068\u4E00\u81F4\u3057\u307E\u305B\u3093\u3002",
-      "HI": "\u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0022{0}\u0022 \u0921\u093F\u0935\u093E\u0907\u0938 \u092A\u094D\u0930\u0915\u093E\u0930 \u0938\u0947 \u092E\u0947\u0932 \u0928\u0939\u0940\u0902 \u0916\u093E\u0924\u093E \u0939\u0948: \u0022{1}\u0022\u0964"
+      "HI": "\u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0022{0}\u0022 \u0921\u093F\u0935\u093E\u0907\u0938 \u092A\u094D\u0930\u0915\u093E\u0930 \u0938\u0947 \u092E\u0947\u0932 \u0928\u0939\u0940\u0902 \u0916\u093E\u0924\u093E \u0939\u0948: \u0022{1}\u0022\u0964",
+      "NL": "De configuratie \u0022{0}\u0022 komt niet overeen met het apparaattype: \u0022{1}\u0022."
     },
     {
       "shortHand": "failedOpenConfig1",
@@ -1453,7 +1549,8 @@
       "ZH": "\u65E0\u6CD5\u6253\u5F00\u914D\u7F6E\u201C {0}\u201D\uFF0C\u800C\u662F\u52A0\u8F7D\u9ED8\u8BA4\u914D\u7F6E\u3002",
       "DE": "Die Konfiguration \u0022{0}\u0022 nicht ge\u00F6ffnet und stattdessen die Standardkonfiguration geladen.",
       "JA": "\u69CB\u6210\u300C{0}\u300D\u3092\u958B\u304F\u3053\u3068\u306B\u5931\u6557\u3057\u3001\u4EE3\u308F\u308A\u306B\u30C7\u30D5\u30A9\u30EB\u30C8\u306E\u69CB\u6210\u3092\u8AAD\u307F\u8FBC\u307F\u307E\u3057\u305F\u3002",
-      "HI": "\u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0915\u094B \u0916\u094B\u0932\u0928\u0947 \u092E\u0947\u0902 \u0935\u093F\u092B\u0932 \u0022{0}\u0022, \u0907\u0938\u0915\u0947 \u092C\u091C\u093E\u092F \u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0932\u094B\u0921 \u0939\u094B \u0930\u0939\u093E \u0939\u0948\u0964"
+      "HI": "\u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0915\u094B \u0916\u094B\u0932\u0928\u0947 \u092E\u0947\u0902 \u0935\u093F\u092B\u0932 \u0022{0}\u0022, \u0907\u0938\u0915\u0947 \u092C\u091C\u093E\u092F \u0921\u093F\u092B\u093C\u0949\u0932\u094D\u091F \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0932\u094B\u0921 \u0939\u094B \u0930\u0939\u093E \u0939\u0948\u0964",
+      "NL": "Niet om de configuratie \u0022{0}\u0022 te openen, in plaats daarvan de standaardconfiguratie laden."
     },
     {
       "shortHand": "failedOpenConfig2",
@@ -1468,7 +1565,8 @@
       "ZH": "\u8BF7\u8003\u8651\u4ECE\u8BBE\u5907\u914D\u7F6E\u4E2D\u5220\u9664\u6B64\u914D\u7F6E\uFF0C\u4EE5\u907F\u514D\u5C06\u6765\u7684\u9519\u8BEF\u3002",
       "DE": "Bitte ziehen Sie diese Konfiguration aus den Ger\u00E4tekonfigurationen aus, um zuk\u00FCnftige Fehler zu vermeiden.",
       "JA": "\u5C06\u6765\u306E\u30A8\u30E9\u30FC\u3092\u56DE\u907F\u3059\u308B\u305F\u3081\u306B\u3001\u30C7\u30D0\u30A4\u30B9\u69CB\u6210\u304B\u3089\u3053\u306E\u69CB\u6210\u3092\u524A\u9664\u3059\u308B\u3053\u3068\u3092\u691C\u8A0E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-      "HI": "\u0915\u0943\u092A\u092F\u093E \u092D\u0935\u093F\u0937\u094D\u092F \u0915\u0940 \u0924\u094D\u0930\u0941\u091F\u093F\u092F\u094B\u0902 \u0938\u0947 \u092C\u091A\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u0921\u093F\u0935\u093E\u0907\u0938 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0938\u0947 \u0907\u0938 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0915\u094B \u0939\u091F\u093E\u0928\u0947 \u092A\u0930 \u0935\u093F\u091A\u093E\u0930 \u0915\u0930\u0947\u0902\u0964"
+      "HI": "\u0915\u0943\u092A\u092F\u093E \u092D\u0935\u093F\u0937\u094D\u092F \u0915\u0940 \u0924\u094D\u0930\u0941\u091F\u093F\u092F\u094B\u0902 \u0938\u0947 \u092C\u091A\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u0921\u093F\u0935\u093E\u0907\u0938 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0938\u0947 \u0907\u0938 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0915\u094B \u0939\u091F\u093E\u0928\u0947 \u092A\u0930 \u0935\u093F\u091A\u093E\u0930 \u0915\u0930\u0947\u0902\u0964",
+      "NL": "Overweeg deze configuratie uit de apparaatconfiguraties te verwijderen om toekomstige fouten te voorkomen."
     },
     {
       "shortHand": "noDevicesDetected",
@@ -1483,7 +1581,8 @@
       "ZH": "\u672A\u68C0\u6D4B\u5230GMK\u8BBE\u5907\u3002\u68C0\u67E5\u8FDE\u63A5\u5E76\u91CD\u65B0\u63D2\u5165USB\u3002",
       "DE": "Keine GMK -Ger\u00E4te erkannt. \u00DCberpr\u00FCfen Sie die Verbindungen und setzen Sie USB wieder ein.",
       "JA": "GMK\u30C7\u30D0\u30A4\u30B9\u306F\u691C\u51FA\u3055\u308C\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u63A5\u7D9A\u3092\u78BA\u8A8D\u3057\u3001USB\u3092\u518D\u633F\u5165\u3057\u307E\u3059\u3002",
-      "HI": "\u0915\u094B\u0908 GMK \u0909\u092A\u0915\u0930\u0923\u094B\u0902 \u0915\u093E \u092A\u0924\u093E \u0928\u0939\u0940\u0902 \u091A\u0932\u093E\u0964 \u0915\u0928\u0947\u0915\u094D\u0936\u0928 \u0915\u0940 \u091C\u093E\u0901\u091A \u0915\u0930\u0947\u0902 \u0914\u0930 USB \u0915\u094B \u092B\u093F\u0930 \u0938\u0947 \u0936\u0941\u0930\u0942 \u0915\u0930\u0947\u0902\u0964"
+      "HI": "\u0915\u094B\u0908 GMK \u0909\u092A\u0915\u0930\u0923\u094B\u0902 \u0915\u093E \u092A\u0924\u093E \u0928\u0939\u0940\u0902 \u091A\u0932\u093E\u0964 \u0915\u0928\u0947\u0915\u094D\u0936\u0928 \u0915\u0940 \u091C\u093E\u0901\u091A \u0915\u0930\u0947\u0902 \u0914\u0930 USB \u0915\u094B \u092B\u093F\u0930 \u0938\u0947 \u0936\u0941\u0930\u0942 \u0915\u0930\u0947\u0902\u0964",
+      "NL": "Geen GMK -apparaten gedetecteerd. Controleer de verbindingen en herinspanning USB."
     },
     {
       "shortHand": "rescanning",
@@ -1492,13 +1591,14 @@
       "AF": "USB -toesteltelling het verander, skandeetoestelle ...",
       "AR": "\u062A\u0645 \u062A\u063A\u064A\u064A\u0631 \u0639\u062F\u062F \u0623\u062C\u0647\u0632\u0629 USB \u060C \u0623\u062C\u0647\u0632\u0629 \u0627\u0644\u0645\u0633\u062D ...",
       "FR": "Le nombre de p\u00E9riph\u00E9riques USB a chang\u00E9, les appareils de num\u00E9risation ...",
-      "RU": "\u0423\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u043E USB -\u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430 \u0438\u0437\u043C\u0435\u043D\u0438\u043B\u043E\u0441\u044C, \u0441\u043A\u0430\u043D\u0438\u0440\u0443\u044E\u0449\u0438\u0435 \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430 ...",
+      "RU": "USB -\u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430 \u0438\u0437\u043C\u0435\u043D\u0438\u043B\u043E\u0441\u044C, \u0441\u043A\u0430\u043D\u0438\u0440\u0443\u044E\u0449\u0438\u0435 \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430 ...",
       "PT": "A contagem de dispositivos USB mudou, os dispositivos de digitaliza\u00E7\u00E3o ...",
       "ID": "Hitungan perangkat USB diubah, perangkat pemindaian ...",
       "ZH": "USB\u8BBE\u5907\u8BA1\u6570\u66F4\u6539\uFF0C\u626B\u63CF\u8BBE\u5907...",
       "DE": "USB -Ger\u00E4tezahl ge\u00E4ndert, Scan -Ger\u00E4te ...",
       "JA": "USB\u30C7\u30D0\u30A4\u30B9\u30AB\u30A6\u30F3\u30C8\u306E\u5909\u66F4\u3001\u30B9\u30AD\u30E3\u30F3\u30C7\u30D0\u30A4\u30B9...",
-      "HI": "USB \u0921\u093F\u0935\u093E\u0907\u0938 \u0915\u093E\u0909\u0902\u091F \u092C\u0926\u0932 \u0917\u092F\u093E, \u0938\u094D\u0915\u0948\u0928\u093F\u0902\u0917 \u0921\u093F\u0935\u093E\u0907\u0938 ..."
+      "HI": "USB \u0921\u093F\u0935\u093E\u0907\u0938 \u0915\u093E\u0909\u0902\u091F \u092C\u0926\u0932 \u0917\u092F\u093E, \u0938\u094D\u0915\u0948\u0928\u093F\u0902\u0917 \u0921\u093F\u0935\u093E\u0907\u0938 ...",
+      "NL": "USB -apparaat aantal gewijzigd, scanapparaten ..."
     },
     {
       "shortHand": "scanning",
@@ -1513,7 +1613,8 @@
       "ZH": "\u626B\u63CFUSB\u8BBE\u5907...",
       "DE": "Scannen von USB -Ger\u00E4ten ...",
       "JA": "USB\u30C7\u30D0\u30A4\u30B9\u306E\u30B9\u30AD\u30E3\u30F3...",
-      "HI": "\u0938\u094D\u0915\u0948\u0928\u093F\u0902\u0917 \u092F\u0942\u090F\u0938\u092C\u0940 \u0921\u093F\u0935\u093E\u0907\u0938 ..."
+      "HI": "\u0938\u094D\u0915\u0948\u0928\u093F\u0902\u0917 \u092F\u0942\u090F\u0938\u092C\u0940 \u0921\u093F\u0935\u093E\u0907\u0938 ...",
+      "NL": "USB -apparaten scannen ..."
     },
     {
       "shortHand": "key1",
@@ -1528,7 +1629,8 @@
       "ZH": "\u94A5\u53191",
       "DE": "Schl\u00FCssel 1",
       "JA": "\u30AD\u30FC1",
-      "HI": "\u0915\u0941\u0902\u091C\u0940 1"
+      "HI": "\u0915\u0941\u0902\u091C\u0940 1",
+      "NL": "Sleutel 1"
     },
     {
       "shortHand": "key2",
@@ -1543,7 +1645,8 @@
       "ZH": "\u94A5\u53192",
       "DE": "Schl\u00FCssel 2",
       "JA": "\u30AD\u30FC2",
-      "HI": "\u0915\u0941\u0902\u091C\u0940 2"
+      "HI": "\u0915\u0941\u0902\u091C\u0940 2",
+      "NL": "Sleutel 2"
     },
     {
       "shortHand": "key3",
@@ -1558,7 +1661,8 @@
       "ZH": "\u94A5\u53193",
       "DE": "Schl\u00FCssel 3",
       "JA": "\u30AD\u30FC3",
-      "HI": "\u0915\u0941\u0902\u091C\u0940 3"
+      "HI": "\u0915\u0941\u0902\u091C\u0940 3",
+      "NL": "Sleutel 3"
     },
     {
       "shortHand": "keyPress",
@@ -1573,7 +1677,8 @@
       "ZH": "\u6309\u952E",
       "DE": "Tastendruck",
       "JA": "\u30AD\u30FC\u30D7\u30EC\u30B9",
-      "HI": "\u092C\u091F\u0928 \u0926\u092C\u093E\u0913"
+      "HI": "\u092C\u091F\u0928 \u0926\u092C\u093E\u0913",
+      "NL": "Toets indrukken"
     },
     {
       "shortHand": "configNameAlreadyFound",
@@ -1588,7 +1693,8 @@
       "ZH": "\u5DF2\u7ECF\u6709\u4E00\u4E2A\u540D\u4E3A\u201C {0}\u201D\u7684\u914D\u7F6E\uFF0C\u8BF7\u91CD\u547D\u540D\u3002",
       "DE": "Es gibt bereits eine Konfiguration mit dem Namen \u0022{0}\u0022, bitte benennen Sie sie um.",
       "JA": "\u300C{0}\u300D\u3068\u3044\u3046\u540D\u524D\u306E\u69CB\u6210\u304C\u65E2\u306B\u3042\u308A\u307E\u3059\u3002\u540D\u524D\u3092\u5909\u66F4\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-      "HI": "\u092A\u0939\u0932\u0947 \u0938\u0947 \u0939\u0940 \u090F\u0915 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0939\u0948, \u091C\u093F\u0938\u0915\u093E \u0928\u093E\u092E \u0939\u0948, \u0022{0}\u0022, \u0915\u0943\u092A\u092F\u093E \u0907\u0938\u0915\u093E \u0928\u093E\u092E \u092C\u0926\u0932\u0947\u0902\u0964"
+      "HI": "\u092A\u0939\u0932\u0947 \u0938\u0947 \u0939\u0940 \u090F\u0915 \u0915\u0949\u0928\u094D\u092B\u093C\u093F\u0917\u0930\u0947\u0936\u0928 \u0939\u0948, \u091C\u093F\u0938\u0915\u093E \u0928\u093E\u092E \u0939\u0948, \u0022{0}\u0022, \u0915\u0943\u092A\u092F\u093E \u0907\u0938\u0915\u093E \u0928\u093E\u092E \u092C\u0926\u0932\u0947\u0902\u0964",
+      "NL": "Er is al een configuratie met de naam \u0022{0}\u0022, hernoem deze."
     },
     {
       "shortHand": "error",
@@ -1603,7 +1709,168 @@
       "ZH": "\u9519\u8BEF",
       "DE": "Fehler",
       "JA": "\u30A8\u30E9\u30FC",
-      "HI": "\u0917\u0932\u0924\u0940"
+      "HI": "\u0917\u0932\u0924\u0940",
+      "NL": "Fout"
+    },
+    {
+      "shortHand": "keyMappings",
+      "EN": "Key Mapping",
+      "ES": "Mapeo de llave",
+      "AF": "Sleutelkartering",
+      "AR": "\u0631\u0633\u0645 \u0627\u0644\u062E\u0631\u0627\u0626\u0637 \u0627\u0644\u0645\u0641\u062A\u0627\u062D",
+      "FR": "Cartographie cl\u00E9",
+      "RU": "\u041A\u0430\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u043A\u043B\u044E\u0447\u0435\u0439",
+      "PT": "Mapeamento de chaves",
+      "ID": "Pemetaan kunci",
+      "ZH": "\u94A5\u5319\u6620\u5C04",
+      "DE": "Schl\u00FCsselzuordnung",
+      "JA": "\u30AD\u30FC\u30DE\u30C3\u30D4\u30F3\u30B0",
+      "HI": "\u092E\u0941\u0916\u094D\u092F \u092E\u093E\u0928\u091A\u093F\u0924\u094D\u0930\u0923",
+      "NL": "Key Mapping"
+    },
+    {
+      "shortHand": "up",
+      "EN": "Up",
+      "ES": "Arriba",
+      "AF": "Opwaarts",
+      "AR": "\u0623\u0639\u0644\u0649",
+      "FR": "En haut",
+      "RU": "\u0412\u0432\u0435\u0440\u0445",
+      "PT": "Acima",
+      "ID": "Ke atas",
+      "ZH": "\u5411\u4E0A",
+      "DE": "Hoch",
+      "JA": "\u4E0A",
+      "HI": "\u090A\u092A\u0930",
+      "NL": "Omhoog"
+    },
+    {
+      "shortHand": "down",
+      "EN": "Down",
+      "ES": "Abajo",
+      "AF": "Af",
+      "AR": "\u062A\u062D\u062A",
+      "FR": "Bas",
+      "RU": "\u0412\u043D\u0438\u0437",
+      "PT": "Abaixo",
+      "ID": "Turun",
+      "ZH": "\u5411\u4E0B",
+      "DE": "Runter",
+      "JA": "\u4E0B",
+      "HI": "\u0928\u0940\u091A\u0947",
+      "NL": "Omlaag"
+    },
+    {
+      "shortHand": "left",
+      "EN": "Left",
+      "ES": "Izquierda",
+      "AF": "Links",
+      "AR": "\u063A\u0627\u062F\u0631",
+      "FR": "Gauche",
+      "RU": "\u041B\u0435\u0432\u044B\u0439",
+      "PT": "Esquerda",
+      "ID": "Kiri",
+      "ZH": "\u5DE6\u8FB9",
+      "DE": "Links",
+      "JA": "\u5DE6",
+      "HI": "\u092C\u093E\u090F\u0902",
+      "NL": "Links"
+    },
+    {
+      "shortHand": "right",
+      "EN": "Right",
+      "ES": "Bien",
+      "AF": "Regs",
+      "AR": "\u064A\u0645\u064A\u0646",
+      "FR": "Droite",
+      "RU": "\u0412\u0435\u0440\u043D\u043E",
+      "PT": "Certo",
+      "ID": "Benar",
+      "ZH": "\u6B63\u786E\u7684",
+      "DE": "Rechts",
+      "JA": "\u53F3",
+      "HI": "\u0938\u0939\u0940",
+      "NL": "Rechts"
+    },
+    {
+      "shortHand": "update",
+      "EN": "Update",
+      "ES": "Actualizar",
+      "AF": "Opdateer",
+      "AR": "\u062A\u062D\u062F\u064A\u062B",
+      "FR": "Mise \u00E0 jour",
+      "RU": "\u041E\u0431\u043D\u043E\u0432\u043B\u044F\u0442\u044C",
+      "PT": "Atualizar",
+      "ID": "Memperbarui",
+      "ZH": "\u66F4\u65B0",
+      "DE": "Aktualisieren",
+      "JA": "\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8",
+      "HI": "\u0905\u0926\u094D\u092F\u0924\u0928",
+      "NL": "Update"
+    },
+    {
+      "shortHand": "newVersion",
+      "EN": "New Version: {0}",
+      "ES": "Nueva versi\u00F3n: {0}",
+      "AF": "Nuwe weergawe: {0}",
+      "AR": "\u0625\u0635\u062F\u0627\u0631 \u062C\u062F\u064A\u062F: {0}",
+      "FR": "Nouvelle version: {0}",
+      "RU": "\u041D\u043E\u0432\u0430\u044F \u0432\u0435\u0440\u0441\u0438\u044F: {0}",
+      "PT": "Nova vers\u00E3o: {0}",
+      "ID": "Versi baru: {0}",
+      "ZH": "\u65B0\u7248\u672C\uFF1A{0}",
+      "DE": "Neue Version: {0}",
+      "JA": "\u65B0\u3057\u3044\u30D0\u30FC\u30B8\u30E7\u30F3\uFF1A{0}",
+      "HI": "\u0928\u092F\u093E \u0938\u0902\u0938\u094D\u0915\u0930\u0923: {0}",
+      "NL": "Nieuwe versie: {0}"
+    },
+    {
+      "shortHand": "oldVersion",
+      "EN": "Last Run Version: {0}",
+      "ES": "\u00DAltima versi\u00F3n de ejecuci\u00F3n: {0}",
+      "AF": "Laaste weergawe: {0}",
+      "AR": "\u0625\u0635\u062F\u0627\u0631 \u0627\u0644\u062A\u0634\u063A\u064A\u0644 \u0627\u0644\u0623\u062E\u064A\u0631: {0}",
+      "FR": "Version de la derni\u00E8re ex\u00E9cution: {0}",
+      "RU": "\u0412\u0435\u0440\u0441\u0438\u044F \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u0433\u043E \u0437\u0430\u043F\u0443\u0441\u043A\u0430: {0}",
+      "PT": "\u00DAltima vers\u00E3o de execu\u00E7\u00E3o: {0}",
+      "ID": "Versi Last Run: {0}",
+      "ZH": "\u6700\u540E\u4E00\u4E2A\u8FD0\u884C\u7248\uFF1A{0}",
+      "DE": "Letzte Run -Version: {0}",
+      "JA": "\u6700\u7D42\u5B9F\u884C\u30D0\u30FC\u30B8\u30E7\u30F3\uFF1A{0}",
+      "HI": "\u0905\u0902\u0924\u093F\u092E \u0930\u0928 \u0938\u0902\u0938\u094D\u0915\u0930\u0923: {0}",
+      "NL": "Last Run -versie: {0}"
+    },
+    {
+      "shortHand": "offsetLink",
+      "EN": "Be sure to visit http://offset-power.net/ for update notes.",
+      "ES": "Aseg\u00FArese de visitar http://offset-power.net/ para obtener notas de actualizaci\u00F3n.",
+      "AF": "Besoek http://offset-power.net/ vir opdateringsnotas.",
+      "AR": "\u062A\u0623\u0643\u062F \u0645\u0646 \u0632\u064A\u0627\u0631\u0629 http://offset-power.net/ \u0644\u0644\u062D\u0635\u0648\u0644 \u0639\u0644\u0649 \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u062A\u062D\u062F\u064A\u062B.",
+      "FR": "Assurez-vous de visiter http://offset-power.net/ pour les notes de mise \u00E0 jour.",
+      "RU": "\u041E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u043E \u043F\u043E\u0441\u0435\u0442\u0438\u0442\u0435 http://offset-power.net/ \u0434\u043B\u044F \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F \u0437\u0430\u043C\u0435\u0442\u043E\u043A.",
+      "PT": "N\u00E3o deixe de visitar http://offset-power.net/ para obter notas de atualiza\u00E7\u00E3o.",
+      "ID": "Pastikan untuk mengunjungi http://offset-power.net/ untuk catatan pembaruan.",
+      "ZH": "\u8BF7\u52A1\u5FC5\u8BBF\u95EEhttp://offset-power.net/\u4EE5\u83B7\u53D6\u66F4\u65B0\u8BF4\u660E\u3002",
+      "DE": "Besuchen Sie http://offset-bower.net/, um Update-Notizen zu erhalten.",
+      "JA": "\u66F4\u65B0\u30CE\u30FC\u30C8\u306B\u3064\u3044\u3066\u306F\u3001\u5FC5\u305Ahttp://offset-power.net/\u306B\u30A2\u30AF\u30BB\u30B9\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+      "HI": "\u0905\u092A\u0921\u0947\u091F \u0928\u094B\u091F\u094D\u0938 \u0915\u0947 \u0932\u093F\u090F http://offset-power.net/ \u092A\u0930 \u091C\u093E\u090F\u0901\u0964",
+      "NL": "Zorg ervoor dat u http://offset-power.net/ bezoekt voor UPDATE Notes."
+    },
+    {
+      "shortHand": "gmkUpdated",
+      "EN": "GMK Driver has been updated!",
+      "ES": "\u00A1El controlador GMK ha sido actualizado!",
+      "AF": "GMK -bestuurder is opgedateer!",
+      "AR": "\u062A\u0645 \u062A\u062D\u062F\u064A\u062B \u0628\u0631\u0646\u0627\u0645\u062C \u062A\u0634\u063A\u064A\u0644 GMK!",
+      "FR": "Le pilote GMK a \u00E9t\u00E9 mis \u00E0 jour!",
+      "RU": "\u0414\u0440\u0430\u0439\u0432\u0435\u0440 GMK \u0431\u044B\u043B \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D!",
+      "PT": "O driver GMK foi atualizado!",
+      "ID": "Driver GMK telah diperbarui!",
+      "ZH": "GMK\u9A71\u52A8\u7A0B\u5E8F\u5DF2\u66F4\u65B0\uFF01",
+      "DE": "GMK -Treiber wurde aktualisiert!",
+      "JA": "GMK\u30C9\u30E9\u30A4\u30D0\u30FC\u304C\u66F4\u65B0\u3055\u308C\u307E\u3057\u305F\uFF01",
+      "HI": "GMK \u0921\u094D\u0930\u093E\u0907\u0935\u0930 \u0915\u094B \u0905\u092A\u0921\u0947\u091F \u0915\u093F\u092F\u093E \u0917\u092F\u093E \u0939\u0948!",
+      "NL": "GMK -stuurprogramma is bijgewerkt!"
     }
   ]
 }

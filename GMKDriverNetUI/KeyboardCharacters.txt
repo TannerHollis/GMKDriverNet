@@ -1,4 +1,8 @@
 None
+UP(KEYPAD)
+DOWN(KEYPAD)
+LEFT(KEYPAD)
+RIGHT(KEYPAD)
 A
 B
 C
@@ -67,7 +71,3 @@ SPACE
 - | _
 = | +
 \ | |
-UP
-DOWN
-LEFT
-RIGHT

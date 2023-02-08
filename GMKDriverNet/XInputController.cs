@@ -2,7 +2,9 @@
 using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client.Targets.Xbox360;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 namespace GMKDriverNET
 {
@@ -300,17 +302,25 @@ namespace GMKDriverNET
 
                 RotatedJoystick rJoy = new RotatedJoystick(x, y, asKeyboard.rotate);
 
-                bool state = rJoy.IsPastAxisDeadzone(asKeyboard.deadzone, asKeyboard.inputAxis);
+                bool left = rJoy.IsPastAxisDeadzone(asKeyboard.deadzone, Axis.XNegative);
+                bool up = rJoy.IsPastAxisDeadzone(asKeyboard.deadzone, Axis.YPositive);
+                bool right = rJoy.IsPastAxisDeadzone(asKeyboard.deadzone, Axis.XPositive);
+                bool down = rJoy.IsPastAxisDeadzone(asKeyboard.deadzone, Axis.YNegative);
 
-                if (state && !asKeyboard.IsPressed)
+                List<bool> states = new List<bool>() { left, up, right, down };
+
+                for(int i = 0; i < 4; i++)
                 {
-                    KeypressEmulator.KeysDown(asKeyboard.key.ToArray());
-                    asKeyboard.IsPressed = true;
-                }
-                if (!state && asKeyboard.IsPressed)
-                {
-                    KeypressEmulator.KeysUp(asKeyboard.key.ToArray());
-                    asKeyboard.IsPressed = false;
+                    if (states[i] && !asKeyboard.IsPressed[i])
+                    {
+                        KeypressEmulator.KeyDown((KeypressEmulator.ScanCodeShort)asKeyboard.key[i]);
+                        asKeyboard.IsPressed[i] = true;
+                    }
+                    if (!states[i] && asKeyboard.IsPressed[i])
+                    {
+                        KeypressEmulator.KeyUp((KeypressEmulator.ScanCodeShort)asKeyboard.key[i]);
+                        asKeyboard.IsPressed[i] = false;
+                    }
                 }
             }
 

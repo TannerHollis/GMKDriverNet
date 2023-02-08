@@ -59,6 +59,7 @@ namespace LibUsbDotNetTest
                     lookup.DE = fields[10];
                     lookup.JA = fields[11];
                     lookup.HI = fields[12];
+                    lookup.NL = fields[13];
                     lookups.Lookups.Add(lookup);
                 }
 

@@ -60,6 +60,7 @@
             this.dEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkApplicationTimer = new System.Windows.Forms.Timer(this.components);
             this.deviceViewContextMenu.SuspendLayout();
             this.trayContextMenuStrip.SuspendLayout();
@@ -101,6 +102,7 @@
             this.deviceView.TabIndex = 0;
             this.deviceView.TileSize = new System.Drawing.Size(64, 64);
             this.deviceView.UseCompatibleStateImageBehavior = false;
+            this.deviceView.DoubleClick += new System.EventHandler(this.deviceView_DoubleClick);
             // 
             // deviceViewContextMenu
             // 
@@ -245,7 +247,8 @@
             this.zHToolStripMenuItem,
             this.dEToolStripMenuItem,
             this.jAToolStripMenuItem,
-            this.hIToolStripMenuItem});
+            this.hIToolStripMenuItem,
+            this.nLToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
             this.languageToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.languageToolStripMenuItem.Text = "Language";
@@ -253,7 +256,7 @@
             // eNToolStripMenuItem
             // 
             this.eNToolStripMenuItem.Name = "eNToolStripMenuItem";
-            this.eNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eNToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.eNToolStripMenuItem.Tag = "EN";
             this.eNToolStripMenuItem.Text = "EN";
             this.eNToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -261,7 +264,7 @@
             // eSToolStripMenuItem
             // 
             this.eSToolStripMenuItem.Name = "eSToolStripMenuItem";
-            this.eSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eSToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.eSToolStripMenuItem.Tag = "ES";
             this.eSToolStripMenuItem.Text = "ES";
             this.eSToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -269,7 +272,7 @@
             // fRToolStripMenuItem
             // 
             this.fRToolStripMenuItem.Name = "fRToolStripMenuItem";
-            this.fRToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fRToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.fRToolStripMenuItem.Tag = "FR";
             this.fRToolStripMenuItem.Text = "FR";
             this.fRToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -277,7 +280,7 @@
             // aRToolStripMenuItem
             // 
             this.aRToolStripMenuItem.Name = "aRToolStripMenuItem";
-            this.aRToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aRToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.aRToolStripMenuItem.Tag = "AR";
             this.aRToolStripMenuItem.Text = "AR";
             this.aRToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -285,7 +288,7 @@
             // rUToolStripMenuItem
             // 
             this.rUToolStripMenuItem.Name = "rUToolStripMenuItem";
-            this.rUToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rUToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.rUToolStripMenuItem.Tag = "RU";
             this.rUToolStripMenuItem.Text = "RU";
             this.rUToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -293,7 +296,7 @@
             // pTToolStripMenuItem
             // 
             this.pTToolStripMenuItem.Name = "pTToolStripMenuItem";
-            this.pTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pTToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.pTToolStripMenuItem.Tag = "PT";
             this.pTToolStripMenuItem.Text = "PT";
             this.pTToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -301,7 +304,7 @@
             // iDToolStripMenuItem
             // 
             this.iDToolStripMenuItem.Name = "iDToolStripMenuItem";
-            this.iDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iDToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.iDToolStripMenuItem.Tag = "ID";
             this.iDToolStripMenuItem.Text = "ID";
             this.iDToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -309,7 +312,7 @@
             // zHToolStripMenuItem
             // 
             this.zHToolStripMenuItem.Name = "zHToolStripMenuItem";
-            this.zHToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zHToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.zHToolStripMenuItem.Tag = "ZH";
             this.zHToolStripMenuItem.Text = "ZH";
             this.zHToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -317,7 +320,7 @@
             // dEToolStripMenuItem
             // 
             this.dEToolStripMenuItem.Name = "dEToolStripMenuItem";
-            this.dEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dEToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.dEToolStripMenuItem.Tag = "DE";
             this.dEToolStripMenuItem.Text = "DE";
             this.dEToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -325,7 +328,7 @@
             // jAToolStripMenuItem
             // 
             this.jAToolStripMenuItem.Name = "jAToolStripMenuItem";
-            this.jAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jAToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.jAToolStripMenuItem.Tag = "JA";
             this.jAToolStripMenuItem.Text = "JA";
             this.jAToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
@@ -333,10 +336,18 @@
             // hIToolStripMenuItem
             // 
             this.hIToolStripMenuItem.Name = "hIToolStripMenuItem";
-            this.hIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hIToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.hIToolStripMenuItem.Tag = "HI";
             this.hIToolStripMenuItem.Text = "HI";
             this.hIToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
+            // 
+            // nLToolStripMenuItem
+            // 
+            this.nLToolStripMenuItem.Name = "nLToolStripMenuItem";
+            this.nLToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
+            this.nLToolStripMenuItem.Tag = "NL";
+            this.nLToolStripMenuItem.Text = "NL";
+            this.nLToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
             // 
             // checkApplicationTimer
             // 
@@ -354,6 +365,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GMK Driver";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.deviceViewContextMenu.ResumeLayout(false);
@@ -400,6 +412,7 @@
         private System.Windows.Forms.ToolStripMenuItem dEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nLToolStripMenuItem;
     }
 }
 

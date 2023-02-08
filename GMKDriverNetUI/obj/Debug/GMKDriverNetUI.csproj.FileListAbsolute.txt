@@ -1,6 +1,6 @@
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\deviceList.json
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\libusb-1.0
-C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\wordLookups.json
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\KeyboardCharacters.txt
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\GMKDriverNetUI.exe.config
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\GMKDriverNetUI.exe.manifest
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\GMKDriverNetUI.application
@@ -32,6 +32,7 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\System.Runtime
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.csproj.AssemblyReference.cache
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.csproj.SuggestedBindingRedirects.cache
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.AboutWindow.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigurationControls.JoystickKeyboardControl.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigurationControls.Snap76Control.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigurationControls.BoolControl.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigurationControls.RotateControl.resources
@@ -60,6 +61,7 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.OverwriteConfigWindow.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.Properties.Resources.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.ConfigNameWindow.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.UpdateWindow.resources
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.csproj.GenerateResource.cache
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.csproj.CoreCompileInputs.cache
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.exe.manifest
@@ -67,3 +69,4 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI.csproj.CopyComplete
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.exe
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.pdb
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\wordLookups.json

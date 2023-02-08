@@ -16,6 +16,11 @@ namespace GMKDriverNET.Bindings
             return input.ToString() + ":" + DeviceConfig.AxisToString(inputAxis) + " -> " + output.ToString() + " Trigger";
         }
 
+        public JoystickAsTrigger()
+        {
+            // Do nothing...
+        }
+
         public JoystickAsTrigger(JoystickIO input, Axis inputAxis, TriggerIO output, float rotate, float deadzone, bool linear)
         {
             this.input = input;

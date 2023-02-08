@@ -25,7 +25,7 @@ namespace GMKDriverNETUI.ConfigurationControls
         private void UpdateTextWithLanguage()
         {
             inputJoystickLabel.Text = LanguageHelper.LookupPhrase("inputJoystick");
-            inputAxisLabel.Text = LanguageHelper.LookupPhrase("inputAxis");
+            //inputAxisLabel.Text = LanguageHelper.LookupPhrase("inputAxis");
             keyLabel.Text = LanguageHelper.LookupPhrase("outputKeys");
             rotateLabel.Text = LanguageHelper.LookupPhrase("rotate");
             deadzoneLabel.Text = LanguageHelper.LookupPhrase("deadzone");
@@ -38,7 +38,6 @@ namespace GMKDriverNETUI.ConfigurationControls
             _initialized = false;
 
             inputJoystick.LoadJoystick(_joystickAsKeyboard.input, config.type, false, _updateForm);
-            inputAxis.LoadAxis(_joystickAsKeyboard.inputAxis, _updateForm);
             key.LoadKey(_joystickAsKeyboard.key.ToArray(), _updateForm);
             rotate.LoadRotate(_joystickAsKeyboard.rotate, _updateForm);
             deadzone.LoadDeadzone(_joystickAsKeyboard.deadzone, _updateForm);
@@ -52,7 +51,6 @@ namespace GMKDriverNETUI.ConfigurationControls
             if (_initialized)
             {
                 _joystickAsKeyboard.input = inputJoystick.Joystick;
-                _joystickAsKeyboard.inputAxis = inputAxis.Axis;
                 _joystickAsKeyboard.key = key.Key.ToList<byte>();
                 _joystickAsKeyboard.rotate = rotate.Rotate;
                 _joystickAsKeyboard.deadzone = deadzone.Deadzone;

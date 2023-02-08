@@ -19,6 +19,7 @@ namespace GMKDriverNET
         public string DE { get; set; } // German
         public string JA { get; set; } // Japanese
         public string HI { get; set; } // Hindi
+        public string NL { get; set; } // Dutch
 
         public WordLookup()
         {
@@ -109,6 +110,9 @@ namespace GMKDriverNET
 
                         case "HI":
                             return lookup.HI;
+
+                        case "NL":
+                            return lookup.NL;
 
                         default:
                             return "N/A";

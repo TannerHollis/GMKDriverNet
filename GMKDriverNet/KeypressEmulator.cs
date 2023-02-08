@@ -1210,16 +1210,16 @@ namespace GMKDriverNET
                 case "\\ | |":
                     return ScanCodeShort.OEM_5;
 
-                case "UP":
+                case "UP(KEYPAD)":
                     return ScanCodeShort.UP;
 
-                case "DOWN":
+                case "DOWN(KEYPAD)":
                     return ScanCodeShort.DOWN;
 
-                case "LEFT":
+                case "LEFT(KEYPAD)":
                     return ScanCodeShort.LEFT;
 
-                case "RIGHT":
+                case "RIGHT(KEYPAD)":
                     return ScanCodeShort.RIGHT;
 
                 default:
@@ -1436,16 +1436,16 @@ namespace GMKDriverNET
                     return "\\ | |";
 
                 case ScanCodeShort.UP:
-                    return "UP";
+                    return "UP(KEYPAD)";
 
                 case ScanCodeShort.DOWN:
-                    return "DOWN";
+                    return "DOWN(KEYPAD)";
 
                 case ScanCodeShort.LEFT:
-                    return "LEFT";
+                    return "LEFT(KEYPAD)";
 
                 case ScanCodeShort.RIGHT:
-                    return "RIGHT";
+                    return "RIGHT(KEYPAD)";
 
                 default:
                     return "None";

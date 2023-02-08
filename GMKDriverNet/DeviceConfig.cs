@@ -1,4 +1,5 @@
 ﻿using GMKDriverNET.Bindings;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
@@ -241,6 +242,22 @@ namespace GMKDriverNET
 
                 // Joysticks
                 c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, 0.1f, true, false, 20));
+
+                return c;
+            }
+        }
+
+        public static DeviceConfig DefaultJoystickKeyboard
+        {
+            get
+            {
+                DeviceConfig c = new DeviceConfig("Default_Joystick_Keyboard_Remap_v1.0", GMKControllerType.Joystick);
+
+                // Buttons
+                c.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, new List<byte>() { 0x0B, 0x00, 0x00 }));
+
+                // Joysticks
+                c.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, new List<byte>() { 75, 72, 77, 80 }, 0.2f, 0.3826f));
 
                 return c;
             }

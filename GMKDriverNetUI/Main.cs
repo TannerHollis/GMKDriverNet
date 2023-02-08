@@ -1,4 +1,5 @@
 ﻿using GMKDriverNET;
+using GMKDriverNetUI;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -36,6 +37,8 @@ namespace GMKDriverNETUI
 
             _viGEmInstalled = GMKDriver.CheckViGEmInstalled();
 
+            CheckNewUpdate();
+
             if (!_viGEmInstalled && !_isDebugging)
             {
                 consoleBox.AppendText(LanguageHelper.LookupPhrase("viGEmNotInstalled1") + "\r\n");
@@ -47,6 +50,16 @@ namespace GMKDriverNETUI
                 _mainThread.Start(consoleBox);
                 updateDeviceListTimer.Enabled = true;
                 checkApplicationTimer.Enabled = true;
+            }
+        }
+
+        private void CheckNewUpdate()
+        {
+            if(Settings.GetLastVersionRun() != GMKDriver.Version)
+            {
+                UpdateWindow updateWindow = new UpdateWindow();
+                updateWindow.ShowDialog();
+                Settings.SetLastVersionRun(GMKDriver.Version);
             }
         }
 
@@ -84,6 +97,7 @@ namespace GMKDriverNETUI
             dEToolStripMenuItem.Checked = false;
             jAToolStripMenuItem.Checked = false;
             hIToolStripMenuItem.Checked = false;
+            nLToolStripMenuItem.Checked = false;
         }
 
         private void CheckLanguage(string language)
@@ -132,6 +146,10 @@ namespace GMKDriverNETUI
 
                 case "HI":
                     hIToolStripMenuItem.Checked = true;
+                    return;
+
+                case "NL":
+                    nLToolStripMenuItem.Checked = true;
                     return;
 
                 default:
@@ -262,6 +280,14 @@ namespace GMKDriverNETUI
             about.ShowDialog();
         }
 
-
+        private void deviceView_DoubleClick(object sender, EventArgs e)
+        {
+            if (deviceView.SelectedItems.Count > 0)
+            {
+                GMKDevice selectedDevice = (GMKDevice)deviceView.SelectedItems[0].Tag;
+                configurationEditor editor = new configurationEditor(selectedDevice);
+                editor.ShowDialog();
+            }
+        }
     }
 }

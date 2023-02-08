@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GMKDriverNET;
+using GMKDriverNetUI;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,12 +14,20 @@ namespace GMKDriverNETUI
         [STAThread]
         static void Main()
         {
-            var exists = System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1;
-            if (!exists)
+            try
             {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Main());
+                var exists = System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1;
+                if (!exists)
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new Main());
+                }
+            }
+            catch(Exception e)
+            {
+                Logger.Log(e.Message);
+                GMKDriver.Stop();
             }
         }
     }
