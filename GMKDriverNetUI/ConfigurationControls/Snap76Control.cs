@@ -39,6 +39,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             _bool = asBool;
 
             checkBox.Checked = asBool;
+            _intensity = intensity;
             snap76Intensity.SelectedIndex = GetIntensity(intensity);
             snap76Intensity.Enabled = _bool;
             _updateForm = updateForm;

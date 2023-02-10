@@ -30,6 +30,7 @@ namespace GMKDriverNET
         private string _serialNumber;
         private bool _run;
         private bool _paused;
+        private XInputController _before;
 
         public int VID { get { return _vid; } }
         public int PID { get { return _pid; } }
@@ -62,6 +63,8 @@ namespace GMKDriverNET
         public string SerialNumber { get { return _serialNumber; } }
         public bool IsPaused { get { return _paused; } }
 
+        public XInputController ControllerBefore { get { return _before; } }
+
         public GMKDevice(int pid,
             int interfaceN,
             int endpoint,
@@ -80,6 +83,8 @@ namespace GMKDriverNET
             _config = config;
             _consoleOutput = consoleOutput;
             _serialNumber = GMKDriver.GetSerialNumber(_hidDevice);
+
+            _before = new XInputController();
         }
 
         public void Run()
@@ -174,6 +179,7 @@ namespace GMKDriverNET
                     {
                         System.Array.Copy(readBuffer, 1, dataBuffer, 0, _endpointBufferSize - 1);
                         controller.Map(dataBuffer);
+                        _before = controller.Clone(); // Used for GUI
                         controller.MapToConfig(_config);
                         controller.SetController(xbox360Controller);
                     }

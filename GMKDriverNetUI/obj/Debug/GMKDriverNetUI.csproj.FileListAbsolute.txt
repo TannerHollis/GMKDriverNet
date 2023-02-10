@@ -70,3 +70,15 @@ C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNETUI
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.exe
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.pdb
 C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\wordLookups.json
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTK.dll
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTK.GLControl.dll
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTK.pdb
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTK.xml
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTK.GLControl.pdb
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTK.GLControl.xml
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\obj\Debug\GMKDriverNetUI.OpenTK.PaintControl.resources
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTKDisplay.dll
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTKDisplay.pdb
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\OpenTKDisplay.dll.config
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\shader.frag
+C:\Users\tanne\source\repos\GMKDriverNet\GMKDriverNetUI\bin\Debug\shader.vert

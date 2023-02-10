@@ -66,6 +66,11 @@ namespace GMKDriverNET
             triggerRight = (char)0;
         }
 
+        public XInputController Clone()
+        {
+            return (XInputController)MemberwiseClone();
+        }
+
         private bool GetBit(byte b, int bitNumber)
         {
             return (b & (1 << bitNumber)) != 0;
@@ -453,7 +458,7 @@ namespace GMKDriverNET
             return rad / 180.0 * Math.PI;
         }
 
-        private static float GetPercentageInt16(int value)
+        public static float GetPercentageInt16(int value)
         {
             return (float)((float)value / (float)-Int16.MinValue);
         }
@@ -566,7 +571,7 @@ namespace GMKDriverNET
             }
         }
 
-        private int GetJoystick(JoystickIO joystick, Axis axis)
+        public int GetJoystick(JoystickIO joystick, Axis axis)
         {
             switch (joystick)
             {

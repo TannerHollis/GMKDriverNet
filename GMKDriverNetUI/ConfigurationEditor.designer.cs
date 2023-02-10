@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(configurationEditor));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Button Bindings");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Joystick Bindings");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("TriggerBindings");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Button Bindings");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Joystick Bindings");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("TriggerBindings");
             this.gridLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.serialNumber = new System.Windows.Forms.Label();
@@ -427,16 +427,16 @@
             this.bindingsTreeView.Indent = 20;
             this.bindingsTreeView.Location = new System.Drawing.Point(3, 16);
             this.bindingsTreeView.Name = "bindingsTreeView";
-            treeNode1.Name = "buttonBindings";
-            treeNode1.Text = "Button Bindings";
-            treeNode2.Name = "joystickBindings";
-            treeNode2.Text = "Joystick Bindings";
-            treeNode3.Name = "triggerBindings";
-            treeNode3.Text = "TriggerBindings";
+            treeNode4.Name = "buttonBindings";
+            treeNode4.Text = "Button Bindings";
+            treeNode5.Name = "joystickBindings";
+            treeNode5.Text = "Joystick Bindings";
+            treeNode6.Name = "triggerBindings";
+            treeNode6.Text = "TriggerBindings";
             this.bindingsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
+            treeNode4,
+            treeNode5,
+            treeNode6});
             this.bindingsTreeView.Size = new System.Drawing.Size(645, 390);
             this.bindingsTreeView.TabIndex = 1;
             this.bindingsTreeView.DoubleClick += new System.EventHandler(this.bindingsTreeView_DoubleClick);
@@ -625,6 +625,7 @@
             this.Name = "configurationEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Configuration Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.configurationEditor_FormClosing);
             this.Load += new System.EventHandler(this.configurationEditor_Load);
             this.gridLayout.ResumeLayout(false);
             this.gridLayout.PerformLayout();

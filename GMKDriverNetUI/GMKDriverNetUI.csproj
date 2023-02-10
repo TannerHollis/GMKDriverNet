@@ -28,7 +28,7 @@
     <PublisherName>Gaming Mod Kits</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>0.95.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -83,6 +83,9 @@
     </Reference>
     <Reference Include="OpenTK.GLControl, Version=3.3.3.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenTK.GLControl.3.3.3\lib\net20\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTKDisplay">
+      <HintPath>..\..\OpenGL\GLDisplay\bin\Debug\OpenTKDisplay.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -260,6 +263,12 @@
     <Compile Include="ErrorWindow.designer.cs">
       <DependentUpon>ErrorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpenTK\PaintControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OpenTK\PaintControl.Designer.cs">
+      <DependentUpon>PaintControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpenTK\Shader.cs" />
     <Compile Include="OverwriteConfigWindow.cs">
       <SubType>Form</SubType>
@@ -369,6 +378,9 @@
     <EmbeddedResource Include="ErrorWindow.resx">
       <DependentUpon>ErrorWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OpenTK\PaintControl.resx">
+      <DependentUpon>PaintControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OverwriteConfigWindow.resx">
       <DependentUpon>OverwriteConfigWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -392,6 +404,7 @@
       <DependentUpon>UpdateWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="OpenTK.dll.config" />
+    <None Include="OpenTK\shader.frag" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -403,6 +416,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Content Include="wordLookups.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="OpenTK\shader.vert" />
+    <Content Include="shader.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="shader.vert">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

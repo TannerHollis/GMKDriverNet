@@ -394,7 +394,7 @@ namespace GMKDriverNETUI
                         return;
 
                     case JoystickAsJoystick binding:
-                        _joystickAsJoystickControl.LoadWidget((TreeNode)node, _currentConfig);
+                        _joystickAsJoystickControl.LoadWidget((TreeNode)node, _currentConfig, _device);
                         return;
 
                     case JoystickAsTrigger binding:
@@ -742,6 +742,11 @@ namespace GMKDriverNETUI
                     GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, false);
                 }
             }
+        }
+
+        private void configurationEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _joystickAsJoystickControl.Dispose();
         }
     }
 }
