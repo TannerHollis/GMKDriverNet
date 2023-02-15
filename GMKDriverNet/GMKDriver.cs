@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ namespace GMKDriverNET
 {
     public class GMKDriver
     {
-        public static string Version { get { return "v0.95.3"; } }
+        public static string Version { get { return "v0.95.4"; } }
 
         private const int GMK_VID = 0x483;
         private const int GMK_JOYSTICK_PID = 0x5750;
@@ -56,6 +57,21 @@ namespace GMKDriverNET
         {
             Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             key.DeleteValue("GMK Driver", false);
+        }
+
+        public static bool CanChangeRegistry()
+        {
+            try
+            {
+                RegistryPermission regPerm = new RegistryPermission(RegistryPermissionAccess.Write, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run");
+
+                regPerm.Demand();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static void SetConsole(TextBox console)

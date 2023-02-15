@@ -30,10 +30,18 @@ namespace GMKDriverNETUI
 
             UpdateTextWithLanguage();
 
-            bool isStartupApp = GMKDriver.IsStartupApp();
+            if(GMKDriver.CanChangeRegistry())
+            {
+                bool isStartupApp = GMKDriver.IsStartupApp();
 
-            removeFromStartupAppsToolStripMenuItem.Enabled = isStartupApp;
-            setAsStartupAppToolStripMenuItem.Enabled = !isStartupApp;
+                removeFromStartupAppsToolStripMenuItem.Enabled = isStartupApp;
+                setAsStartupAppToolStripMenuItem.Enabled = !isStartupApp;
+            }
+            else
+            {
+                removeFromStartupAppsToolStripMenuItem.Enabled = false;
+                setAsStartupAppToolStripMenuItem.Enabled = false;
+            }
 
             _viGEmInstalled = GMKDriver.CheckViGEmInstalled();
 

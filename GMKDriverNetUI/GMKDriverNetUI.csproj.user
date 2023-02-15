@@ -4,7 +4,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <PropertyGroup>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <PublishUrlHistory>ftp://offset-power.net/GMKDriver/|C:\Users\tanne\source\GMKDriverUI\|ftp://offset-power.net/|ftp://offset-power.net/var/www/html/GMKDriver/|publish\</PublishUrlHistory>
     <InstallUrlHistory>http://offset-power.net/GMKDriver/|http://offset-power.net/|http://offset-power.net/var/www/html/GMKDriver/</InstallUrlHistory>
     <SupportUrlHistory />

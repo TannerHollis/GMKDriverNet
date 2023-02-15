@@ -135,7 +135,7 @@ namespace GMKDriverNETUI.ConfigurationControls
 
             if(snap76.Bool)
             {
-                OpenTKDisplay.Primitives.RGBColor snapColor = new OpenTKDisplay.Primitives.RGBColor(0.7f, 0.0f, 0.7f, 0.0f);
+                OpenTKDisplay.Primitives.RGBColor snapColor = new OpenTKDisplay.Primitives.RGBColor(0.7f, 0.0f, 0.7f, 0.7f);
                 float rightAngle = (90.0f - (float)snap76.Intensity) / 180.0f * (float)Math.PI;
                 float leftAngle = (90.0f + (float)snap76.Intensity) / 180.0f * (float)Math.PI;
                 Line snap76R1 = new Line(0.0f, 0.0f, (float)Math.Cos(rightAngle), (float)Math.Sin(rightAngle), snapColor);
@@ -147,8 +147,6 @@ namespace GMKDriverNETUI.ConfigurationControls
                 _joystickDisplay.AddDrawObject(snap76L1);
                 _joystickDisplay.AddDrawObject(snap76L0);
             }
-
-
 
             _joystickDisplay.ReDraw();
             Refresh();
