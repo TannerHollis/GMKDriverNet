@@ -36,18 +36,18 @@
             this.deadzoneLabel = new System.Windows.Forms.Label();
             this.snap76Label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.joystickView = new System.Windows.Forms.Panel();
-            this.timerJoystickUpdate = new System.Windows.Forms.Timer(this.components);
-            this.legendGroupBox = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.rawInputLabel = new System.Windows.Forms.Label();
-            this.outputLabel = new System.Windows.Forms.Label();
             this.inputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
             this.outputJoystick = new GMKDriverNETUI.ConfigurationControls.JoystickControl();
             this.rotate = new GMKDriverNETUI.ConfigurationControls.RotateControl();
             this.deadzone = new GMKDriverNETUI.ConfigurationControls.DeadzoneControl();
             this.linear = new GMKDriverNETUI.ConfigurationControls.BoolControl();
             this.snap76 = new GMKDriverNETUI.ConfigurationControls.Snap76Control();
+            this.joystickView = new System.Windows.Forms.Panel();
+            this.legendGroupBox = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.rawInputLabel = new System.Windows.Forms.Label();
+            this.timerJoystickUpdate = new System.Windows.Forms.Timer(this.components);
+            this.outputLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.legendGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -158,72 +158,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(596, 283);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // joystickView
-            // 
-            this.joystickView.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.joystickView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.joystickView.Location = new System.Drawing.Point(5, 97);
-            this.joystickView.MinimumSize = new System.Drawing.Size(128, 128);
-            this.joystickView.Name = "joystickView";
-            this.tableLayoutPanel1.SetRowSpan(this.joystickView, 4);
-            this.joystickView.Size = new System.Drawing.Size(137, 128);
-            this.joystickView.TabIndex = 19;
-            // 
-            // timerJoystickUpdate
-            // 
-            this.timerJoystickUpdate.Interval = 25;
-            this.timerJoystickUpdate.Tick += new System.EventHandler(this.timerJoystickUpdate_Tick);
-            // 
-            // legendGroupBox
-            // 
-            this.legendGroupBox.Controls.Add(this.tableLayoutPanel2);
-            this.legendGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.legendGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.legendGroupBox.Name = "legendGroupBox";
-            this.tableLayoutPanel1.SetRowSpan(this.legendGroupBox, 2);
-            this.legendGroupBox.Size = new System.Drawing.Size(141, 88);
-            this.legendGroupBox.TabIndex = 20;
-            this.legendGroupBox.TabStop = false;
-            this.legendGroupBox.Text = "Legend";
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.rawInputLabel, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.outputLabel, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(135, 69);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // rawInputLabel
-            // 
-            this.rawInputLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.rawInputLabel.AutoSize = true;
-            this.rawInputLabel.ForeColor = System.Drawing.Color.Lime;
-            this.rawInputLabel.Location = new System.Drawing.Point(39, 10);
-            this.rawInputLabel.Name = "rawInputLabel";
-            this.rawInputLabel.Size = new System.Drawing.Size(56, 13);
-            this.rawInputLabel.TabIndex = 0;
-            this.rawInputLabel.Text = "Raw Input";
-            // 
-            // outputLabel
-            // 
-            this.outputLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.outputLabel.AutoSize = true;
-            this.outputLabel.ForeColor = System.Drawing.Color.Blue;
-            this.outputLabel.Location = new System.Drawing.Point(48, 45);
-            this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(39, 13);
-            this.outputLabel.TabIndex = 1;
-            this.outputLabel.Text = "Output";
-            // 
             // inputJoystick
             // 
             this.inputJoystick.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -271,6 +205,74 @@
             this.snap76.Name = "snap76";
             this.snap76.Size = new System.Drawing.Size(319, 42);
             this.snap76.TabIndex = 18;
+            // 
+            // joystickView
+            // 
+            this.joystickView.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.joystickView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.joystickView.Location = new System.Drawing.Point(5, 97);
+            this.joystickView.MinimumSize = new System.Drawing.Size(128, 128);
+            this.joystickView.Name = "joystickView";
+            this.tableLayoutPanel1.SetRowSpan(this.joystickView, 4);
+            this.joystickView.Size = new System.Drawing.Size(137, 128);
+            this.joystickView.TabIndex = 19;
+            // 
+            // legendGroupBox
+            // 
+            this.legendGroupBox.Controls.Add(this.tableLayoutPanel2);
+            this.legendGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.legendGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.legendGroupBox.Name = "legendGroupBox";
+            this.tableLayoutPanel1.SetRowSpan(this.legendGroupBox, 2);
+            this.legendGroupBox.Size = new System.Drawing.Size(141, 88);
+            this.legendGroupBox.TabIndex = 20;
+            this.legendGroupBox.TabStop = false;
+            this.legendGroupBox.Text = "Legend";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.rawInputLabel, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.outputLabel, 0, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(132, 56);
+            this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
+            // 
+            // rawInputLabel
+            // 
+            this.rawInputLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rawInputLabel.AutoSize = true;
+            this.rawInputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rawInputLabel.ForeColor = System.Drawing.Color.Lime;
+            this.rawInputLabel.Location = new System.Drawing.Point(39, 10);
+            this.rawInputLabel.Name = "rawInputLabel";
+            this.rawInputLabel.Size = new System.Drawing.Size(56, 13);
+            this.rawInputLabel.TabIndex = 0;
+            this.rawInputLabel.Text = "Raw Input";
+            // 
+            // timerJoystickUpdate
+            // 
+            this.timerJoystickUpdate.Interval = 25;
+            this.timerJoystickUpdate.Tick += new System.EventHandler(this.timerJoystickUpdate_Tick);
+            // 
+            // outputLabel
+            // 
+            this.outputLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLabel.ForeColor = System.Drawing.Color.Blue;
+            this.outputLabel.Location = new System.Drawing.Point(48, 45);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(39, 13);
+            this.outputLabel.TabIndex = 1;
+            this.outputLabel.Text = "Output";
+            this.outputLabel.Click += new System.EventHandler(this.outputLabel_Click);
             // 
             // JoystickAsJoystickControl
             // 

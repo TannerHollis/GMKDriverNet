@@ -30,7 +30,7 @@ namespace GMKDriverNETUI.ConfigurationControls
             {
                 joystick.Items.AddRange(outputJoysticks);
             }
-            else if (type == GMKControllerType.Joystick)
+            else if (type == GMKControllerType.Joystick || type == GMKControllerType.JoystickL3)
             {
                 joystick.Items.AddRange(joystickInputJoysticks);
             }

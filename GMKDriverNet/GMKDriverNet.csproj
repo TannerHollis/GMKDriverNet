@@ -88,6 +88,7 @@
     <Compile Include="GMKController.cs" />
     <Compile Include="GMKDevice.cs" />
     <Compile Include="GMKDriver.cs" />
+    <Compile Include="GMKJoystickL3.cs" />
     <Compile Include="GMKJoystick.cs" />
     <Compile Include="Bindings\JoystickAsButton.cs" />
     <Compile Include="Bindings\JoystickAsJoystick.cs" />

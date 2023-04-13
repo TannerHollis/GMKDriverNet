@@ -13,12 +13,13 @@ namespace GMKDriverNET
 {
     public class GMKDriver
     {
-        public static string Version { get { return "v0.95.4"; } }
+        public static string Version { get { return "v0.95.7"; } }
 
         private const int GMK_VID = 0x483;
         private const int GMK_JOYSTICK_PID = 0x5750;
+        private const int GMK_JOYSTICKL3_PID = 0x5751;
         private const int GMK_CONTROLLER_PID = 0x5740;
-        private static readonly int[] GMK_PIDS = { GMK_JOYSTICK_PID, GMK_CONTROLLER_PID };
+        private static readonly int[] GMK_PIDS = { GMK_JOYSTICK_PID, GMK_JOYSTICKL3_PID, GMK_CONTROLLER_PID };
 
         private static DeviceList _deviceList;
         private static List<Thread> _threads = new List<Thread>();
@@ -273,6 +274,24 @@ namespace GMKDriverNET
                         }
 
                         GMKJoystick joystick = new GMKJoystick(device.Clone() as UsbDevice, config, _console);
+                        newDevices.Add(joystick);
+                    }
+
+                    // If device PID matches Joystick w/ L3, 0x5751
+                    if (device.ProductId == GMK_JOYSTICKL3_PID)
+                    {
+                        if (configCollection == null)
+                        {
+                            _deviceList.AddNewDevice(serialNumber, GMKControllerType.JoystickL3);
+                            config = DeviceConfig.DefaultJoystickL3;
+                            _deviceList.AddConfiguration(serialNumber, config, true);
+                        }
+                        else
+                        {
+                            config = DeviceConfig.FromFile(configCollection.defaultConfigFile, GMKControllerType.JoystickL3);
+                        }
+
+                        GMKJoystickL3 joystick = new GMKJoystickL3(device.Clone() as UsbDevice, config, _console);
                         newDevices.Add(joystick);
                     }
 

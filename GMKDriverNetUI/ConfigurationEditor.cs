@@ -477,8 +477,15 @@ namespace GMKDriverNETUI
                     LoadConfiguration(config);
                     SetConfigsView();
                 }
-
-                if (_device.Type == GMKControllerType.Controller)
+                else if (_device.Type == GMKControllerType.JoystickL3)
+                {
+                    DeviceConfig config = DeviceConfig.DefaultJoystickL3;
+                    config.name = configNameWindow.ConfigurationName;
+                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, configNameWindow.MakeDefault);
+                    LoadConfiguration(config);
+                    SetConfigsView();
+                }
+                else if (_device.Type == GMKControllerType.Controller)
                 {
                     DeviceConfig config = DeviceConfig.DefaultController;
                     config.name = configNameWindow.ConfigurationName;
@@ -737,6 +744,14 @@ namespace GMKDriverNETUI
             if(_device.Type == GMKControllerType.Joystick)
             {
                 DeviceConfig config = DeviceConfig.DefaultJoystickKeyboard;
+                if (!GMKDriver.DeviceList.IsConfigurationAlreadyAdded(_device.SerialNumber, config))
+                {
+                    GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, false);
+                }
+            }
+            else if (_device.Type == GMKControllerType.JoystickL3)
+            {
+                DeviceConfig config = DeviceConfig.DefaultJoystickL3Keyboard;
                 if (!GMKDriver.DeviceList.IsConfigurationAlreadyAdded(_device.SerialNumber, config))
                 {
                     GMKDriver.DeviceList.AddConfiguration(_device.SerialNumber, config, false);

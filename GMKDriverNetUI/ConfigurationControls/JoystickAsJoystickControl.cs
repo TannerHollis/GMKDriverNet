@@ -169,5 +169,15 @@ namespace GMKDriverNETUI.ConfigurationControls
             else
                 timerJoystickUpdate.Stop();
         }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void outputLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

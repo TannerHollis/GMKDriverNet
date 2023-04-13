@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace GMKDriverNET
 {
@@ -172,8 +173,13 @@ namespace GMKDriverNET
                         defaultConfig.name = file;
                         return defaultConfig;
                     }
-
-                    if (type == GMKControllerType.Controller)
+                    else if (type == GMKControllerType.JoystickL3)
+                    {
+                        DeviceConfig defaultConfig = DeviceConfig.DefaultJoystickL3;
+                        defaultConfig.name = file;
+                        return defaultConfig;
+                    }
+                    else if (type == GMKControllerType.Controller)
                     {
                         DeviceConfig defaultConfig = DeviceConfig.DefaultController;
                         defaultConfig.name = file;
@@ -247,6 +253,23 @@ namespace GMKDriverNET
             }
         }
 
+        public static DeviceConfig DefaultJoystickL3
+        {
+            get
+            {
+                DeviceConfig c = new DeviceConfig("Default_JoystickL3_v1.0", GMKControllerType.JoystickL3);
+
+                // Buttons
+                c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.A, ButtonIO.A));
+                c.buttons.asButtons.Add(new ButtonAsButton(ButtonIO.LeftThumb, ButtonIO.LeftThumb));
+
+                // Joysticks
+                c.joysticks.asJoysticks.Add(new JoystickAsJoystick(JoystickIO.LeftJoystick, JoystickIO.LeftJoystick, 0.0f, 0.1f, true, false, 20));
+
+                return c;
+            }
+        }
+
         public static DeviceConfig DefaultJoystickKeyboard
         {
             get
@@ -255,6 +278,23 @@ namespace GMKDriverNET
 
                 // Buttons
                 c.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, new List<byte>() { 0x0B, 0x00, 0x00 }));
+
+                // Joysticks
+                c.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, new List<byte>() { 75, 72, 77, 80 }, 0.2f, 0.3826f));
+
+                return c;
+            }
+        }
+
+        public static DeviceConfig DefaultJoystickL3Keyboard
+        {
+            get
+            {
+                DeviceConfig c = new DeviceConfig("Default_JoystickL3_Keyboard_Remap_v1.0", GMKControllerType.JoystickL3);
+
+                // Buttons
+                c.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.A, new List<byte>() { 0x0B, 0x00, 0x00 }));
+                c.buttons.asKeyboards.Add(new ButtonAsKeyboard(ButtonIO.LeftThumb, new List<byte>() { 0x0C, 0x00, 0x00 }));
 
                 // Joysticks
                 c.joysticks.asKeyboards.Add(new JoystickAsKeyboard(JoystickIO.LeftJoystick, new List<byte>() { 75, 72, 77, 80 }, 0.2f, 0.3826f));

@@ -12,8 +12,9 @@ namespace GMKDriverNET
     public enum GMKControllerType
     {
         Joystick = 0,
-        Controller,
-        Undefined
+        JoystickL3 = 1,
+        Controller = 10,
+        Undefined = 99,
     }
 
     public abstract class GMKDevice
